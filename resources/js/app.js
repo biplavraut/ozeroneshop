@@ -46,7 +46,31 @@ const Toast = Swal.mixin({
     toast: true,
     position: 'top-end',
     showConfirmButton: false,
-    timer: 3000
+    timer: 5000
+});
+Vue.mixin({
+    methods:{
+        // Check server response and show it
+        serverResponse(data){
+            if(data.result == 'success'){
+                Toast.fire({
+                    type: 'success',
+                    title: data.message //Success message from server
+                })
+                this.$Progress.finish();
+                Fire.$emit('AfterCreate'); //Fire an reload event
+
+            }else{
+                swal.fire(
+                    'Error!',
+                    data.message, //Error message from server
+                    'warning'
+                )
+                this.$Progress.fail(); //End the progress bar
+            }
+        }
+    }
+
 });
 
 window.Toast = Toast;
@@ -96,7 +120,7 @@ let routes = [
     { path: '/backend/admin/*', component: require('./components/NotFound.vue').default}
 ]
 const router = new VueRouter({
-    // mode: 'history',
+    mode: 'history',
     routes, // short for `routes: routes`
     linkActiveClass: 'active'
 });

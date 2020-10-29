@@ -188,30 +188,19 @@
             },
             /*Create User Function Starts*/
             createSlider(){
-                //alert(this.form.name);
-                //exit();
                 this.$Progress.start(); //start a progress bar
                 this.form.post('../../api/slider') // POST form data
                 //Start Condition to check form is validate
-                    .then(()=>{
-                        Fire.$emit('AfterCreate'); //custom event to reload data
-
+                    .then(({data})=>{
                         $("#addNewSlider").modal('hide'); //Hide the model
-
-                        //Sweetalert notification for the result
-                        Toast.fire({
-                            type: 'success',
-                            title: 'Slider Created Successfully'
-                        })
-
-                        this.$Progress.finish(); //End the progress bar
+                        this.serverResponse(data);
                     })
                     //if form is not valid of handle any errors
                     .catch(()=>{
                         swal.fire(
                             'Error!',
                             'Something Went Wrong.',
-                            'warning'
+                            'error'
                         )
                         this.$Progress.fail(); //End the progress bar
                     })
@@ -263,15 +252,9 @@
                 this.$Progress.start();
                 //console.log('editing data');
                 this.form.put('../../api/slider/'+this.form.id)
-                    .then(() =>{
+                    .then(({data}) =>{
                         $("#addNewSlider").modal('hide'); //Hide the model
-                        swal.fire(
-                            'Updated!',
-                            'Slider has been updated.',
-                            'success'
-                        )
-                        this.$Progress.finish();
-                        Fire.$emit('AfterCreate'); //Fire an reload event
+                        this.serverResponse(data);
 
                     }).catch(()=>{
                     this.$Progress.fail();

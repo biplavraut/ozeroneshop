@@ -27,13 +27,57 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('isAuthorized',function($user){
+        Gate::define('canAddUser',function($user){
             if ($user->type==='supdev' || $user->type==='dev' || $user->type==='supadmin' || $user->type==='admin'){
                 return true;
             }else{
                 return false;
             }
         });
+        Gate::define('canEditUser',function($user){
+            if ($user->type==='supdev' || $user->type==='dev' || $user->type==='supadmin' || $user->type==='admin'){
+                return true;
+            }else{
+                return false;
+            }
+        });
+        Gate::define('canDeleteUser',function($user){
+            if ($user->type==='supdev' || $user->type==='dev' || $user->type==='supadmin'){
+                return true;
+            }else{
+                return false;
+            }
+        });
+
+        Gate::define('canView',function($user){
+            if ($user->type==='supdev' || $user->type==='dev' || $user->type==='supadmin' || $user->type==='admin' || 'editor'){
+                return true;
+            }else{
+                return false;
+            }
+        });
+        Gate::define('canAdd',function($user){
+            if ($user->type==='supdev' || $user->type==='dev' || $user->type==='supadmin' || $user->type==='admin' || 'editor'){
+                return true;
+            }else{
+                return false;
+            }
+        });
+        Gate::define('canEdit',function($user){
+            if ($user->type==='supdev' || $user->type==='dev' || $user->type==='supadmin' || $user->type==='admin' || 'editor'){
+                return true;
+            }else{
+                return false;
+            }
+        });
+        Gate::define('canDelete',function($user){
+            if ($user->type==='supdev' || $user->type==='dev' || $user->type==='supadmin' || $user->type==='admin'){
+                return true;
+            }else{
+                return false;
+            }
+        });
+
         Gate::define('isSupDev',function($user){
             return $user->type === 'supdev';
         });

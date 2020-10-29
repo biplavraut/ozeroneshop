@@ -109,7 +109,7 @@
                                 <has-error :form="form" field="bio"></has-error>
                             </div>
                             <div class="form-group">
-                                <select name="type" v-model="form.type" id="type" class="form-control" :class="{ 'is-invalid': form.errors.has('email') }" >
+                                <select name="type" v-model="form.type" id="type" class="form-control" :class="{ 'is-invalid': form.errors.has('role') }" >
                                     <option value="" selected disabled>--Select User Role--</option>
                                     <option v-if="$gate.isSupDevOrDev()" value="dev">Developer</option>
                                     <option v-if="$gate.isSupDevOrDev()" value="supadmin">Site Owner</option>
@@ -123,7 +123,7 @@
                             <div class="form-group">
                                 <div class="input-group mb-2 mr-sm-2">
                                     <div class="input-group-prepend">
-                                        <div class="input-group-text">Passeord</div>
+                                        <div class="input-group-text">Password</div>
                                     </div>
                                     <input v-model="form.password" type="password" name="password"
                                            placeholder="Secret Password"
@@ -167,7 +167,7 @@
         methods: {
             /*===== Start of pagination function =====*/
             getResults(page = 1) {
-                axios.get('api/admin?page=' + page)
+                axios.get('../../api/admin?page=' + page)
                     .then(response => {
                         this.admins = response.data;
                     });
@@ -184,18 +184,9 @@
                 this.$Progress.start(); //start a progress bar
                 this.form.post('../../api/admin') // POST form data
                 //Start Condition to check form is validate
-                    .then(()=>{
-                        Fire.$emit('AfterCreate'); //custom event to reload data
-
+                    .then(({data})=>{
                         $("#addNewAdmin").modal('hide'); //Hide the model
-
-                        //Sweetalert notification for the result
-                        Toast.fire({
-                            type: 'success',
-                            title: 'User Created Successfully'
-                        })
-
-                        this.$Progress.finish(); //End the progress bar
+                        this.serverResponse(data);
                     })
                     //if form is not valid of handle any errors
                     .catch(()=>{
@@ -221,16 +212,10 @@
             updateAdmin(id){
                 this.$Progress.start();
                 //console.log('editing data');
-                this.form.put('api/admin/'+this.form.id)
-                .then(() =>{
+                this.form.put('../../api/admin/'+this.form.id)
+                .then(({data}) =>{
                     $("#addNewAdmin").modal('hide'); //Hide the model
-                    swal.fire(
-                        'Updated!',
-                        'User info. has been updated.',
-                        'success'
-                    )
-                    this.$Progress.finish();
-                    Fire.$emit('AfterCreate'); //Fire an reload event
+                    this.serverResponse(data);
 
                 }).catch(()=>{
                     this.$Progress.fail();
@@ -251,18 +236,13 @@
                 }).then((result) => {
                     //send an ajax request to the server
                     if (result.value) {
-                        this.form.delete('api/admin/' + id).then(() => {
-                            swal.fire(
-                                'Deleted!',
-                                'Your file has been deleted.',
-                                'success'
-                            )
-                            Fire.$emit('AfterCreate'); //Fire an reload event
+                        this.form.delete('../../api/admin/' + id).then(({data}) => {
+                            this.serverResponse(data);
                         }).catch(() => {
                             swal.fire(
-                                'Warning!',
-                                'Unauthorized Access to delete.',
-                                'warning'
+                                'Error!',
+                                'Something Went wrong!',
+                                'error'
                             )
                         })
                     }
@@ -283,7 +263,7 @@
         created() {
             Fire.$on('searching',()=>{
                 let query =this.$parent.search; //take information from root
-                axios.get('api/findAdmin?q='+ query)
+                axios.get('../../api/findAdmin?q='+ query)
                     .then((data)=>{
                         this.admins = data.data
                     }).catch(()=>{

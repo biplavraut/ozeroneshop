@@ -60,7 +60,7 @@
                                             <label for="oldpassword" class="col-sm-2 control-label">Old password</label>
 
                                             <div class="col-sm-12">
-                                                <input type="password" v-model="form.oldpassword" class="form-control" id="oldpassword" placeholder="Password" :class="{ 'is-invalid': form.errors.has('password') }">
+                                                <input type="password" v-model="form.oldpassword" class="form-control" id="oldpassword" placeholder="Password" :class="{ 'is-invalid': form.errors.has('oldpassword') }">
                                                 <has-error :form="form" field="oldpassword"></has-error>
                                             </div>
                                         </div>
@@ -271,15 +271,8 @@
                         },
                     })
                     //Start Condition to check form is validate
-                        .then(()=>{
-                            Fire.$emit('AfterCreate'); //custom event to reload data
-                            //Sweetalert notification for the result
-                            Toast.fire({
-                                type: 'success',
-                                title: 'Menu Sorted Successfully'
-                            })
-
-                            this.$Progress.finish(); //End the progress bar
+                        .then(({data}) => {
+                            this.serverResponse(data);
                         })
                         //if form is not valid of handle any errors
                         .catch(()=>{
@@ -293,7 +286,7 @@
                 }else{
                     swal.fire(
                         'Opps..!',
-                        'Password do not match',
+                        'New Passwords does not match',
                         'warning'
                     )
                 }
@@ -301,14 +294,8 @@
             updateInfo() {
                 this.$Progress.start();
                 this.form.put('../../api/profile')
-                    .then(() => {
-                        swal.fire(
-                            'Updated!',
-                            'User info. has been updated.',
-                            'success'
-                        )
-                        this.$Progress.finish();
-                        Fire.$emit('AfterCreate'); //Fire an reload event
+                    .then(({data}) => {
+                        this.serverResponse(data);             
 
                     }).catch(() => {
                     this.Progress.fail();

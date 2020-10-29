@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Backend\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -26,12 +27,10 @@ class AdminController extends Controller
      */
     public function index()
     {
-        if (\Gate::allows('isAuthorized')){
-            return Admin::latest()->paginate(10);
+        if (\Gate::allows('canView')){
+            return Admin::wherein('type', array('dev','admin', 'supadmin', 'editor', 'user'))->latest()->paginate(10);
         }else{
-            //$user = Auth::user();
-            //return Admin::wherein('type', array('supdev','dev','admin', 'supadmin', 'editor', 'user'))->latest()->paginate(10);
-            return "access-denied";
+            return ['result'=>'error', 'message' =>'Unauthorized! Access Denied'];
         }
     }
 
@@ -43,7 +42,7 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        if (\Gate::allows('isSupDev') || \Gate::allows('isDev')|| \Gate::allows('isSupAdmin')|| \Gate::allows('isAdmin')) {
+        if (\Gate::allows('canAddUser')) {
             $this->validate($request, [
                 'name' => 'required|string|max:191',
                 'email' => 'required|string|email|max:191|unique:users',
@@ -55,17 +54,22 @@ class AdminController extends Controller
                 //report($e);
                 return $e;
             }
-            return Admin::create([
+            $add = Admin::create([
                 'name' => $request['name'],
                 'slug' => $slug,
                 'email' => $request['email'],
                 'type' => $request['type'],
                 'bio' => $request['bio'],
-                'photo' => $request['photo'],
+                'photo' => "profile.png",
                 'password' => Hash::make($request['password']),
             ]);
+            if($add){
+                return ['result'=>'success', 'message' =>'User added successfully! '];
+            }else{
+                return ['result'=>'error', 'message' =>'Something went wrong!'];
+            }
         }else{
-            return $user->type;
+            return ['result'=>'error', 'message' =>'Unauthorized! Access Denied'];
         }
     }
 
@@ -95,10 +99,10 @@ class AdminController extends Controller
                 $request->merge(['newpassword' => Hash::make($request['newpassword'])]);
             }
             Admin::where('id', '=', $request->id)->update(['password'=> $request->newpassword]);
-            return['message'=>'success'];
+            return['result'=>'success','message'=> 'New Password updated.'];
         }
         else{
-            return['message ' => 'password doesnt match'];
+            return['result' => 'error', "message" => 'Old Password doesnot match.'];
         }
 
 
@@ -106,48 +110,46 @@ class AdminController extends Controller
     //Show user profile
     public function updateProfile(Request $request)
     {
-        if (\Gate::allows('isSupDev') || \Gate::allows('isDev')|| \Gate::allows('isSupAdmin')|| \Gate::allows('isAdmin')) {
-            $user = auth('api')->user();
-            $this->validate($request, [
-                'name' => 'required|string|max:191',
-                'email' => 'required|string|email|max:191|unique:users,email,' . $user->id,
-                'password' => 'sometimes|required|min:6',
-            ]);
+        $user = auth('api')->user();
+        $this->validate($request, [
+            'name' => 'required|string|max:191',
+            'email' => 'required|string|email|max:191|unique:admins,email,' . $user->id,
+            'password' => 'sometimes|required|min:6',
+        ]);
 
-            /*Upload the image in server*/
-            $currentPhoto = $user->photo;
-            $slug = Str::slug($request->name);
+        /*Upload the image in server*/
+        $currentPhoto = $user->photo;
+        $slug = Str::slug($request->name);
 
-            if ($request->slug != $slug) {
-                $request->merge(['slug' => $this->createSlug($request->name, $request->id)]);
-            }
-            $imageName = $request->slug;
-
-            if ($request->photo != $currentPhoto) {
-                $name = $imageName . '.' . explode('/', explode(':', substr($request->photo, 0, strpos($request->photo, ';')))[1])[1];
-                \Image::make($request->photo)->save(public_path('img/profile/') . $name);
-                \File::makeDirectory('img/profile/thumbs', $mode = 0777, true, true);//making directory
-                \Image::make($request->photo)->resize(100, 100)->save(public_path('img/profile/thumbs/') . $name);//resize image
-
-                //$request->photo = $name;
-                $request->merge(['photo' => $name]);
-
-                /*Start Delete previous photo in Directory*/
-                $userPhoto = public_path('img/profile/') . $currentPhoto;
-                if (file_exists($currentPhoto)) {
-                    @unlink($currentPhoto);
-                }
-                /*End of Delete previous photo in Directory*/
-
-            }
-
-            /*If user change the password*/
-            if (!empty($request->newpassword)) {
-                $request->merge(['newpassword' => Hash::make($request['newpassword'])]);
-            }
-            $user->update($request->all());
-            return ['message' => 'success'];
+        if ($request->slug != $slug) {
+            $request->merge(['slug' => $this->createSlug($request->name, $request->id)]);
         }
+        $imageName = $request->slug;
+
+        if ($request->photo != $currentPhoto) {
+            $name = $imageName . '.' . explode('/', explode(':', substr($request->photo, 0, strpos($request->photo, ';')))[1])[1];
+            \Image::make($request->photo)->save(public_path('img/profile/') . $name);
+            \File::makeDirectory('img/profile/thumbs', $mode = 0777, true, true);//making directory
+            \Image::make($request->photo)->resize(100, 100)->save(public_path('img/profile/thumbs/') . $name);//resize image
+
+            //$request->photo = $name;
+            $request->merge(['photo' => $name]);
+
+            /*Start Delete previous photo in Directory*/
+            $userPhoto = public_path('img/profile/') . $currentPhoto;
+            if (file_exists($currentPhoto)) {
+                @unlink($currentPhoto);
+            }
+            /*End of Delete previous photo in Directory*/
+
+        }
+
+        /*If user change the password*/
+        if (!empty($request->newpassword)) {
+            $request->merge(['newpassword' => Hash::make($request['newpassword'])]);
+        }
+        $user->update($request->all());
+        return ['result'=>'success','message' => 'Profile info updated'];
     }
     //Show user profile
     public function profile()
@@ -164,25 +166,31 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = Admin::findOrFail($id);
+        if (\Gate::allows('canEditUser')) {
+            $user = Admin::findOrFail($id);
 
-        $this->validate($request,[
-            'name' => 'required|string|max:191',
-            'email' => 'required|string|email|max:191|unique:users,email,'.$user->id,
-            'password' => 'sometimes|min:6'
-        ]);
-        /*If user change the password*/
-        if(!empty($request->password)){
-            $request->merge(['password' => Hash::make($request['password'])]);
-        }
-        $slug = Str::slug($request->name);
+            $this->validate($request,[
+                'name' => 'required|string|max:191',
+                'email' => 'required|string|email|max:191|unique:admins,email,'.$user->id,
+                'password' => 'sometimes|min:6'
+            ]);
+            /*If user change the password*/
+            if(!empty($request->password)){
+                $request->merge(['password' => Hash::make($request['password'])]);
+            }
+            $slug = Str::slug($request->name);
 
-        if ($request->slug != $slug){
-            $request->merge(['slug' => $this->createSlug($request->name, $request->id)]);
+            if ($request->slug != $slug){
+                $request->merge(['slug' => $this->createSlug($request->name, $request->id)]);
+            }
+            //return $request->slug;
+            $user->update($request->all());
+            return ['result'=>'success', 'message' =>'User info updated successfully!'];
+        
+        }else{
+            return ['result'=>'error', 'message' =>'Unauthorized! Access Denied'];
         }
-        //return $request->slug;
-        $user->update($request->all());
-        return ['message'=>'User Info Updated'];
+        
     }
 
     /**
@@ -193,28 +201,31 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        $this->authorize('isAdmin');
-
-        $user = Admin::findOrFail($id);
-
-        //delete the user
-        $user->delete();
-
-        return ['message' =>'User Deleted'];
+        //$this->authorize('isAdmin');
+        if (\Gate::allows('canDeleteUser')) {
+            $user = Admin::findOrFail($id);
+            //delete the user
+            $user->delete();
+            return ['result'=>'success', 'message' =>'User Deleted Successfully'];
+        }else{
+            return ['result'=>'error', 'message' =>'Unauthorized! Access Denied'];
+        }
     }
     public function search(){
-
-        if($search = \Request::get('q')){
-            $users = Admin::where(function($query) use($search){
-                $query->where('name','LIKE',"%$search%")
-                    ->orWhere('email','LIKE',"%$search%")
-                    ->orWhere('type','LIKE',"%$search%");
-            })->paginate(10);
+        if (\Gate::allows('canView')){
+            if($search = \Request::get('q')){
+                $users = Admin::where(function($query) use($search){
+                    $query->where('name','LIKE',"%$search%")
+                        ->orWhere('email','LIKE',"%$search%")
+                        ->orWhere('type','LIKE',"%$search%");
+                })->wherein('type', array('dev','admin', 'supadmin', 'editor', 'user'))->paginate(10);
+            }else{
+                $users = Admin::wherein('type', array('dev','admin', 'supadmin', 'editor', 'user'))->latest()->paginate(10);
+            }
+            return $users;
         }else{
-            $users = Admin::latest()->paginate(10);
-
+            return ['result'=>'error', 'message' =>'Unauthorized! Access Denied'];
         }
-        return $users;
 
     }
     /*Generating Unique Slug*/
