@@ -1,21 +1,43 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Example Component</div>
 
-                    <div class="card-body">
-                        I'm an example component.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+  <vue-nestable
+    v-model="nestableItems"
+    :max-depth="2">
+    <template slot-scope="{ item }">
+      <!-- Handler -->
+      <vue-nestable-handle :item="item">
+        ☰
+      </vue-nestable-handle>
+
+      <!-- Content -->
+      <span>Item :: {{ item.text }}</span>
+    </template>
+  </vue-nestable>
+
 </template>
 
 <script>
     export default {
+        data () {
+            return {
+            nestableItems: [
+                {
+                id: 0,
+                text: 'Andy'
+                }, {
+                id: 1,
+                text: 'Harry',
+                children: [{
+                    id: 2,
+                    text: 'David'
+                }]
+                }, {
+                id: 3,
+                text: 'Lisa'
+                }
+            ]
+            }
+        },
         mounted() {
             console.log('Component mounted.')
         }

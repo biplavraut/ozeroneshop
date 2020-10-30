@@ -14,7 +14,10 @@
                     <!-- /.card-header -->
                     <div class="card-body table-responsive p-0">
                         <table class="table table-hover">
-                            <vue-nestable v-model="sliders" :max-depth="1" v-on:change="listChange(sliders)">
+                            <vue-nestable 
+                                v-model="sliders" 
+                                :max-depth="1" 
+                                v-on:change="listChange(sliders)">
                                 <template slot-scope="{ item }">
                                     <!-- Handler -->
                                     <vue-nestable-handle :item="item">
@@ -32,7 +35,6 @@
                                             </div>
                                         </div>
                                     </vue-nestable-handle>
-                                    <!-- Testimonial -->
                                 </template>
                             </vue-nestable>
                         </table>

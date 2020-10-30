@@ -78,8 +78,8 @@ window.Toast = Toast;
 
 /*Vue Nestable*/
 import Vue from 'vue';
-import VueNestableHandle from 'vue-nestable';
-Vue.use(VueNestableHandle);
+import VueNestable from 'vue-nestable';
+Vue.use(VueNestable);
 
 /*Start of Vue Routes*/
 import VueRouter from 'vue-router';
