@@ -1,6 +1,3 @@
-/**
- * Nestable
- */
  /*
 * Style for nestable
 */
@@ -82,7 +79,12 @@
   .nestable-handle {
     display: inline;
   }
+  /* new css ends */
 
+  /* Old css */
+  /**
+ * Nestable
+ */
   
  .nestable { position: relative; display: block; margin: 0; padding: 0; list-style: none; font-size: 13px; line-height: 20px; }
  .nestable-list { display: block; position: relative; margin: 0; padding: 0; list-style: none; }

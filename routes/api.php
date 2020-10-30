@@ -31,6 +31,10 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::apiResources(['slider'=> Backend\Admin\SliderController::class]);
     Route::post('orderSlider', [App\Http\Controllers\Backend\Admin\SliderController::class, 'orderSlider']);
     Route::get('findSlider', [App\Http\Controllers\Backend\Admin\SliderController::class, 'search']);
+
+    Route::apiResources(['shopsection'=> Backend\Admin\ShopSectionController::class]);
+    Route::post('orderShopSectionList', [App\Http\Controllers\Backend\Admin\ShopSectionController::class, 'orderSection']);
+    Route::get('findShopSection', [App\Http\Controllers\Backend\Admin\ShopSectionController::class, 'search']);
     
 
     

@@ -115,16 +115,16 @@ class SliderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
-        if (\Gate::allows('canEditUser')) {
+        if (\Gate::allows('canEdit')) {
             $this->validate($request,[
                 'title' => 'required|string|max:191',
             ]);
-            $content = Slider::findOrFail($id);
+            $content = Slider::where('slug', '=', $slug)->firstOrFail();
     
-            $slug = Str::slug($request->title);
-            if ($request->slug != $slug){
+            $newSlug = Str::slug($request->title);
+            if ($request->slug != $newSlug){
                 $request->merge(['slug' => $this->createSlug($request->title, $request->id)]);
             }
             if($request->image){
@@ -176,27 +176,30 @@ class SliderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
-        $this->authorize('isAdmin');
+        if (\Gate::allows('canDelete')){
+            //$this->authorize('isAdmin');
+            $content = Slider::where('slug', '=', $slug)->firstOrFail();
+            $old_image = json_decode(Slider::select('image')->where('slug', 'like', $slug)->get()->first());
+            $old_image =  $old_image->image;
+            $sliderPhoto = public_path('img/slider/').$old_image;
+            $sliderThumb = public_path('img/slider/thumbs/').$old_image;
+            $sliderThumbRect = public_path('img/slider/thumbs/rect_').$old_image;
+                if(file_exists($sliderPhoto)){
+                    unlink($sliderPhoto);
+                    unlink($sliderThumb);
+                    unlink($sliderThumbRect);
+                }
 
-        $content = Slider::findOrFail($id);
+            //delete the user
+            $content->delete();
 
-        $old_image = json_decode(Slider::select('image')->where('id', 'like', $id)->get()->first());
-        $old_image =  $old_image->image;
-        $sliderPhoto = public_path('img/slider/').$old_image;
-        $sliderThumb = public_path('img/slider/thumbs/').$old_image;
-        $sliderThumbRect = public_path('img/slider/thumbs/rect_').$old_image;
-            if(file_exists($sliderPhoto)){
-                unlink($sliderPhoto);
-                unlink($sliderThumb);
-                unlink($sliderThumbRect);
-            }
-
-        //delete the user
-        $content->delete();
-
-        return ['message' =>'Sliders Deleted'];
+            return ['result'=>'success', 'message' => $content->title .' deleted successfully'];
+        }else{
+            return ['result'=>'error', 'message' =>'Unauthorized! Access Denied'];
+        }
+        
     }
     //search
     public function search(){

@@ -96,7 +96,7 @@ let routes = [
     //{ path: '/menus', component: require('./components/Menus.vue').default},
     { path: '/backend/admin/menus/:menu_slug', component: require('./components/Menus.vue').default, props:true},
 
-    { path: '/backend/admin/devmenus', component: require('./components/Devmenus.vue').default},
+    { path: '/backend/admin/shop-sections', component: require('./components/Shop-sections.vue').default},
     { path: '/backend/admin/contents', component: require('./components/Contents.vue').default},
     { path: '/backend/admin/regions', component: require('./components/Regions.vue').default},
     { path: '/backend/admin/addregions/:slug', component: require('./components/Addregions.vue').default, props:true},

@@ -5,36 +5,34 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Slider Management</h3>
+                        <h3 class="card-title">Manage Shop Sections</h3>
 
                         <div class="card-tools">
-                            <button type="" @click="newSlider" class="btn btn-primary"><i class="fas fa-plus"></i> Add New Slider</button>
+                            <button type="" @click="newShopSection" class="btn btn-primary"><i class="fas fa-bars fa-fw"></i> Add New Shop Section</button>
                         </div>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive p-0">
                         <table class="table table-hover">
-                            <vue-nestable 
-                                v-model="sliders" 
-                                :max-depth="1" 
-                                v-on:change="listChange(sliders)">
+                            <vue-nestable v-model="shopsections" :max-depth="1" v-on:change="listChange(shopsections)">
                                 <template slot-scope="{ item }">
                                     <!-- Handler -->
                                     <vue-nestable-handle :item="item">
                                         <div class="row">
                                             <div class="col-md-8">
-                                                <i class="fas fa-bars"> </i> <span>{{ item.title }}</span>
+                                                <i class="fas fa-bars"> </i> <span>{{ item.title }} / {{ item.slug }} </span>
                                             </div>
                                             <div class="col-md-4 item_actions">
-                                                <a href="#" @click="editSlider(item)" class="btn btn-sm btn-success">Edit
+                                                <a href="#" @click="editShopSection(item)" class="btn btn-sm btn-success">Edit
                                                     <i class="fa fa-edit"></i>
                                                 </a>
-                                                <a href="#" @click="deleteSlider(item.slug)" class="btn btn-sm btn-danger">Delete
+                                                <a href="#" @click="deleteShopSection(item.slug)" class="btn btn-sm btn-danger">Delete
                                                     <i class="fa fa-trash"></i>
                                                 </a>
                                             </div>
                                         </div>
                                     </vue-nestable-handle>
+                                    <!-- Content -->
                                 </template>
                             </vue-nestable>
                         </table>
@@ -43,86 +41,81 @@
             </div>
         </div>
         <!-- Modal -->
-        <div class="modal fade" id="addNewSlider" tabindex="-1" role="dialog" aria-labelledby="addNewSliderLabel" aria-hidden="true">
+        <div class="modal fade" id="addNewShopSection" tabindex="-1" role="dialog" aria-labelledby="addNewShopSectionLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" v-show="!editmode" id="addNewSliderLabel">Add New Slider</h5>
-                        <h5 class="modal-title" v-show="editmode" id="addNewSliderLabel">Update Slider</h5>
+                        <h5 class="modal-title" v-show="!editmode" id="addNewShopSectionLabel">Add New Shop Section</h5>
+                        <h5 class="modal-title" v-show="editmode" id="addNewShopSectionLabel">Update Shop Section</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form  @submit.prevent="editmode ? updateSlider() : createSlider()">
+                    <form  @submit.prevent="editmode ? updateShopSection() : createShopSection()">
                         <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <div class="input-group mb-2 mr-sm-2">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text">Title</div>
-                                            </div>
-                                            <input v-model="form.title" type="text" name="title"
-                                                   placeholder="Slider Title."
-                                                   class="form-control" :class="{ 'is-invalid': form.errors.has('title') }">
-                                            <has-error :form="form" field="title"></has-error>
-                                        </div>
+                            <div class="form-group">
+                                <div class="input-group mb-2 mr-sm-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">Title</div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <div class="input-group mb-2 mr-sm-2">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text">Sub title</div>
-                                            </div>
-                                            <input v-model="form.sub_title" type="text" name="sub_title"
-                                                   placeholder="Sub Title"
-                                                   class="form-control" :class="{ 'is-invalid': form.errors.has('sub_title') }">
-                                            <has-error :form="form" field="sub_title"></has-error>
-                                        </div>
-                                    </div>
+                                    <input v-model="form.title" type="text" name="title"
+                                           placeholder="Shop Section Title."
+                                           class="form-control" :class="{ 'is-invalid': form.errors.has('title') }">
+                                    <has-error :form="form" field="title"></has-error>
                                 </div>
 
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <div class="input-group mb-2">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text">Image</div>
-                                            </div>
-                                            <input type="file" name="image"  @change="imageUpload"
-                                                   placeholder="Image"
-                                                   class="btn btn-sm btn-info" :class="{ 'is-invalid': form.errors.has('image') }">
-                                            <has-error :form="form" field="image"></has-error>
-                                        </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">Image</div>
                                     </div>
+                                    <input type="file" name="image"  @change="imageUpload"
+                                           placeholder="Image"
+                                           class="btn btn-sm btn-info" :class="{ 'is-invalid': form.errors.has('image') }">
+                                    <has-error :form="form" field="image"></has-error>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group mb-2 mr-sm-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">Icons</div>
+                                    </div>
+                                    <input v-model="form.icon" type="text" name="icon"
+                                           placeholder="Icon if available."
+                                           class="form-control" :class="{ 'is-invalid': form.errors.has('icon') }">
+                                    <has-error :form="form" field="icon"></has-error>
                                 </div>
 
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <div class="input-group mb-2 mr-sm-2">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text">
-                                                    <input v-model="form.display" type="checkbox" name="display" :class="{ 'is-invalid': form.errors.has('display') }">
-                                                </div>
-                                            </div>
-                                            <input type="text" value="Display" class="form-control" disabled>
-                                            <has-error :form="form" field="display"></has-error>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group mb-2 mr-sm-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <input v-model="form.type" type="checkbox" name="type"
+                                                   :class="{ 'is-invalid': form.errors.has('type') }">
                                         </div>
                                     </div>
+                                    <input type="text" value="Product or Service Category" class="form-control" disabled>
+                                    <has-error :form="form" field="type"></has-error>
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <div class="input-group mb-2 mr-sm-2">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text">Link</div>
-                                            </div>
-                                            <input v-model="form.link" type="text" name="link"
-                                                   placeholder="Slider Link"
-                                                   class="form-control" :class="{ 'is-invalid': form.errors.has('link') }">
-                                            <has-error :form="form" field="link"></has-error>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group mb-2 mr-sm-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <input v-model="form.display" type="checkbox" name="display" :class="{ 'is-invalid': form.errors.has('display') }">
                                         </div>
                                     </div>
+                                    <input type="text" value="Display" class="form-control" disabled>
+                                    <has-error :form="form" field="display"></has-error>
                                 </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">Excerpt</div>
+                                </div>
+                                <vue-editor v-model="form.excerpt" placeholder="Excerpt"></vue-editor>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -139,34 +132,34 @@
 </template>
 
 <script type="text/babel">
-    import { VueEditor } from 'vue2-editor'
     export default {
-        components: {
-            VueEditor
-        },
         data () {
             return {
                 editmode: false,
-                totalteslide : 0,
-                sliders : [],
+                totalshopsections : 0,
+                shopsections : [],
                 form: new Form({
                     id:'',
                     title :'',
-                    sub_title:'',
                     slug :'',
                     image:'',
+                    icon:'',
                     display:'',
+                    type:'',
+                    child:'',
                     order_item:'',
-                    link:'',
+                    excerpt:''
                 })
             }
         },
+
+
         methods : {
-            /*===== Call add new content modal ====*/
-            newSlider(){
+            /*===== Call add new Shop Section modal ====*/
+            newShopSection(){
                 this.editmode = false;
                 this.form.reset();
-                $('#addNewSlider').modal('show');
+                $('#addNewShopSection').modal('show');
             },
             imageUpload(e) {
                 //console.log('Uploading');
@@ -189,12 +182,12 @@
                 }
             },
             /*Create User Function Starts*/
-            createSlider(){
+            createShopSection(){
                 this.$Progress.start(); //start a progress bar
-                this.form.post('../../api/slider') // POST form data
+                this.form.post('../../api/shopsection') // POST form data
                 //Start Condition to check form is validate
                     .then(({data})=>{
-                        $("#addNewSlider").modal('hide'); //Hide the model
+                        $("#addNewShopSection").modal('hide'); //Hide the model
                         this.serverResponse(data);
                     })
                     //if form is not valid of handle any errors
@@ -202,20 +195,20 @@
                         swal.fire(
                             'Error!',
                             'Something Went Wrong.',
-                            'error'
+                            'warning'
                         )
                         this.$Progress.fail(); //End the progress bar
                     })
 
             },
-            listChange(newslider){
-                //console.log(newcontent);
+            listChange(newshopsection){
+                console.log(newshopsection);
 
                 axios({
                     method: 'post',
-                    url: '../../api/orderSlider',
+                    url: '../../api/orderShopSectionList',
                     data: {
-                        newslider
+                        newshopsection
                     },
                 })
                 //Start Condition to check form is validate
@@ -224,7 +217,7 @@
                         //Sweetalert notification for the result
                         Toast.fire({
                             type: 'success',
-                            title: 'Slider Sorted Successfully'
+                            title: 'Shop Section Sorted Successfully'
                         })
 
                         this.$Progress.finish(); //End the progress bar
@@ -240,32 +233,35 @@
                     })
 
             },
-            /*==== End of content Create ====*/
-
-            /*==== Call edit Modal with Content data ====*/
-            editSlider(sliders){
+            /*==== End of Shop Scetion Create ====*/
+            /*==== Call edit Modal with user data ====*/
+            editShopSection(shopsections){
                 this.editmode = true;
                 this.form.reset();
-                $('#addNewSlider').modal('show');
-                this.form.fill(sliders);
+                $('#addNewShopSection').modal('show');
+                this.form.fill(shopsections);
             },
-            /*Edit Slider Function*/
-            updateSlider(){
+            /*Edit User Function*/
+            updateShopSection(id){
                 this.$Progress.start();
                 //console.log('editing data');
-                this.form.put('../../api/slider/'+this.form.slug)
+                this.form.put('../../api/shopsection/'+this.form.slug)
                     .then(({data}) =>{
-                        $("#addNewSlider").modal('hide'); //Hide the model
+                        $("#addNewShopSection").modal('hide'); //Hide the model
                         this.serverResponse(data);
-
                     }).catch(()=>{
+                        swal.fire(
+                            'Error!',
+                            'Something Went Wrong.',
+                            'error'
+                        )
                     this.$Progress.fail();
                 });
             },
-            /*==== End of edit Testimonial function ====*/
+            /*==== End of edit user function ====*/
 
-            /*==== Call Delete Modal uith TEstimonial id ====*/
-            deleteSlider(slug){
+            /*==== Call Delete Modal uith user id ====*/
+            deleteShopSection(slug){
                 swal.fire({
                     title: 'Are you sure?',
                     text: "You won't be able to revert this!",
@@ -277,14 +273,15 @@
                 }).then((result) => {
                     //send an ajax request to the server
                     if (result.value) {
-                        this.form.delete('../../api/slider/' + slug).then(({data}) => {
+                        this.form.delete('../../api/shopsection/' + slug).then(({data}) => {
                             this.serverResponse(data);
                         }).catch(() => {
                             swal.fire(
-                                'Oops!',
-                                'Something went worong.',
-                                'error'
-                            )
+                            'Error!',
+                            'Something Went Wrong.',
+                            'error'
+                        )
+                        this.$Progress.fail();
                         })
                     }
 
@@ -292,30 +289,35 @@
             },
             /*==== End of Delete Modal ====*/
 
-            loadSlider(){
+            loadShopSections(){
+                this.$Progress.start();
                 if (this.$gate.isAuthorized()){
-                    axios.get("../../api/slider").then(({ data }) => (this.sliders = data, this.totalslider = data.total));
+                    axios.get("../../api/shopsection")
+                        .then(({ data }) => (this.shopsections = data, this.totalshopsections = data.total));
+                    this.$Progress.finish();
                 }
             }
         },
         created() {
             Fire.$on('searching',()=>{
                 let query =this.$parent.search; //take information from root
-                axios.get('../../api/findSlider?q='+ query)
-                    .then(({ data })=>{
-                        this.sliders = data
+                axios.get('../../api/findShopSection?q='+ query)
+                    .then((data)=>{
+                        this.shopsections = data.data
                     }).catch(()=>{
 
                 })
             })
-            this.loadSlider(); //load the user in the table
+
+            this.loadShopSections(); //load the user in the table
+
             //Load the userlist if add or created a new user
             Fire.$on("AfterCreate",()=>{
-                this.loadSlider();
+                this.loadShopSections();
             })
 
 
-            //setInterval(() => this.loadUsers(),3000);
+            //setInterval(() => this.loadShopSections(),3000);
         }
     }
 </script>
