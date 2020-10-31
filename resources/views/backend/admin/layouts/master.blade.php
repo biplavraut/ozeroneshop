@@ -134,7 +134,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <ul class="nav nav-treeview pl-2">
                                 <li class="nav-item">
                                     <router-link to="/backend/admin/shop-sections" class="nav-link">
-                                        <i class="fas fa-bars nav-icon green"></i>
+                                        <i class="fas fa-cog nav-icon green"></i>
                                         <p>Shop Sections</p>
                                     </router-link>
                                 </li>
@@ -143,9 +143,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                         </li>
                     @endif
-                    <li class="nav-item has-treeview">
+                    <li class="nav-item has-treeview menu-open">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon fa fa-mountain"></i>
+                            <i class="nav-icon fas fa-shopping-bag"></i>
                             <p>
                                 Add-Edit Brands
                                 <i class="right fa fa-angle-left"></i>
@@ -155,20 +155,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             @foreach ($shop_sections as $shop_section)
                                 @if ($shop_section->display == 1)
                                     <li class="nav-item">
-                                        <router-link to="/backend/admin/menus/{{$shop_section->slug}}" class="nav-link">
-                                            <i class="fas fa-bars nav-icon green"></i>
+                                        <router-link to="/backend/admin/brands/{{$shop_section->slug}}" class="nav-link">
+                                            <i class="{{$shop_section->icon}} nav-icon green"></i>
                                             <p>{{ $shop_section->title }}</p>
                                         </router-link>
                                     </li>
                                 @endif
                             @endforeach
-                            {{--<li class="nav-item">
-                                <router-link to="/backend/admin/menus" class="nav-link">
-                                    <i class="fas fa-bars nav-icon green"></i>
-                                    <p>Add Trip Categories</p>
-                                </router-link>
-                            </li>--}}
-
                             <div class="dropdown-divider"></div>
                         </ul>
 

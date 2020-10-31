@@ -94,7 +94,7 @@ let routes = [
     { path: '/backend/admin/profile', component: require('./components/Profile.vue').default},
     { path: '/backend/admin/admins', component: require('./components/Admins.vue').default},
     //{ path: '/menus', component: require('./components/Menus.vue').default},
-    { path: '/backend/admin/menus/:menu_slug', component: require('./components/Menus.vue').default, props:true},
+    { path: '/backend/admin/brands/:shop_section', component: require('./components/Brands.vue').default, props:true},
 
     { path: '/backend/admin/shop-sections', component: require('./components/Shop-sections.vue').default},
     { path: '/backend/admin/contents', component: require('./components/Contents.vue').default},

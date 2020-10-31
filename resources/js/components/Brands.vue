@@ -5,33 +5,28 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Manage Shop Sections</h3>
+                        <h3 class="card-title">Brand Management: {{this.shop_section}}</h3>
 
                         <div class="card-tools">
-                            <button type="" @click="newShopSection" class="btn btn-primary"><i class="fas fa-bars fa-fw"></i> Add New Shop Section</button>
+                            <button type="" @click="newBrand" class="btn btn-primary"><i class="fas fa-bars fa-fw"></i> Add New</button>
                         </div>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive p-0">
                         <table class="table table-hover">
-                            <vue-nestable v-model="shopsections" :max-depth="1" v-on:change="listChange(shopsections)">
+                            <vue-nestable v-model="brands" :max-depth="2" v-on:change="listChange(brands)">
                                 <template slot-scope="{ item }">
                                     <!-- Handler -->
                                     <vue-nestable-handle :item="item">
                                         <div class="row">
                                             <div class="col-md-8">
-                                                <i class="fas fa-bars"> </i> <span>{{ item.title }} / {{ item.slug }}</span>
-                                                <small class="hidden-xs hidden-sm">/ {{ item.get_brand_relation.length }} brands listed inside it</small>
+                                                <i class="fas fa-bars"> </i> <span>{{ item.title }} / {{ item.slug }} </span>
                                             </div>
                                             <div class="col-md-4 item_actions">
-                                                <router-link :to="'/backend/admin/brands/'+item.slug" class="btn btn-sm btn-primary">
-                                                    Add Brands
-                                                    <i class="fa fa-plus"></i>
-                                                </router-link>
-                                                <a href="#" @click="editShopSection(item)" class="btn btn-sm btn-success">Edit
+                                                <a href="#" @click="editBrand(item)" class="btn btn-sm btn-success">Edit
                                                     <i class="fa fa-edit"></i>
                                                 </a>
-                                                <a href="#" @click="deleteShopSection(item.slug)" class="btn btn-sm btn-danger">Delete
+                                                <a href="#" @click="deleteBrand(item.slug)" class="btn btn-sm btn-danger">Delete
                                                     <i class="fa fa-trash"></i>
                                                 </a>
                                             </div>
@@ -46,17 +41,17 @@
             </div>
         </div>
         <!-- Modal -->
-        <div class="modal fade" id="addNewShopSection" tabindex="-1" role="dialog" aria-labelledby="addNewShopSectionLabel" aria-hidden="true">
+        <div class="modal fade" id="addNewBrand" tabindex="-1" role="dialog" aria-labelledby="addNewBrandLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" v-show="!editmode" id="addNewShopSectionLabel">Add New Shop Section</h5>
-                        <h5 class="modal-title" v-show="editmode" id="addNewShopSectionLabel">Update Shop Section</h5>
+                        <h5 class="modal-title" v-show="!editmode" id="addNewBrandLabel">Add New Brand</h5>
+                        <h5 class="modal-title" v-show="editmode" id="addNewBrandLabel">Update Brand</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form  @submit.prevent="editmode ? updateShopSection() : createShopSection()">
+                    <form  @submit.prevent="editmode ? updateBrand() : createBrand()">
                         <div class="modal-body">
                             <div class="form-group">
                                 <div class="input-group mb-2 mr-sm-2">
@@ -64,13 +59,14 @@
                                         <div class="input-group-text">Title</div>
                                     </div>
                                     <input v-model="form.title" type="text" name="title"
-                                           placeholder="Shop Section Title."
+                                           placeholder="Brand Title."
                                            class="form-control" :class="{ 'is-invalid': form.errors.has('title') }">
                                     <has-error :form="form" field="title"></has-error>
                                 </div>
-
                             </div>
-                            <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
                                 <div class="input-group mb-2">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">Image</div>
@@ -81,7 +77,9 @@
                                     <has-error :form="form" field="image"></has-error>
                                 </div>
                             </div>
-                            <div class="form-group">
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
                                 <div class="input-group mb-2 mr-sm-2">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">Icons</div>
@@ -93,7 +91,10 @@
                                 </div>
 
                             </div>
-                            <div class="form-group">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6"><div class="form-group">
                                 <div class="input-group mb-2 mr-sm-2">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
@@ -104,8 +105,10 @@
                                     <input type="text" value="Product or Service Category" class="form-control" disabled>
                                     <has-error :form="form" field="type"></has-error>
                                 </div>
-                            </div>
-                            <div class="form-group">
+                               </div>
+                            </div> 
+                                <div class="col-md-6">
+                                    <div class="form-group">
                                 <div class="input-group mb-2 mr-sm-2">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
@@ -115,8 +118,10 @@
                                     <input type="text" value="Display" class="form-control" disabled>
                                     <has-error :form="form" field="display"></has-error>
                                 </div>
+                            </div>  
+                                    </div>                           
                             </div>
-                            <div class="form-group">
+                            <div class="form-group"> 
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">Excerpt</div>
                                 </div>
@@ -138,19 +143,27 @@
 
 <script type="text/babel">
     export default {
+        watch:{
+            '$route' (to, from) {
+                // react to route changes...
+            }
+        },
         data () {
             return {
                 editmode: false,
-                totalshopsections : 0,
-                shopsections : [],
+                totalbrands : 0,
+                brands : [],
+                shop_section: this.$route.params.shop_section,
                 form: new Form({
                     id:'',
+                    shop_section: this.$route.params.shop_section,
                     title :'',
                     slug :'',
                     image:'',
                     icon:'',
                     display:'',
                     type:'',
+                    parent_id:'',
                     child:'',
                     order_item:'',
                     excerpt:''
@@ -158,13 +171,12 @@
             }
         },
 
-
         methods : {
-            /*===== Call add new Shop Section modal ====*/
-            newShopSection(){
+            /*===== Call add new Menu modal ====*/
+            newBrand(){
                 this.editmode = false;
                 this.form.reset();
-                $('#addNewShopSection').modal('show');
+                $('#addNewBrand').modal('show');
             },
             imageUpload(e) {
                 //console.log('Uploading');
@@ -187,42 +199,19 @@
                 }
             },
             /*Create User Function Starts*/
-            createShopSection(){
+            createBrand(){
                 this.$Progress.start(); //start a progress bar
-                this.form.post('../../api/shopsection') // POST form data
-                //Start Condition to check form is validate
-                    .then(({data})=>{
-                        $("#addNewShopSection").modal('hide'); //Hide the model
-                        this.serverResponse(data);
-                    })
-                    //if form is not valid of handle any errors
-                    .catch(()=>{
-                        swal.fire(
-                            'Error!',
-                            'Something Went Wrong.',
-                            'warning'
-                        )
-                        this.$Progress.fail(); //End the progress bar
-                    })
-
-            },
-            listChange(newshopsection){
-                console.log(newshopsection);
-
-                axios({
-                    method: 'post',
-                    url: '../../api/orderShopSectionList',
-                    data: {
-                        newshopsection
-                    },
-                })
+                this.form.post('../../../api/brand') // POST form data
                 //Start Condition to check form is validate
                     .then(()=>{
                         Fire.$emit('AfterCreate'); //custom event to reload data
+
+                        $("#addNewBrand").modal('hide'); //Hide the model
+
                         //Sweetalert notification for the result
                         Toast.fire({
                             type: 'success',
-                            title: 'Shop Section Sorted Successfully'
+                            title: 'Brand Created Successfully'
                         })
 
                         this.$Progress.finish(); //End the progress bar
@@ -238,35 +227,69 @@
                     })
 
             },
-            /*==== End of Shop Scetion Create ====*/
-            /*==== Call edit Modal with user data ====*/
-            editShopSection(shopsections){
-                this.editmode = true;
-                this.form.reset();
-                $('#addNewShopSection').modal('show');
-                this.form.fill(shopsections);
-            },
-            /*Edit User Function*/
-            updateShopSection(id){
-                this.$Progress.start();
-                //console.log('editing data');
-                this.form.put('../../api/shopsection/'+this.form.slug)
-                    .then(({data}) =>{
-                        $("#addNewShopSection").modal('hide'); //Hide the model
-                        this.serverResponse(data);
-                    }).catch(()=>{
+            listChange(newbrand){
+                console.log(newbrand);
+
+                axios({
+                    method: 'post',
+                    url: '../../../api/orderBrand',
+                    data: {
+                        newbrand
+                    },
+                })
+                //Start Condition to check form is validate
+                    .then(()=>{
+                        Fire.$emit('AfterCreate'); //custom event to reload data
+                        //Sweetalert notification for the result
+                        Toast.fire({
+                            type: 'success',
+                            title: 'Brand Sorted Successfully'
+                        })
+
+                        this.$Progress.finish(); //End the progress bar
+                    })
+                    //if form is not valid of handle any errors
+                    .catch(()=>{
                         swal.fire(
                             'Error!',
                             'Something Went Wrong.',
-                            'error'
+                            'warning'
                         )
+                        this.$Progress.fail(); //End the progress bar
+                    })
+
+            },
+            /*==== End of Menu Create ====*/
+            /*==== Call edit Modal with user data ====*/
+            editBrand(brands){
+                this.editmode = true;
+                this.form.reset();
+                $('#addNewBrand').modal('show');
+                this.form.fill(brands);
+            },
+            /*Edit User Function*/
+            updateBrand(id){
+                this.$Progress.start();
+                //console.log('editing data');
+                this.form.put('../../../api/brand/'+this.form.slug)
+                    .then(() =>{
+                        $("#addNewBrand").modal('hide'); //Hide the model
+                        swal.fire(
+                            'Updated!',
+                            'Brand info. has been updated.',
+                            'success'
+                        )
+                        this.$Progress.finish();
+                        Fire.$emit('AfterCreate'); //Fire an reload event
+
+                    }).catch(()=>{
                     this.$Progress.fail();
                 });
             },
             /*==== End of edit user function ====*/
 
             /*==== Call Delete Modal uith user id ====*/
-            deleteShopSection(slug){
+            deleteBrand(slug){
                 swal.fire({
                     title: 'Are you sure?',
                     text: "You won't be able to revert this!",
@@ -278,15 +301,29 @@
                 }).then((result) => {
                     //send an ajax request to the server
                     if (result.value) {
-                        this.form.delete('../../api/shopsection/' + slug).then(({data}) => {
-                            this.serverResponse(data);
+                        this.form.delete('../../../api/brand/' + slug).then(({ data }) => {
+                            if(data === 'deleted'){
+                                swal.fire(
+                                    'Deleted!',
+                                    'Your brand has been deleted.',
+                                    'success'
+                                )
+                            }else if(data === 'access-denied')
+                            {
+                                swal.fire(
+                                    'Warning!',
+                                    'Unauthorized Access to delete.',
+                                    'warning'
+                                )
+                            }
+
+                            Fire.$emit('AfterCreate'); //Fire an reload event
                         }).catch(() => {
                             swal.fire(
-                            'Error!',
-                            'Something Went Wrong.',
-                            'error'
-                        )
-                        this.$Progress.fail();
+                                'Warning!',
+                                'Unauthorized Access to delete.',
+                                'warning'
+                            )
                         })
                     }
 
@@ -294,35 +331,35 @@
             },
             /*==== End of Delete Modal ====*/
 
-            loadShopSections(){
+            loadBrands(){
                 this.$Progress.start();
                 if (this.$gate.isAuthorized()){
-                    axios.get("../../api/shopsection")
-                        .then(({ data }) => (this.shopsections = data, this.totalshopsections = data.total));
+                    axios.get('../../../api/brand?shop_section='+this.shop_section).then(({ data }) => (this.brands = data, this.totalbrands = data.total));
                     this.$Progress.finish();
                 }
             }
+
         },
         created() {
             Fire.$on('searching',()=>{
                 let query =this.$parent.search; //take information from root
-                axios.get('../../api/findShopSection?q='+ query)
+                axios.get('../../../api/findBrand?q='+ query)
                     .then((data)=>{
-                        this.shopsections = data.data
+                        this.brands = data.data
                     }).catch(()=>{
 
                 })
             })
 
-            this.loadShopSections(); //load the user in the table
+            this.loadBrands(); //load the user in the table
 
             //Load the userlist if add or created a new user
             Fire.$on("AfterCreate",()=>{
-                this.loadShopSections();
+                this.loadBrands();
             })
 
 
-            //setInterval(() => this.loadShopSections(),3000);
+            //setInterval(() => this.loadBrands(),3000);
         }
     }
 </script>

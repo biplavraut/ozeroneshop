@@ -35,6 +35,10 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::apiResources(['shopsection'=> Backend\Admin\ShopSectionController::class]);
     Route::post('orderShopSectionList', [App\Http\Controllers\Backend\Admin\ShopSectionController::class, 'orderSection']);
     Route::get('findShopSection', [App\Http\Controllers\Backend\Admin\ShopSectionController::class, 'search']);
+
+    Route::apiResources(['brand'=> Backend\Admin\BrandController::class]);
+    Route::post('orderBrand', [App\Http\Controllers\Backend\Admin\BrandController::class, 'orderBrand']);
+    Route::get('findBrand', [App\Http\Controllers\Backend\Admin\BrandController::class, 'search']);
     
 
     

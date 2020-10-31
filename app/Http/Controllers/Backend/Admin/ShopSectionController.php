@@ -27,7 +27,7 @@ class ShopSectionController extends Controller
     {
         //
         if (\Gate::allows('canView')){
-            $final_result =  $this->getFullListFromDB();
+            $final_result =  Shopsection::with('getBrandRelation')->orderBy("order_item")->get();
             return $final_result;
         }else{
             return ['result'=>'error', 'message' =>'Unauthorized! Access Denied'];
@@ -63,10 +63,13 @@ class ShopSectionController extends Controller
                 \File::makeDirectory($path . '/thumbs', $mode = 0777, true, true);
             }
             if ($request->image){
+                $extension = explode('/',explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
                 $imageName = $slug;
-                $image_name = $imageName.'.'.explode('/',explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
+                $image_name = $imageName.'.'.$extension;
                 \Image::make($request->image)->save($path.'/'.$image_name);
-                \Image::make($request->image)->resize(500, 500)->save(public_path('img/shopsection/thumbs/').$image_name);//resize image
+                resize_crop_image(500, 500, $path."/". $image_name, $path.'/thumbs/'. $image_name, $extension);
+                $request->merge(['image' => $image_name]);
+                $image = $image_name;
             }else{
                 $image_name = "no-image.png";
             }
@@ -93,7 +96,7 @@ class ShopSectionController extends Controller
             if($add){
                 return ['result'=>'success', 'message' =>'Shop section added successfully'];
             }else{
-                return ['result'=>'error', 'message' =>'Something went wrtong.'];
+                return ['result'=>'error', 'message' =>'Something went wrong.'];
             }
         }else{
             return ['result'=>'error', 'message' =>'Unauthorized! Access Denied'];
@@ -139,10 +142,10 @@ class ShopSectionController extends Controller
                         unlink($sectionThumb);
                     }
                     $path = public_path().'/img/shopsection';
-                    $imageName = $slug;
+                    $imageName = $request->slug;
                     $image_name = $imageName.'.'.explode('/',explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
                     \Image::make($request->image)->save($path.'/'.$image_name);
-                    \Image::make($request->image)->resize(500, 500)->save(public_path('img/shopsection/thumbs/').$image_name);//resize image
+                    resize_crop_image(500, 500, $path."/". $image_name, $path.'/thumbs/'. $image_name, $extension);
                     $request->merge(['image' => $imageName]);
                 }
             }
@@ -230,12 +233,6 @@ class ShopSectionController extends Controller
             ->get();
     }
     /*End of generating Unique slug*/
-
-    /*Generating list to display*/
-    public function getFullListFromDB()
-    {
-        return Shopsection::orderBy("order_item")->get();
-    }
 
     /*Sorting the content in order and making child*/
     public function saveList($list, &$m_order = 0)

@@ -142,7 +142,7 @@ class SliderController extends Controller
     
                     }
                     $extension = explode('/',explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
-                    $imageName = $slug;
+                    $imageName = $request->slug;
                     $image_name = $imageName.'.'.$extension;
                     \Image::make($request->image)->save($path.'/'.$image_name);
                     resize_crop_image(60, 60, $path."/". $image_name, $path."/thumbs/rect_" . $image_name, $extension);
@@ -164,11 +164,6 @@ class SliderController extends Controller
         
     }
 
-    public function orderSlider(Request $request){
-        $newlist = $request->newslider;
-        //return var_dump($newlist);
-        return $this->saveList($newlist);
-    }
 
     /**
      * Remove the specified resource from storage.
@@ -200,6 +195,11 @@ class SliderController extends Controller
             return ['result'=>'error', 'message' =>'Unauthorized! Access Denied'];
         }
         
+    }
+    public function orderSlider(Request $request){
+        $newlist = $request->newslider;
+        //return var_dump($newlist);
+        return $this->saveList($newlist);
     }
     //search
     public function search(){
@@ -263,26 +263,7 @@ class SliderController extends Controller
         return Slider::orderBy("order_item")->get();
     }
 
-    public function uploadImage($img, $img_name)
-    {
-
-        /*Upload the image in server*/
-        //$currentPhoto = $testimonials->image;
-        //$slug = Str::slug($request->name);
-
-        $imageName = $img_name;
-
-        $name = $imageName.'.'.explode('/',explode(':', substr($img, 0, strpos($img, ';')))[1])[1];
-        \Image::make($img)->save(public_path('img/slider/').$name);
-        \File::makeDirectory('img/slider/thumbs', $mode = 0777, true, true);//making directory
-        \Image::make($img)->resize(1920, 1080)->save(public_path('img/slider/thumbs/').$name);//resize image
-        \Image::make($img)->resize(60, 60)->save(public_path('img/slider/thumbs/rect_').$name);//resize image
-
-
-        return $name;
-
-    }
-
+    
     /*Sorting the content in order and making child*/
     public function saveList($list, &$m_order = 0)
     {
