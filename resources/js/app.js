@@ -100,23 +100,22 @@ let routes = [
 
     { path: '/backend/admin/slider', component: require('./components/Slider.vue').default},
     { path: '/backend/admin/blogs', component: require('./components/Blogs.vue').default},
-    { path: '/backend/admin/testimonials', component: require('./components/Testimonials.vue').default},
     { path: '/backend/admin/partner', component: require('./components/Partner.vue').default},
     { path: '/backend/admin/faq', component: require('./components/Faqs.vue').default},
     { path: '/backend/admin/seo', component: require('./components/Seo.vue').default},
 
 
-    { path: '/backend/admin/adddetails/:slug', component: require('./components/Adddetails.vue').default, props:true},
+    // { path: '/backend/admin/adddetails/:slug', component: require('./components/Adddetails.vue').default, props:true},
 
     
-    { path: '/backend/admin/addtrip', component: require('./components/Addtrip.vue').default},
+    // { path: '/backend/admin/addtrip', component: require('./components/Addtrip.vue').default},
     
-    { path: '/backend/admin/contents', component: require('./components/Contents.vue').default},
-    { path: '/backend/admin/regions', component: require('./components/Regions.vue').default},
-    { path: '/backend/admin/addregions/:slug', component: require('./components/Addregions.vue').default, props:true},
+    // { path: '/backend/admin/contents', component: require('./components/Contents.vue').default},
+    // { path: '/backend/admin/regions', component: require('./components/Regions.vue').default},
+    // { path: '/backend/admin/addregions/:slug', component: require('./components/Addregions.vue').default, props:true},
 
-    { path: '/backend/admin/activities', component: require('./components/Activities.vue').default},
-    { path: '/backend/admin/addactivities/:slug', component: require('./components/Addactivities.vue').default, props:true},
+    // { path: '/backend/admin/activities', component: require('./components/Activities.vue').default},
+    // { path: '/backend/admin/addactivities/:slug', component: require('./components/Addactivities.vue').default, props:true},
 
 
     { path: '/backend/admin/*', component: require('./components/NotFound.vue').default}

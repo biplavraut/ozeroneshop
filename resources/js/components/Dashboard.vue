@@ -38,89 +38,27 @@
           </div>
         </div>
       </div>
-      <div class="col-12 col-sm-6 col-md-3">
-          <router-link to="./users">
-              <div class="info-box">
-                  <span class="info-box-icon bg-light elevation-1"><i class="fas fa-users indigo nav-icon"></i></span>
-                  <div class="info-box-content">
-                      <span class="info-box-text">User Management</span>
-                      <span class="info-box-number">Go To Page
-                          <small><i class="fas fa-chevron-right"></i></small>
-                      </span>
-                  </div>
-              </div>
-          </router-link>
-      </div>
-      <div class="col-12 col-sm-6 col-md-3">
-          <router-link to="./aboutUs">
-          <div class="info-box">
-              <span class="info-box-icon bg-light elevation-1"><i class="fas fa-address-card blue nav-icon"></i></span>
-              <div class="info-box-content">
-                  <span class="info-box-text">About Us</span>
-                  <span class="info-box-number">Go To Page
-                      <small><i class="fas fa-chevron-right"></i></small>
-                  </span>
-              </div>
-          </div>
-          </router-link>
-      </div>
-      <div class="col-12 col-sm-6 col-md-3">
-          <router-link to="./projects">
-          <div class="info-box">
-              <span class="info-box-icon bg-light elevation-1"><i class="fas fa-hard-hat orange nav-icon"></i></span>
-              <div class="info-box-content">
-                  <span class="info-box-text">Project</span>
-                  <span class="info-box-number">Go To Page
-                      <small><i class="fas fa-chevron-right"></i></small>
-                  </span>
-              </div>
-          </div>
-          </router-link>
-      </div>
-      <div class="col-12 col-sm-6 col-md-3">
-          <router-link to="./sectors">
-          <div class="info-box">
-              <span class="info-box-icon bg-light elevation-1"><i class="fas fa-bars green nav-icon"></i></span>
-              <div class="info-box-content">
-                  <span class="info-box-text">Sector</span>
-                  <span class="info-box-number">Go To Page
-                      <small><i class="fas fa-chevron-right"></i></small>
-                  </span>
-              </div>
-          </div>
-          </router-link>
-      </div>
-      <div class="col-12 col-sm-6 col-md-3">
-          <router-link to="./careers">
-          <div class="info-box">
-              <span class="info-box-icon bg-light elevation-1"><i class="fas fa-eye pink nav-icon"></i></span>
-              <div class="info-box-content">
-                  <span class="info-box-text">Careers</span>
-                  <span class="info-box-number">Go To Page
-                      <small><i class="fas fa-chevron-right"></i></small>
-                  </span>
-              </div>
-          </div>
-          </router-link>
-      </div>
+    </div>
       <!-- fix for small devices only -->
-      <div class="clearfix hidden-md-up"></div>
-
+      <div class="clearfix hidden-md-up"></div>     
+      <h6 class="m-2 text-muted">QUICK LINKS</h6>
+    <div class="row">      
+      <!-- Sidebar Pages Quick Links -->
       <div class="col-12 col-sm-6 col-md-3">
-          <router-link to="./contents">
+          <router-link to="/backend/admin/slider">
               <div class="info-box">
-                  <span class="info-box-icon bg-light elevation-1"><i class="fas fa-business-time nav-icon teal"></i></span>
+                  <span class="info-box-icon bg-light elevation-1"><i class="fas fa-sliders-h nav-icon green"></i></span>
                   <div class="info-box-content">
-                      <span class="info-box-text">What We Do</span>
+                      <span class="info-box-text">Slider Management</span>
                       <span class="info-box-number">Go To Page
                           <small><i class="fas fa-chevron-right"></i></small>
                       </span>
                   </div>
               </div>
           </router-link>
-      </div>
+      </div>      
       <div class="col-12 col-sm-6 col-md-3">
-          <router-link to="./blogs">
+          <router-link to="/backend/admin/blogs">
               <div class="info-box">
                   <span class="info-box-icon bg-light elevation-1"><i class="fas fa-blog nav-icon gray-dark"></i></span>
                   <div class="info-box-content">
@@ -132,75 +70,62 @@
               </div>
           </router-link>
       </div>
+      
+      <div class="col-12 col-sm-6 col-md-3">
+          <router-link to="/backend/admin/partner">
+          <div class="info-box">
+              <span class="info-box-icon bg-light elevation-1"><i class="fas fa-handshake blue nav-icon"></i></span>
+              <div class="info-box-content">
+                  <span class="info-box-text">Partner Management</span>
+                  <span class="info-box-number">Go To Page
+                      <small><i class="fas fa-chevron-right"></i></small>
+                  </span>
+              </div>
+          </div>
+          </router-link>
+      </div>
+      <div class="col-12 col-sm-6 col-md-3">
+          <router-link to="/backend/admin/FAQs">
+          <div class="info-box">
+              <span class="info-box-icon bg-light elevation-1"><i class="fas fa-question-circle blue nav-icon"></i></span>
+              <div class="info-box-content">
+                  <span class="info-box-text">FAQs</span>
+                  <span class="info-box-number">Go To Page
+                      <small><i class="fas fa-chevron-right"></i></small>
+                  </span>
+              </div>
+          </div>
+          </router-link>
+      </div>
       <!-- fix for small devices only -->
       <div class="clearfix hidden-md-up"></div>
-
       <div class="col-12 col-sm-6 col-md-3">
-          <router-link to="./testimonials">
-              <div class="info-box">
-                  <span class="info-box-icon bg-light elevation-1"><i class="fas fa-comment-dots nav-icon purple"></i></span>
-                  <div class="info-box-content">
-                      <span class="info-box-text">Testimonials Management</span>
-                      <span class="info-box-number">Go To Page
-                          <small><i class="fas fa-chevron-right"></i></small>
-                      </span>
-                  </div>
-              </div>
-          </router-link>
-      </div>
-      <div class="col-12 col-sm-6 col-md-3">
-          <router-link to="./contacts">
-              <div class="info-box">
-                  <span class="info-box-icon bg-light elevation-1"><i class="fas fa-phone nav-icon yellow"></i></span>
-                  <div class="info-box-content">
-                      <span class="info-box-text">Contacts Management</span>
-                      <span class="info-box-number">Go To Page
-                          <small><i class="fas fa-chevron-right"></i></small>
-                      </span>
-                  </div>
-              </div>
-          </router-link>
-      </div>
-
-      <div class="col-12 col-sm-6 col-md-3">
-          <router-link to="./slider">
-              <div class="info-box">
-                  <span class="info-box-icon bg-light elevation-1"><i class="fas fa-sliders-h nav-icon green"></i></span>
-                  <div class="info-box-content">
-                      <span class="info-box-text">Slider Management</span>
-                      <span class="info-box-number">Go To Page
-                          <small><i class="fas fa-chevron-right"></i></small>
-                      </span>
-                  </div>
-              </div>
-          </router-link>
-      </div>
-      <div class="col-12 col-sm-6 col-md-3">
-          <router-link to="./partner">
-              <div class="info-box">
-                  <span class="info-box-icon bg-light elevation-1"><i class="fas fa-handshake nav-icon red"></i></span>
-                  <div class="info-box-content">
-                      <span class="info-box-text">Partners Management</span>
-                      <span class="info-box-number">Go To Page
-                          <small><i class="fas fa-chevron-right"></i></small>
-                      </span>
-                  </div>
-              </div>
-          </router-link>
-      </div>
-      <div class="col-12 col-sm-6 col-md-3">
-          <router-link to="./seo">
+          <router-link to="/backend/admin/seo">
               <div class="info-box">
                   <span class="info-box-icon bg-light elevation-1"><i class="fas fa-star nav-icon teal"></i></span>
                   <div class="info-box-content">
-                      <span class="info-box-text">Seo Management</span>
+                      <span class="info-box-text">SEO</span>
                       <span class="info-box-number">Go To Page
                           <small><i class="fas fa-chevron-right"></i></small>
                       </span>
                   </div>
               </div>
           </router-link>
-      </div>            
+      </div>
+      <div class="col-12 col-sm-6 col-md-3">
+          <router-link to="/backend/admin/admins">
+              <div class="info-box">
+                  <span class="info-box-icon bg-light elevation-1"><i class="fas fa-users indigo nav-icon"></i></span>
+                  <div class="info-box-content">
+                      <span class="info-box-text">Admins Management</span>
+                      <span class="info-box-number">Go To Page
+                          <small><i class="fas fa-chevron-right"></i></small>
+                      </span>
+                  </div>
+              </div>
+          </router-link>
+      </div>
+                  
     </div>
   </div>
 </template>

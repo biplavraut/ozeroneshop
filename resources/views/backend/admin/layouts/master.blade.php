@@ -162,12 +162,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     </li>
                                 @endif
                             @endforeach
-                            <div class="dropdown-divider"></div>
                         </ul>
-
+                        <div class="dropdown-divider"></div>
+                    </li>
+                    <li class="nav-item">
+                        <router-link to="/backend/admin/product" class="nav-link">
+                        <i class="fas fa-store nav-icon green"></i>
+                        <p>Add Product</p>
+                        </router-link>
+                        <div class="dropdown-divider"></div>
                     </li>
                     
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <router-link to="/backend/admin/regions" class="nav-link">
                         <i class="fas fa-map-marked  nav-icon green"></i>
                         <p>Region</p>
@@ -184,7 +190,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <i class="fas fa-folder nav-icon teal"></i>
                             <p>Add Trip Packages</p>
                         </router-link>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <router-link to="/backend/admin/slider" class="nav-link">
                             <i class="fas fa-sliders-h nav-icon cyan"></i>
@@ -197,12 +203,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <p>Blogs Management</p>
                         </router-link>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <router-link to="/backend/admin/testimonials" class="nav-link">
                             <i class="fas fa-comment-dots nav-icon purple"></i>
                             <p>Testimonials Management</p>
                         </router-link>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <router-link to="/backend/admin/partner" class="nav-link">
                             <i class="fas fa-handshake nav-icon red"></i>
