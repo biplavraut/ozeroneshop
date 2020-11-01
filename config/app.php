@@ -14,7 +14,7 @@ return [
     */
     'prefix_admin_url' => env('PREFIX_ADMIN_URL', '/backend'),
     
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Ozerone Shop'),
 
     /*
     |--------------------------------------------------------------------------
