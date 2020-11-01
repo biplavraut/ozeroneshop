@@ -12,6 +12,15 @@ use App\Models\Shopsection;
 class BrandController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -19,10 +28,13 @@ class BrandController extends Controller
     public function index()
     {
         if (\Gate::allows('canView')){
-            $section_id = Shopsection::select('id')->where('slug','LIKE',\Request::get('shop_section'))->first();
+            try{
+                $section_id = Shopsection::select('id')->where('slug','LIKE',\Request::get('shop_section'))->first();
+            }catch (Exception $e) {
+                return $e;
+            }            
             $final_result = $this->getFullListFromDB(0, $section_id->id);
-            //$final_result = Brand::with('getSectionRelation')->get();
-            return $final_result;
+            return $final_result;        
         }else{
             return ['result'=>'error', 'message' =>'Unauthorized! Access Denied'];
         }
@@ -44,22 +56,19 @@ class BrandController extends Controller
             try{
                 $slug = $this->createSlug($request->title,'');
             }catch (Exception $e) {
-                /*report($e);
-                return $e;*/
+                return $e;
             }
             $path = public_path().'/img/brand';
             if(!file_exists($path)){
                 \File::makeDirectory($path, $mode = 0777, true, true);
                 \File::makeDirectory($path . '/thumbs', $mode = 0777, true, true);
             }
-            if ($request->image){
-                
+            if ($request->image){                
                 $extension = explode('/',explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
                 $imageName = $slug;
                 $image_name = $imageName.'.'.$extension;
                 \Image::make($request->image)->save($path.'/'.$image_name);
                 resize_crop_image(500, 500, $path."/". $image_name, $path."/thumbs/" . $image_name, $extension);
-                
                 $request->merge(['image' => $image_name]);
             }else{
                 $image_name = "no-image.png";
@@ -71,7 +80,6 @@ class BrandController extends Controller
             if($request->type == ''){
                 $request->merge(['type' =>0]);
             }
-
             $add =  Brand::create([
                 'section_id' => $section_id,
                 'title' => $request['title'],
@@ -126,10 +134,9 @@ class BrandController extends Controller
                 $path = public_path().'/img/brand';                
                 $brandPhoto = public_path('img/brand/').$brand->image;
                 $brandThumb = public_path('img/brand/thumbs/').$brand->image;
-                if(file_exists($brandPhoto)){
-                    unlink($brandPhoto);
-                    unlink($brandThumb);
-                }
+                //Delete old images
+                unlink($brandPhoto);
+                unlink($brandThumb);
                 $extension = explode('/',explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
                 $imageName = $request->slug;
                 $image_name = $imageName.'.'.$extension;
@@ -139,7 +146,7 @@ class BrandController extends Controller
             }
 
             // Renaming image to new name
-            if ($brand->slug != $request->slug){
+            if ($brand->slug != $request->slug && $request->image == $brand->image){
                 $ext = getExtension($brand->image);
                 $brandPhoto = public_path().'/img/brand/';
                 $brandThumb = public_path().'/img/brand/thumbs/';
@@ -157,9 +164,7 @@ class BrandController extends Controller
 
         }else{
             return ['result'=>'error', 'message' =>'Unauthorized! Access Denied'];
-        }
-
-           
+        }           
     }
 
     /**
@@ -174,16 +179,14 @@ class BrandController extends Controller
         if (\Gate::allows('canDelete')){
             //$this->authorize('isAdmin');
             $content = Brand::where('slug', '=', $slug)->firstOrFail();
-            $old_image = json_decode(Brand::select('image')->where('slug', 'like', $slug)->get()->first());
-            $old_image =  $old_image->image;
+            $old_image =  $content->image;
             $brandPhoto = public_path('img/brand/').$old_image;
             $brandThumb = public_path('img/brand/thumbs/').$old_image;
-                if(file_exists($brandPhoto)){
-                    unlink($brandPhoto);
-                    unlink($brandThumb);
-                }
-
-            //delete the user
+            if(file_exists($brandPhoto)){
+                unlink($brandPhoto);
+                unlink($brandThumb);
+            }
+            //delete the brand
             $content->delete();
 
             return ['result'=>'success', 'message' => $content->title .' deleted successfully'];
@@ -194,23 +197,24 @@ class BrandController extends Controller
 
     public function orderBrand(Request $request){
         $newlist = $request->newbrand;
-        //return var_dump($newlist);
         return $this->saveList($newlist);
     }
 
     //search
     public function search(){
+        if (\Gate::allows('canView')){
+            if($search = \Request::get('q')){
+                $brands_search = Brand::where(function($query) use($search){
+                    $query->where('title','LIKE',"%$search%");
+                })->get();
+            }else{
+                $brands_search = Brand::latest()->get();
 
-        if($search = \Request::get('q')){
-            $brands = Brand::where(function($query) use($search){
-                $query->where('title','LIKE',"%$search%");
-            })->get();
+            }
+            return $brands_search;
         }else{
-            $brands = Brand::latest()->get();
-
+            return ['result'=>'error', 'message' =>'Unauthorized! Access Denied'];
         }
-        return $brands;
-
     }
 
     /*Generating Unique Slug*/
@@ -225,10 +229,6 @@ class BrandController extends Controller
         // Get any that could possibly be related.
         // This cuts the queries down by doing it once.
         $allSlugs = $this->getRelatedSlugs($slug, $id);
-        /*$allSlugs = Menu::select('slug')->where('slug', 'like', $slug.'%')
-            ->where('id', '<>', $id)
-            ->get();*/
-
         // If we haven't used it before then we are all good.
         if (! $allSlugs->contains('slug', $slug)){
             return $slug;
@@ -242,7 +242,7 @@ class BrandController extends Controller
             }
         }
 
-        throw new \Exception('Can not create a unique slug- Many Menu of same Name');
+        throw new \Exception('Can not create a unique slug- Many Brand of same Name');
     }
 
     protected function getRelatedSlugs($slug, $id = 0)
@@ -280,15 +280,9 @@ class BrandController extends Controller
     /*Sorting the content in order and making child*/
     public function saveList($list, $parent_id = 0, $child = 0, &$m_order = 0)
     {
-        /*return $list;
-        exit();*/
-        /*$count = count($list);
-        return $count;*/
         foreach ($list as $item) {
 
             $m_order++;
-            /*return $item;
-            exit();*/
             $this->updateOrder($parent_id, $child, $m_order, $item['id']);
 
             if (array_key_exists("children", $item)) {
@@ -303,17 +297,16 @@ class BrandController extends Controller
     }
     protected function updateOrder($parent_id, $child, $m_order, $id)
     {
-        $menu = Brand::findOrFail($id);
-        if ($menu){
+        $brands_order = Brand::findOrFail($id);
+        if ($brands_order){
             return Brand::where('id', '=', $id)->update(['parent_id' => $parent_id,
                 'child'=> $child,
                 'order_item' => $m_order]);
         }
-
     }
+
     protected function updateParent($child, $id)
     {
-
         return Brand::where('id', '=', $id)->update(['child'=> $child]);
     }
 }

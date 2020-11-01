@@ -90,13 +90,27 @@ Vue.use(VueRouter);
 let routes = [
     { path: '/backend/admin', component: require('./components/Dashboard.vue').default},
     { path: '/backend/admin/dashboard', component: require('./components/Dashboard.vue').default},
-    { path: '/backend/admin/developer', component: require('./components/Developer.vue').default},
+
     { path: '/backend/admin/profile', component: require('./components/Profile.vue').default},
     { path: '/backend/admin/admins', component: require('./components/Admins.vue').default},
-    //{ path: '/menus', component: require('./components/Menus.vue').default},
-    { path: '/backend/admin/brands/:shop_section', component: require('./components/Brands.vue').default, props:true},
 
     { path: '/backend/admin/shop-sections', component: require('./components/Shop-sections.vue').default},
+    { path: '/backend/admin/brands/:shop_section', component: require('./components/Brands.vue').default, props:true},
+
+
+    { path: '/backend/admin/slider', component: require('./components/Slider.vue').default},
+    { path: '/backend/admin/blogs', component: require('./components/Blogs.vue').default},
+    { path: '/backend/admin/testimonials', component: require('./components/Testimonials.vue').default},
+    { path: '/backend/admin/partner', component: require('./components/Partner.vue').default},
+    { path: '/backend/admin/faq', component: require('./components/Faqs.vue').default},
+    { path: '/backend/admin/seo', component: require('./components/Seo.vue').default},
+
+
+    { path: '/backend/admin/adddetails/:slug', component: require('./components/Adddetails.vue').default, props:true},
+
+    
+    { path: '/backend/admin/addtrip', component: require('./components/Addtrip.vue').default},
+    
     { path: '/backend/admin/contents', component: require('./components/Contents.vue').default},
     { path: '/backend/admin/regions', component: require('./components/Regions.vue').default},
     { path: '/backend/admin/addregions/:slug', component: require('./components/Addregions.vue').default, props:true},
@@ -104,18 +118,6 @@ let routes = [
     { path: '/backend/admin/activities', component: require('./components/Activities.vue').default},
     { path: '/backend/admin/addactivities/:slug', component: require('./components/Addactivities.vue').default, props:true},
 
-
-
-    { path: '/backend/admin/blogs', component: require('./components/Blogs.vue').default},
-    { path: '/backend/admin/testimonials', component: require('./components/Testimonials.vue').default},
-    { path: '/backend/admin/contacts', component: require('./components/Contacts.vue').default},
-    { path: '/backend/admin/adddetails/:slug', component: require('./components/Adddetails.vue').default, props:true},
-    { path: '/backend/admin/slider', component: require('./components/Slider.vue').default},
-    { path: '/backend/admin/team', component: require('./components/Team.vue').default},
-
-    { path: '/backend/admin/partner', component: require('./components/Partner.vue').default},
-    { path: '/backend/admin/seo', component: require('./components/Seo.vue').default},
-    { path: '/backend/admin/addtrip', component: require('./components/Addtrip.vue').default},
 
     { path: '/backend/admin/*', component: require('./components/NotFound.vue').default}
 ]

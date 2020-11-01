@@ -12,7 +12,7 @@
                         </div>
                     </div>
                     <!-- /.card-header -->
-                    <div class="card-body table-responsive p-0">
+                    <div class="card-body table-responsive p-2">
                         <table class="table table-hover">
                             <vue-nestable v-model="brands" :max-depth="2" v-on:change="listChange(brands)">
                                 <template slot-scope="{ item }">
@@ -203,18 +203,9 @@
                 this.$Progress.start(); //start a progress bar
                 this.form.post('../../../api/brand') // POST form data
                 //Start Condition to check form is validate
-                    .then(()=>{
-                        Fire.$emit('AfterCreate'); //custom event to reload data
-
+                    .then(({data})=>{
                         $("#addNewBrand").modal('hide'); //Hide the model
-
-                        //Sweetalert notification for the result
-                        Toast.fire({
-                            type: 'success',
-                            title: 'Brand Created Successfully'
-                        })
-
-                        this.$Progress.finish(); //End the progress bar
+                        this.serverResponse(data);
                     })
                     //if form is not valid of handle any errors
                     .catch(()=>{
@@ -228,65 +219,51 @@
 
             },
             listChange(newbrand){
-                console.log(newbrand);
-
+                // console.log(newbrand);
                 axios({
                     method: 'post',
                     url: '../../../api/orderBrand',
                     data: {
                         newbrand
                     },
+                }).then(()=>{
+                    Fire.$emit('AfterCreate');
+                    Toast.fire({
+                        type: 'success',
+                        title: 'Brand Sorted Successfully'
+                    })
+                    this.$Progress.finish();
+                }).catch(()=>{
+                    swal.fire(
+                        'Error!',
+                        'Something Went Wrong.',
+                        'warning'
+                    )
+                    this.$Progress.fail();
                 })
-                //Start Condition to check form is validate
-                    .then(()=>{
-                        Fire.$emit('AfterCreate'); //custom event to reload data
-                        //Sweetalert notification for the result
-                        Toast.fire({
-                            type: 'success',
-                            title: 'Brand Sorted Successfully'
-                        })
-
-                        this.$Progress.finish(); //End the progress bar
-                    })
-                    //if form is not valid of handle any errors
-                    .catch(()=>{
-                        swal.fire(
-                            'Error!',
-                            'Something Went Wrong.',
-                            'warning'
-                        )
-                        this.$Progress.fail(); //End the progress bar
-                    })
 
             },
-            /*==== End of Menu Create ====*/
-            /*==== Call edit Modal with user data ====*/
+            /*==== End of brand Create ====*/
+            /*==== Call edit Modal with brand data ====*/
             editBrand(brands){
                 this.editmode = true;
                 this.form.reset();
                 $('#addNewBrand').modal('show');
                 this.form.fill(brands);
             },
-            /*Edit User Function*/
-            updateBrand(id){
+            /*Edit brand Function*/
+            updateBrand(){
                 this.$Progress.start();
                 //console.log('editing data');
                 this.form.put('../../../api/brand/'+this.form.slug)
                     .then(() =>{
                         $("#addNewBrand").modal('hide'); //Hide the model
-                        swal.fire(
-                            'Updated!',
-                            'Brand info. has been updated.',
-                            'success'
-                        )
-                        this.$Progress.finish();
-                        Fire.$emit('AfterCreate'); //Fire an reload event
-
+                        this.serverResponse(data);
                     }).catch(()=>{
                     this.$Progress.fail();
                 });
             },
-            /*==== End of edit user function ====*/
+            /*==== End of edit brand function ====*/
 
             /*==== Call Delete Modal uith user id ====*/
             deleteBrand(slug){
@@ -302,31 +279,16 @@
                     //send an ajax request to the server
                     if (result.value) {
                         this.form.delete('../../../api/brand/' + slug).then(({ data }) => {
-                            if(data === 'deleted'){
-                                swal.fire(
-                                    'Deleted!',
-                                    'Your brand has been deleted.',
-                                    'success'
-                                )
-                            }else if(data === 'access-denied')
-                            {
-                                swal.fire(
-                                    'Warning!',
-                                    'Unauthorized Access to delete.',
-                                    'warning'
-                                )
-                            }
-
-                            Fire.$emit('AfterCreate'); //Fire an reload event
+                            this.serverResponse(data);
                         }).catch(() => {
                             swal.fire(
                                 'Warning!',
                                 'Unauthorized Access to delete.',
                                 'warning'
                             )
+                            this.$Progress.fail();
                         })
                     }
-
                 })
             },
             /*==== End of Delete Modal ====*/
@@ -334,8 +296,31 @@
             loadBrands(){
                 this.$Progress.start();
                 if (this.$gate.isAuthorized()){
-                    axios.get('../../../api/brand?shop_section='+this.shop_section).then(({ data }) => (this.brands = data, this.totalbrands = data.total));
-                    this.$Progress.finish();
+                    axios.get('../../../api/brand?shop_section='+this.shop_section)
+                        .then(({ data }) => {
+                        this.brands = data, this.totalbrands = data.total
+                        this.$Progress.finish();
+                    }).catch(()=>{
+                        this.$Progress.fail();
+                        swal.fire({
+                            title: 'Something went wrong!',
+                            text: "or The shop section is invalid.",
+                            type: 'error',
+                            showCancelButton: false,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: '&crarr; Return, Dashboard!'
+                        }).then((result) => {
+                            //send an ajax request to the server
+                            if (result.value) {
+                                window.location.href = '/backend/admin';
+                            }else{
+                                window.location.href = '/backend/admin';
+                            }
+                        })
+
+
+                    })
                 }
             }
 
@@ -357,8 +342,6 @@
             Fire.$on("AfterCreate",()=>{
                 this.loadBrands();
             })
-
-
             //setInterval(() => this.loadBrands(),3000);
         }
     }

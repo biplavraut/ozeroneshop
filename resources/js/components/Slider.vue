@@ -8,11 +8,11 @@
                         <h3 class="card-title">Slider Management</h3>
 
                         <div class="card-tools">
-                            <button type="" @click="newSlider" class="btn btn-primary"><i class="fas fa-plus"></i> Add New Slider</button>
+                            <button type="" @click="newSlider" class="elevation-3 btn btn-primary"><i class="fas fa-plus"></i> Add New Slider</button>
                         </div>
                     </div>
                     <!-- /.card-header -->
-                    <div class="card-body table-responsive p-0">
+                    <div class="card-body table-responsive p-2">
                         <table class="table table-hover">
                             <vue-nestable 
                                 v-model="sliders" 
@@ -234,7 +234,7 @@
                         swal.fire(
                             'Error!',
                             'Something Went Wrong.',
-                            'warning'
+                            'error'
                         )
                         this.$Progress.fail(); //End the progress bar
                     })

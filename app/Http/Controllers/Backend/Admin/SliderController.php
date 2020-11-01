@@ -18,7 +18,15 @@ class SliderController extends Controller
         //dd($sliders);
         return view('frontend.index' , ['sliders_list' => $sliders]);
     }
-
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -28,8 +36,7 @@ class SliderController extends Controller
     {
         // The current user can update the post...
         if (\Gate::allows('canView')){
-            $final_result =  $this->getFullListFromDB();
-            return $final_result;
+            return Slider::orderBy("order_item")->get();
         }else{
             return ['result'=>'error', 'message' =>'Unauthorized! Access Denied'];
         }
@@ -52,7 +59,7 @@ class SliderController extends Controller
             try{
                 $slug = $this->createSlug($request->title,'');
             }catch (Exception $e) {
-                return ['result'=>'error', 'message' =>'Something! went wrong'];
+                return $e;
             }
             $path = public_path().'/img/slider';
             if(!file_exists($path)){
@@ -118,40 +125,40 @@ class SliderController extends Controller
     public function update(Request $request, $slug)
     {
         if (\Gate::allows('canEdit')) {
-            $this->validate($request,[
-                'title' => 'required|string|max:191',
-            ]);
-            $content = Slider::where('slug', '=', $slug)->firstOrFail();
-    
-            $newSlug = Str::slug($request->title);
-            if ($request->slug != $newSlug){
-                $request->merge(['slug' => $this->createSlug($request->title, $request->id)]);
-            }
-            if($request->image){
+            $slider = Slider::where('slug', '=', $slug)->firstOrFail();
+            $request->merge(['slug' => $this->createSlug($request->title, $request->id)]);    // generate new slug
+
+            //Uploading Image if changed 
+            if($request->image != $slider->image){
                 $path = public_path().'/img/slider';
-                $old_image = json_decode(Slider::select('image')->where('id', 'like', $request->id)->get()->first());
-                $old_image =  $old_image->image;
-                if($request->image != $old_image){
-                    $sliderPhoto = public_path('img/slider/').$old_image;
-                    $sliderThumb = public_path('img/slider/thumbs/').$old_image;
-                    $sliderThumbRect = public_path('img/slider/thumbs/rect_').$old_image;
-                    if(file_exists($sliderPhoto)){
-                        unlink($sliderPhoto);
-                        unlink($sliderThumb);
-                        unlink($sliderThumbRect);
-    
-                    }
-                    $extension = explode('/',explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
-                    $imageName = $request->slug;
-                    $image_name = $imageName.'.'.$extension;
-                    \Image::make($request->image)->save($path.'/'.$image_name);
-                    resize_crop_image(60, 60, $path."/". $image_name, $path."/thumbs/rect_" . $image_name, $extension);
-                    resize_crop_image(900, 600, $path."/". $image_name, $path."/thumbs/" . $image_name, $extension);
-                    
-                    $request->merge(['image' => $image_name]);
-                }
+                $sliderPhoto = public_path('img/slider/').$slider->image;
+                $sliderThumb = public_path('img/slider/thumbs/').$slider->image;
+                $sliderThumbRect = public_path('img/slider/thumbs/rect_').$slider->image;
+                //Delete old images
+                unlink($sliderPhoto);
+                unlink($sliderThumb);
+                unlink($sliderThumbRect);
+                $extension = explode('/',explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
+                $imageName = $request->slug;
+                $image_name = $imageName.'.'.$extension;
+                \Image::make($request->image)->save($path.'/'.$image_name);
+                resize_crop_image(60, 60, $path."/". $image_name, $path."/thumbs/rect_" . $image_name, $extension);
+                resize_crop_image(900, 600, $path."/". $image_name, $path."/thumbs/" . $image_name, $extension);
+                $request->merge(['image' => $image_name]);
             }
-            $update = $content->update($request->all());
+            // Renaming image to new name
+            if ($slider->slug != $request->slug && $request->image == $slider->image){
+                $ext = getExtension($slider->image);
+                $sliderPhoto = public_path().'/img/slider/';
+                $sliderThumb = public_path().'/img/slider/thumbs/';
+                $sliderThumbRect = public_path().'/img/slider/thumbs/rect_';                
+                rename($sliderPhoto.$slider->image, $sliderPhoto.$request->slug.'.'.$ext);
+                rename($sliderThumb.$slider->image, $sliderThumb.$request->slug.'.'.$ext);
+                rename($sliderThumbRect.$slider->image, $sliderThumbRect.$request->slug.'.'.$ext);
+                $request->merge(['image' => $request->slug.'.'.$ext]);
+            }
+
+            $update = $slider->update($request->all());
             if($update){
                 return ['result'=>'success', 'message' =>'Slider updated successfully'];
             }else{
@@ -176,18 +183,16 @@ class SliderController extends Controller
         if (\Gate::allows('canDelete')){
             //$this->authorize('isAdmin');
             $content = Slider::where('slug', '=', $slug)->firstOrFail();
-            $old_image = json_decode(Slider::select('image')->where('slug', 'like', $slug)->get()->first());
-            $old_image =  $old_image->image;
+            $old_image =  $content->image;
             $sliderPhoto = public_path('img/slider/').$old_image;
             $sliderThumb = public_path('img/slider/thumbs/').$old_image;
             $sliderThumbRect = public_path('img/slider/thumbs/rect_').$old_image;
-                if(file_exists($sliderPhoto)){
-                    unlink($sliderPhoto);
-                    unlink($sliderThumb);
-                    unlink($sliderThumbRect);
-                }
-
-            //delete the user
+            if(file_exists($sliderPhoto)){
+                unlink($sliderPhoto);
+                unlink($sliderThumb);
+                unlink($sliderThumbRect);
+            }
+            //delete the slider
             $content->delete();
 
             return ['result'=>'success', 'message' => $content->title .' deleted successfully'];
@@ -203,17 +208,18 @@ class SliderController extends Controller
     }
     //search
     public function search(){
-
-        if($search = \Request::get('q')){
-            $sliders = Slider::where(function($query) use($search){
-                $query->where('title','LIKE',"%$search%");
-            })->get();
+        if (\Gate::allows('canView')){
+            if($search = \Request::get('q')){
+                $sliders = Slider::where(function($query) use($search){
+                    $query->where('title','LIKE',"%$search%");
+                })->get();
+            }else{
+                $sliders = Slider::latest()->get();
+            }
+            return $sliders;
         }else{
-            $sliders = Slider::latest()->get();
-
+            return ['result'=>'error', 'message' =>'Unauthorized! Access Denied'];
         }
-        return $sliders;
-
     }
     /*Generating Unique Slug*/
     public function createSlug($title, $id)
@@ -227,9 +233,6 @@ class SliderController extends Controller
         // Get any that could possibly be related.
         // This cuts the queries down by doing it once.
         $allSlugs = $this->getRelatedSlugs($slug, $id);
-        /*$allSlugs = Menu::select('slug')->where('slug', 'like', $slug.'%')
-            ->where('id', '<>', $id)
-            ->get();*/
 
         // If we haven't used it before then we are all good.
         if (! $allSlugs->contains('slug', $slug)){
@@ -255,14 +258,6 @@ class SliderController extends Controller
             ->get();
     }
     /*End of generating Unique slug*/
-
-    /*Generating list to display*/
-
-    protected function getFullListFromDB()
-    {
-        return Slider::orderBy("order_item")->get();
-    }
-
     
     /*Sorting the content in order and making child*/
     public function saveList($list, &$m_order = 0)
@@ -282,7 +277,6 @@ class SliderController extends Controller
     }
     protected function updateParent($child, $id)
     {
-
         return Slider::where('id', '=', $id)->update(['child'=> $child]);
     }
 }

@@ -34,11 +34,9 @@ class ShopSectionController extends Controller
         }
     }
 
-    // For home page master blade
+    // For home page master blade Sidebar section
     static public function showSections(){
         return Shopsection::orderBy("order_item")->get();
-        /*$final_result =  $this->getFullListFromDB();
-        return $final_result;*/
     }
 
     /**
@@ -54,8 +52,7 @@ class ShopSectionController extends Controller
             try{
                 $slug = $this->createSlug($request->title,'');
             }catch (Exception $e) {
-                /*report($e);
-                return $e;*/
+                return $e;
             }
             $path = public_path().'/img/shopsection';
             if(!file_exists($path)){
@@ -125,31 +122,34 @@ class ShopSectionController extends Controller
     {
         if (\Gate::allows('canEdit')){
             $section = Shopsection::where('slug', '=', $slug)->firstOrFail();
+            $request->merge(['slug' => $this->createSlug($request->title, $request->id)]);    // generate new slug
 
-            $newSlug = Str::slug($request->title);
-
-            if ($request->slug != $newSlug){
-                $request->merge(['slug' => $this->createSlug($request->title, $request->id)]);
-            }
-            if($request->image){
-                $old_image = json_decode(Shopsection::select('image')->where('id', 'like', $request->id)->get()->first());
-                $old_image =  $old_image->image;
-                if($request->image != $old_image){
-                    $sectionPhoto = public_path('img/shopsection/').$old_image;
-                    $sectionThumb = public_path('img/shopsection/thumbs/').$old_image;
-                    if(file_exists($sectionPhoto)){
-                        unlink($sectionPhoto);
-                        unlink($sectionThumb);
-                    }
-                    $path = public_path().'/img/shopsection';
-                    $imageName = $request->slug;
-                    $image_name = $imageName.'.'.explode('/',explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
-                    \Image::make($request->image)->save($path.'/'.$image_name);
-                    resize_crop_image(500, 500, $path."/". $image_name, $path.'/thumbs/'. $image_name, $extension);
-                    $request->merge(['image' => $imageName]);
+            if($request->image != $section->image){
+                $path = public_path().'/img/shopsection';
+                $sectionPhoto = public_path('img/shopsection/').$section->image;
+                $sectionThumb = public_path('img/shopsection/thumbs/').$section->image;
+                if(file_exists($sectionPhoto)){
+                    unlink($sectionPhoto);
+                    unlink($sectionThumb);
                 }
+                $extension = explode('/',explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
+                $imageName = $request->slug;
+                $image_name = $imageName.'.'.$extension;
+                \Image::make($request->image)->save($path.'/'.$image_name);
+                resize_crop_image(500, 500, $path."/". $image_name, $path.'/thumbs/'. $image_name, $extension);
+                $request->merge(['image' => $image_name]);
             }
-            //return $request->slug;
+
+            // Renaming image to new name
+            if ($section->slug != $request->slug && $request->image == $section->image){
+                $ext = getExtension($section->image);
+                $sectionPhoto = public_path().'/img/shopsection/';
+                $sectionThumb = public_path().'/img/shopsection/thumbs/';
+                rename($sectionPhoto.$section->image, $sectionPhoto.$request->slug.'.'.$ext);
+                rename($sectionThumb.$section->image, $sectionThumb.$request->slug.'.'.$ext);
+                $request->merge(['image' => $request->slug.'.'.$ext]);
+            }
+
             $update = $section->update($request->all());
             if($update){
                 return ['result'=>'success', 'message' =>'Shop section updated successfully'];
@@ -159,12 +159,6 @@ class ShopSectionController extends Controller
         }else{
             return ['result'=>'error', 'message' =>'Unauthorized! Access Denied'];
         }
-    }
-
-    public function orderSection(Request $request){
-        $newlist = $request->newshopsection;
-        //return var_dump($newlist);
-        return $this->saveList($newlist);
     }
 
     /**
@@ -178,22 +172,43 @@ class ShopSectionController extends Controller
         if (\Gate::allows('canDelete')){
             //$this->authorize('isAdmin');
             $content = Shopsection::where('slug', '=', $slug)->firstOrFail();
-            $old_image = json_decode(Shopsection::select('image')->where('slug', 'like', $slug)->get()->first());
-            $old_image =  $old_image->image;
+            $old_image =  $content->image;
             $sectionPhoto = public_path('img/shopsection/').$old_image;
             $sectionThumb = public_path('img/shopsection/thumbs/').$old_image;
                 if(file_exists($sectionPhoto)){
                     unlink($sectionPhoto);
                     unlink($sectionThumb);
                 }
-
-            //delete the user
+            //delete the section
             $content->delete();
             return ['result'=>'success', 'message' => $content->title .' deleted successfully'];
         }else{
             return ['result'=>'error', 'message' =>'Unauthorized! Access Denied'];
         }
     }
+
+    public function orderSection(Request $request){
+        $newlist = $request->newshopsection;
+        return $this->saveList($newlist);
+    }
+
+    //search
+    public function search(){
+        if (\Gate::allows('canView')){
+            if($search = \Request::get('q')){
+                $section_search = Shopsection::where(function($query) use($search){
+                    $query->where('title','LIKE',"%$search%");
+                })->get();
+            }else{
+                $section_search = Shopsection::latest()->get();
+
+            }
+            return $section_search;
+        }else{
+            return ['result'=>'error', 'message' =>'Unauthorized! Access Denied'];
+        }
+    }
+
     /*Generating Unique Slug*/
     public function createSlug($title, $id)
     {
@@ -206,10 +221,6 @@ class ShopSectionController extends Controller
         // Get any that could possibly be related.
         // This cuts the queries down by doing it once.
         $allSlugs = $this->getRelatedSlugs($slug, $id);
-        /*$allSlugs = Menu::select('slug')->where('slug', 'like', $slug.'%')
-            ->where('id', '<>', $id)
-            ->get();*/
-
         // If we haven't used it before then we are all good.
         if (! $allSlugs->contains('slug', $slug)){
             return $slug;
@@ -237,15 +248,8 @@ class ShopSectionController extends Controller
     /*Sorting the content in order and making child*/
     public function saveList($list, &$m_order = 0)
     {
-        /*return $list;
-        exit();*/
-        /*$count = count($list);
-        return $count;*/
         foreach ($list as $item) {
-
             $m_order++;
-            /*return $item;
-            exit();*/
             $this->updateOrder($m_order, $item['id']);
         }
     }

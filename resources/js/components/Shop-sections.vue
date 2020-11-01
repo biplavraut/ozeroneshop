@@ -12,7 +12,7 @@
                         </div>
                     </div>
                     <!-- /.card-header -->
-                    <div class="card-body table-responsive p-0">
+                    <div class="card-body table-responsive p-2">
                         <table class="table table-hover">
                             <vue-nestable v-model="shopsections" :max-depth="1" v-on:change="listChange(shopsections)">
                                 <template slot-scope="{ item }">
@@ -157,8 +157,6 @@
                 })
             }
         },
-
-
         methods : {
             /*===== Call add new Shop Section modal ====*/
             newShopSection(){
@@ -167,9 +165,7 @@
                 $('#addNewShopSection').modal('show');
             },
             imageUpload(e) {
-                //console.log('Uploading');
                 let file = e.target.files[0];
-                //console.log(file);
                 let reader = new FileReader();
                 if (file['size'] < 2111775) {
                     reader.onloadend = (file) => {
@@ -177,7 +173,6 @@
                         this.form.image = reader.result;
                     }
                     reader.readAsDataURL(file);
-                    //Fire.$emit('AfterCreate'); //Fire an reload event
                 } else {
                     swal.fire(
                         'Opps..!',
@@ -186,7 +181,7 @@
                     )
                 }
             },
-            /*Create User Function Starts*/
+            /*Create Shop Section Function Starts*/
             createShopSection(){
                 this.$Progress.start(); //start a progress bar
                 this.form.post('../../api/shopsection') // POST form data
@@ -247,7 +242,7 @@
                 this.form.fill(shopsections);
             },
             /*Edit User Function*/
-            updateShopSection(id){
+            updateShopSection(){
                 this.$Progress.start();
                 //console.log('editing data');
                 this.form.put('../../api/shopsection/'+this.form.slug)
@@ -320,8 +315,6 @@
             Fire.$on("AfterCreate",()=>{
                 this.loadShopSections();
             })
-
-
             //setInterval(() => this.loadShopSections(),3000);
         }
     }

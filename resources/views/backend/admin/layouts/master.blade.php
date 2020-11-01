@@ -23,7 +23,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{asset('css/nestable.css')}}">
     <link rel="stylesheet" href="{{asset('css/vendor.css')}}">
 </head>
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini" style="background:#f4f6f9;">
 <div class="wrapper" id="app">
 
     <!-- Navbar -->
@@ -116,7 +116,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                          with font-awesome or any other icon font library -->
                     <li class="nav-item">
                         <router-link  to="/backend/admin/dashboard" class="nav-link">
-                            <i class="nav-icon  fas fa-tachometer-alt"></i>
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Dashboard
                             </p>
@@ -210,15 +210,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link to="/backend/admin/contacts" class="nav-link">
-                            <i class="fa fa-phone nav-icon yellow"></i>
-                            <p>Contact Management</p>
-                        </router-link>
-                    </li>
-                    <li class="nav-item">
-                        <router-link to="/team" class="nav-link">
-                        <i class="fas fa-users-cog nav-icon blue"></i>
-                            <p>Team</p>
+                        <router-link to="/backend/admin/faq" class="nav-link">
+                            <i class="fas fa-question-circle nav-icon yellow"></i>
+                            <p>FAQs</p>
                         </router-link>
                     </li>
                     <li class="nav-item">
@@ -262,10 +256,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <footer class="main-footer">
         <!-- To the right -->
         <div class="float-right d-none d-sm-inline">
-            Company Name
+            Ozerone Shop
         </div>
         <!-- Default to the left -->
-        <strong>Copyright &copy; 2018-2019 <a href="https://perscreation.com" traget="_blank">Pers Creation </a><span class="fa fa-code"> </span> by <a href="https://biplavrajraut.com.np"  traget="_blank">Biplav</a></strong> All rights reserved.
+        <strong>Copyright &copy; 2020-{{date('yy')}} <a href="https://perscreation.com" traget="_blank">Pers Creation </a><span class="fa fa-code"> </span> by <a href="https://biplavrajraut.com.np"  traget="_blank">Biplav</a></strong> All rights reserved.
     </footer>
 </div>
 <!-- ./wrapper -->
