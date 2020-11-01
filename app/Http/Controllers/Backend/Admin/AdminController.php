@@ -28,7 +28,7 @@ class AdminController extends Controller
     public function index()
     {
         if (\Gate::allows('canView')){
-            return Admin::wherein('type', array('dev','admin', 'supadmin', 'editor', 'user'))->latest()->paginate(2);
+            return Admin::wherein('type', array('dev','admin', 'supadmin', 'editor', 'user'))->latest()->paginate(10);
         }else{
             return ['result'=>'error', 'message' =>'Unauthorized! Access Denied'];
         }

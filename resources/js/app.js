@@ -64,7 +64,7 @@ Vue.mixin({
                 swal.fire(
                     'Error!',
                     data.message, //Error message from server
-                    'warning'
+                    'error'
                 )
                 this.$Progress.fail(); //End the progress bar
             }

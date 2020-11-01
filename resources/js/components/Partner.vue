@@ -26,7 +26,7 @@
                                                 <a href="#" @click="editPartner(item)" class="btn btn-sm btn-success">Edit
                                                     <i class="fa fa-edit"></i>
                                                 </a>
-                                                <a href="#" @click="deletePartner(item.id)" class="btn btn-sm btn-danger">Delete
+                                                <a href="#" @click="deletePartner(item.slug)" class="btn btn-sm btn-danger">Delete
                                                     <i class="fa fa-trash"></i>
                                                 </a>
                                             </div>
@@ -139,7 +139,7 @@
                     image:'',
                     display:'',
                     order_item:'',
-                    link:'',
+                    link:''
                 })
             }
         },
@@ -151,9 +151,7 @@
                 $('#addNewPartner').modal('show');
             },
             imageUpload(e) {
-                //console.log('Uploading');
                 let file = e.target.files[0];
-                //console.log(file);
                 let reader = new FileReader();
                 if (file['size'] < 2111775) {
                     reader.onloadend = (file) => {
@@ -161,7 +159,6 @@
                         this.form.image = reader.result;
                     }
                     reader.readAsDataURL(file);
-                    //Fire.$emit('AfterCreate'); //Fire an reload event
                 } else {
                     swal.fire(
                         'Opps..!',
@@ -170,25 +167,14 @@
                     )
                 }
             },
-            /*Create User Function Starts*/
+            /*Create Partner Function Starts*/
             createPartner(){
-                //alert(this.form.name);
-                //exit();
                 this.$Progress.start(); //start a progress bar
-                this.form.post('api/partner') // POST form data
+                this.form.post('../../api/partner') // POST form data
                 //Start Condition to check form is validate
-                    .then(()=>{
-                        Fire.$emit('AfterCreate'); //custom event to reload data
-
+                    .then(({data})=>{
                         $("#addNewPartner").modal('hide'); //Hide the model
-
-                        //Sweetalert notification for the result
-                        Toast.fire({
-                            type: 'success',
-                            title: 'Created Successfully'
-                        })
-
-                        this.$Progress.finish(); //End the progress bar
+                        this.serverResponse(data);
                     })
                     //if form is not valid of handle any errors
                     .catch(()=>{
@@ -203,10 +189,9 @@
             },
             listChange(newpartner){
                 //console.log(newcontent);
-
                 axios({
                     method: 'post',
-                    url: 'api/orderPartner',
+                    url: '../../api/orderPartner',
                     data: {
                         newpartner
                     },
@@ -217,7 +202,7 @@
                         //Sweetalert notification for the result
                         Toast.fire({
                             type: 'success',
-                            title: 'Sorted Successfully'
+                            title: 'Partners Sorted Successfully'
                         })
 
                         this.$Progress.finish(); //End the progress bar
@@ -243,28 +228,27 @@
                 this.form.fill(partners);
             },
             /*Edit Slider Function*/
-            updatePartner(id){
+            updatePartner(){
                 this.$Progress.start();
                 //console.log('editing data');
-                this.form.put('api/partner/'+this.form.id)
-                    .then(() =>{
+                this.form.put('../../api/partner/'+this.form.slug)
+                    .then(({data}) =>{
+                        this.form.reset();
                         $("#addNewPartner").modal('hide'); //Hide the model
-                        swal.fire(
-                            'Updated!',
-                            'Slider has been updated.',
-                            'success'
-                        )
-                        this.$Progress.finish();
-                        Fire.$emit('AfterCreate'); //Fire an reload event
-
+                        this.serverResponse(data);
                     }).catch(()=>{
+                        swal.fire(
+                            'Error!',
+                            'Something Went Wrong.',
+                            'error'
+                        )
                     this.$Progress.fail();
                 });
             },
             /*==== End of edit Testimonial function ====*/
 
             /*==== Call Delete Modal uith TEstimonial id ====*/
-            deletePartner(id){
+            deletePartner(slug){
                 swal.fire({
                     title: 'Are you sure?',
                     text: "You won't be able to revert this!",
@@ -276,19 +260,15 @@
                 }).then((result) => {
                     //send an ajax request to the server
                     if (result.value) {
-                        this.form.delete('api/partner/' + id).then(() => {
-                            swal.fire(
-                                'Deleted!',
-                                'Your file has been deleted.',
-                                'success'
-                            )
-                            Fire.$emit('AfterCreate'); //Fire an reload event
+                        this.form.delete('../../api/partner/' + slug).then(({data}) => {
+                            this.serverResponse(data);
                         }).catch(() => {
                             swal.fire(
-                                'Warning!',
+                                'Error!',
                                 'Unauthorized Access to delete.',
-                                'warning'
+                                'error'
                             )
+                        this.$Progress.fail();
                         })
                     }
 
@@ -298,28 +278,26 @@
 
             loadPartner(){
                 if (this.$gate.isAuthorized()){
-                    axios.get("api/partner").then(({ data }) => (this.partners = data, this.totalpartner = data.total));
+                    axios.get("../../api/partner").then(({ data }) => (this.partners = data, this.totalpartner = data.total));
                 }
             }
         },
         created() {
             Fire.$on('searching',()=>{
                 let query =this.$parent.search; //take information from root
-                axios.get('api/findPartner?q='+ query)
+                axios.get('../../api/findPartner?q='+ query)
                     .then(({ data })=>{
                         this.partners = data
                     }).catch(()=>{
 
                 })
             })
-            this.loadPartner(); //load the user in the table
-            //Load the userlist if add or created a new user
+            this.loadPartner(); //load the partner in the table
+            //Load the partner if add or created a new partner
             Fire.$on("AfterCreate",()=>{
                 this.loadPartner();
             })
-
-
-            //setInterval(() => this.loadUsers(),3000);
+            //setInterval(() => this.loadPartners(),3000);
         }
     }
 </script>

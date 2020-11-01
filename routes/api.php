@@ -21,6 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['middleware' => 'auth:api'], function() {
     
     Route::apiResources(['admin'=> Backend\Admin\AdminController::class]);
+    
     Route::apiResources(['seo'=> Backend\Admin\SeoController::class]);
      
     Route::get('profile',[App\Http\Controllers\Backend\Admin\AdminController::class, 'profile']);
@@ -39,6 +40,18 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::apiResources(['brand'=> Backend\Admin\BrandController::class]);
     Route::post('orderBrand', [App\Http\Controllers\Backend\Admin\BrandController::class, 'orderBrand']);
     Route::get('findBrand', [App\Http\Controllers\Backend\Admin\BrandController::class, 'search']);
+    
+    Route::apiResources(['blog'=> Backend\Admin\BlogController::class]);
+    Route::post('orderBlog', [App\Http\Controllers\Backend\Admin\BlogController::class, 'orderBlog']);
+    Route::get('findBlog', [App\Http\Controllers\Backend\Admin\BlogController::class, 'search']);
+    
+    Route::apiResources(['partner'=> Backend\Admin\PartnerController::class]);
+    Route::post('orderPartner', [App\Http\Controllers\Backend\Admin\PartnerController::class, 'orderPartner']);
+    Route::get('findPartner', [App\Http\Controllers\Backend\Admin\PartnerController::class, 'search']);
+
+    Route::apiResources(['faq'=> Backend\Admin\FaqController::class]);
+    Route::post('orderFaq', [App\Http\Controllers\Backend\Admin\FaqController::class, 'orderFaq']);
+    Route::get('findFaq', [App\Http\Controllers\Backend\Admin\FaqController::class, 'search']);
     
 
     

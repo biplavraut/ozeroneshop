@@ -118,16 +118,15 @@
                 this.$Progress.start();
                 //console.log('editing data');
                 this.form.put('../../api/seo/'+this.form.id)
-                    .then(() =>{
-                        swal.fire(
-                            'Updated!',
-                            'Seo has been updated.',
-                            'success'
-                        )
-                        this.$Progress.finish();
-                        Fire.$emit('AfterCreate'); //Fire an reload event
+                    .then(({data}) =>{
+                        this.serverResponse(data);
 
                     }).catch(()=>{
+                        swal.fire(
+                                'Oops!',
+                                'Something went worong.',
+                                'error'
+                            )
                     this.$Progress.fail();
                 });
             },
@@ -151,7 +150,6 @@
             Fire.$on("AfterCreate",()=>{
                 this.loadSeo();
             })
-
 
             //setInterval(() => this.loadSeo(),3000);
         }

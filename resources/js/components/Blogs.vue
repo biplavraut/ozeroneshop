@@ -26,7 +26,7 @@
                                                 <a href="#" @click="editContent(item)" class="btn btn-sm btn-success">Edit
                                                     <i class="fa fa-edit"></i>
                                                 </a>
-                                                <a href="#" @click="deleteBlog(item.id)" class="btn btn-sm btn-danger">Delete
+                                                <a href="#" @click="deleteBlog(item.slug)" class="btn btn-sm btn-danger">Delete
                                                     <i class="fa fa-trash"></i>
                                                 </a>
                                             </div>
@@ -64,7 +64,7 @@
                                                 <div class="input-group-text">Blog Title</div>
                                             </div>
                                             <input v-model="form.title" type="text" name="title"
-                                                   placeholder="Rivers of Nepal."
+                                                   placeholder="Some nice title."
                                                    class="form-control" :class="{ 'is-invalid': form.errors.has('title') }">
                                             <has-error :form="form" field="title"></has-error>
                                         </div>
@@ -132,7 +132,7 @@
                                                 <div class="input-group-text">Meta Keywords</div>
                                             </div>
                                             <input v-model="form.meta_keywords" type="text" name="meta_keywords"
-                                                   placeholder="Keywords: Nepal, visitnepal..,"
+                                                   placeholder="Keywords: Shop, Online..,"
                                                    class="form-control" :class="{ 'is-invalid': form.errors.has('meta_keywords') }">
                                             <has-error :form="form" field="meta_keywords"></has-error>
                                         </div>
@@ -146,7 +146,7 @@
                                                 <div class="input-group-text">Meta Tags</div>
                                             </div>
                                             <input v-model="form.meta_tags" type="text" name="meta_tags"
-                                                   placeholder="Tags: Nepal, visitnepal..,"
+                                                   placeholder="Tags: Shop, Online..,"
                                                    class="form-control" :class="{ 'is-invalid': form.errors.has('meta_tags') }">
                                             <has-error :form="form" field="meta_tags"></has-error>
                                         </div>
@@ -160,7 +160,7 @@
                                                 <div class="input-group-text">Meta Categories</div>
                                             </div>
                                             <input v-model="form.meta_categories" type="text" name="meta_categories"
-                                                   placeholder="Categories: Travel website, News..,"
+                                                   placeholder="Categories: Shop, Online..,"
                                                    class="form-control" :class="{ 'is-invalid': form.errors.has('meta_categories') }">
                                             <has-error :form="form" field="meta_categories"></has-error>
                                         </div>
@@ -251,20 +251,11 @@
             /*Create User Function Starts*/
             createBlog(){
                 this.$Progress.start(); //start a progress bar
-                this.form.post('api/blog') // POST form data
+                this.form.post('../../api/blog') // POST form data
                 //Start Condition to check form is validate
-                    .then(()=>{
-                        Fire.$emit('AfterCreate'); //custom event to reload data
-
+                    .then(({data})=>{
                         $("#addNewBlog").modal('hide'); //Hide the model
-
-                        //Sweetalert notification for the result
-                        Toast.fire({
-                            type: 'success',
-                            title: 'Blog Created Successfully'
-                        })
-
-                        this.$Progress.finish(); //End the progress bar
+                        this.serverResponse(data);
                     })
                     //if form is not valid of handle any errors
                     .catch(()=>{
@@ -282,7 +273,7 @@
 
                 axios({
                     method: 'post',
-                    url: 'api/orderBlog',
+                    url: '../../api/orderBlog',
                     data: {
                         newblog
                     },
@@ -319,28 +310,29 @@
                 this.form.fill(blogs);
             },
             /*Edit Blog Function*/
-            updateBlog(id){
+            updateBlog(){
                 this.$Progress.start();
                 //console.log('editing data');
-                this.form.put('api/blog/'+this.form.id)
-                    .then(() =>{
+                this.form.put('../../api/blog/'+this.form.slug)
+                    .then(({data}) =>{
+                        this.form.reset();
                         $("#addNewBlog").modal('hide'); //Hide the model
-                        swal.fire(
-                            'Updated!',
-                            'Blog info. has been updated.',
-                            'success'
-                        )
-                        this.$Progress.finish();
-                        Fire.$emit('AfterCreate'); //Fire an reload event
+                        this.serverResponse(data);
 
                     }).catch(()=>{
+                        swal.fire(
+                            'Error!',
+                            'Something Went Wrong.',
+                            'error'
+                        )
                     this.$Progress.fail();
                 });
             },
             /*==== End of edit Blog function ====*/
 
             /*==== Call Delete Modal uith Blog id ====*/
-            deleteBlog(id){
+            deleteBlog(slug){
+                this.$Progress.start();
                 swal.fire({
                     title: 'Are you sure?',
                     text: "You won't be able to revert this!",
@@ -352,19 +344,15 @@
                 }).then((result) => {
                     //send an ajax request to the server
                     if (result.value) {
-                        this.form.delete('api/blog/' + id).then(() => {
-                            swal.fire(
-                                'Deleted!',
-                                'Your file has been deleted.',
-                                'success'
-                            )
-                            Fire.$emit('AfterCreate'); //Fire an reload event
+                        this.form.delete('../../api/blog/' + slug).then(({data}) => {
+                            this.serverResponse(data);
                         }).catch(() => {
                             swal.fire(
-                                'Warning!',
-                                'Unauthorized Access to delete.',
-                                'warning'
+                                'Error!',
+                                'Something Went Wrong.',
+                                'error'
                             )
+                        this.$Progress.fail();
                         })
                     }
 
@@ -373,15 +361,17 @@
             /*==== End of Delete Modal ====*/
 
             loadBlogs(){
+                this.$Progress.start();
                 if (this.$gate.isAuthorized()){
-                    axios.get("api/blog").then(({ data }) => (this.blogs = data, this.totalblog = data.total));
+                    axios.get("../../api/blog").then(({ data }) => (this.blogs = data, this.totalblog = data.total));
+                    this.$Progress.finish();
                 }
             }
         },
         created() {
             Fire.$on('searching',()=>{
                 let query =this.$parent.search; //take information from root
-                axios.get('api/findBlog?q='+ query)
+                axios.get('../../api/findBlog?q='+ query)
                     .then((data)=>{
                         this.blogs = data.data
                     }).catch(()=>{
@@ -395,9 +385,7 @@
             Fire.$on("AfterCreate",()=>{
                 this.loadBlogs();
             })
-
-
-            //setInterval(() => this.loadUsers(),3000);
+            //setInterval(() => this.loadBlogs(),3000);
         }
     }
 </script>

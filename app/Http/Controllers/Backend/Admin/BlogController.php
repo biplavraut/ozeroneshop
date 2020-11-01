@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Backend\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use App\Models\Shopsection;
+use App\Models\Blog;
 
-class ShopSectionController extends Controller
+class BlogController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -27,16 +27,11 @@ class ShopSectionController extends Controller
     {
         //
         if (\Gate::allows('canView')){
-            $final_result =  Shopsection::with('getBrandRelation')->orderBy("order_item")->get();
+            $final_result =  Blog::orderBy("order_item")->get();
             return $final_result;
         }else{
             return ['result'=>'error', 'message' =>'Unauthorized! Access Denied'];
         }
-    }
-
-    // For home page master blade Sidebar section
-    static public function showSections(){
-        return Shopsection::orderBy("order_item")->get();
     }
 
     /**
@@ -54,7 +49,7 @@ class ShopSectionController extends Controller
             }catch (Exception $e) {
                 return $e;
             }
-            $path = public_path().'/img/shopsection';
+            $path = public_path().'/img/blog';
             if(!file_exists($path)){
                 \File::makeDirectory($path, $mode = 0777, true, true);
                 \File::makeDirectory($path . '/thumbs', $mode = 0777, true, true);
@@ -64,34 +59,31 @@ class ShopSectionController extends Controller
                 $imageName = $slug;
                 $image_name = $imageName.'.'.$extension;
                 \Image::make($request->image)->save($path.'/'.$image_name);
-                resize_crop_image(500, 500, $path."/". $image_name, $path.'/thumbs/'. $image_name, $extension);
-                $request->merge(['image' => $image_name]);
-                $image = $image_name;
+                resize_crop_image(720, 405, $path."/". $image_name, $path."/thumbs/" . $image_name, $extension);
+                    $request->merge(['image' => $image_name]);
             }else{
                 $image_name = "no-image.png";
             }
-            $order = Shopsection::max('order_item')+1;
+            $order = Blog::max('order_item')+1;
             if($request->display == ''){
                 $request->merge(['display' =>0]);
             }
-            if($request->type == ''){
-                $request->merge(['type' =>0]);
-            }
     
-            $add = Shopsection::create([
+            $add = Blog::create([
                 'title' => $request['title'],
                 'slug' => $slug,
                 'image' => $image_name,
-                'icon' => $request['icon'],
-                'type' => $request['type'],
+                'author' => $request['author'],
+                'date' => $request['date'],
                 'display' => $request['display'],
-                'parent_id' => 0,
-                'child'=> 0,
+                'meta_keywords' => $request['meta_keywords'],
+                'meta_tags' => $request['meta_tags'],
+                'meta_categories' => $request['meta_categories'],
                 'order_item' => $order,
                 'excerpt' => $request['excerpt']
             ]);
             if($add){
-                return ['result'=>'success', 'message' =>'Shop section added successfully'];
+                return ['result'=>'success', 'message' =>'Blog added successfully'];
             }else{
                 return ['result'=>'error', 'message' =>'Something went wrong.'];
             }
@@ -120,38 +112,38 @@ class ShopSectionController extends Controller
      */
     public function update(Request $request, $slug)
     {
+        //
         if (\Gate::allows('canEdit')){
-            $section = Shopsection::where('slug', '=', $slug)->firstOrFail();
+            $blog = Blog::where('slug', '=', $slug)->firstOrFail();
             $request->merge(['slug' => $this->createSlug($request->title, $request->id)]);    // generate new slug
 
-            if($request->image != $section->image){
-                $path = public_path().'/img/shopsection';
-                $sectionPhoto = public_path('img/shopsection/').$section->image;
-                $sectionThumb = public_path('img/shopsection/thumbs/').$section->image;
-                //Delete old section image
-                unlink($sectionPhoto);
-                unlink($sectionThumb);
+            if($request->image != $blog->image){
+                $path = public_path().'/img/blog';
+                $blogPhoto = public_path('img/blog/').$blog->image;
+                $blogThumb = public_path('img/blog/thumbs/').$blog->image;
+                //Delete old blog image
+                unlink($blogPhoto);
+                unlink($blogThumb);
                 $extension = explode('/',explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
-                $imageName = $request->slug;
+                $imageName = $slug;
                 $image_name = $imageName.'.'.$extension;
                 \Image::make($request->image)->save($path.'/'.$image_name);
-                resize_crop_image(500, 500, $path."/". $image_name, $path.'/thumbs/'. $image_name, $extension);
+                resize_crop_image(720, 405, $path."/" . $image_name, $path."/thumbs/" . $image_name, $extension);
                 $request->merge(['image' => $image_name]);
             }
-
             // Renaming image to new name
-            if ($section->slug != $request->slug && $request->image == $section->image){
-                $ext = getExtension($section->image);
-                $sectionPhoto = public_path().'/img/shopsection/';
-                $sectionThumb = public_path().'/img/shopsection/thumbs/';
-                rename($sectionPhoto.$section->image, $sectionPhoto.$request->slug.'.'.$ext);
-                rename($sectionThumb.$section->image, $sectionThumb.$request->slug.'.'.$ext);
+            if ($blog->slug != $request->slug && $request->image == $blog->image){
+                $ext = getExtension($blog->image);
+                $blogPhoto = public_path().'/img/blog/';
+                $blogThumb = public_path().'/img/blog/thumbs/';
+                rename($blogPhoto.$blog->image, $blogPhoto.$request->slug.'.'.$ext);
+                rename($blogThumb.$blog->image, $blogThumb.$request->slug.'.'.$ext);
                 $request->merge(['image' => $request->slug.'.'.$ext]);
             }
 
-            $update = $section->update($request->all());
+            $update = $blog->update($request->all());
             if($update){
-                return ['result'=>'success', 'message' =>'Shop section updated successfully'];
+                return ['result'=>'success', 'message' =>'Blog updated successfully'];
             }else{
                 return ['result'=>'error', 'message' =>'Something went wrong.'];
             }
@@ -168,15 +160,16 @@ class ShopSectionController extends Controller
      */
     public function destroy($slug)
     {
+        //
         if (\Gate::allows('canDelete')){
             //$this->authorize('isAdmin');
-            $content = Shopsection::where('slug', '=', $slug)->firstOrFail();
+            $content = Blog::where('slug', '=', $slug)->firstOrFail();
             $old_image =  $content->image;
-            $sectionPhoto = public_path('img/shopsection/').$old_image;
-            $sectionThumb = public_path('img/shopsection/thumbs/').$old_image;
-                if(file_exists($sectionPhoto)){
-                    unlink($sectionPhoto);
-                    unlink($sectionThumb);
+            $blogPhoto = public_path('img/blog/').$old_image;
+            $blogThumb = public_path('img/blog/thumbs/').$old_image;
+                if(file_exists($blogPhoto)){
+                    unlink($blogPhoto);
+                    unlink($blogThumb);
                 }
             //delete the section
             $content->delete();
@@ -186,8 +179,9 @@ class ShopSectionController extends Controller
         }
     }
 
-    public function orderSection(Request $request){
-        $newlist = $request->newshopsection;
+    public function orderBlog(Request $request){
+        $newlist = $request->newblog;
+        //return var_dump($newlist);
         return $this->saveList($newlist);
     }
 
@@ -195,11 +189,11 @@ class ShopSectionController extends Controller
     public function search(){
         if (\Gate::allows('canView')){
             if($search = \Request::get('q')){
-                $section_search = Shopsection::where(function($query) use($search){
+                $section_search = Blog::where(function($query) use($search){
                     $query->where('title','LIKE',"%$search%");
                 })->get();
             }else{
-                $section_search = Shopsection::latest()->get();
+                $section_search = Blog::latest()->get();
 
             }
             return $section_search;
@@ -238,7 +232,7 @@ class ShopSectionController extends Controller
 
     protected function getRelatedSlugs($slug, $id = 0)
     {
-        return Shopsection::select('slug')->where('slug', 'like', '%'.$slug.'%')
+        return Blog::select('slug')->where('slug', 'like', '%'.$slug.'%')
             ->where('id', '<>', $id)
             ->get();
     }
@@ -254,10 +248,11 @@ class ShopSectionController extends Controller
     }
     protected function updateOrder($m_order, $id)
     {
-        $menu = Shopsection::findOrFail($id);
+        $menu = Blog::findOrFail($id);
         if ($menu){
-            return Shopsection::where('id', '=', $id)->update(['order_item' => $m_order]);
+            return Blog::where('id', '=', $id)->update(['order_item' => $m_order]);
         }
 
     }
+
 }

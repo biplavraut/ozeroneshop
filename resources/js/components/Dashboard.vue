@@ -31,7 +31,7 @@
       </div>
       <div class="col-12 col-sm-6 col-md-3">
         <div class="info-box mb-3 bg-info">
-          <span class="info-box-icon"><i class="fas fa-comment"></i></span>
+          <span class="info-box-icon"><i class="fas fa-mail-bulk"></i></span>
           <div class="info-box-content">
             <span class="info-box-text">Check</span>
             <span class="info-box-number">Webmails</span>

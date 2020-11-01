@@ -255,6 +255,7 @@
                 //console.log('editing data');
                 this.form.put('../../api/slider/'+this.form.slug)
                     .then(({data}) =>{
+                        this.form.reset();
                         $("#addNewSlider").modal('hide'); //Hide the model
                         this.serverResponse(data);
 
@@ -266,6 +267,7 @@
 
             /*==== Call Delete Modal uith TEstimonial id ====*/
             deleteSlider(slug){
+                this.$Progress.start();
                 swal.fire({
                     title: 'Are you sure?',
                     text: "You won't be able to revert this!",
@@ -285,6 +287,7 @@
                                 'Something went worong.',
                                 'error'
                             )
+                             this.$Progress.fail();
                         })
                     }
 

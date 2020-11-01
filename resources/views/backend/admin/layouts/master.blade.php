@@ -192,7 +192,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link to="/blogs" class="nav-link">
+                        <router-link to="/backend/admin/blogs" class="nav-link">
                             <i class="fas fa-blog nav-icon gray-dark"></i>
                             <p>Blogs Management</p>
                         </router-link>

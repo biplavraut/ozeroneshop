@@ -22,8 +22,12 @@ class SeoController extends Controller
      */
     public function index()
     {
-        $seo = Seo::findOrFail(1);
-        return $seo;
+        if (\Gate::allows('canView')){
+            $seo = Seo::findOrFail(1);
+            return $seo;
+        }else{
+            return ['result'=>'error', 'message' =>'Unauthorized! Access Denied'];
+        }
     }
     /**
      * Store a newly created resource in storage.
@@ -33,16 +37,25 @@ class SeoController extends Controller
      */
     public function store(Request $request)
     {
-        return Seo::create([
-            'title' => $request['title'],
-            'keyword' => $request['keyword'],
-            'subject' => $request['subject'],
-            'topic' => $request['topic'],
-            'summary' => $request['summary'],
-            'classification' => $request['classification'],
-            'categories' => $request['categories'],
-            'excerpt' => $request['excerpt']
-        ]);
+        if (\Gate::allows('canAdd')){
+            $add = Seo::create([
+                'title' => 'TEST',
+                'keyword' => 'TEST',
+                'subject' => 'TEST',
+                'topic' => 'TEST',
+                'summary' => 'TEST',
+                'classification' => 'TEST',
+                'categories' => 'TEST',
+                'excerpt' => 'TEST'
+            ]);
+            if($add){
+                return ['result'=>'success', 'message' =>'Brand added successfully'];
+            }else{
+                return ['result'=>'error', 'message' =>'Something went wrong.'];
+            }
+        }else{
+            return ['result'=>'error', 'message' =>'Unauthorized! Access Denied'];
+        }
     }
 
     /**
@@ -72,10 +85,17 @@ class SeoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $seo = Seo::findOrFail($id);
-
-        $seo->update($request->all());
-        return ['message'=>'seo  Updated'];
+        if (\Gate::allows('canEdit')){
+            $seo = Seo::findOrFail($id);
+            $update = $seo->update($request->all());
+            if($update){
+                return ['result'=>'success', 'message' =>'Brand info updated successfully'];
+            }else{
+                return ['result'=>'error', 'message' =>'Something went wrong.'];
+            }
+        }else{
+            return ['result'=>'error', 'message' =>'Unauthorized! Access Denied'];
+        }
     }
     /**
      * Remove the specified resource from storage.

@@ -256,7 +256,8 @@
                 this.$Progress.start();
                 //console.log('editing data');
                 this.form.put('../../../api/brand/'+this.form.slug)
-                    .then(() =>{
+                    .then(({data}) =>{
+                        this.form.reset();
                         $("#addNewBrand").modal('hide'); //Hide the model
                         this.serverResponse(data);
                     }).catch(()=>{
@@ -278,7 +279,7 @@
                 }).then((result) => {
                     //send an ajax request to the server
                     if (result.value) {
-                        this.form.delete('../../../api/brand/' + slug).then(({ data }) => {
+                        this.form.delete('../../../api/brand/' + slug).then(({data}) => {
                             this.serverResponse(data);
                         }).catch(() => {
                             swal.fire(

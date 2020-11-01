@@ -202,8 +202,7 @@
 
             },
             listChange(newshopsection){
-                console.log(newshopsection);
-
+                //console.log(newshopsection);
                 axios({
                     method: 'post',
                     url: '../../api/orderShopSectionList',
@@ -247,6 +246,7 @@
                 //console.log('editing data');
                 this.form.put('../../api/shopsection/'+this.form.slug)
                     .then(({data}) =>{
+                        this.form.reset();
                         $("#addNewShopSection").modal('hide'); //Hide the model
                         this.serverResponse(data);
                     }).catch(()=>{
@@ -262,6 +262,7 @@
 
             /*==== Call Delete Modal uith user id ====*/
             deleteShopSection(slug){
+                this.$Progress.start();
                 swal.fire({
                     title: 'Are you sure?',
                     text: "You won't be able to revert this!",
@@ -277,10 +278,10 @@
                             this.serverResponse(data);
                         }).catch(() => {
                             swal.fire(
-                            'Error!',
-                            'Something Went Wrong.',
-                            'error'
-                        )
+                                'Error!',
+                                'Something Went Wrong.',
+                                'error'
+                            )
                         this.$Progress.fail();
                         })
                     }
@@ -311,7 +312,7 @@
 
             this.loadShopSections(); //load the user in the table
 
-            //Load the userlist if add or created a new user
+            //Load the shop section if add or created a new shop section
             Fire.$on("AfterCreate",()=>{
                 this.loadShopSections();
             })
