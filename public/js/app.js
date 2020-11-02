@@ -82693,7 +82693,7 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "card-body table-responsive p-0" }, [
+              _c("div", { staticClass: "card-body table-responsive p-2" }, [
                 _c(
                   "table",
                   { staticClass: "table table-hover" },
