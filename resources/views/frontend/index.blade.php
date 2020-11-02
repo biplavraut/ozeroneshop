@@ -38,11 +38,11 @@
 
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
                 <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
-                <h1>Coming Soon</h1>
-                    <img src="img/logo.png" alt="Ozerone Shop" width="75%"> 
+                <h1><b style="color:#f8ab16; font-weight:400;">OZERONE</b> SHOP</h1>
+                    <h2><b> coming soon</b></h2>
                 </div>
                     <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
-                        Build v{{ Illuminate\Foundation\Application::VERSION }}
+                        Online electronics shop in Nepal
                     </div>
                 </div>
             </div>
