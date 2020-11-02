@@ -47,6 +47,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </form>
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="https://ozeroneshop.com/" title="Visit Home Page" target="_blank">
+                    <i class="fas fa-home"></i>
+                </a>
+            </li>
             <!-- Messages Dropdown Menu -->
             <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#">
