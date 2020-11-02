@@ -12,7 +12,7 @@
                         </div>
                     </div>
                     <!-- /.card-header -->
-                    <div class="card-body table-responsive p-0">
+                    <div class="card-body table-responsive p-2">
                         <table class="table table-hover">
                             <vue-nestable v-model="blogs" :max-depth="1" v-on:change="listChange(blogs)">
                                 <template slot-scope="{ item }">
