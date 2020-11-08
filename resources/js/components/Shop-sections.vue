@@ -21,11 +21,11 @@
                                         <div class="row">
                                             <div class="col-md-8">
                                                 <i class="fas fa-bars"> </i> <span>{{ item.title }} / {{ item.slug }}</span>
-                                                <small class="hidden-xs hidden-sm">/ {{ item.get_brand_relation.length }} brands listed inside it</small>
+                                                <small class="hidden-xs hidden-sm">/ {{ item.get_electronics_relation.length }} electronics listed inside it</small>
                                             </div>
                                             <div class="col-md-4 item_actions">
-                                                <router-link :to="'/backend/admin/brands/'+item.slug" class="btn btn-sm btn-primary">
-                                                    Add Brands
+                                                <router-link :to="'/backend/admin/electronics/'+item.slug" class="btn btn-sm btn-primary">
+                                                    Add Categories
                                                     <i class="fa fa-plus"></i>
                                                 </router-link>
                                                 <a href="#" @click="editShopSection(item)" class="btn btn-sm btn-success">Edit

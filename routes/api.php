@@ -40,6 +40,14 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::apiResources(['brand'=> Backend\Admin\BrandController::class]);
     Route::post('orderBrand', [App\Http\Controllers\Backend\Admin\BrandController::class, 'orderBrand']);
     Route::get('findBrand', [App\Http\Controllers\Backend\Admin\BrandController::class, 'search']);
+
+    Route::apiResources(['electronics'=> Backend\Admin\ElectronicsController::class]);
+    Route::post('orderElectronics', [App\Http\Controllers\Backend\Admin\ElectronicsController::class, 'orderElectronics']);
+    Route::get('findElectronics', [App\Http\Controllers\Backend\Admin\ElectronicsController::class, 'search']);
+    
+    Route::apiResources(['product'=> Backend\Admin\ProductController::class]);
+    Route::post('orderProduct', [App\Http\Controllers\Backend\Admin\ProductController::class, 'orderProducts']);
+    Route::get('findProducts', [App\Http\Controllers\Backend\Admin\ProductController::class, 'search']);
     
     Route::apiResources(['blog'=> Backend\Admin\BlogController::class]);
     Route::post('orderBlog', [App\Http\Controllers\Backend\Admin\BlogController::class, 'orderBlog']);

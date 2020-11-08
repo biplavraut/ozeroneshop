@@ -27,7 +27,7 @@ class ShopSectionController extends Controller
     {
         //
         if (\Gate::allows('canView')){
-            $final_result =  Shopsection::with('getBrandRelation')->orderBy("order_item")->get();
+            $final_result =  Shopsection::with('getElectronicsRelation')->orderBy("order_item")->get();
             return $final_result;
         }else{
             return ['result'=>'error', 'message' =>'Unauthorized! Access Denied'];

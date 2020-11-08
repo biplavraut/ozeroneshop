@@ -28,12 +28,8 @@ class BrandController extends Controller
     public function index()
     {
         if (\Gate::allows('canView')){
-            try{
-                $section_id = Shopsection::select('id')->where('slug','LIKE',\Request::get('shop_section'))->first();
-            }catch (Exception $e) {
-                return $e;
-            }            
-            $final_result = $this->getFullListFromDB(0, $section_id->id);
+                    
+            $final_result = $this->getFullListFromDB(0);
             return $final_result;        
         }else{
             return ['result'=>'error', 'message' =>'Unauthorized! Access Denied'];
@@ -50,9 +46,7 @@ class BrandController extends Controller
     public function store(Request $request)
     {
         //
-        if (\Gate::allows('canAdd')){
-            $section_id = Shopsection::select('id')->where('slug','LIKE',$request->shop_section)->first();
-            $section_id = $section_id->id;
+        if (\Gate::allows('canAdd')){;
             try{
                 $slug = $this->createSlug($request->title,'');
             }catch (Exception $e) {
@@ -81,7 +75,7 @@ class BrandController extends Controller
                 $request->merge(['type' =>0]);
             }
             $add =  Brand::create([
-                'section_id' => $section_id,
+                'section_id' => 0,
                 'title' => $request['title'],
                 'slug' => $slug,
                 'image' => $image_name,
@@ -254,13 +248,13 @@ class BrandController extends Controller
     /*End of generating Unique slug*/
 
     /*Generating list to display*/
-    public function getFullListFromDB($parent_id, $section_id)
+    public function getFullListFromDB($parent_id)
     {
         // global declaration
-        $result = $this->getChildList($parent_id , $section_id);
+        $result = $this->getChildList($parent_id);
 
         foreach ($result as &$value) {
-            $subresult = $this->getFullListFromDB($value["id"] , $section_id);
+            $subresult = $this->getFullListFromDB($value["id"]);
 
             if (count($subresult) > 0) {
                 $value['children'] = $subresult;
@@ -272,9 +266,9 @@ class BrandController extends Controller
 
         return $result;
     }
-    protected function getChildList($parent_id, $section_id)
+    protected function getChildList($parent_id)
     {
-        return Brand::where('parent_id','=', $parent_id)->where('section_id','=',$section_id)->orderBy("order_item")->get();
+        return Brand::where('parent_id','=', $parent_id)->orderBy("order_item")->get();
     }
 
     /*Sorting the content in order and making child*/

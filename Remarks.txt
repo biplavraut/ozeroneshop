@@ -1,0 +1,39 @@
+::::::::::::::: Frontend :::::::::::::::
+Coming soon page
+Customer Login-Logout Created ----- Authentication
+Customer dashboard Created ----- Mgmt
+===============================================
+===============================================
+::::::::::::::: Backend :::::::::::::::
+Dashboard designed ----- Design
+Admin Login-Logout Created ----- Authentication
+Admin users roles Created ----- Authorization
+Admin management A-E-D-S Created ---- Mgmt 
+Profile management Done ----- Mgmt 
+
+SEO management A-E-D-S Created ----- Mgmt 
+FAQs management A-E-D-S Created ----- Mgmt 
+Partners management A-E-D-S Created ----- Mgmt 
+Blogs management A-E-D-S Created ----- Mgmt 
+Slider management A-E-D-S Created ----- Mgmt 
+
+Shop Section management A-E-D-S Created ----- Shop Mgmt
+Brands management A-E-D-S Created ----- Shop Mgmt
+
+Product management A-E-D-S ------- Working....
+
+(A-E-D-S : Add-Edit-Delete-Sorting/Search)
+===============================================
+===============================================
+::::::::::::::: Technologies :::::::::::::::
+Laravel 8
+PHP 7.3
+MySQL
+VUE JS
+Blade
+HTML-CSS
+
+
+
+
+

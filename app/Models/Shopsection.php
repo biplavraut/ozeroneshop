@@ -11,7 +11,7 @@ class Shopsection extends Model
     protected $fillable = [
         'title','slug','image','icon','type','display','child','order_item','excerpt'
     ];
-    public function getBrandRelation(){
-        return $this->hasMany('App\Models\Brand', 'section_id', 'id');
+    public function getElectronicsRelation(){
+        return $this->hasMany('App\Models\Electronics', 'section_id', 'id');
     }
 }

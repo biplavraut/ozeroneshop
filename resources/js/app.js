@@ -95,8 +95,10 @@ let routes = [
     { path: '/backend/admin/admins', component: require('./components/Admins.vue').default},
 
     { path: '/backend/admin/shop-sections', component: require('./components/Shop-sections.vue').default},
-    { path: '/backend/admin/brands/:shop_section', component: require('./components/Brands.vue').default, props:true},
+    { path: '/backend/admin/brands', component: require('./components/Brands.vue').default},   
+    { path: '/backend/admin/electronics/:shop_section', component: require('./components/Electronics.vue').default, props:true},
 
+    { path: '/backend/admin/product', component: require('./components/Products.vue').default}, 
 
     { path: '/backend/admin/slider', component: require('./components/Slider.vue').default},
     { path: '/backend/admin/blogs', component: require('./components/Blogs.vue').default},

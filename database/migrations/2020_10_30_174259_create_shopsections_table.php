@@ -18,7 +18,7 @@ class CreateShopsectionsTable extends Migration
             $table->string('title');
             $table->string('slug')->unique();
             $table->string('image')->default('no-image.png')->nullable();
-            $table->string('icon')->nullable();
+            $table->text('icon')->nullable();
             $table->tinyInteger('type')->default(0);
             $table->tinyInteger('display')->default(0);
             $table->tinyInteger('child')->default(0);

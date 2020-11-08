@@ -5,7 +5,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Brand Management: {{this.shop_section}}</h3>
+                        <h3 class="card-title">Brand Management</h3>
 
                         <div class="card-tools">
                             <button type="" @click="newBrand" class="btn btn-primary"><i class="fas fa-bars fa-fw"></i> Add New</button>
@@ -153,10 +153,8 @@
                 editmode: false,
                 totalbrands : 0,
                 brands : [],
-                shop_section: this.$route.params.shop_section,
                 form: new Form({
                     id:'',
-                    shop_section: this.$route.params.shop_section,
                     title :'',
                     slug :'',
                     image:'',
@@ -297,30 +295,17 @@
             loadBrands(){
                 this.$Progress.start();
                 if (this.$gate.isAuthorized()){
-                    axios.get('../../../api/brand?shop_section='+this.shop_section)
+                    axios.get('../../../api/brand')
                         .then(({ data }) => {
                         this.brands = data, this.totalbrands = data.total
                         this.$Progress.finish();
                     }).catch(()=>{
+                        swal.fire(
+                        'Error!',
+                        'Something Went Wrong.',
+                        'warning'
+                        )
                         this.$Progress.fail();
-                        swal.fire({
-                            title: 'Something went wrong!',
-                            text: "or The shop section is invalid.",
-                            type: 'error',
-                            showCancelButton: false,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: '&crarr; Return, Dashboard!'
-                        }).then((result) => {
-                            //send an ajax request to the server
-                            if (result.value) {
-                                window.location.href = '/backend/admin';
-                            }else{
-                                window.location.href = '/backend/admin';
-                            }
-                        })
-
-
                     })
                 }
             }

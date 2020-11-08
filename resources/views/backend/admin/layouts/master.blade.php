@@ -128,19 +128,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </router-link>
                     </li>
                     @if(\Gate::check('isSupDev') || \Gate::check('isDev') || \Gate::check('isSupAdmin'))
-                        <li class="nav-item has-treeview">
+                        <li class="nav-item has-treeview menu-open">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon orange fas fa-cogs"></i>
                                 <p>
-                                    Owner Mode
+                                    Shop Settings
                                     <i class="right fa fa-angle-left"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview pl-2">
                                 <li class="nav-item">
                                     <router-link to="/backend/admin/shop-sections" class="nav-link">
-                                        <i class="fas fa-cog nav-icon green"></i>
+                                        <i class="fas fa-store-alt nav-icon green"></i>
                                         <p>Shop Sections</p>
+                                    </router-link>
+                                </li>
+                                <li class="nav-item">
+                                    <router-link to="/backend/admin/brands" class="nav-link">
+                                        <i class="fas fa-copyright nav-icon green"></i>
+                                        <p>Brands</p>
                                     </router-link>
                                 </li>
                                 <div class="dropdown-divider"></div>
@@ -152,7 +158,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-shopping-bag"></i>
                             <p>
-                                Add-Edit Brands
+                                Category Management
                                 <i class="right fa fa-angle-left"></i>
                             </p>
                         </a>
@@ -160,9 +166,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             @foreach ($shop_sections as $shop_section)
                                 @if ($shop_section->display == 1)
                                     <li class="nav-item">
-                                        <router-link to="/backend/admin/brands/{{$shop_section->slug}}" class="nav-link">
-                                            <i class="{{$shop_section->icon}} nav-icon green"></i>
-                                            <p>{{ $shop_section->title }}</p>
+                                        <router-link to="/backend/admin/electronics/{{$shop_section->slug}}" class="nav-link">
+                                            <div style="width:25px;"><i class="nav-icon"> {!! $shop_section->icon !!}</i> {{ $shop_section->title }}</div>
+                                            
                                         </router-link>
                                     </li>
                                 @endif
@@ -252,7 +258,26 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         <!-- Main content -->
         <div class="content">
-            <div class="container-fluid">
+            <div class="container-fluid mt-5"> 
+                <div class="container">
+                    <!-- Heading -->
+                    <!-- <div class="card mb-4 wow fadeIn">
+                        <div class="card-body d-sm-flex justify-content-between">
+
+                            <h4 class="mb-2 mb-sm-0 pt-1">
+                                <a href="https://mdbootstrap.com/docs/jquery/" target="_blank">Home Page</a>
+                                <span>/</span>
+                                <span>Dashboard</span>
+                            </h4>
+                            <form class="d-flex md-form justify-content-center" style="margin:0;">
+                                <input aria-label="Search" class="form-control" placeholder="Type your query" type="search" />
+                                <button class="btn btn-primary btn-sm my-0 p" type="submit"><i class="fa fa-search"></i></button>
+                            </form>
+                        </div>
+                    </div> -->
+                    <!-- Heading -->
+                </div>
+                
                 <router-view :key="$route.fullPath"></router-view>
 
                 <vue-progress-bar></vue-progress-bar>
