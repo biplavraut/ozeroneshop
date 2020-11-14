@@ -19,8 +19,20 @@ Slider management A-E-D-S Created ----- Mgmt
 
 Shop Section management A-E-D-S Created ----- Shop Mgmt
 Brands management A-E-D-S Created ----- Shop Mgmt
+ - has feature of adding child as sub brand
 
-Product management A-E-D-S ------- Working....
+Categories with Sub categories management A-E-D-S Created ----- Shop Mgmt
+ - has feature of adding child as sub categories
+
+Product management A-E-D-S ------- Created
+ - Add Product
+ - Product Detail with specs
+ - Storage and Ram Option
+ - Color Option
+ - Image Uploads
+ - More Detail Option
+
+Note: Complete testing is yet to be done. May face some bugs. Please report using screenshot
 
 (A-E-D-S : Add-Edit-Delete-Sorting/Search)
 ===============================================
