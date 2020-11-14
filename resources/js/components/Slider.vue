@@ -255,9 +255,10 @@
                 //console.log('editing data');
                 this.form.put('../../api/slider/'+this.form.slug)
                     .then(({data}) =>{
-                        this.form.reset();
-                        $("#addNewSlider").modal('hide'); //Hide the model
-                        this.serverResponse(data);
+                        console.log(data);
+                        // this.form.reset();
+                        // $("#addNewSlider").modal('hide'); //Hide the model
+                        // this.serverResponse(data);
 
                     }).catch(()=>{
                     this.$Progress.fail();

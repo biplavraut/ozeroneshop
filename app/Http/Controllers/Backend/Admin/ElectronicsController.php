@@ -29,11 +29,16 @@ class ElectronicsController extends Controller
     {
         if (\Gate::allows('canView')){
             try{
-                $section_id = Shopsection::select('id')->where('slug','LIKE',\Request::get('shop_section'))->first();
+                if(\Request::get('shop_section')){
+                    $section_id = Shopsection::select('id')->where('slug','LIKE',\Request::get('shop_section'))->first();
+                    $final_result = $this->getFullListFromDB(0, $section_id->id);
+                }else{
+                    return Electronics::orderBy("order_item")->get();
+                    //$final_result = $this->getListForDetail(0);
+                }                
             }catch (Exception $e) {
                 return $e;
-            }            
-            $final_result = $this->getFullListFromDB(0, $section_id->id);
+            }
             return $final_result;        
         }else{
             return ['result'=>'error', 'message' =>'Unauthorized! Access Denied'];
@@ -277,6 +282,33 @@ class ElectronicsController extends Controller
     {
         return Electronics::where('parent_id','=', $parent_id)->where('section_id','=',$section_id)->orderBy("order_item")->get();
     }
+    /*end of Generating list to display*/
+
+    /*Generating list to show in product detail*/
+    public function getListForDetail($parent_id)
+    {
+        // global declaration
+        $result = $this->getDetailChildList($parent_id);
+
+        foreach ($result as &$value) {
+            $subresult = $this->getListForDetail($value["id"]);
+
+            if (count($subresult) > 0) {
+                $value['children'] = $subresult;
+            }else{
+                $value['children'] = [];
+            }
+        }
+        unset($value);
+
+        return $result;
+    }
+    protected function getDetailChildList($parent_id)
+    {
+        return Electronics::where('parent_id','=', $parent_id)->orderBy("order_item")->get();
+    }
+    /* end of Generating list to show in product detail*/
+
 
     /*Sorting the content in order and making child*/
     public function saveList($list, $parent_id = 0, $child = 0, &$m_order = 0)

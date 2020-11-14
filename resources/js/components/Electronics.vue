@@ -67,30 +67,30 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                <div class="input-group mb-2">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">Image</div>
+                                        <div class="input-group mb-2">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">Image</div>
+                                            </div>
+                                            <input type="file" name="image"  @change="imageUpload"
+                                                placeholder="Image"
+                                                class="btn btn-sm btn-info" :class="{ 'is-invalid': form.errors.has('image') }">
+                                            <has-error :form="form" field="image"></has-error>
+                                        </div>
                                     </div>
-                                    <input type="file" name="image"  @change="imageUpload"
-                                           placeholder="Image"
-                                           class="btn btn-sm btn-info" :class="{ 'is-invalid': form.errors.has('image') }">
-                                    <has-error :form="form" field="image"></has-error>
-                                </div>
-                            </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                <div class="input-group mb-2 mr-sm-2">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">Icons</div>
-                                    </div>
-                                    <input v-model="form.icon" type="text" name="icon"
-                                           placeholder="Icon if available."
-                                           class="form-control" :class="{ 'is-invalid': form.errors.has('icon') }">
-                                    <has-error :form="form" field="icon"></has-error>
-                                </div>
+                                        <div class="input-group mb-2 mr-sm-2">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">Icons</div>
+                                            </div>
+                                            <input v-model="form.icon" type="text" name="icon"
+                                                placeholder="Icon if available."
+                                                class="form-control" :class="{ 'is-invalid': form.errors.has('icon') }">
+                                            <has-error :form="form" field="icon"></has-error>
+                                        </div>
 
-                            </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
@@ -204,19 +204,19 @@
                 this.$Progress.start(); //start a progress bar
                 this.form.post('../../../api/electronics') // POST form data
                 //Start Condition to check form is validate
-                    .then(({data})=>{
-                        $("#addNewElectronics").modal('hide'); //Hide the model
-                        this.serverResponse(data);
-                    })
-                    //if form is not valid of handle any errors
-                    .catch(()=>{
-                        swal.fire(
-                            'Error!',
-                            'Something Went Wrong.',
-                            'warning'
-                        )
-                        this.$Progress.fail(); //End the progress bar
-                    })
+                .then(({data})=>{
+                    $("#addNewElectronics").modal('hide'); //Hide the model
+                    this.serverResponse(data);
+                })
+                //if form is not valid of handle any errors
+                .catch(()=>{
+                    swal.fire(
+                        'Error!',
+                        'Something Went Wrong.',
+                        'warning'
+                    )
+                    this.$Progress.fail(); //End the progress bar
+                })
 
             },
             listChange(newelectronics){

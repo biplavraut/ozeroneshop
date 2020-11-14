@@ -48,6 +48,7 @@ const Toast = Swal.mixin({
     showConfirmButton: false,
     timer: 5000
 });
+
 Vue.mixin({
     methods:{
         // Check server response and show it
@@ -78,13 +79,23 @@ window.Toast = Toast;
 
 /*Vue Nestable*/
 import Vue from 'vue';
+
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+// Install BootstrapVue
+Vue.use(BootstrapVue)
+// Optionally install the BootstrapVue icon components plugin
+Vue.use(IconsPlugin)
+
+import PortalVue from 'portal-vue'
+Vue.use(PortalVue)
+
+// Vue Nestable
 import VueNestable from 'vue-nestable';
 Vue.use(VueNestable);
 
 /*Start of Vue Routes*/
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
-
 
 /*Defining all the routes*/
 let routes = [
@@ -99,6 +110,7 @@ let routes = [
     { path: '/backend/admin/electronics/:shop_section', component: require('./components/Electronics.vue').default, props:true},
 
     { path: '/backend/admin/product', component: require('./components/Products.vue').default}, 
+    { path: '/backend/admin/product-detail/:slug', component: require('./components/ProductDetail.vue').default, props:true},
 
     { path: '/backend/admin/slider', component: require('./components/Slider.vue').default},
     { path: '/backend/admin/blogs', component: require('./components/Blogs.vue').default},

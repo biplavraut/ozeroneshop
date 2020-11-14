@@ -27,7 +27,13 @@ class ProductController extends Controller
     {
         //
         if (\Gate::allows('canView')){
-            return Product::orderBy("order_item")->get();
+            if(\Request::get('slug')){
+                $slug = \Request::get('slug');
+                //return Contents::latest()->where('slug','LIKE',"%$slug%")->get();
+                return Product::with('getStorageRelation')->with('getColorRelation')->with('getImageRelation')->with('getDetailRelation')->where('slug','LIKE',"%$slug%")->first();
+            }else{
+                return Product::orderBy("order_item")->get();
+            }
         }else{
             return ['result'=>'error', 'message' =>'Unauthorized! Access Denied'];
         }
@@ -50,6 +56,11 @@ class ProductController extends Controller
             }catch (Exception $e) {
                 return $e;
             }
+            try{
+                $sku = $this->createSlug($request->title,'');
+            }catch (Exception $e) {
+                return $e;
+            }
             $path = public_path().'/img/product/'. $slug;
             if(!file_exists($path)){
                 \File::makeDirectory($path, $mode = 0777, true, true);
@@ -60,6 +71,7 @@ class ProductController extends Controller
             $add = Product::create([
                 'title' => $request['title'],
                 'slug' => $slug,
+                'sku' => $sku,
                 'display' => 0,
                 'featured' => 0,
                 'order_item' => $order
@@ -107,7 +119,6 @@ class ProductController extends Controller
                     rename(public_path('img/product/').$product->slug, public_path('img/product/').$request->slug );
                 }
             }
-
             $update = $product->update($request->all());
             if($update){
                 return ['result'=>'success', 'message' =>'Product updated successfully'];

@@ -1,7 +1,6 @@
 <template>
     <div class="container">
         <div class="row mt-5" v-if="$gate.isAuthorized()">
-
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
@@ -23,7 +22,7 @@
                                                 <i class="fas fa-bars"> </i> <span>{{ item.title }} </span>
                                             </div>
                                             <div class="col-md-4 item_actions">
-                                                <router-link :to="'/adddetails/' + item.slug" class="btn btn-sm btn-success">Add Details
+                                                <router-link :to="'/backend/admin/product-detail/' + item.slug" class="btn btn-sm btn-success">Add Details
                                                     <i class="fas fa-plus"></i>
                                                 </router-link>
                                                 <a href="#" @click="editProduct(item)" class="btn btn-sm btn-success">Edit
@@ -115,6 +114,12 @@
             },
             /*Create User Function Starts*/
             createProduct(){
+                swal.fire({
+                    title: 'Please Wait! preceding...',
+                    showConfirmButton: false,
+                    allowOutsideClick: false,
+                    allowEscapeKey: false
+                    })
                 this.$Progress.start(); //start a progress bar
                 this.form.post('../../api/product') // POST form data
                 //Start Condition to check form is validate
@@ -122,8 +127,8 @@
                         this.form.reset();
                         $('#addNewProduct').modal('hide');
                         if(data.result == 'success'){
-                            alert(data.slug);
-                            //window.location.href = 'adddetails/'+data.slug;
+                            //alert(data.slug);
+                            window.location.href = '/backend/admin/product-detail/'+data.slug;
                         }else{
                             swal.fire(
                             'Error!',
@@ -193,7 +198,7 @@
                     .then((data) =>{
                         this.form.reset();
                         $("#addNewProduct").modal('hide'); //Hide the model
-                        this.serverResponse(data);
+                        this.serverResponse(data.data);
                     }).catch(()=>{
                         swal.fire(
                             'Error!',

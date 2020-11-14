@@ -292,7 +292,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <footer class="main-footer">
         <!-- To the right -->
         <div class="float-right d-none d-sm-inline">
-            Ozerone Shop
+            Ozerone Shop   <a href="#" onclick="colorName()">Click</a>
         </div>
         <!-- Default to the left -->
         <strong>Copyright &copy; 2020-{{date('yy')}} <a href="https://perscreation.com" traget="_blank">Pers Creation </a><span class="fa fa-code"> </span> by <a href="https://biplavrajraut.com.np"  traget="_blank">Biplav</a></strong> All rights reserved.
@@ -310,6 +310,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{asset('js/app.js')}}"></script>
 <script>
     //const app = new Vue({ router }).$mount('#app');
+</script>
+<script type="text/javascript" src="https://chir.ag/projects/ntc/ntc.js"></script>
+<script type="text/javascript">
+    function colorName(){
+        hex = $('#inputcolorhex').val();
+        var n_match = ntc.name(hex);
+        n_rgb = n_match[0]; // RGB value of closest match
+        n_name = n_match[1]; // Text string: Color name
+        n_exactmatch = n_match[2]; // True if exact color match
+        //this.ciform.color = n_name;
+        //$('#inputcolorname').val(n_name);
+        if(n_name != 'Invalid Color'){
+            document.getElementById("inputcolorname").innerHTML=n_name; 
+        }
+        
+    } 
+
 </script>
 </body>
 </html>
