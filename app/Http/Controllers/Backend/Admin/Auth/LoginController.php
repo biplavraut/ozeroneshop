@@ -28,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/admin';
+    protected $redirectTo = '/backend/admin';
 
     protected $guard = 'admin';
 
@@ -40,7 +40,6 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest:admin')->except('logout');
-        $this->redirectTo = '/' . config('app.prefix_admin_url') . $this->redirectTo;
     }
 
     public function guard()
@@ -59,6 +58,6 @@ class LoginController extends Controller
 
         $request->session()->invalidate();
 
-        return $this->loggedOut($request) ?: redirect('/' . config('app.prefix_admin_url') . $this->redirectTo);
+        return $this->loggedOut($request) ?: redirect($this->redirectTo);
     }
 }

@@ -1,18 +1,92 @@
 <template>
-    <div class="container">
-        <div class="row mt-5" v-if="$gate.isDevOrAdmin()">
-
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Admin Management</h3>
-
-                        <div class="card-tools">
-                            <button type="" class="btn btn-primary" @click="newModal"><i class="fas fa-user-plus fa-fw"></i> Add New User</button>
-                        </div>
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body table-responsive p-0">
+<div>
+    <base-header class="pb-6 pb-8 pt-5 pt-md-8 bg-gradient-warning">
+      <!-- Card stats -->
+      <b-row>
+        <b-col>
+          <router-link to="/backend/admin/slider">
+            <button type="button" title="Slider Management" data-clipboard-text="air-baloon" class="bg-gradient-secondary btn-icon-clipboard">
+              <div>
+                <span class="d-none d-md-block"><i class="fas fa-sliders-h"></i><span>Slider</span></span>
+                <span class="d-md-none"><i class="fas fa-sliders-h"></i></span>
+              </div>
+            </button>
+          </router-link>
+        </b-col>
+        <b-col>
+          <router-link to="/backend/admin/blogs">
+            <button type="button" title="Blog Management" data-clipboard-text="air-baloon" class="bg-gradient-secondary btn-icon-clipboard">
+              <div>
+                <span class="d-none d-md-block"><i class="fas fa-blog"></i><span>Blog</span></span>
+                <span class="d-md-none"><i class="fas fa-blog"></i></span>
+              </div>
+            </button>
+          </router-link>
+        </b-col>
+        <b-col>
+          <router-link to="/backend/admin/partner">
+            <button type="button" title="Partner Management" data-clipboard-text="air-baloon" class="bg-gradient-secondary btn-icon-clipboard">
+              <div>
+                <span class="d-none d-md-block"><i class="fas fa-handshake"></i><span>Partner</span></span>
+                <span class="d-md-none"><i class="fas fa-handshake"></i></span>
+              </div>
+            </button>
+          </router-link>
+        </b-col>
+        <b-col>
+          <router-link to="/backend/admin/faq">
+            <button type="button" title="FAQs Management" data-clipboard-text="air-baloon" class="bg-gradient-secondary btn-icon-clipboard">
+              <div>
+                <span class="d-none d-md-block"><i class="fas fa-question"></i><span>FAQs</span></span>
+                <span class="d-md-none"><i class="fas fa-question"></i></span>
+              </div>
+            </button>
+          </router-link>
+        </b-col>
+        <b-col>
+          <router-link to="/backend/admin/seo">
+            <button type="button" title="SEO Management" data-clipboard-text="air-baloon" class="bg-gradient-secondary btn-icon-clipboard">
+              <div>
+                <span class="d-none d-md-block"><i class="fas fa-star"></i><span>SEO</span></span>
+                <span class="d-md-none"><i class="fas fa-star"></i></span>
+              </div>
+            </button>
+          </router-link>
+        </b-col>
+        <b-col>
+          <router-link to="/backend/admin/product">
+            <button type="button" title="Products Management" data-clipboard-text="air-baloon" class="bg-gradient-secondary btn-icon-clipboard">
+              <div>
+                <span class="d-none d-md-block"><i class="fas fa-store"></i><span>Products</span></span>
+                <span class="d-md-none"><i class="fas fa-store"></i></span>
+              </div>
+            </button>
+          </router-link>
+        </b-col>
+      </b-row>
+    </base-header>
+    <b-container fluid class="mt--7">
+        <b-row v-if="$gate.isAuthorized()">
+            <b-col xl="12" class="mb-5 mb-xl-0">
+                <card type="default" header-classes="bg-transparent">
+                    <b-row align-v="center" slot="header">
+                        <b-col>
+                            <h6 class="text-light text-uppercase ls-1 mb-1">Admin - Users</h6>
+                            <h5 class="h3 text-white mb-0">Management</h5>
+                        </b-col>
+                        <b-col>
+                            <b-nav class="nav-pills justify-content-end">
+                            <b-nav-item
+                                class="mr-2 mr-md-0"
+                                link-classes="py-2 px-3"
+                                @click="newModal">
+                                <span class="d-none d-md-block"><i class="fas fa-plus"></i> Add New User</span>
+                                <span class="d-md-none"><i class="fas fa-plus"></i> Add</span>
+                            </b-nav-item>
+                            </b-nav>
+                        </b-col>
+                    </b-row>
+                    <b-card-body class="pt-0">
                         <table class="table table-hover">
                             <tbody>
                             <tr>
@@ -40,27 +114,20 @@
                                     </a>
                                 </td>
                             </tr>
-                            </tbody></table>
-                    </div>
-                    <!-- /.card-body -->
-                    <div class="card-footer">
-                        <div class="row">
-                            <div class="col-md-6 pull-left">
+                            </tbody>
+                        </table>
+                        <b-row>
+                            <b-col>
                                 <span>Showing {{admins.data.length}} of {{this.totaladmin}} Users.</span>
-                            </div>
-                            <div class="col-md-6 pull-right">
+                            </b-col>
+                            <b-col class="justify-content-end">
                                 <pagination :data="admins" @pagination-change-page="getResults"></pagination>
-                            </div>
-                        </div>
-
-
-                    </div>
-                </div>
-                <!-- /.card -->
-            </div>
-
-        </div>
-
+                            </b-col>
+                        </b-row>
+                    </b-card-body>
+                </card>
+            </b-col>
+        </b-row>
         <div v-if="!$gate.isDevOrAdmin()">
             <not-found></not-found>
         </div>
@@ -141,7 +208,8 @@
                 </div>
             </div>
         </div>
-    </div>
+    </b-container>
+</div>
 </template>
 
 <script>

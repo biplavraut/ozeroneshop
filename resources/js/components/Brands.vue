@@ -1,44 +1,123 @@
 <template>
-    <div class="container">
-        <div class="row mt-5" v-if="$gate.isAuthorized()">
-
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Brand Management</h3>
-
-                        <div class="card-tools">
-                            <button type="" @click="newBrand" class="btn btn-primary"><i class="fas fa-bars fa-fw"></i> Add New</button>
-                        </div>
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body table-responsive p-2">
-                        <table class="table table-hover">
-                            <vue-nestable v-model="brands" :max-depth="2" v-on:change="listChange(brands)">
-                                <template slot-scope="{ item }">
-                                    <!-- Handler -->
-                                    <vue-nestable-handle :item="item">
-                                        <div class="row">
-                                            <div class="col-md-8">
-                                                <i class="fas fa-bars"> </i> <span>{{ item.title }} / {{ item.slug }} </span>
-                                            </div>
-                                            <div class="col-md-4 item_actions">
-                                                <a href="#" @click="editBrand(item)" class="btn btn-sm btn-success">Edit
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <a href="#" @click="deleteBrand(item.slug)" class="btn btn-sm btn-danger">Delete
-                                                    <i class="fa fa-trash"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </vue-nestable-handle>
-                                    <!-- Content -->
-                                </template>
-                            </vue-nestable>
-                        </table>
-                    </div>
-                </div>
-            </div>
+<div>
+    <base-header class="pb-6 pb-8 pt-5 pt-md-8 bg-gradient-warning">
+      <!-- Card stats -->
+      <b-row>
+        <b-col>
+          <router-link to="/backend/admin/slider">
+            <button type="button" title="Slider Management" data-clipboard-text="air-baloon" class="bg-gradient-secondary btn-icon-clipboard">
+              <div>
+                <span class="d-none d-md-block"><i class="fas fa-sliders-h"></i><span>Slider</span></span>
+                <span class="d-md-none"><i class="fas fa-sliders-h"></i></span>
+              </div>
+            </button>
+          </router-link>
+        </b-col>
+        <b-col>
+          <router-link to="/backend/admin/blogs">
+            <button type="button" title="Blog Management" data-clipboard-text="air-baloon" class="bg-gradient-secondary btn-icon-clipboard">
+              <div>
+                <span class="d-none d-md-block"><i class="fas fa-blog"></i><span>Blog</span></span>
+                <span class="d-md-none"><i class="fas fa-blog"></i></span>
+              </div>
+            </button>
+          </router-link>
+        </b-col>
+        <b-col>
+          <router-link to="/backend/admin/partner">
+            <button type="button" title="Partner Management" data-clipboard-text="air-baloon" class="bg-gradient-secondary btn-icon-clipboard">
+              <div>
+                <span class="d-none d-md-block"><i class="fas fa-handshake"></i><span>Partner</span></span>
+                <span class="d-md-none"><i class="fas fa-handshake"></i></span>
+              </div>
+            </button>
+          </router-link>
+        </b-col>
+        <b-col>
+          <router-link to="/backend/admin/faq">
+            <button type="button" title="FAQs Management" data-clipboard-text="air-baloon" class="bg-gradient-secondary btn-icon-clipboard">
+              <div>
+                <span class="d-none d-md-block"><i class="fas fa-question"></i><span>FAQs</span></span>
+                <span class="d-md-none"><i class="fas fa-question"></i></span>
+              </div>
+            </button>
+          </router-link>
+        </b-col>
+        <b-col>
+          <router-link to="/backend/admin/seo">
+            <button type="button" title="SEO Management" data-clipboard-text="air-baloon" class="bg-gradient-secondary btn-icon-clipboard">
+              <div>
+                <span class="d-none d-md-block"><i class="fas fa-star"></i><span>SEO</span></span>
+                <span class="d-md-none"><i class="fas fa-star"></i></span>
+              </div>
+            </button>
+          </router-link>
+        </b-col>
+        <b-col>
+          <router-link to="/backend/admin/product">
+            <button type="button" title="Products Management" data-clipboard-text="air-baloon" class="bg-gradient-secondary btn-icon-clipboard">
+              <div>
+                <span class="d-none d-md-block"><i class="fas fa-store"></i><span>Products</span></span>
+                <span class="d-md-none"><i class="fas fa-store"></i></span>
+              </div>
+            </button>
+          </router-link>
+        </b-col>
+      </b-row>
+    </base-header>
+    <b-container fluid class="mt--7">
+        <b-row v-if="$gate.isAuthorized()">
+            <b-col xl="12" class="mb-5 mb-xl-0">
+                <card type="default" header-classes="bg-transparent">
+                    <b-row align-v="center" slot="header">
+                        <b-col>
+                            <h6 class="text-light text-uppercase ls-1 mb-1">Brand</h6>
+                            <h5 class="h3 text-white mb-0">Management</h5>
+                        </b-col>
+                        <b-col>
+                            <b-nav class="nav-pills justify-content-end">
+                            <b-nav-item
+                                class="mr-2 mr-md-0"
+                                link-classes="py-2 px-3"
+                                @click="newBrand">
+                                <span class="d-none d-md-block"><i class="fas fa-plus"></i> Add New Brand</span>
+                                <span class="d-md-none"><i class="fas fa-plus"></i> Add</span>
+                            </b-nav-item>
+                            </b-nav>
+                        </b-col>
+                    </b-row>
+                    <b-card-body class="pt-0">
+                        <vue-nestable 
+                            v-model="brands" 
+                            :max-depth="2" 
+                            v-on:change="listChange(brands)">
+                            <template slot-scope="{ item }">
+                                <!-- Handler -->
+                                <vue-nestable-handle :item="item" class="mt-2">
+                                    <b-row align-v="center">
+                                        <b-col>
+                                            <i class="fas fa-bars"> </i> <span>{{ item.title }}</span>
+                                        </b-col>
+                                        <b-col class="text-right">
+                                            <a href="#" @click="editBrand(item)" class="btn btn-sm btn-success">
+                                                <span class="d-none d-md-block"><i class="fas fa-edit"></i> Edit</span>
+                                                <span class="d-md-none"><i class="fas fa-edit"></i></span>
+                                            </a>
+                                            <a href="#" @click="deleteSlider(item.slug)" class="btn btn-sm btn-danger">
+                                                <span class="d-none d-md-block"><i class="fas fa-trash"></i> Delete</span>
+                                                <span class="d-md-none"><i class="fas fa-trash"></i></span>
+                                            </a>
+                                        </b-col>
+                                    </b-row>
+                                </vue-nestable-handle>
+                            </template>
+                        </vue-nestable>
+                    </b-card-body>
+                </card>
+            </b-col>
+        </b-row>
+        <div v-if="!$gate.isAuthorized()">
+            <not-found></not-found>
         </div>
         <!-- Modal -->
         <div class="modal fade" id="addNewBrand" tabindex="-1" role="dialog" aria-labelledby="addNewBrandLabel" aria-hidden="true">
@@ -59,8 +138,8 @@
                                         <div class="input-group-text">Title</div>
                                     </div>
                                     <input v-model="form.title" type="text" name="title"
-                                           placeholder="Brand Title."
-                                           class="form-control" :class="{ 'is-invalid': form.errors.has('title') }">
+                                        placeholder="Brand Title."
+                                        class="form-control" :class="{ 'is-invalid': form.errors.has('title') }">
                                     <has-error :form="form" field="title"></has-error>
                                 </div>
                             </div>
@@ -72,8 +151,8 @@
                                         <div class="input-group-text">Image</div>
                                     </div>
                                     <input type="file" name="image"  @change="imageUpload"
-                                           placeholder="Image"
-                                           class="btn btn-sm btn-info" :class="{ 'is-invalid': form.errors.has('image') }">
+                                        placeholder="Image"
+                                        class="btn btn-sm btn-info" :class="{ 'is-invalid': form.errors.has('image') }">
                                     <has-error :form="form" field="image"></has-error>
                                 </div>
                             </div>
@@ -85,8 +164,8 @@
                                         <div class="input-group-text">Icons</div>
                                     </div>
                                     <input v-model="form.icon" type="text" name="icon"
-                                           placeholder="Icon if available."
-                                           class="form-control" :class="{ 'is-invalid': form.errors.has('icon') }">
+                                        placeholder="Icon if available."
+                                        class="form-control" :class="{ 'is-invalid': form.errors.has('icon') }">
                                     <has-error :form="form" field="icon"></has-error>
                                 </div>
 
@@ -99,13 +178,13 @@
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
                                             <input v-model="form.type" type="checkbox" name="type"
-                                                   :class="{ 'is-invalid': form.errors.has('type') }">
+                                                :class="{ 'is-invalid': form.errors.has('type') }">
                                         </div>
                                     </div>
                                     <input type="text" value="Product or Service Category" class="form-control" disabled>
                                     <has-error :form="form" field="type"></has-error>
                                 </div>
-                               </div>
+                            </div>
                             </div> 
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -138,7 +217,8 @@
             </div>
         </div>
         <!--End of modal-->
-    </div>
+    </b-container>
+</div>
 </template>
 
 <script type="text/babel">

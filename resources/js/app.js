@@ -79,6 +79,8 @@ window.Toast = Toast;
 
 /*Vue Nestable*/
 import Vue from 'vue';
+import DashboardPlugin from './argon/plugins/dashboard-plugin';
+Vue.use(DashboardPlugin);
 
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 // Install BootstrapVue
@@ -97,43 +99,43 @@ Vue.use(VueNestable);
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
-/*Defining all the routes*/
-let routes = [
-    { path: '/backend/admin', component: require('./components/Dashboard.vue').default},
-    { path: '/backend/admin/dashboard', component: require('./components/Dashboard.vue').default},
 
-    { path: '/backend/admin/profile', component: require('./components/Profile.vue').default},
-    { path: '/backend/admin/admins', component: require('./components/Admins.vue').default},
+import DashboardLayout from './argon/views/Layout/DashboardLayout.vue';
+const routes = [
+    {
+      path: '/backend/admin',
+      redirect: '/backend/admin/dashboard',
+      component: DashboardLayout,
+      children: [
+        {
+            path: '/backend/admin/dashboard',
+            name: 'dashboard',
+          // route level code-splitting
+          // this generates a separate chunk (about.[hash].js) for this route
+          // which is lazy-loaded when the route is visited.
+            component: () => import(/* webpackChunkName: "demo" */ './backend/Dashboard.vue')
+        },
+        { path: '/backend/admin/profile', name:'profile management', component: require('./backend/Profile.vue').default},
+        { path: '/backend/admin/admins', name:'admins management', component: require('./components/Admins.vue').default},
 
-    { path: '/backend/admin/shop-sections', component: require('./components/Shop-sections.vue').default},
-    { path: '/backend/admin/brands', component: require('./components/Brands.vue').default},   
-    { path: '/backend/admin/electronics/:shop_section', component: require('./components/Electronics.vue').default, props:true},
+        { path: '/backend/admin/shop-sections', name:'shop sections management', component: require('./components/Shop-sections.vue').default},
+        { path: '/backend/admin/brands', name:'brands management', component: require('./components/Brands.vue').default},   
+        { path: '/backend/admin/electronics/:shop_section', name:'Categories', component: require('./components/Electronics.vue').default, props:true},
 
-    { path: '/backend/admin/product', component: require('./components/Products.vue').default}, 
-    { path: '/backend/admin/product-detail/:slug', component: require('./components/ProductDetail.vue').default, props:true},
+        { path: '/backend/admin/product', name:'product management', component: require('./components/Products.vue').default}, 
+        { path: '/backend/admin/product-detail/:slug', name:'Product Detail', component: require('./components/ProductDetail.vue').default, props:true},
 
-    { path: '/backend/admin/slider', component: require('./components/Slider.vue').default},
-    { path: '/backend/admin/blogs', component: require('./components/Blogs.vue').default},
-    { path: '/backend/admin/partner', component: require('./components/Partner.vue').default},
-    { path: '/backend/admin/faq', component: require('./components/Faqs.vue').default},
-    { path: '/backend/admin/seo', component: require('./components/Seo.vue').default},
+        { path: '/backend/admin/slider', name:'slider management', component: require('./components/Slider.vue').default},
+        { path: '/backend/admin/blogs', name:'blogs management', component: require('./components/Blogs.vue').default},
+        { path: '/backend/admin/partner', name:'partner management', component: require('./components/Partner.vue').default},
+        { path: '/backend/admin/faq', name:'faqs management', component: require('./components/Faqs.vue').default},
+        { path: '/backend/admin/seo', name:'seo management', component: require('./components/Seo.vue').default},
 
+        { path: '/backend/admin/*', name:'page not found', component: require('./components/NotFound.vue').default}
+      ]
+    }
+  ];
 
-    // { path: '/backend/admin/adddetails/:slug', component: require('./components/Adddetails.vue').default, props:true},
-
-    
-    // { path: '/backend/admin/addtrip', component: require('./components/Addtrip.vue').default},
-    
-    // { path: '/backend/admin/contents', component: require('./components/Contents.vue').default},
-    // { path: '/backend/admin/regions', component: require('./components/Regions.vue').default},
-    // { path: '/backend/admin/addregions/:slug', component: require('./components/Addregions.vue').default, props:true},
-
-    // { path: '/backend/admin/activities', component: require('./components/Activities.vue').default},
-    // { path: '/backend/admin/addactivities/:slug', component: require('./components/Addactivities.vue').default, props:true},
-
-
-    { path: '/backend/admin/*', component: require('./components/NotFound.vue').default}
-]
 const router = new VueRouter({
     mode: 'history',
     routes, // short for `routes: routes`

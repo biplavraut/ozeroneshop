@@ -245,7 +245,7 @@ class PartnerController extends Controller
     }
     protected function updateOrder($m_order, $id)
     {
-        $partnerr = Partner::findOrFail($id);
+        $partner = Partner::findOrFail($id);
         if ($partner){
             return Partner::where('id', '=', $id)->update(['order_item' => $m_order]);
         }

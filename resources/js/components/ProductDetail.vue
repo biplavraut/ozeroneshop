@@ -1,284 +1,295 @@
 <template>
-    <div class="container-fluid">
-        <form @submit.prevent="updateProduct()">
-            <div class="row mt-5" v-if="$gate.isAuthorized()">
-                <div class="col-md-8">
-                    <div class="card card-primary card-outline">
-                        <div class="card-header">
-                            <h3 class="card-title">Product Detail: {{cform.title}}</h3>
-                            <div class="card-tools">
+<div>
+    <base-header class="pb-6 pb-8 pt-5 pt-md-8 bg-gradient-warning">
+        <b-row>
+            <b-col>
+            </b-col>
+        </b-row>
+    </base-header>
+    <b-container fluid class="mt--7">
+        <b-row v-if="$gate.isAuthorized()">
+            <b-col xl="8" class="mb-5 mb-xl-0">
+                    <card type="secondary" header-classes="bg-transparent">
+                        <b-row align-v="center" slot="header">
+                            <b-col>
+                                <h6 class="text-light text-uppercase ls-1 mb-1">Product Detail</h6>
+                                <h5 class="h3 text-black mb-0">{{cform.title}}</h5>
+                            </b-col>
+                            <b-col cols="4" class="text-right">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                     <i class="fas fa-minus"></i>
                                 </button>
                                 <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="form-group">
-                                <div class="input-group mb-2 mr-sm-2">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">Model</div>
+                                </button>                            
+                            </b-col>
+                        </b-row>
+                        <b-form @submit.prevent="updateProduct()">
+                            <b-card-body class="pt-0">                            
+                                <div class="form-group">
+                                    <div class="input-group mb-2 mr-sm-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">Model</div>
+                                        </div>
+                                        <input v-model="cform.model" type="text" name="model"
+                                            placeholder="Product Model."
+                                            class="form-control">
                                     </div>
-                                    <input v-model="cform.model" type="text" name="model"
-                                           placeholder="Product Model."
-                                           class="form-control">
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <div class="input-group mb-2 mr-sm-2">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text">
-                                                    <input v-model="cform.display" type="checkbox" name="display">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-group mb-2 mr-sm-2">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">
+                                                        <input v-model="cform.display" type="checkbox" name="display">
+                                                    </div>
                                                 </div>
+                                                <input type="text" value="Display" class="form-control" disabled>
                                             </div>
-                                            <input type="text" value="Display" class="form-control" disabled>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <div class="input-group mb-2 mr-sm-2">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text">
-                                                    <input v-model="cform.featured" type="checkbox" name="featured">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-group mb-2 mr-sm-2">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">
+                                                        <input v-model="cform.featured" type="checkbox" name="featured">
+                                                    </div>
                                                 </div>
+                                                <input type="text" value="Featured" class="form-control" disabled>
                                             </div>
-                                            <input type="text" value="Featured" class="form-control" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-group mb-2 mr-sm-2">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">Price</div>
+                                                </div>
+                                                <input v-model="cform.price" type="text" name="price"
+                                                    placeholder="Product Price."
+                                                    class="form-control">
+                                            </div>
+                                        </div>                            
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-group mb-2 mr-sm-2">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">% Discount</div>
+                                                </div>
+                                                <input v-model="cform.discount" type="number" name="discount"
+                                                    placeholder="Discount"
+                                                    class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-group mb-2 mr-sm-2">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">Total Quantity</div>
+                                                </div>
+                                                <input v-model="cform.total_quantity" type="number" name="total_quantity"
+                                                    placeholder="Total Quantity"
+                                                    class="form-control">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <div class="input-group mb-2 mr-sm-2">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text">Price</div>
-                                            </div>
-                                            <input v-model="cform.price" type="text" name="price"
-                                                placeholder="Product Price."
-                                                class="form-control">
-                                        </div>
-                                    </div>                            
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <div class="input-group mb-2 mr-sm-2">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text">% Discount</div>
-                                            </div>
-                                            <input v-model="cform.discount" type="number" name="discount"
-                                                placeholder="Discount"
-                                                class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <div class="input-group mb-2 mr-sm-2">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text">Total Quantity</div>
-                                            </div>
-                                            <input v-model="cform.total_quantity" type="number" name="total_quantity"
-                                                placeholder="Total Quantity"
-                                                class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr>
-                            <b>BRAND</b>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <multiselect v-model="cform.brand"
-                                    tag-placeholder="Brand"
-                                    placeholder="Select Brand"
-                                    label="title"
-                                    track-by="id"
-                                    :options="brands"
-                                    :multiple="false"
-                                    :taggable="true" @input="checkSubBrand()"></multiselect>
-                                </div>
-                                <div class="col-md-6">
-                                    <multiselect v-model="cform.sub_brand"
-                                    tag-placeholder="Sub Brand"
-                                    placeholder="Select Sub Brand"
-                                    label="title"
-                                    track-by="id"
-                                    :options="sub_brands"
-                                    :multiple="false"
-                                    :taggable="true"></multiselect>
-                                </div>                                        
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <b>SHOP SECTIONS</b>
-                                    <multiselect v-model="cform.shop_category"
-                                        tag-placeholder="Shop Categories"
-                                        placeholder="Search &amp; select multiple categories"
+                                <hr>
+                                <b>BRAND</b>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <multiselect v-model="cform.brand"
+                                        tag-placeholder="Brand"
+                                        placeholder="Select Brand"
                                         label="title"
                                         track-by="id"
-                                        :options="electronics"
-                                        :multiple="true"
-                                        :hide-selected="true"
-                                        :searchable="true"
-                                        :preserve-search="true"
+                                        :options="brands"
+                                        :multiple="false"
                                         :taggable="true" @input="checkSubBrand()"></multiselect>
-                                    
-                                    <!-- <div v-for="shopsection in shopsections" :key="shopsection.id">
-                                        <b-form-group :label="shopsection.title">
-                                            <b-form-checkbox
-                                                v-for="option in shopsection.get_electronics_relation"
-                                                :key="option.id"
-                                                v-model="cform.shop_category"
-                                                :value="option.slug"
-                                                name="categories"
-                                                inline
-                                            >  {{ option.title }}</b-form-checkbox>
-                                        </b-form-group>  
-                                    </div>   -->
-                                </div>
-                            </div>
-                            <hr>
-                            <b>SPECS</b>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <div class="input-group mb-2 mr-sm-2">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text">Screen Detail</div>
-                                            </div>
-                                            <input v-model="cform.screen_detail" type="text" name="screen_detail"
-                                                placeholder="Type-Size-Resolution-Protection"
-                                                class="form-control">
-                                        </div>
-                                    </div>                            
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <div class="input-group mb-2 mr-sm-2">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text">Operating System</div>
-                                            </div>
-                                            <input v-model="cform.operating_system" type="text" name="operating_system"
-                                                placeholder="ios, Android"
-                                                class="form-control">
-                                        </div>
-                                    </div>                            
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <div class="input-group mb-2 mr-sm-2">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text">Main Camera</div>
-                                            </div>
-                                            <input v-model="cform.main_camera" type="text" name="main_camera"
-                                                placeholder="Modules-Features-Video"
-                                                class="form-control">
-                                        </div>
-                                    </div>                            
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <div class="input-group mb-2 mr-sm-2">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text">Selfie Camera</div>
-                                            </div>
-                                            <input v-model="cform.selfie_camera" type="text" name="selfie_camera"
-                                                placeholder="Modules-Features-Video"
-                                                class="form-control">
-                                        </div>
-                                    </div>                            
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <div class="input-group mb-2 mr-sm-2">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text">Sensors</div>
-                                            </div>
-                                            <input v-model="cform.sensor" type="text" name="sensor"
-                                                placeholder="Finger Print-Face Recognition"
-                                                class="form-control">
-                                        </div>
-                                    </div>                            
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <div class="input-group mb-2 mr-sm-2">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text">Battery</div>
-                                            </div>
-                                            <input v-model="cform.battery" type="text" name="battery"
-                                                placeholder="Type-Charging-Stand By-Talk Time"
-                                                class="form-control">
-                                        </div>
-                                    </div>                            
-                                </div>
-                            </div>
-                            <div class="form-group"> 
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">Description</div>
-                                </div>
-                                <vue-editor v-model="cform.excerpt" placeholder="Long Description about the product."></vue-editor>
-                            </div>
-
-                            <b>SEARCH ENGINE DATA</b>
-                            <div class="form-group">
-                                <div class="input-group mb-2 mr-sm-2">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">Meta Keywords</div>
                                     </div>
-                                    <input v-model="cform.meta_keywords" type="text" name="meta_keywords"
-                                        placeholder="Keywords: Electronics, Brand, Model, Features..,"
-                                        class="form-control">
+                                    <div class="col-md-6">
+                                        <multiselect v-model="cform.sub_brand"
+                                        tag-placeholder="Sub Brand"
+                                        placeholder="Select Sub Brand"
+                                        label="title"
+                                        track-by="id"
+                                        :options="sub_brands"
+                                        :multiple="false"
+                                        :taggable="true"></multiselect>
+                                    </div>                                        
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <b>SHOP SECTIONS</b>
+                                        <multiselect v-model="cform.shop_category"
+                                            tag-placeholder="Shop Categories"
+                                            placeholder="Search &amp; select multiple categories"
+                                            label="title"
+                                            track-by="id"
+                                            :options="electronics"
+                                            :multiple="true"
+                                            :hide-selected="true"
+                                            :searchable="true"
+                                            :preserve-search="true"
+                                            :taggable="true" @input="checkSubBrand()"></multiselect>
+                                        
+                                        <!-- <div v-for="shopsection in shopsections" :key="shopsection.id">
+                                            <b-form-group :label="shopsection.title">
+                                                <b-form-checkbox
+                                                    v-for="option in shopsection.get_electronics_relation"
+                                                    :key="option.id"
+                                                    v-model="cform.shop_category"
+                                                    :value="option.slug"
+                                                    name="categories"
+                                                    inline
+                                                >  {{ option.title }}</b-form-checkbox>
+                                            </b-form-group>  
+                                        </div>   -->
+                                    </div>
+                                </div>
+                                <hr>
+                                <b>SPECS</b>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-group mb-2 mr-sm-2">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">Screen Detail</div>
+                                                </div>
+                                                <input v-model="cform.screen_detail" type="text" name="screen_detail"
+                                                    placeholder="Type-Size-Resolution-Protection"
+                                                    class="form-control">
+                                            </div>
+                                        </div>                            
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-group mb-2 mr-sm-2">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">Operating System</div>
+                                                </div>
+                                                <input v-model="cform.operating_system" type="text" name="operating_system"
+                                                    placeholder="ios, Android"
+                                                    class="form-control">
+                                            </div>
+                                        </div>                            
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-group mb-2 mr-sm-2">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">Main Camera</div>
+                                                </div>
+                                                <input v-model="cform.main_camera" type="text" name="main_camera"
+                                                    placeholder="Modules-Features-Video"
+                                                    class="form-control">
+                                            </div>
+                                        </div>                            
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-group mb-2 mr-sm-2">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">Selfie Camera</div>
+                                                </div>
+                                                <input v-model="cform.selfie_camera" type="text" name="selfie_camera"
+                                                    placeholder="Modules-Features-Video"
+                                                    class="form-control">
+                                            </div>
+                                        </div>                            
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-group mb-2 mr-sm-2">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">Sensors</div>
+                                                </div>
+                                                <input v-model="cform.sensor" type="text" name="sensor"
+                                                    placeholder="Finger Print-Face Recognition"
+                                                    class="form-control">
+                                            </div>
+                                        </div>                            
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-group mb-2 mr-sm-2">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">Battery</div>
+                                                </div>
+                                                <input v-model="cform.battery" type="text" name="battery"
+                                                    placeholder="Type-Charging-Stand By-Talk Time"
+                                                    class="form-control">
+                                            </div>
+                                        </div>                            
+                                    </div>
+                                </div>
+                                <div class="form-group"> 
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">Description</div>
+                                    </div>
+                                    <vue-editor v-model="cform.excerpt" placeholder="Long Description about the product."></vue-editor>
                                 </div>
 
-                            </div>
-                            <div class="form-group">
-                                <div class="input-group mb-2 mr-sm-2">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">Meta Tags</div>
+                                <b>SEARCH ENGINE DATA</b>
+                                <div class="form-group">
+                                    <div class="input-group mb-2 mr-sm-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">Meta Keywords</div>
+                                        </div>
+                                        <input v-model="cform.meta_keywords" type="text" name="meta_keywords"
+                                            placeholder="Keywords: Electronics, Brand, Model, Features..,"
+                                            class="form-control">
                                     </div>
-                                    <input v-model="cform.meta_tags" type="text" name="meta_tags"
-                                        placeholder="Tags: Brand, Company, Electronics..,"
-                                        class="form-control">
-                                </div>
 
-                            </div>
-                            <div class="form-group">
-                                <div class="input-group mb-2 mr-sm-2">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">Meta Categories</div>
-                                    </div>
-                                    <input v-model="cform.meta_categories" type="text" name="meta_categories"
-                                        placeholder="Categories: Smart Phone, TV..,"
-                                        class="form-control">
                                 </div>
-                            </div>
-                        </div>
-                        <!-- /.card-body -->
-                        <div class="card-footer">
-                            <button class="btn btn-danger">Cancle</button>
-                            <button class="btn bg-primary float-right" type="submit">Update</button>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.col (left) -->
-                <div class="col-md-4">
-                    <div class="card card-info card-outline">
-                        <div class="card-header">
-                            <h3 class="card-title">Storage &amp; RAM </h3>
-                            <div class="card-tools">
-                                <a v-on:click="newStorage" class="btn btn-sm bg-gradient-info"><i class="fas fa-hdd"></i> Create</a>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-4" v-for="storage in get_storages" :key="storage.id">
-                                    <div class="card bg-light">
-                                        <div class="card-body p-1 text-center small">
+                                <div class="form-group">
+                                    <div class="input-group mb-2 mr-sm-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">Meta Tags</div>
+                                        </div>
+                                        <input v-model="cform.meta_tags" type="text" name="meta_tags"
+                                            placeholder="Tags: Brand, Company, Electronics..,"
+                                            class="form-control">
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group mb-2 mr-sm-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">Meta Categories</div>
+                                        </div>
+                                        <input v-model="cform.meta_categories" type="text" name="meta_categories"
+                                            placeholder="Categories: Smart Phone, TV..,"
+                                            class="form-control">
+                                    </div>
+                                </div>
+                            </b-card-body>
+                            <b-card-foot>
+                                <button class="btn btn-danger">Cancle</button>
+                                <button class="btn btn-success float-right" type="submit">Update</button>
+                            </b-card-foot>                        
+                        </b-form>
+                    </card>
+            </b-col>
+            <b-col xl="4" class="mb-5 mb-xl-0">
+                <card type="secondary" class="mb-5 mb-xl-5" header-classes="bg-transparent">
+                    <b-row align-v="center" slot="header" >
+                        <b-col cols="8">
+                            <h3 class="mb-0">Storage &amp; RAM </h3>
+                        </b-col>
+                        <b-col cols="4" class="text-right">
+                            <a v-on:click="newStorage" class="btn btn-sm btn-primary"><i class="fas fa-hdd"></i> Create</a>
+                        </b-col>
+                    </b-row>
+                    <b-card-body class="pt-0">
+                        <b-row align-v="center">
+                            <b-col cols="6" v-for="storage in get_storages" :key="storage.id">
+                                <card type="light" class="mb-2 mb-xl-2">
+                                        <div class="text-center small">
                                             <span>
                                                 Storage: {{storage.storage}} <br> 
                                                 RAM: {{storage.ram}} <br>
@@ -290,107 +301,100 @@
                                                 <a href="#" @click="deleteStorage(storage.id)" class="text-danger float-right" title="Remove Option"><i class="fas fa-trash"></i></a>
                                             </span>
                                         </div>
+                                </card>
+                            </b-col>
+                        </b-row>
+                    </b-card-body>
+                </card>
+                <card type="secondary" class="mb-5 mb-xl-5" header-classes="bg-transparent">
+                    <b-row align-v="center" slot="header" >
+                        <b-col cols="8">
+                            <h3 class="mb-0">Color Option </h3>
+                        </b-col>
+                        <b-col cols="4" class="text-right">
+                            <a v-on:click="newColor" class="btn btn-sm btn-primary"><i class="fas fa-hdd"></i> Create</a>
+                        </b-col>
+                    </b-row>
+                    <b-card-body class="pt-0">
+                        <b-row align-v="center">
+                            <b-col cols="6" v-for="color in get_colors" :key="color.id">
+                                <card type="secondary" class="mb-2 mb-xl-2">
+                                    <img class="card-img-top img-fluid" :src="'/img/product/'+$route.params.slug+'/thumbs/'+color.image" :alt="color.image">
+                                    
+                                    <span class="ml-2 mr-2 small">
+                                        <a @click="editColor(color)" title="Edit" class="text-success"><i class="fas fa-edit success"></i></a>
+                                        <i>{{color.color}}</i>
+                                        <i>,{{color.quantity}} Items</i>
+                                        <a @click="deleteColor(color.id)" title="Delete" class="text-danger float-right"><i class="fas fa-trash"></i></a>                                            
+                                    </span>
+                                </card>
+                            </b-col>
+                        </b-row>
+                    </b-card-body>
+                </card>
+                <card type="secondary" class="mb-5 mb-xl-5" header-classes="bg-transparent">
+                    <b-row align-v="center" slot="header" >
+                        <b-col cols="8">
+                            <h3 class="mb-0">Images </h3>
+                        </b-col>
+                        <b-col cols="4" class="text-right">
+                            <a v-on:click="newImage" class="btn btn-sm btn-primary"><i class="fas fa-images fa-fw"></i> Add Image</a>
+                        </b-col>
+                    </b-row>
+                    <b-card-body class="pt-0">
+                        <b-row align-v="center">
+                            <b-col cols="6" v-for="image in get_images" :key="image.id">
+                                <card type="secondary" class="mb-2 mb-xl-2">
+                                    <img class="card-img-top img-fluid" :src="'/img/product/'+$route.params.slug+'/thumbs/'+image.image" :alt="image.image">
+                                    <div class="text-center small">
+                                        <i>{{image.image}}</i>
+                                        <i>,{{image.primary}}</i>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card card-info card-outline">
-                        <div class="card-header">
-                            <h3 class="card-title">Color Option </h3>
-                            <div class="card-tools">
-                                <a v-on:click="newColor" class="btn btn-sm bg-gradient-info"><i class="fas fa-palette"></i> Create</a>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-6 col-lg-4" v-for="color in get_colors" :key="color.id">
-                                    <div class="card">
-                                        <img class="card-img-top img-fluid" :src="'/img/product/'+$route.params.slug+'/thumbs/'+color.image" alt="Card image cap">
-                                        
-                                        <span class="ml-2 mr-2 small">
-                                            <a @click="editColor(color)" title="Edit" class="text-success"><i class="fas fa-edit success"></i></a>
-                                            <i>{{color.color}}</i>
-                                            <i>,{{color.quantity}} Items</i>
-                                            <a @click="deleteColor(color.id)" title="Delete" class="text-danger float-right"><i class="fas fa-trash"></i></a>                                            
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Images </h3>
-                            <div class="card-tools">
-                                <div class="card-tools">
-                                    <a v-on:click="newImage" class="btn btn-sm btn-primary"><i class="fas fa-images fa-fw"></i> Add</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-4" v-for="image in get_images" :key="image.id">
-                                    <div class="card">
-                                        <img class="card-img-top img-fluid" :src="'/img/product/'+$route.params.slug+'/thumbs/'+image.image" alt="Card image cap">
-                                        <div class="text-center small">
-                                            <i>{{image.image}}</i>
-                                            <i>,{{image.primary}}</i>
-                                        </div>
-                                        <span class="ml-2 mr-2 small">
-                                            <a v-if="image.primary == 0" @click="displayImage(image)" title="Make Dispaly" class="text-success"><i class="fas fa-eye success"></i></a>
-                                            &nbsp;
-                                            <a v-if="image.primary == 0" @click="deleteImage(image.id)" title="Delete" class="text-danger float-right"><i class="fas fa-trash"></i></a>
-                                            <i v-else class="small">Display Image</i>                                            
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">More Details</h3>
-                            <div class="card-tools">
-                                <a v-on:click="newDetail" class="btn btn-sm btn-primary"><i class="fas fa-plus fa-fw"></i> Create</a>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-6" v-for="detail in get_details" :key="detail.id">
-                                    <div class="card collapsed-card elevation-3">
-                                        <div class="card-header">
-                                            <h3 class="card-title"><small>{{detail.title }}</small></h3>
-
-                                            <div class="card-tools">
-                                                <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
-                                                    <i class="fas fa-plus"></i>
-                                                </button>
-                                                <button type="button" @click="editDetail(detail)" class="btn btn-tool">
-                                                    <i class="fas fa-edit green"></i>
-                                                </button>
-                                                <button type="button" @click="deleteDetail(detail.id)" class="btn btn-tool">
-                                                    <i class="fas fa-trash red"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="card-body p-0">
-                                            <div class="p-3">
-                                                <p>{{detail.excerpt }}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /.card -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-        </form>
-
+                                    <span class="ml-2 mr-2 small">
+                                        <a v-if="image.primary == 0" @click="displayImage(image)" title="Make Dispaly" class="text-success"><i class="fas fa-eye success"></i></a>
+                                        &nbsp;
+                                        <a v-if="image.primary == 0" @click="deleteImage(image.id)" title="Delete" class="text-danger float-right"><i class="fas fa-trash"></i></a>
+                                        <i v-else class="small">Display Image</i>                                            
+                                    </span>
+                                </card>
+                            </b-col>
+                        </b-row>
+                    </b-card-body>
+                </card> 
+                <card type="secondary" class="mb-5 mb-xl-5" header-classes="bg-transparent">
+                    <b-row align-v="center" slot="header" >
+                        <b-col cols="8">
+                            <h3 class="mb-0">Additional Specs </h3>
+                        </b-col>
+                        <b-col cols="4" class="text-right">
+                            <a v-on:click="newDetail" class="btn btn-sm btn-primary"><i class="fas fa-plus fa-fw"></i> Create</a>
+                        </b-col>
+                    </b-row>
+                    <b-card-body class="pt-0">
+                        <b-row align-v="center">
+                            <b-col cols="6" v-for="detail in get_details" :key="detail.id">
+                                 <card class="mb-2 mb-xl-2">
+                                     <b-row align-v="center" slot="header" >
+                                        <b-col>
+                                            <h3 class="mb-0">{{detail.title }}</h3>
+                                        </b-col>
+                                        <b-col class="text-right">
+                                            <button type="button" @click="editDetail(detail)" class="btn btn-sm btn-tool">
+                                                <i class="fas fa-edit green"></i>
+                                            </button>
+                                            <button type="button" @click="deleteDetail(detail.id)" class="btn btn-sm btn-tool">
+                                                <i class="fas fa-trash red"></i>
+                                            </button>
+                                        </b-col>
+                                    </b-row>
+                                    <b-card-text>{{detail.excerpt }}</b-card-text>
+                                </card>
+                            </b-col>
+                        </b-row>
+                    </b-card-body>
+                </card>
+            </b-col>
+        </b-row>
 
         <!--========== MODELS START ==========-->
         <!-- ADD EDIT Storage, RAM and Price Model -->
@@ -600,8 +604,8 @@
             </div>
         </div>
         <!--End of modal-->
-       
-    </div>
+    </b-container>
+</div>
 </template>
 
 
