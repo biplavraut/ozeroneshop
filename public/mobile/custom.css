@@ -1,0 +1,47 @@
+.gradient-blue, .header--page, .card--style-plan-premium, .page--intro, .page--splash, .page--login {
+    background-color: #0f4c81 !important;
+    background: linear-gradient(60deg, #243057 0%, #165293 100%) !important;
+}
+
+.slider-thumbs__icon i {
+    display: block;
+    max-width: 40%;
+    margin: auto;
+    padding: 20px 0;
+    font-size: 35px;
+    color: #83cbf8;
+}
+.slider-simple__pagination.swiper-pagination-bullets .swiper-pagination-bullet-active {
+    background: #243057;
+    opacity: 1;
+}
+
+.slider-simple .caption__title {
+    font-weight: 300;
+    color: #243057;
+    font-size: 2.2rem;
+    line-height: 1;
+}
+
+.slider-thumbs__price {
+    color: #165293;
+    font-size: 1.3rem !important;
+}
+
+.slider-thumbs__badge{
+    background-color: #f36f63;
+}
+.card__badge {
+    background-color: #f36f63;
+}
+.card__price {
+    color: #165293;
+    font-size: 1.0rem !important;
+}
+.button--more {
+    color: #02959a;
+}
+.button--disabled {
+    color: #02959a;
+    opacity: 0.5;
+}

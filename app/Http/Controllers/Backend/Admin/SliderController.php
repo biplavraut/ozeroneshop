@@ -13,10 +13,7 @@ class SliderController extends Controller
 
     public function list()
     {
-        $sliders = Slider::get();
-
-        //dd($sliders);
-        return view('frontend.index' , ['sliders_list' => $sliders]);
+        return Slider::orderBy("order_item")->get();
     }
     /**
      * Create a new controller instance.
@@ -72,7 +69,7 @@ class SliderController extends Controller
                 $image_name = $imageName.'.'.$extension;
                 \Image::make($request->image)->save($path.'/'.$image_name);
                 resize_crop_image(60, 60, $path."/". $image_name, $path."/thumbs/rect_" . $image_name, $extension);
-                resize_crop_image(900, 600, $path."/". $image_name, $path."/thumbs/" . $image_name, $extension);
+                resize_crop_image(1024, 480, $path."/". $image_name, $path."/thumbs/" . $image_name, $extension);
                 $request->merge(['image' => $image_name]);
                 $image = $image_name;
             }else{
@@ -143,7 +140,7 @@ class SliderController extends Controller
                 $image_name = $imageName.'.'.$extension;
                 \Image::make($request->image)->save($path.'/'.$image_name);
                 resize_crop_image(60, 60, $path."/". $image_name, $path."/thumbs/rect_" . $image_name, $extension);
-                resize_crop_image(900, 600, $path."/". $image_name, $path."/thumbs/" . $image_name, $extension);
+                resize_crop_image(1024, 480, $path."/". $image_name, $path."/thumbs/" . $image_name, $extension);
                 $request->merge(['image' => $image_name]);
             }
             // Renaming image to new name

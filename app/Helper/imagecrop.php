@@ -1,5 +1,5 @@
 <?php
-    function resize_crop_image($max_width, $max_height, $source_file, $dst_dir, $exten, $quality = 90)
+    function resize_crop_image($max_width, $max_height, $source_file, $dst_dir, $exten, $quality = 100)
     {
         $imgsize = getimagesize($source_file);
         $width = $imgsize[0];

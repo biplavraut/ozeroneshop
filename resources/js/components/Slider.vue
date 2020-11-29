@@ -86,33 +86,73 @@
                                 </b-nav>
                             </b-col>
                         </b-row>
-                        <b-card-body class="pt-0">
-                            <vue-nestable 
-                                v-model="sliders" 
-                                :max-depth="1" 
-                                v-on:change="listChange(sliders)">
-                                <template slot-scope="{ item }">
-                                    <!-- Handler -->
-                                    <vue-nestable-handle :item="item" class="mt-2">
-                                        <b-row align-v="center">
-                                            <b-col>
-                                                <i class="fas fa-bars"> </i> <span>{{ item.title }}</span>
-                                            </b-col>
-                                            <b-col class="text-right">
-                                                <a href="#" @click="editSlider(item)" class="btn btn-sm btn-success">
-                                                    <span class="d-none d-md-block"><i class="fas fa-edit"></i> Edit</span>
-                                                    <span class="d-md-none"><i class="fas fa-edit"></i></span>
-                                                </a>
-                                                <a href="#" @click="deleteSlider(item.slug)" class="btn btn-sm btn-danger">
-                                                    <span class="d-none d-md-block"><i class="fas fa-trash"></i> Delete</span>
-                                                    <span class="d-md-none"><i class="fas fa-trash"></i></span>
-                                                </a>
-                                            </b-col>
-                                        </b-row>
-                                    </vue-nestable-handle>
-                                </template>
-                            </vue-nestable>
-                        </b-card-body>
+                        <b-skeleton-wrapper :loading="loading">
+                            <template #loading>
+                                <b-card-body class="pt-0">
+                                    <ol class="nestable-list nestable-group">
+                                        <li class="nestable-item nestable-item-10">
+                                            <div class="nestable-item-content">
+                                                <div draggable="true" class="nestable-handle mt-2">
+                                                    <div class="row align-items-center">
+                                                        <div class="col">
+                                                            <b-skeleton animation="wave" width="35%"></b-skeleton>
+                                                        </div> 
+                                                        <div class="col">
+                                                            <b-nav class="nav-pills justify-content-end">
+                                                                <b-skeleton animation="wave" width="20%"></b-skeleton>
+                                                            </b-nav>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="nestable-item nestable-item-10">
+                                            <div class="nestable-item-content">
+                                                <div draggable="true" class="nestable-handle mt-2">
+                                                    <div class="row align-items-center">
+                                                        <div class="col">
+                                                            <b-skeleton animation="wave" width="55%"></b-skeleton>
+                                                        </div> 
+                                                        <div class="col">
+                                                            <b-nav class="nav-pills justify-content-end">
+                                                                <b-skeleton animation="wave" width="20%"></b-skeleton>
+                                                            </b-nav>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ol>
+                                </b-card-body>
+                            </template>
+                            <b-card-body class="pt-0">
+                                <vue-nestable 
+                                    v-model="sliders" 
+                                    :max-depth="1" 
+                                    v-on:change="listChange(sliders)">
+                                    <template slot-scope="{ item }">
+                                        <!-- Handler -->
+                                        <vue-nestable-handle :item="item" class="mt-2">
+                                            <b-row align-v="center">
+                                                <b-col>
+                                                    <i class="fas fa-bars"> </i> <span>{{ item.title }}</span>
+                                                </b-col>
+                                                <b-col class="text-right">
+                                                    <a href="#" @click="editSlider(item)" class="btn btn-sm btn-success">
+                                                        <span class="d-none d-md-block"><i class="fas fa-edit"></i> Edit</span>
+                                                        <span class="d-md-none"><i class="fas fa-edit"></i></span>
+                                                    </a>
+                                                    <a href="#" @click="deleteSlider(item.slug)" class="btn btn-sm btn-danger">
+                                                        <span class="d-none d-md-block"><i class="fas fa-trash"></i> Delete</span>
+                                                        <span class="d-md-none"><i class="fas fa-trash"></i></span>
+                                                    </a>
+                                                </b-col>
+                                            </b-row>
+                                        </vue-nestable-handle>
+                                    </template>
+                                </vue-nestable>
+                            </b-card-body>
+                        </b-skeleton-wrapper>
                     </card>
                 </b-col>
             </b-row>
@@ -224,6 +264,10 @@
         },
         data () {
             return {
+                loading: false,
+                loadingTime: 0,
+                maxLoadingTime: 3,
+
                 editmode: false,
                 totalteslide : 0,
                 sliders : [],
@@ -239,7 +283,35 @@
                 })
             }
         },
+        watch: {
+        loading(newVal, oldValue) {
+            if (newVal !== oldValue) {
+            this.clearLoadingTimeInterval()
+
+            if (newVal) {
+                this.$_loadingTimeInterval = setInterval(() => {
+                this.loadingTime++
+                }, 1000)
+            }
+            }
+        },
+        loadingTime(newVal, oldValue) {
+            if (newVal !== oldValue) {
+            if (newVal === this.maxLoadingTime) {
+                this.loading = false
+            }
+            }
+        }
+        },
         methods : {
+            clearLoadingTimeInterval() {
+                clearInterval(this.$_loadingTimeInterval)
+                this.$_loadingTimeInterval = null
+            },
+            startLoading() {
+                this.loading = true
+                this.loadingTime = 0
+            },
             /*===== Call add new content modal ====*/
             newSlider(){
                 this.editmode = false;
@@ -334,9 +406,9 @@
                 this.form.put('../../api/slider/'+this.form.slug)
                     .then(({data}) =>{
                         console.log(data);
-                        // this.form.reset();
-                        // $("#addNewSlider").modal('hide'); //Hide the model
-                        // this.serverResponse(data);
+                        this.form.reset();
+                        $("#addNewSlider").modal('hide'); //Hide the model
+                        this.serverResponse(data);
 
                     }).catch(()=>{
                     this.$Progress.fail();
@@ -381,6 +453,7 @@
             }
         },
         created() {
+            this.$_loadingTimeInterval = null;
             Fire.$on('searching',()=>{
                 let query =this.$parent.search; //take information from root
                 axios.get('../../api/findSlider?q='+ query)
@@ -398,6 +471,9 @@
 
 
             //setInterval(() => this.loadUsers(),3000);
+        },
+        mounted() {
+            this.startLoading()
         }
     }
 </script>
