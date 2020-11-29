@@ -45,3 +45,7 @@
     color: #02959a;
     opacity: 0.5;
 }
+
+.user-details__thumb img {
+    max-width: 200px !important;
+}
