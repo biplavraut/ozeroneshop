@@ -218,7 +218,7 @@
 							</div>
 						</div>
 						<div class="slider-thumbs__bottom-right-info">
-							<div class="slider-thumbs__addtocart addtocart"><a href="#"><img src="mobile/assets/images/icons/black/cart.svg" alt="" title=""/></a></div>
+							<div class="slider-thumbs__addtocart addtocart"><a href="#"><img src="mobile/assets/images/icons/black/love.svg" alt="" title=""/></a></div>
 						</div>
 					</div>
 					<div class="slider-thumbs__caption caption">
@@ -242,7 +242,7 @@
 							</div>
 						</div>
 						<div class="slider-thumbs__bottom-right-info">
-							<div class="slider-thumbs__addtocart addtocart"><a href="#"><img src="mobile/assets/images/icons/black/cart.svg" alt="" title=""/></a></div>
+							<div class="slider-thumbs__addtocart addtocart"><a href="#"><img src="mobile/assets/images/icons/black/love.svg" alt="" title=""/></a></div>
 						</div>
 					</div>
 					<div class="slider-thumbs__caption caption">
@@ -266,7 +266,7 @@
 							</div>
 						</div>
 						<div class="slider-thumbs__bottom-right-info">
-							<div class="slider-thumbs__addtocart addtocart"><a href="#"><img src="mobile/assets/images/icons/black/cart.svg" alt="" title=""/></a></div>
+							<div class="slider-thumbs__addtocart addtocart"><a href="#"><img src="mobile/assets/images/icons/black/love.svg" alt="" title=""/></a></div>
 						</div>
 					</div>
 					<div class="slider-thumbs__caption caption">
