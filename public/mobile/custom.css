@@ -1,6 +1,10 @@
+body{
+    background-color: #292935 !important;
+}
+
 .gradient-blue, .card--style-plan-premium, .page--intro, .page--splash, .page--login {
     background-color: #0f4c81 !important;
-    background: linear-gradient(60deg, #243057 0%, #165293 100%) !important;
+    background: linear-gradient(60deg, #292935 0%, #243057 100%) !important;
 }
 .cards--13 .card--style-cover {
     background-color: #4d91c6;
@@ -9,15 +13,24 @@
     background: linear-gradient(to bottom, rgba(0, 9, 95, 0), #0f4c81);
 }
 .header {
-    background: rgba(22, 87, 153, 0.2) !important;
+    background: #292935 !important;
     padding: 10px 0 !important;
     -webkit-transition: all ease-in-out .5s;
     -moz-transition: all ease-in-out .5s;
     -o-transition: all ease-in-out .5s;
     transition: all ease-in-out .5s !important;
 }
+.page__content--with-header{
+    padding-top: 65px !important;
+}
 .header--page{
-    background: rgba(22, 87, 153, 0.9) !important;
+    background: #292935 !important;
+}
+.header__icon--menu span{
+    background: #f0ede4;
+}
+.header__icon--menu.open span:nth-child(1), .header__icon--menu.open span:nth-child(2){
+    background-color: #f0ede5;
 }
 .header__icon--menu span:nth-child(3), .header__icon--menu span:nth-child(4) {
     top: 11px;
@@ -34,7 +47,28 @@
     opacity: 1;
     transform: rotate(45deg);
 }
-
+.slider-thumbs .caption__title--smaller {
+    font-weight: 400;
+    letter-spacing: 0em;
+    line-height: 0.9;
+    line-height: 0.8;
+    font-size: 1.1rem;
+}
+.search__submit {
+    background-image: url(assets/images/icons/white/search.svg);
+}
+.panel--left{
+    background-color: #f0ede5;
+}
+.panel--right{
+    background-color: #434959;
+}
+.bottom-navigation{
+    padding: 0 0 10px 0;
+}
+.bottom-navigation__icons li span {
+    color: #4d91c6;
+}
 .slider-simple--full-height {
     height: 80vh;
 }
@@ -47,7 +81,7 @@
     color: #83cbf8;
 }
 .slider-simple__pagination.swiper-pagination-bullets .swiper-pagination-bullet-active {
-    background: #243057;
+    background: #e0685e;
     opacity: 1;
 }
 .slider-thumbs__price {
@@ -67,8 +101,10 @@
     font-size: 1.0rem !important;
 }
 
-.button--more {
-    color: #02959a;
+.button--more, .button--main {
+    color: #f0ede5;
+    background-color: #165293 !important;
+    background: linear-gradient(60deg, #165293 0%, #165293 100%) !important;
 }
 .button--disabled {
     color: #02959a;
@@ -92,24 +128,40 @@
     font-size: 10px;
 }
 .checked {
-    color: orange;
+    color: #ffd600;
+}
+.slider-thumbs__wishlist a {
+    display: block;
+    width: 30px;
+    height: 30px;
+    background-color: #f0ede5;
+    color: #f36f63;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.slider-thumbs__wishlist a img {
+    display: block;
+    max-width: 50%;
+    border-radius: 0px !important; 
 }
 .slider-thumbs .caption__cart {
     display: inline-block;
-    background-color: #4d91c6;
-    color: #fff;
+    background-color: #ffd600;
+    color: #292935;
     font-size: 1rem;
     padding: 5px 10px;
     margin: 5px 0 0 0;
     font-weight: 600;
-    letter-spacing: 1px;
+    letter-spacing: 0.2px;
     position: absolute;
     right: 0px;    
-    border-radius: 0 0 10px 0;
+    border-radius: 5px;
 }
 .slider-thumbs .caption__price {
     display: inline-block;
-    color: #0f4c81;
+    color: #f36f63;
     font-size: 1.3rem;
     font-weight: 400;
     letter-spacing: 0px;
@@ -120,4 +172,38 @@
     text-decoration: line-through !important;
     opacity: 0.5;
     padding-left: 5px;
+}
+.brand-line {
+    display: flex;
+    align-items: center;
+    padding: 0 0 10px 0; }
+    .brand-line img {
+      display: block;
+      width: 30px; }
+    .brand-line span {
+      font-weight: 400;
+      padding-left: 10px;
+      color: #f0ede5; }
+.card--border-bottom {
+    border-bottom: 1px #ddd solid;
+}
+
+.card__button{
+    display: inline-block;
+    background-color: #ffd600;
+    color: #292935;
+    font-size: 1rem;
+    padding: 5px 10px;
+    margin: 5px 0 0 0;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    position: absolute;
+    right: 0px;    
+    border-radius: 5px;
+}
+.cart__item-title span{
+    color: #f0ede4;
+}
+.cart__total{
+    color: #f0ede5;
 }

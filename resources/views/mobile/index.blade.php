@@ -7,7 +7,9 @@
 <link rel="stylesheet" href="{{asset('mobile/vendor/swiper/swiper.min.css')}}">
 <link rel="stylesheet" href="{{asset('mobile/main/css/style.css')}}">
 <link rel="stylesheet" href="{{asset('mobile/custom.css')}}">
-<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet"> 
+<!-- <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet"> -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;300;400;500;600;700;900&display=swap" rel="stylesheet">  
 <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet"> 
 </head>
 <body>
@@ -107,185 +109,14 @@
 			</div>
 	</header>
 	<!-- SLIDER SIMPLE -->
-	<div class="page__content">		
-		<div class="swiper-container slider-simple slider-simple--vw-width slider-simple--full-height slider-init mb-20" data-paginationtype="bullets" data-spacebetweenitems="0" data-itemsperview="1">
-			<div class="swiper-wrapper">
-				<div class="swiper-slide slider-simple__slide" style="background-image:url(mobile/assets/img/long1.jpg);">
-					<div class="slider-simple__caption caption">
-						<div class="caption__content">
-							<a href="#"><h2 class="caption__title">Kitchen<strong>Appliances</strong></h2></a>
-						</div>
-					</div>
-				</div> 
-				<div class="swiper-slide slider-simple__slide" style="background-image:url(mobile/assets/img/long2.jpg);">
-					<div class="slider-simple__caption caption">
-						<div class="caption__content">
-							<a href="#"><h2 class="caption__title">Electric<strong>Appliances</strong></h2></a>
-						</div>
-					</div>
-				</div>
-				<div class="swiper-slide slider-simple__slide" style="background-image:url(mobile/assets/img/long3.jpg);">
-					<div class="slider-simple__caption caption">
-						<div class="caption__content">
-							<a href="#"><h2 class="caption__title">Digital<strong>Products</strong></h2></a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="swiper-pagination slider-simple__pagination"></div>
-		</div>
-		<h2 class="page__title">Ozerone Shop</h2>		
-			<p>
-			Something about ozerone shop. An example showing a slider on top of the page, with a transparent header, back arrow icon and sharing icon. 
-			</p>
-		<div class="page__title-bar">
-			<h3>Popular Brands</h3>
-		</div>
-		
-		<!-- Brands list -->
-		<div class="cards cards--13">
-			<div class="card card--style-cover card--style-round-corners">
-				<div class="card__gradient"></div>			
-				<div class="card__icon"><img src="mobile/assets/images/icons/white/samsung.svg" alt="" title=""/></div>
-				<h4 class="card__title center">Samsung</h4>						
-			</div>
-			<div class="card card--style-cover card--style-round-corners">
-				<div class="card__gradient"></div>
-			
-				<div class="card__icon"><img src="mobile/assets/images/icons/white/apple.svg" alt="" title=""/></div>
-				<h4 class="card__title center">Apple</h4>		
-			</div>
-			<div class="card card--style-cover card--style-round-corners">
-				<div class="card__gradient"></div>
-			
-				<div class="card__icon"><img src="mobile/assets/images/icons/white/huawei.svg" alt="" title=""/></div>
-				<h4 class="card__title center">Huawei</h4>		
-			</div>
-			<div class="card card--style-cover card--style-round-corners">
-				<div class="card__gradient"></div>
-			
-				<div class="card__icon"><img src="mobile/assets/images/icons/white/lg.svg" alt="" title=""/></div>
-				<h4 class="card__title center">LG</h4>		
-			</div>
-		</div>
-		<div class="page__title-bar">
-			<h3>Top Products</h3>
-			
-			<div class="page__title-right">
-				<div class="swiper-button-prev slider-thumbs__prev"></div>
-				<div class="swiper-button-next slider-thumbs__next"></div>
-			</div>
-		</div>
-		
-		<!-- Top featured products -->
-		<div class="swiper-container slider-thumbs slider-init mb-20" data-paginationtype="progressbar" data-spacebetweenitems="10" data-itemsperview="auto">
-			<div class="swiper-wrapper">
-				<div class="swiper-slide slider-thumbs__slide slider-thumbs__slide--1h">
-					<div class="slider-thumbs__image slider-thumbs__image--round-corners">
-					<a href="#"><img src="mobile/assets/img/product1.jpg" alt="" title=""/></a>
-						<div class="slider-thumbs__top-right-info">
-							<div class="slider-thumbs__rating">
-								<span class="fas fa-star checked"></span>
-								<span class="fas fa-star checked"></span>
-								<span class="fas fa-star checked"></span>
-								<span class="fas fa-star checked"></span>
-								<span class="fas fa-star"></span>
-							</div>
-						</div>
-						<div class="slider-thumbs__bottom-right-info">
-							<div class="slider-thumbs__addtocart"><a href="#"><img src="mobile/assets/images/icons/black/love.svg" alt="" title=""/></a></div>
-						</div>
-					</div>
-					<div class="slider-thumbs__caption caption">
-						<div class="caption__content">
-							<h2 class="caption__title">Samsung Galaxy Note10 Lite</h2>
-							<a class="caption__price" href="#">NPR 49,999 </a>
-							<a class="caption__cart addtocart" href="#"><i class="fas fa-cart-plus"></i> Cart</a>
-						</div>
-					</div>
-				</div> 
-				<div class="swiper-slide slider-thumbs__slide slider-thumbs__slide--1h">
-					<div class="slider-thumbs__image slider-thumbs__image--round-corners">
-					<a href="#"><img src="mobile/assets/img/product2.jpg" alt="" title=""/></a>
-						<div class="slider-thumbs__badge"><span>SALE</span></div>
-						<div class="slider-thumbs__top-right-info">
-							<div class="slider-thumbs__rating">
-								<span class="fas fa-star checked"></span>
-								<span class="fas fa-star checked"></span>
-								<span class="fas fa-star checked"></span>
-								<span class="fas fa-star checked"></span>
-								<span class="fas fa-star"></span>
-							</div>
-						</div>
-						<div class="slider-thumbs__bottom-right-info">
-							<div class="slider-thumbs__addtocart addtocart"><a href="#"><img src="mobile/assets/images/icons/black/love.svg" alt="" title=""/></a></div>
-						</div>
-					</div>
-					<div class="slider-thumbs__caption caption">
-						<div class="caption__content">
-							<h2 class="caption__title">Samsung Galaxy A51</h2>
-							<a class="caption__price" href="#">NPR 49,999 <span>NPR 59,299</span></a>
-							<a class="caption__cart addtocart" href="#"><i class="fas fa-cart-plus"></i> Cart</a>
-						</div>
-					</div>
-				</div> 
-				<div class="swiper-slide slider-thumbs__slide slider-thumbs__slide--1h">
-					<div class="slider-thumbs__image slider-thumbs__image--round-corners">
-					<a href="#"><img src="mobile/assets/img/product3.jpg" alt="" title=""/></a>	
-						<div class="slider-thumbs__top-right-info">
-							<div class="slider-thumbs__rating">
-								<span class="fas fa-star checked"></span>
-								<span class="fas fa-star checked"></span>
-								<span class="fas fa-star checked"></span>
-								<span class="fas fa-star checked"></span>
-								<span class="fas fa-star"></span>
-							</div>
-						</div>
-						<div class="slider-thumbs__bottom-right-info">
-							<div class="slider-thumbs__addtocart addtocart"><a href="#"><img src="mobile/assets/images/icons/black/love.svg" alt="" title=""/></a></div>
-						</div>
-					</div>
-					<div class="slider-thumbs__caption caption">
-						<div class="caption__content">
-							<h2 class="caption__title">Samsung Galaxy A71</h2>
-							<a class="caption__price" href="#">NPR 39,999</a>
-							<a class="caption__cart addtocart" href="#"><i class="fas fa-cart-plus"></i> Cart</a>
-						</div>
-					</div>
-				</div> 
-				<div class="swiper-slide slider-thumbs__slide slider-thumbs__slide--1h">
-					<div class="slider-thumbs__image slider-thumbs__image--round-corners">
-					<a href="#"><img src="mobile/assets/img/4.jpg" alt="" title=""/></a>
-						<div class="slider-thumbs__top-right-info">
-							<div class="slider-thumbs__rating">
-								<span class="fas fa-star checked"></span>
-								<span class="fas fa-star checked"></span>
-								<span class="fas fa-star checked"></span>
-								<span class="fas fa-star checked"></span>
-								<span class="fas fa-star"></span>
-							</div>
-						</div>
-						<div class="slider-thumbs__bottom-right-info">
-							<div class="slider-thumbs__addtocart addtocart"><a href="#"><img src="mobile/assets/images/icons/black/love.svg" alt="" title=""/></a></div>
-						</div>
-					</div>
-					<div class="slider-thumbs__caption caption">
-						<div class="caption__content">
-							<h2 class="caption__title">Samsung Phone</h2>
-							<a class="caption__price" href="#">NPR 59,999</a>
-							<a class="caption__cart addtocart" href="#"><i class="fas fa-cart-plus"></i> Cart</a>
-						</div>
-					</div>
-				</div> 
-			</div>
-			<div class="swiper-pagination slider-thumbs__pagination"></div>
-	
-		</div>
-		<div class="page__title-bar">
-			<h3>Categories</h3>
-		</div>
-		<!-- SLIDER THUMBS 4 round -->
-		<div class="swiper-container slider-thumbs slider-init mb-20" data-paginationtype="progressbar" data-spacebetweenitems="10" data-itemsperview="auto">
+	<div class="page__content page__content--with-header">
+	<div class="search__form mb-20">
+		<form>
+			<input type="text" class="search__input" id="" name="" value="" placeholder="SEARCH" />
+			<input type="submit" class="search__submit" value="Send" />
+		</form>		
+	</div>
+	<div class="swiper-container slider-thumbs slider-init mb-20" data-paginationtype="progressbar" data-spacebetweenitems="10" data-itemsperview="auto">
 			<div class="swiper-wrapper">
 				<div class="swiper-slide slider-thumbs__slide slider-thumbs__slide--4">
 					<div class="slider-thumbs__icon slider-thumbs__icon--round-corners"><a href="#"><img src="mobile/assets/images/icons/blue/television.svg" alt="" title=""/></a></div>
@@ -302,12 +133,21 @@
 							<h2 class="caption__title caption__title--smaller caption__title--centered">Phones</h2>
 						</div>
 					</div>
+				</div>
+				<div class="swiper-slide slider-thumbs__slide slider-thumbs__slide--4">
+					<div class="slider-thumbs__icon slider-thumbs__icon--round-corners"><a href="#"><img src="mobile/assets/images/icons/blue/smart-refrigerator.svg" alt="" title=""/></a></div>
+					<div class="slider-thumbs__caption caption">
+						<div class="caption__content">
+							<h2 class="caption__title caption__title--smaller caption__title--centered">Refrigerator</h2>
+						</div>
+					</div>
 				</div> 
+				
 				<div class="swiper-slide slider-thumbs__slide slider-thumbs__slide--4">
 					<div class="slider-thumbs__icon slider-thumbs__icon--round-corners"><a href="#"><img src="mobile/assets/images/icons/blue/home.svg" alt="" title=""/></a></div>
 					<div class="slider-thumbs__caption caption">
 						<div class="caption__content">
-							<h2 class="caption__title caption__title--smaller caption__title--centered">Furniture</h2>
+							<h2 class="caption__title caption__title--smaller caption__title--centered">Home Appliances</h2>
 						</div>
 					</div>
 				</div>
@@ -315,7 +155,7 @@
 					<div class="slider-thumbs__icon slider-thumbs__icon--round-corners"><a href="#"><img src="mobile/assets/images/icons/blue/gifts.svg" alt="" title=""/></a></div>
 					<div class="slider-thumbs__caption caption">
 						<div class="caption__content">
-							<h2 class="caption__title caption__title--smaller caption__title--centered">Gifts</h2>
+							<h2 class="caption__title caption__title--smaller caption__title--centered">Gifts Offers</h2>
 						</div>
 					</div>
 				</div> 
@@ -323,7 +163,7 @@
 					<div class="slider-thumbs__icon slider-thumbs__icon--round-corners"><a href="#"><img src="mobile/assets/images/icons/blue/sport.svg" alt="" title=""/></a></div>
 					<div class="slider-thumbs__caption caption">
 						<div class="caption__content">
-							<h2 class="caption__title caption__title--smaller caption__title--centered">Sport</h2>
+							<h2 class="caption__title caption__title--smaller caption__title--centered">Sport Gadgets</h2>
 						</div>
 					</div>
 				</div> 
@@ -332,9 +172,194 @@
 	
 		</div>
 		<div class="page__title-bar">
-			<h3>Latest Products</h3>
-		</div>		
-	        
+			<h2>Top Products</h2>
+			
+			<div class="page__title-right">
+				<div class="swiper-button-prev slider-thumbs__prev"></div>
+				<div class="swiper-button-next slider-thumbs__next"></div>
+			</div>
+		</div>
+		
+		<!-- Top featured products -->
+		<div class="swiper-container slider-thumbs slider-init mb-20" data-paginationtype="progressbar" data-spacebetweenitems="10" data-itemsperview="auto">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide slider-thumbs__slide slider-thumbs__slide--1h">
+					<div class="slider-thumbs__image slider-thumbs__image--round-corners">
+					<a href="#"><img src="mobile/assets/img/prod1.jpg" alt="" title=""/></a>
+						<div class="slider-thumbs__top-right-info">
+							<div class="slider-thumbs__rating">
+								<span class="fas fa-star checked"></span>
+								<span class="fas fa-star checked"></span>
+								<span class="fas fa-star checked"></span>
+								<span class="fas fa-star checked"></span>
+								<span class="fas fa-star"></span>
+							</div>
+						</div>
+						<div class="slider-thumbs__bottom-right-info">
+							<div class="slider-thumbs__wishlist"><a href="#"><img src="mobile/assets/images/icons/black/love.svg" alt="" title=""/></a></div>
+						</div>
+					</div>
+					<div class="slider-thumbs__caption caption">
+						<div class="caption__content">
+							<h2 class="caption__title">Samsung Galaxy Note10 Lite</h2>
+							<a class="caption__price" href="#">NPR 49,999 <span>59,999</span> </a>
+							<a class="caption__cart addtocart" href="#"><i class="fas fa-cart-plus"></i> Add to Cart</a>
+						</div>
+					</div>
+				</div> 
+				<div class="swiper-slide slider-thumbs__slide slider-thumbs__slide--1h">
+					<div class="slider-thumbs__image slider-thumbs__image--round-corners">
+					<a href="#"><img src="mobile/assets/img/prod4.jpg" alt="" title=""/></a>
+						<div class="slider-thumbs__badge"><span>SALE</span></div>
+						<div class="slider-thumbs__top-right-info">
+							<div class="slider-thumbs__rating">
+								<span class="fas fa-star checked"></span>
+								<span class="fas fa-star checked"></span>
+								<span class="fas fa-star checked"></span>
+								<span class="fas fa-star checked"></span>
+								<span class="fas fa-star"></span>
+							</div>
+						</div>
+						<div class="slider-thumbs__bottom-right-info">
+							<div class="slider-thumbs__wishlist"><a href="#"><img src="mobile/assets/images/icons/black/love.svg" alt="" title=""/></a></div>
+						</div>
+					</div>
+					<div class="slider-thumbs__caption caption">
+						<div class="caption__content">
+							<h2 class="caption__title">Samsung Galaxy A51</h2>
+							<a class="caption__price" href="#">NPR 49,999 <span>59,299</span></a>
+							<a class="caption__cart addtocart" href="#"><i class="fas fa-cart-plus"></i> Add to Cart</a>
+						</div>
+					</div>
+				</div> 
+				<div class="swiper-slide slider-thumbs__slide slider-thumbs__slide--1h">
+					<div class="slider-thumbs__image slider-thumbs__image--round-corners">
+					<a href="#"><img src="mobile/assets/img/prod3.jpg" alt="" title=""/></a>	
+						<div class="slider-thumbs__top-right-info">
+							<div class="slider-thumbs__rating">
+								<span class="fas fa-star checked"></span>
+								<span class="fas fa-star checked"></span>
+								<span class="fas fa-star checked"></span>
+								<span class="fas fa-star checked"></span>
+								<span class="fas fa-star"></span>
+							</div>
+						</div>
+						<div class="slider-thumbs__bottom-right-info">
+							<div class="slider-thumbs__wishlist"><a href="#"><img src="mobile/assets/images/icons/black/love.svg" alt="" title=""/></a></div>
+						</div>
+					</div>
+					<div class="slider-thumbs__caption caption">
+						<div class="caption__content">
+							<h2 class="caption__title">Samsung Galaxy A71</h2>
+							<a class="caption__price" href="#">NPR 39,999</a>
+							<a class="caption__cart addtocart" href="#"><i class="fas fa-cart-plus"></i> Add to Cart</a>
+						</div>
+					</div>
+				</div> 
+				<div class="swiper-slide slider-thumbs__slide slider-thumbs__slide--1h">
+					<div class="slider-thumbs__image slider-thumbs__image--round-corners">
+					<a href="#"><img src="mobile/assets/img/prod2.jpg" alt="" title=""/></a>
+						<div class="slider-thumbs__top-right-info">
+							<div class="slider-thumbs__rating">
+								<span class="fas fa-star checked"></span>
+								<span class="fas fa-star checked"></span>
+								<span class="fas fa-star checked"></span>
+								<span class="fas fa-star checked"></span>
+								<span class="fas fa-star"></span>
+							</div>
+						</div>
+						<div class="slider-thumbs__bottom-right-info">
+							<div class="slider-thumbs__wishlist"><a href="#"><img src="mobile/assets/images/icons/black/love.svg" alt="" title=""/></a></div>
+						</div>
+					</div>
+					<div class="slider-thumbs__caption caption">
+						<div class="caption__content">
+							<h2 class="caption__title">Samsung Phone</h2>
+							<a class="caption__price" href="#">NPR 59,999</a>
+							<a class="caption__cart addtocart" href="#"><i class="fas fa-cart-plus"></i> Add to Cart</a>
+						</div>
+					</div>
+				</div> 
+			</div>
+			<div class="swiper-pagination slider-thumbs__pagination"></div>
+	
+		</div>
+		<!-- SLIDER THUMBS 4 round -->
+		
+		<div class="page__title-bar">
+			<h2>Latest Products</h2>
+		</div>
+			<div class="card card--style-thumb card--border-bottom mb-20">
+				<div class="brand-line">
+					<img src="mobile/assets/images/icons/brands/samsung.svg" alt="" title=""/>
+					<span><strong>Samsung Galaxy Note 10 Lite</strong></span>
+				</div>
+				<!-- SLIDER SIMPLE -->
+				<div class="swiper-container slider-simple slider-simple--round-corners slider-init mb-10" data-paginationtype="bullets" data-spacebetweenitems="0" data-itemsperview="1">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide slider-simple__slide" style="background-image:url(mobile/assets/img/prod3.jpg);">
+						</div> 
+						<div class="swiper-slide slider-simple__slide" style="background-image:url(mobile/assets/img/prod2.jpg);">
+						</div>
+						<div class="swiper-slide slider-simple__slide" style="background-image:url(mobile/assets/img/prod1.jpg);">
+						</div>
+					</div>
+					<div class="swiper-pagination slider-simple__pagination"></div>
+				</div>
+				  <a href="#"><h4 class="card__text">Samsung Galaxy Note10 · 6.3" 1080x2280 pixels · 12MP 2160p · 8GB RAM Exynos 9825 · 3500mAh Li-Ion. </h4></a>
+				  <div class="d-flex align-center mb-10">
+					  <div class="card__likes">NPR 28k</div>
+					  <div class="card__comments ml-20 open-popup" data-popup="comments">23 Sales</div>
+				  </div>
+			</div>
+			<div class="card card--style-thumb card--border-bottom mb-20">
+				<div class="brand-line">
+					<img src="mobile/assets/images/icons/brands/apple.svg" alt="" title=""/>
+					<span><strong>iPhone 11</strong></span>
+				</div>
+				<!-- SLIDER SIMPLE -->
+				<div class="swiper-container slider-simple slider-simple--round-corners slider-init mb-10" data-paginationtype="bullets" data-spacebetweenitems="0" data-itemsperview="1">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide slider-simple__slide" style="background-image:url(mobile/assets/img/apple1.jpg);">
+						</div> 
+						<div class="swiper-slide slider-simple__slide" style="background-image:url(mobile/assets/img/apple2.jpg);">
+						</div>
+						<div class="swiper-slide slider-simple__slide" style="background-image:url(mobile/assets/img/apple3.jpg);">
+						</div>
+					</div>
+					<div class="swiper-pagination slider-simple__pagination"></div>
+				</div>
+				  <h4 class="card__text">Liquid Retina HD display · 6.1‑inch (diagonal) all-screen LCD Multi-Touch display with IPS technology · 1792‑by‑828‑pixe </h4>
+				  <div class="d-flex align-center mb-10">
+					  <div class="card__likes">NPR 70k</div>
+					  <div class="card__comments ml-20 open-popup" data-popup="comments">10 sales</div>
+				  </div>
+			</div>
+			<div class="card card--style-thumb card--border-bottom mb-20">
+				<div class="brand-line">
+					<img src="mobile/assets/images/icons/brands/xiaomi.svg" alt="" title=""/>
+					<span><strong>Xiaomi MI TV</strong></span>
+				</div>
+				<!-- SLIDER SIMPLE -->
+				<div class="swiper-container slider-simple slider-simple--round-corners slider-init mb-10" data-paginationtype="bullets" data-spacebetweenitems="0" data-itemsperview="1">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide slider-simple__slide" style="background-image:url(mobile/assets/img/mi1.jpg);">
+						</div> 
+						<div class="swiper-slide slider-simple__slide" style="background-image:url(mobile/assets/img/mi2.jpg);">
+						</div>
+					</div>
+					<div class="swiper-pagination slider-simple__pagination"></div>
+				</div>
+				  <h4 class="card__text">Virtually frameless. We use one of the best panels from Samsung and LG to create a 47” 1920x1080 Full HD television with a super slim profile </h4>
+				  <div class="d-flex align-center mb-10">
+					  <div class="card__likes">NPR 50k</div>
+					  <div class="card__comments ml-20 open-popup" data-popup="comments">5 sales</div>
+				  </div>
+			</div>
+
+			<div class="page__title-bar">
+				<h3>Smart Phones</h3>
+			</div>
 			<div class="cards cards--12" id="loadlist-shop">
 			  <div class="card card--style-thumb">
 				  <div class="card__thumb card__thumb--round-corners">
