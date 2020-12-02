@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, minimal-ui">
-<title>Mobile -Ozerone Shop</title>
+<title>Ozerone Shop, Online electronics shop in Nepal</title>
 <link rel="stylesheet" href="{{asset('mobile/vendor/swiper/swiper.min.css')}}">
 <link rel="stylesheet" href="{{asset('mobile/main/css/style.css')}}">
 <link rel="stylesheet" href="{{asset('mobile/custom.css')}}">
