@@ -112,7 +112,7 @@
 	<div class="page__content page__content--with-header">
 	<div class="swiper-container slider-simple slider-simple slider-simple--vw-width slider-simple--full-height slider-init mb-20" data-paginationtype="bullets" data-spacebetweenitems="0" data-itemsperview="1">
 		<div class="swiper-wrapper">
-			<div class="swiper-slide slider-simple__slide" style="background-image:linear-gradient(#29293560 0%, rgba(0, 0, 0, 0.6) 100%), url(mobile/assets/img/slider1.jpg); background-color: rgba(0,0,0,0.5);">
+			<div class="swiper-slide slider-simple__slide" style="background-image:linear-gradient(#29293560 0%, rgba(0, 0, 0, 0.6) 100%), url(mobile/assets/img/tv.jpg); background-color: rgba(0,0,0,0.5);">
 				<div class="slider-simple__caption caption caption--centered">
 					<div class="caption__content">
 						<h2 class="caption__title caption__title--centered">THE COLLECTION OF PERFECT <span>TELEVISION</span> FOR YOUR HOME</h2>
@@ -120,18 +120,10 @@
 					</div>
 				</div>
 			</div> 
-			<div class="swiper-slide slider-simple__slide" style="background-image:linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(mobile/assets/img/slider2.jpg);">
+			<div class="swiper-slide slider-simple__slide" style="background-image:linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(mobile/assets/img/phone.jpg);">
 				<div class="slider-simple__caption caption caption--centered">
 					<div class="caption__content">
-						<h2 class="caption__title caption__title--centered">The <span>desire to create</span> is one of the deepest yearnings of the human soul</h2>
-						<a href="#" class="button button--main button--ex-small">View The Collection</a>
-					</div>
-				</div>
-			</div>
-			<div class="swiper-slide slider-simple__slide" style="background-image:linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(mobile/assets/img/slider3.jpg);">
-				<div class="slider-simple__caption caption caption--centered">
-					<div class="caption__content">
-						<h2 class="caption__title caption__title--centered">The true sign of intelligence is not knowledge but <span>imagination</span></h2>
+						<h2 class="caption__title caption__title--centered">Latest <span>SMART PHONE</span> for your daily use and work management.</h2>
 						<a href="#" class="button button--main button--ex-small">View The Collection</a>
 					</div>
 				</div>
