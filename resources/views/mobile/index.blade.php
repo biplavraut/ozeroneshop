@@ -110,69 +110,99 @@
 	</header>
 	<!-- SLIDER SIMPLE -->
 	<div class="page__content page__content--with-header">
-	<div class="search__form mb-20">
+	<div class="swiper-container slider-simple slider-simple slider-simple--vw-width slider-simple--full-height slider-init mb-20" data-paginationtype="bullets" data-spacebetweenitems="0" data-itemsperview="1">
+		<div class="swiper-wrapper">
+			<div class="swiper-slide slider-simple__slide" style="background-image:linear-gradient(#29293560 0%, rgba(0, 0, 0, 0.6) 100%), url(mobile/assets/img/slider1.jpg); background-color: rgba(0,0,0,0.5);">
+				<div class="slider-simple__caption caption caption--centered">
+					<div class="caption__content">
+						<h2 class="caption__title caption__title--centered">THE COLLECTION OF PERFECT <span>TELEVISION</span> FOR YOUR HOME</h2>
+						<a href="#" class="button button--main button--ex-small">View The Collection</a>
+					</div>
+				</div>
+			</div> 
+			<div class="swiper-slide slider-simple__slide" style="background-image:linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(mobile/assets/img/slider2.jpg);">
+				<div class="slider-simple__caption caption caption--centered">
+					<div class="caption__content">
+						<h2 class="caption__title caption__title--centered">The <span>desire to create</span> is one of the deepest yearnings of the human soul</h2>
+						<a href="#" class="button button--main button--ex-small">View The Collection</a>
+					</div>
+				</div>
+			</div>
+			<div class="swiper-slide slider-simple__slide" style="background-image:linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(mobile/assets/img/slider3.jpg);">
+				<div class="slider-simple__caption caption caption--centered">
+					<div class="caption__content">
+						<h2 class="caption__title caption__title--centered">The true sign of intelligence is not knowledge but <span>imagination</span></h2>
+						<a href="#" class="button button--main button--ex-small">View The Collection</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="swiper-pagination slider-simple__pagination"></div>
+
+	</div>
+	<!-- <div class="search__form mb-20">
 		<form>
 			<input type="text" class="search__input" id="" name="" value="" placeholder="SEARCH" />
 			<input type="submit" class="search__submit" value="Send" />
 		</form>		
-	</div>
-	<div class="swiper-container slider-thumbs slider-init mb-20" data-paginationtype="progressbar" data-spacebetweenitems="10" data-itemsperview="auto">
-			<div class="swiper-wrapper">
-				<div class="swiper-slide slider-thumbs__slide slider-thumbs__slide--4">
-					<div class="slider-thumbs__icon slider-thumbs__icon--round-corners"><a href="#"><img src="mobile/assets/images/icons/blue/television.svg" alt="" title=""/></a></div>
-					<div class="slider-thumbs__caption caption">
-						<div class="caption__content">
-							<h2 class="caption__title caption__title--smaller caption__title--centered">TV</h2>
-						</div>
-					</div>
-				</div> 
-				<div class="swiper-slide slider-thumbs__slide slider-thumbs__slide--4">
-					<div class="slider-thumbs__icon slider-thumbs__icon--round-corners"><a href="#"><img src="mobile/assets/images/icons/blue/electronics.svg" alt="" title=""/></a></div>
-					<div class="slider-thumbs__caption caption">
-						<div class="caption__content">
-							<h2 class="caption__title caption__title--smaller caption__title--centered">Phones</h2>
-						</div>
+	</div> -->
+	<!-- <div class="swiper-container slider-thumbs slider-init mb-20" data-paginationtype="progressbar" data-spacebetweenitems="10" data-itemsperview="auto">
+		<div class="swiper-wrapper">
+			<div class="swiper-slide slider-thumbs__slide slider-thumbs__slide--4">
+				<div class="slider-thumbs__icon slider-thumbs__icon--round-corners"><a href="#"><img src="mobile/assets/images/icons/blue/television.svg" alt="" title=""/></a></div>
+				<div class="slider-thumbs__caption caption">
+					<div class="caption__content">
+						<h2 class="caption__title caption__title--smaller caption__title--centered">TV</h2>
 					</div>
 				</div>
-				<div class="swiper-slide slider-thumbs__slide slider-thumbs__slide--4">
-					<div class="slider-thumbs__icon slider-thumbs__icon--round-corners"><a href="#"><img src="mobile/assets/images/icons/blue/smart-refrigerator.svg" alt="" title=""/></a></div>
-					<div class="slider-thumbs__caption caption">
-						<div class="caption__content">
-							<h2 class="caption__title caption__title--smaller caption__title--centered">Refrigerator</h2>
-						</div>
-					</div>
-				</div> 
-				
-				<div class="swiper-slide slider-thumbs__slide slider-thumbs__slide--4">
-					<div class="slider-thumbs__icon slider-thumbs__icon--round-corners"><a href="#"><img src="mobile/assets/images/icons/blue/home.svg" alt="" title=""/></a></div>
-					<div class="slider-thumbs__caption caption">
-						<div class="caption__content">
-							<h2 class="caption__title caption__title--smaller caption__title--centered">Home Appliances</h2>
-						</div>
+			</div> 
+			<div class="swiper-slide slider-thumbs__slide slider-thumbs__slide--4">
+				<div class="slider-thumbs__icon slider-thumbs__icon--round-corners"><a href="#"><img src="mobile/assets/images/icons/blue/electronics.svg" alt="" title=""/></a></div>
+				<div class="slider-thumbs__caption caption">
+					<div class="caption__content">
+						<h2 class="caption__title caption__title--smaller caption__title--centered">Phones</h2>
 					</div>
 				</div>
-				<div class="swiper-slide slider-thumbs__slide slider-thumbs__slide--4">
-					<div class="slider-thumbs__icon slider-thumbs__icon--round-corners"><a href="#"><img src="mobile/assets/images/icons/blue/gifts.svg" alt="" title=""/></a></div>
-					<div class="slider-thumbs__caption caption">
-						<div class="caption__content">
-							<h2 class="caption__title caption__title--smaller caption__title--centered">Gifts Offers</h2>
-						</div>
-					</div>
-				</div> 
-				<div class="swiper-slide slider-thumbs__slide slider-thumbs__slide--4">
-					<div class="slider-thumbs__icon slider-thumbs__icon--round-corners"><a href="#"><img src="mobile/assets/images/icons/blue/sport.svg" alt="" title=""/></a></div>
-					<div class="slider-thumbs__caption caption">
-						<div class="caption__content">
-							<h2 class="caption__title caption__title--smaller caption__title--centered">Sport Gadgets</h2>
-						</div>
-					</div>
-				</div> 
 			</div>
-			<div class="swiper-pagination slider-thumbs__pagination"></div>
-	
+			<div class="swiper-slide slider-thumbs__slide slider-thumbs__slide--4">
+				<div class="slider-thumbs__icon slider-thumbs__icon--round-corners"><a href="#"><img src="mobile/assets/images/icons/blue/smart-refrigerator.svg" alt="" title=""/></a></div>
+				<div class="slider-thumbs__caption caption">
+					<div class="caption__content">
+						<h2 class="caption__title caption__title--smaller caption__title--centered">Refrigerator</h2>
+					</div>
+				</div>
+			</div> 
+			
+			<div class="swiper-slide slider-thumbs__slide slider-thumbs__slide--4">
+				<div class="slider-thumbs__icon slider-thumbs__icon--round-corners"><a href="#"><img src="mobile/assets/images/icons/blue/home.svg" alt="" title=""/></a></div>
+				<div class="slider-thumbs__caption caption">
+					<div class="caption__content">
+						<h2 class="caption__title caption__title--smaller caption__title--centered">Home Appliances</h2>
+					</div>
+				</div>
+			</div>
+			<div class="swiper-slide slider-thumbs__slide slider-thumbs__slide--4">
+				<div class="slider-thumbs__icon slider-thumbs__icon--round-corners"><a href="#"><img src="mobile/assets/images/icons/blue/gifts.svg" alt="" title=""/></a></div>
+				<div class="slider-thumbs__caption caption">
+					<div class="caption__content">
+						<h2 class="caption__title caption__title--smaller caption__title--centered">Gifts Offers</h2>
+					</div>
+				</div>
+			</div> 
+			<div class="swiper-slide slider-thumbs__slide slider-thumbs__slide--4">
+				<div class="slider-thumbs__icon slider-thumbs__icon--round-corners"><a href="#"><img src="mobile/assets/images/icons/blue/sport.svg" alt="" title=""/></a></div>
+				<div class="slider-thumbs__caption caption">
+					<div class="caption__content">
+						<h2 class="caption__title caption__title--smaller caption__title--centered">Sport Gadgets</h2>
+					</div>
+				</div>
+			</div> 
 		</div>
+		<div class="swiper-pagination slider-thumbs__pagination"></div>
+	</div> -->
+
 		<div class="page__title-bar">
-			<h2>Top Products</h2>
+			<h2>Featured Products</h2>
 			
 			<div class="page__title-right">
 				<div class="swiper-button-prev slider-thumbs__prev"></div>
@@ -186,6 +216,7 @@
 				<div class="swiper-slide slider-thumbs__slide slider-thumbs__slide--1h">
 					<div class="slider-thumbs__image slider-thumbs__image--round-corners">
 					<a href="#"><img src="mobile/assets/img/prod1.jpg" alt="" title=""/></a>
+					<div class="slider-thumbs__discount"><span>-20%</span></div>
 						<div class="slider-thumbs__top-right-info">
 							<div class="slider-thumbs__rating">
 								<span class="fas fa-star checked"></span>
@@ -202,7 +233,7 @@
 					<div class="slider-thumbs__caption caption">
 						<div class="caption__content">
 							<h2 class="caption__title">Samsung Galaxy Note10 Lite</h2>
-							<a class="caption__price" href="#">NPR 49,999 <span>59,999</span> </a>
+							<a class="caption__price" href="#"><span> NPR 59,999</span> <br> NPR 49,999 </a>
 							<a class="caption__cart addtocart" href="#"><i class="fas fa-cart-plus"></i> Add to Cart</a>
 						</div>
 					</div>
@@ -210,7 +241,6 @@
 				<div class="swiper-slide slider-thumbs__slide slider-thumbs__slide--1h">
 					<div class="slider-thumbs__image slider-thumbs__image--round-corners">
 					<a href="#"><img src="mobile/assets/img/prod4.jpg" alt="" title=""/></a>
-						<div class="slider-thumbs__badge"><span>SALE</span></div>
 						<div class="slider-thumbs__top-right-info">
 							<div class="slider-thumbs__rating">
 								<span class="fas fa-star checked"></span>
@@ -227,7 +257,7 @@
 					<div class="slider-thumbs__caption caption">
 						<div class="caption__content">
 							<h2 class="caption__title">Samsung Galaxy A51</h2>
-							<a class="caption__price" href="#">NPR 49,999 <span>59,299</span></a>
+							<a class="caption__price" href="#">NPR 49,999</a>
 							<a class="caption__cart addtocart" href="#"><i class="fas fa-cart-plus"></i> Add to Cart</a>
 						</div>
 					</div>
@@ -287,7 +317,7 @@
 		<!-- SLIDER THUMBS 4 round -->
 		
 		<div class="page__title-bar">
-			<h2>Latest Products</h2>
+			<h2>Latest News</h2>
 		</div>
 			<div class="card card--style-thumb card--border-bottom mb-20">
 				<div class="brand-line">
@@ -499,7 +529,7 @@
 	<div class="bottom-navigation">
 		<ul class="bottom-navigation__icons">
 			<li><a href="./"><img src="mobile/assets/images/icons/blue/home.svg" alt="" title="" /><span>Home</span></a></li>
-			<li><a href="#"><img src="mobile/assets/images/icons/blue/cart.svg" alt="" title="" /><span>Shop</span></a></li>
+			<li><a href="./shop"><img src="mobile/assets/images/icons/blue/cart.svg" alt="" title="" /><span>Shop</span></a></li>
 			<li><a href="#"><img src="mobile/assets/images/icons/blue/user.svg" alt="" title="" /><span>Account</span></a></li>
 			<li><a href="#"><img src="mobile/assets/images/icons/blue/chat.svg" alt="" title="" /><span>Chat</span></a></li>
 		</ul>

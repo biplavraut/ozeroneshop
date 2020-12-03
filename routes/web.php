@@ -38,6 +38,7 @@ if(isMobile()) {
     
     Route::namespace('Frontend')->group(function() {
         Route::get('/', [App\Http\Controllers\Frontend\PageController::class, 'mobile']);
+        Route::get('/shop', [App\Http\Controllers\Frontend\PageController::class, 'shop']);
     });
 
 } else {

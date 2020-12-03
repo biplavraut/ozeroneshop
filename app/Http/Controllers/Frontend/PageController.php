@@ -17,6 +17,10 @@ class PageController extends Controller
     {
         return view('mobile.index');
     }
+    public function shop() 
+    {
+        return view('mobile.products');
+    }
     public function list()
     {
         return Slider::orderBy("order_item")->get();

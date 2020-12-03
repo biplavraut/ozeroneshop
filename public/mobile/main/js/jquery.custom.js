@@ -186,6 +186,24 @@ $(document).ready(function () {
 		}); 
 	
    }
+   /*-------------- Page Products----------- */
+if (pageid == 'products') {   
+
+	$(".product-layout li").on('click', function(e) { 
+		$('.product-layout li').removeClass('selected');
+		$(this).addClass('selected');
+		var nrperrow = $(this).attr("data-products");
+		if(nrperrow == "11") {
+			$('.product-view').addClass('cards--11');
+			$('.product-view').removeClass('cards--12');
+		}
+		else if(nrperrow == "12") {
+			$('.product-view').removeClass('cards--11');
+			$('.product-view').addClass('cards--12');
+			
+		}
+	});
+}
 /*-------------- Page Photos----------- */
    if (pageid == 'photos') {
 	   
