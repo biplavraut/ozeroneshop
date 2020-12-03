@@ -382,134 +382,99 @@
 			<div class="page__title-bar">
 				<h3>Smart Phones</h3>
 			</div>
-			<div class="cards cards--12" id="loadlist-shop">
-			  <div class="card card--style-thumb">
-				  <div class="card__thumb card__thumb--round-corners">
-					  <a href="#"><img src="mobile/assets/img/product3.jpg" alt="" title=""/></a>
-					   <div class="card__top-right-info">
-						<div class="card__price">NPR 49,999</div>
-					  </div>
-					  <div class="card__bottom-right-info">
-						<div class="card__addtocart addtocart"><a href="#"><img src="mobile/assets/images/icons/black/cart.svg" alt="" title=""/></a></div>
-					  </div>
-				  </div>
-				  <h4 class="card__title">Samsung Galaxy</h4>
-				  <p class="card__text">Smart description of your product</p>
-
-			  </div>
-			  <div class="card card--style-thumb">
-				 <div class="card__thumb card__thumb--round-corners">
-					  <a href="#"><img src="mobile/assets/img/product2.jpg" alt="" title=""/></a>
-					  <div class="card__badge"><span>SALE</span></div>
-					  <div class="card__top-right-info">
-						<div class="card__price">NPR 39,999 <span>NPR 49,999</span></div>
-					  </div>
-					 <div class="card__bottom-right-info">
-						<div class="card__addtocart addtocart"><a href="#"><img src="mobile/assets/images/icons/black/cart.svg" alt="" title=""/></a></div>
-					 </div>
-				  </div>
-				  <h4 class="card__title">Samsung Galaxy A51</h4>
-				  <p class="card__text">Smart description of your product</p>
-			  </div>
-			  <div class="card card--style-thumb">
-				  <div class="card__thumb card__thumb--round-corners">
-					  <a href="#"><img src="mobile/assets/img/product1.jpg" alt="" title=""/></a>
-					   <div class="card__top-right-info">
-						<div class="card__price">NPR 49,999</div>
-					  </div>
-					  <div class="card__bottom-right-info">
-						<div class="card__addtocart addtocart"><a href="#"><img src="mobile/assets/images/icons/black/cart.svg" alt="" title=""/></a></div>
-					  </div>
-				  </div>
-				  <h4 class="card__title">Samsung Galaxy Note10 Lite</h4>
-				  <p class="card__text">Smart description of your product</p>
-
-			  </div>
-			  <div class="card card--style-thumb">
-				  <div class="card__thumb card__thumb--round-corners">
-					  <a href="#"><img src="mobile/assets/img/product3.jpg" alt="" title=""/></a>
-					   <div class="card__top-right-info">
-						<div class="card__price">NPR 49,999</div>
-					  </div>
-					  <div class="card__bottom-right-info">
-						<div class="card__addtocart addtocart"><a href="#"><img src="mobile/assets/images/icons/black/cart.svg" alt="" title=""/></a></div>
-					  </div>
-				  </div>
-				  <h4 class="card__title">Samsung Galaxy</h4>
-				  <p class="card__text">Smart description of your product</p>
-
-			  </div>
-			  <div class="card card--style-thumb">
-				 <div class="card__thumb card__thumb--round-corners">
-					  <a href="#"><img src="mobile/assets/img/product2.jpg" alt="" title=""/></a>
-					  <div class="card__badge"><span>SALE</span></div>
-					  <div class="card__top-right-info">
-						<div class="card__price">NPR 39,999 <span>NPR 49,999</span></div>
-					  </div>
-					 <div class="card__bottom-right-info">
-						<div class="card__addtocart addtocart"><a href="#"><img src="mobile/assets/images/icons/black/cart.svg" alt="" title=""/></a></div>
-					 </div>
-				  </div>
-				  <h4 class="card__title">Samsung Galaxy A51</h4>
-				  <p class="card__text">Smart description of your product</p>
-			  </div>
-			  <div class="card card--style-thumb">
-				  <div class="card__thumb card__thumb--round-corners">
-					  <a href="#"><img src="mobile/assets/img/product1.jpg" alt="" title=""/></a>
-					   <div class="card__top-right-info">
-						<div class="card__price">NPR 49,999</div>
-					  </div>
-					  <div class="card__bottom-right-info">
-						<div class="card__addtocart addtocart"><a href="#"><img src="mobile/assets/images/icons/black/cart.svg" alt="" title=""/></a></div>
-					  </div>
-				  </div>
-				  <h4 class="card__title">Samsung Galaxy Note10 Lite</h4>
-				  <p class="card__text">Smart description of your product</p>
-
-			  </div>
-			  <div class="card card--style-thumb">
-				  <div class="card__thumb card__thumb--round-corners">
-					  <a href="#"><img src="mobile/assets/img/product3.jpg" alt="" title=""/></a>
-					   <div class="card__top-right-info">
-						<div class="card__price">NPR 49,999</div>
-					  </div>
-					  <div class="card__bottom-right-info">
-						<div class="card__addtocart addtocart"><a href="#"><img src="mobile/assets/images/icons/black/cart.svg" alt="" title=""/></a></div>
-					  </div>
-				  </div>
-				  <h4 class="card__title">Samsung Galaxy</h4>
-				  <p class="card__text">Smart description of your product</p>
-
-			  </div>
-			  <div class="card card--style-thumb">
-				 <div class="card__thumb card__thumb--round-corners">
-					  <a href="#"><img src="mobile/assets/img/product2.jpg" alt="" title=""/></a>
-					  <div class="card__badge"><span>SALE</span></div>
-					  <div class="card__top-right-info">
-						<div class="card__price">NPR 39,999 <span>NPR 49,999</span></div>
-					  </div>
-					 <div class="card__bottom-right-info">
-						<div class="card__addtocart addtocart"><a href="#"><img src="mobile/assets/images/icons/black/cart.svg" alt="" title=""/></a></div>
-					 </div>
-				  </div>
-				  <h4 class="card__title">Samsung Galaxy A51</h4>
-				  <p class="card__text">Smart description of your product</p>
-			  </div>
-			  <div class="card card--style-thumb">
-				  <div class="card__thumb card__thumb--round-corners">
-					  <a href="#"><img src="mobile/assets/img/product1.jpg" alt="" title=""/></a>
-					   <div class="card__top-right-info">
-						<div class="card__price">NPR 49,999</div>
-					  </div>
-					  <div class="card__bottom-right-info">
-						<div class="card__addtocart addtocart"><a href="#"><img src="mobile/assets/images/icons/black/cart.svg" alt="" title=""/></a></div>
-					  </div>
-				  </div>
-				  <h4 class="card__title">Samsung Galaxy Note10 Lite</h4>
-				  <p class="card__text">Smart description of your product</p>
-
-			  </div>
-			</div>
+			<div class="product-view cards cards--12" id="loadlist-shop">
+            <div class="card card--style-thumb">
+                <div class="card__thumb card__thumb--round-corners">
+                    <a href="#"><img src="mobile/assets/img/product3.jpg" alt="" title=""/></a>
+                    <div class="card_latest"><span>Latest</span></div>
+                    <div class="card__top-right-info">
+                        <div class="card__rating">
+                            <span class="fas fa-star checked"></span>
+                            <span class="fas fa-star checked"></span>
+                            <span class="fas fa-star checked"></span>
+                            <span class="fas fa-star checked"></span>
+                            <span class="fas fa-star"></span>
+                        </div>
+                    </div>
+                    <div class="card__bottom-right-info">
+                        <div class="card_wishlist"><a href="#"><img src="mobile/assets/images/icons/black/love.svg" alt="" title=""/></a></div>
+                    </div>
+                </div>
+                <h4 class="card__title">Samsung Galaxy</h4>
+                <div style="display:flex;">
+                    <p class="card_price">NPR 49,999</p>
+                    <a class="card_cart addtocart" href="#"><i class="fas fa-cart-plus"></i> Add to Cart</a>
+                </div>
+            </div>
+            <div class="card card--style-thumb">
+                <div class="card__thumb card__thumb--round-corners">
+                    <a href="#"><img src="mobile/assets/img/prod2.jpg" alt="" title=""/></a>
+                    <div class="card_latest"><span>Latest</span></div>
+                    <div class="card__top-right-info">
+                        <div class="card__rating">
+                            <span class="fas fa-star checked"></span>
+                            <span class="fas fa-star checked"></span>
+                            <span class="fas fa-star checked"></span>
+                            <span class="fas fa-star checked"></span>
+                            <span class="fas fa-star"></span>
+                        </div>
+                    </div>
+                    <div class="card__bottom-right-info">
+                        <div class="card_wishlist"><a href="#"><img src="mobile/assets/images/icons/black/love.svg" alt="" title=""/></a></div>
+                    </div>
+                </div>
+                <h4 class="card__title">Samsung Galaxy Note 10 Lite</h4>
+                <div style="display:flex;">
+                    <p class="card_price">NPR 49,999</p>
+                    <a class="card_cart addtocart" href="#"><i class="fas fa-cart-plus"></i> Add to Cart</a>
+                </div>
+            </div>
+            <div class="card card--style-thumb">
+                <div class="card__thumb card__thumb--round-corners">
+                    <a href="#"><img src="mobile/assets/img/product2.jpg" alt="" title=""/></a>
+                    <div class="card_sale"><span>SALE</span></div>
+                    <div class="card__top-right-info">
+                            <div class="card__rating">
+                                <span class="fas fa-star checked"></span>
+                                <span class="fas fa-star checked"></span>
+                                <span class="fas fa-star checked"></span>
+                                <span class="fas fa-star checked"></span>
+                                <span class="fas fa-star"></span>
+                            </div>
+                        </div>
+                    <div class="card__bottom-right-info">
+                        <div class="card_wishlist"><a href="#"><img src="mobile/assets/images/icons/black/love.svg" alt="" title=""/></a></div>
+                    </div>
+                </div>
+                <h4 class="card__title">Samsung Galaxy A51</h4>
+                <div style="display:flex;">
+                    <p class="card_price">NPR 49,999</p>
+                    <a class="card_cart addtocart" href="#"><i class="fas fa-cart-plus"></i> Add to Cart</a>
+                </div>
+            </div>
+            <div class="card card--style-thumb">
+                <div class="card__thumb card__thumb--round-corners">
+                    <a href="#"><img src="mobile/assets/img/prod3.jpg" alt="" title=""/></a>
+                    <div class="card__top-right-info">
+                            <div class="card__rating">
+                                <span class="fas fa-star checked"></span>
+                                <span class="fas fa-star checked"></span>
+                                <span class="fas fa-star checked"></span>
+                                <span class="fas fa-star checked"></span>
+                                <span class="fas fa-star"></span>
+                            </div>
+                        </div>
+                    <div class="card__bottom-right-info">
+                        <div class="card_wishlist"><a href="#"><img src="mobile/assets/images/icons/black/love.svg" alt="" title=""/></a></div>
+                    </div>
+                </div>
+                <h4 class="card__title">Samsung Galaxy A51</h4>
+                <div style="display:flex;">
+                    <p class="card_price">NPR 49,999</p>
+                    <a class="card_cart addtocart" href="#"><i class="fas fa-cart-plus"></i> Add to Cart</a>
+                </div>
+            </div>
+        </div>
 	      <div class="buttons buttons--centered" style="margin-bottom:80px">
 			<div id="loadMore" class="button button--more">View more</div>
 			<div id="showLess" class="button button--disabled">Search your products</div> 
