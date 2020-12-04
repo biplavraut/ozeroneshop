@@ -17,11 +17,49 @@
 <!-- Overlay panel -->
 <div class="body-overlay"></div>
 <!-- Left panel -->
-<div id="panel-left"></div>
+<div id="panel-left">
+	<!-- Main Naviagtion -->
+	<div class="panel panel--left" id="main-navigation">
+		<!-- Slider -->
+		<div class="panel__navigation">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide">
+					<div class="user-details">
+						<div class="user-details__thumb">
+							<img src="logo/logo-long.png" max-width="200" alt="Ozerone Logo">
+						</div>
+					</div>
+					<nav class="main-nav">
+						<ul>
+							<li><a href="./"><img src="mobile/assets/images/icons/blue/home.svg" alt="" title="" /><span>Home</span></a></li>
+							<li><a href="#"><img src="mobile/assets/images/icons/blue/user.svg" alt="" title="" /><span>About</span></a></li>
+							<li class="subnav opensubnav"><img src="mobile/assets/images/icons/blue/checked.svg" alt="" title="" /><span>Categories</span><i><img src="mobile/assets/images/icons/blue/arrow-right.svg" alt="" title="" /></i></li>
+							<li><a href="#"><img src="mobile/assets/images/icons/blue/news.svg" alt="" title="" /><span>Blog-News</span></a></li>	
+							<li class="divider"></li>
+							<li><a href="#"><img src="mobile/assets/images/icons/blue/settings.svg" alt="" title="" /><span>Account</span></a></li>
+							<li><a href="#"><img src="mobile/assets/images/icons/blue/contact.svg" alt="" title="" /><span>Contact</span></a></li>
+							<li><a href="#"><img src="mobile/assets/images/icons/blue/logout.svg" alt="" title="" /><span>Logout</span></a></li>
+						</ul>
+					</nav>
+				</div>	
+				<div class="swiper-slide">		
+					<div class="subnav-header backtonav"><img src="mobile/assets/images/icons/blue/arrow-left.svg" alt="" title="" /><span>BACK</span></div>
+					<nav class="main-nav">
+						<ul>
+							<li><a href="#"><img src="mobile/assets/images/icons/blue/slider.svg" alt="" title="" /><span>Smart TV</span></a></li>
+							<li><a href="#"><img src="mobile/assets/images/icons/blue/blocks.svg" alt="" title="" /><span>Smart Phone</span></a></li>
+							<li><a href="#"><img src="mobile/assets/images/icons/blue/tables.svg" alt="" title="" /><span>Tablets</span></a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 <!-- Right panel -->
 <div id="panel-right-cart">
 	<div class="panel panel--right">
-            <div class="cart">
+		<div class="cart">
 			<h3 class="cart__title">Your Shopping Cart</h3>
 			<div class="swiper-container slider-init-swipe cart__item" id="item0">
 				<div class="swiper-wrapper">
@@ -77,23 +115,55 @@
 				</div>
 			</div>
 			<div class="cart__total">
-			  <div class="d-flex align-items-center justify-space pb-10">
-				<span>CART TOTAL</span>  <b>NPR 1,59,000</b>
-			  </div>
-			  <div class="d-flex align-items-center justify-space pb-10">
-				<span>VAT (10%)</span>  <b>NPR 1,59,0</b>
-			  </div>
-			  <div class="total d-flex align-items-center justify-space pb-10">
-				<span>TOTAL</span> <strong>NPR 1,61,000</strong>
-			  </div>
+			  	<div class="d-flex align-items-center justify-space pb-10">
+					<span>CART TOTAL</span>  <b>NPR 1,59,000</b>
+			  	</div>
+			  	<div class="d-flex align-items-center justify-space pb-10">
+					<span>VAT (10%)</span>  <b>NPR 1,59,0</b>
+			  	</div>
+			  	<div class="total d-flex align-items-center justify-space pb-10">
+					<span>TOTAL</span> <strong>NPR 1,61,000</strong>
+			  	</div>
 			</div>
 			<div class="buttons buttons--centered mt-20">
 				<a href="#" class="button button--main button--full">PROCEED TO CHECKOUT</a>
 			</div>
-              </div>
+		</div>
 	</div>
 </div>
-
+<div class="popup popup--notifications">
+      	<div class="popup__close"><a href="#" class="close-popup" data-popup="notifications"><img src="mobile/assets/images/icons/white/close.svg" alt="" title=""/></a></div>
+      	<div class="search">	  
+			<div class="search__form">
+				<form>
+					<input type="text" class="search__input" id="" name="" value="" placeholder="SEARCH" />
+					<input type="submit" class="search__submit" value="Send" />
+				</form>		
+			</div>
+			<div class="search_text">
+				<a href="#">Samsung</a>
+				<a href="#">Galaxy</a>
+				<a href="#">Smart Phone</a>
+				<a href="#">iPhone</a>
+			</div>
+			<div class="search__results">
+				<h3>Results</h3>
+				<div class="search-result">
+					<div class="search-result__thumb"><img src="mobile/assets/img/prod1.jpg" alt="" title=""/></div>
+					<div class="search-result__details">
+						<p>NewSamsung Galaxy Note 10</a></p>
+					</div>
+				</div>
+				<div class="search-result">
+					<div class="search-result__thumb"><img src="mobile/assets/images/photos/image-2.jpg" alt="" title=""/></div>
+					<div class="search-result__details">
+						<p>Search Result 2</p>
+					</div>
+				</div>
+			</div>
+					
+		</div>
+</div>
 
 <div class="page page--main" data-page="shop">
 	
@@ -483,10 +553,11 @@
 	<!-- PAGE END -->
 
 	<!-- Bottom Navigation -->
-	<div class="bottom-navigation">
+	<div class="bottom-navigation bottom-navigation--gradient">
 		<ul class="bottom-navigation__icons">
 			<li><a href="./"><img src="mobile/assets/images/icons/blue/home.svg" alt="" title="" /><span>Home</span></a></li>
 			<li><a href="./shop"><img src="mobile/assets/images/icons/blue/cart.svg" alt="" title="" /><span>Shop</span></a></li>
+			<a href="#" class="open-popup" data-popup="notifications"><li class="centered"><img src="mobile/assets/images/icons/white/search.svg" alt="" title="" /></li></a>
 			<li><a href="#"><img src="mobile/assets/images/icons/blue/user.svg" alt="" title="" /><span>Account</span></a></li>
 			<li><a href="#"><img src="mobile/assets/images/icons/blue/chat.svg" alt="" title="" /><span>Chat</span></a></li>
 		</ul>

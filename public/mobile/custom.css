@@ -6,6 +6,13 @@ body{
     background-color: #0f4c81 !important;
     background: linear-gradient(60deg, #292935 0%, #243057 100%) !important;
 }
+
+.bottom-navigation__icons li.centered {
+    background-color: #0f4c81 !important;
+    background: linear-gradient(60deg, #4d91c6 0%, #0f4c81 100%) !important;
+    -webkit-box-shadow: 0px 0px 16px -6px #000000; 
+    box-shadow: 0px 0px 16px -6px #000000;
+}
 .cards--13 .card--style-cover {
     background-color: #4d91c6;
 }
@@ -63,9 +70,9 @@ body{
 .panel--right{
     background-color: #434959;
 }
-.bottom-navigation{
+/* .bottom-navigation{
     padding: 0 0 10px 0;
-}
+} */
 .bottom-navigation__icons li span {
     color: #4d91c6;
 }
@@ -374,4 +381,20 @@ body{
     position: absolute;
     right: 0px;    
     border-radius: 5px;
+}
+.search {
+    padding: 20px;
+}
+.search_text{
+    padding: 10px 0 0 0;  
+    position: absolute
+}
+.search_text a{
+    letter-spacing: 0.043em;
+    color: #000;
+    background: #83cbf8;
+    padding: 2px 8px;
+    border-radius: 15px;
+    font-size: 1.0rem;
+    margin: 5px 2px;
 }
