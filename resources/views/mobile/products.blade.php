@@ -4,24 +4,61 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, minimal-ui">
 <title>Shop, Online electronics shop in Nepal</title>
-<link rel="stylesheet" href="{{asset('mobile/vendor/swiper/swiper.min.css')}}">
-<link rel="stylesheet" href="{{asset('mobile/main/css/style.css')}}">
-<link rel="stylesheet" href="{{asset('mobile/custom.css')}}">
-<!-- <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet"> -->
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;300;400;500;600;700;900&display=swap" rel="stylesheet">  
-<link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet"> 
+<link rel="stylesheet" href="{{asset('mobile/vendor/swiper/swiper.min.css')}}">
+<link rel="stylesheet" href="{{asset('css/mobile.css')}}">
+<link rel="stylesheet" href="{{asset('mobile/custom.css')}}">
+<!-- <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet"> -->
 </head>
 <body>
 	
 <!-- Overlay panel -->
 <div class="body-overlay"></div>
 <!-- Left panel -->
-<div id="panel-left"></div>
+<div id="panel-left">
+	<!-- Main Naviagtion -->
+	<div class="panel panel--left" id="main-navigation">
+		<!-- Slider -->
+		<div class="panel__navigation">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide">
+					<div class="user-details">
+						<div class="user-details__thumb">
+							<img src="logo/logo-long.png" max-width="200" alt="Ozerone Logo">
+						</div>
+					</div>
+					<nav class="main-nav">
+						<ul>
+							<li><a href="./"><img src="mobile/assets/images/icons/blue/home.svg" alt="" title="" /><span>Home</span></a></li>
+							<li><a href="#"><img src="mobile/assets/images/icons/blue/user.svg" alt="" title="" /><span>About</span></a></li>
+							<li class="subnav opensubnav"><img src="mobile/assets/images/icons/blue/checked.svg" alt="" title="" /><span>Categories</span><i><img src="mobile/assets/images/icons/blue/arrow-right.svg" alt="" title="" /></i></li>
+							<li><a href="#"><img src="mobile/assets/images/icons/blue/news.svg" alt="" title="" /><span>Blog-News</span></a></li>	
+							<li class="divider"></li>
+							<li><a href="#"><img src="mobile/assets/images/icons/blue/settings.svg" alt="" title="" /><span>Account</span></a></li>
+							<li><a href="#"><img src="mobile/assets/images/icons/blue/contact.svg" alt="" title="" /><span>Contact</span></a></li>
+							<li><a href="#"><img src="mobile/assets/images/icons/blue/logout.svg" alt="" title="" /><span>Logout</span></a></li>
+						</ul>
+					</nav>
+				</div>	
+				<div class="swiper-slide">		
+					<div class="subnav-header backtonav"><img src="mobile/assets/images/icons/blue/arrow-left.svg" alt="" title="" /><span>BACK</span></div>
+					<nav class="main-nav">
+						<ul>
+							<li><a href="#"><img src="mobile/assets/images/icons/blue/slider.svg" alt="" title="" /><span>Smart TV</span></a></li>
+							<li><a href="#"><img src="mobile/assets/images/icons/blue/blocks.svg" alt="" title="" /><span>Smart Phone</span></a></li>
+							<li><a href="#"><img src="mobile/assets/images/icons/blue/tables.svg" alt="" title="" /><span>Tablets</span></a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 <!-- Right panel -->
 <div id="panel-right-cart">
 	<div class="panel panel--right">
-            <div class="cart">
+		<div class="cart">
 			<h3 class="cart__title">Your Shopping Cart</h3>
 			<div class="swiper-container slider-init-swipe cart__item" id="item0">
 				<div class="swiper-wrapper">
@@ -31,7 +68,7 @@
 						<div class="cart__item-qty">
 							<form id="myform" method="POST" action="#" class="quantity quantity--small">
 								<input type="button" value="-" class="quantity__button quantity__button--minus" field="quantity1" />
-								<input type="text" name="quantity1" value="1" class="quantity__input" />
+								<input type="number"  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="quantity1" value="1" class="quantity__input" />
 								<input type="button" value="+" class="quantity__button quantity__button--plus" field="quantity1" />
 							</form>
 						</div>
@@ -49,7 +86,7 @@
 						<div class="cart__item-qty">
 							<form id="myform" method="POST" action="#" class="quantity quantity--small">
 								<input type="button" value="-" class="quantity__button quantity__button--minus" field="quantity2" />
-								<input type="text" name="quantity2" value="1" class="quantity__input" />
+								<input type="number"  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="quantity2" value="1" class="quantity__input" />
 								<input type="button" value="+" class="quantity__button quantity__button--plus" field="quantity2" />
 							</form>
 						</div>
@@ -67,7 +104,7 @@
 						<div class="cart__item-qty">
 							<form id="myform" method="POST" action="#" class="quantity quantity--small">
 								<input type="button" value="-" class="quantity__button quantity__button--minus" field="quantity3" />
-								<input type="text" name="quantity3" value="1" class="quantity__input" />
+								<input type="number"  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="quantity3" value="1" class="quantity__input" />
 								<input type="button" value="+" class="quantity__button quantity__button--plus" field="quantity3" />
 							</form>
 						</div>
@@ -77,23 +114,55 @@
 				</div>
 			</div>
 			<div class="cart__total">
-			  <div class="d-flex align-items-center justify-space pb-10">
-				<span>CART TOTAL</span>  <b>NPR 1,59,000</b>
-			  </div>
-			  <div class="d-flex align-items-center justify-space pb-10">
-				<span>VAT (10%)</span>  <b>NPR 1,59,0</b>
-			  </div>
-			  <div class="total d-flex align-items-center justify-space pb-10">
-				<span>TOTAL</span> <strong>NPR 1,61,000</strong>
-			  </div>
+			  	<div class="d-flex align-items-center justify-space pb-10">
+					<span>CART TOTAL</span>  <b>NPR 1,59,000</b>
+			  	</div>
+			  	<div class="d-flex align-items-center justify-space pb-10">
+					<span>VAT (10%)</span>  <b>NPR 1,59,0</b>
+			  	</div>
+			  	<div class="total d-flex align-items-center justify-space pb-10">
+					<span>TOTAL</span> <strong>NPR 1,61,000</strong>
+			  	</div>
 			</div>
 			<div class="buttons buttons--centered mt-20">
 				<a href="#" class="button button--main button--full">PROCEED TO CHECKOUT</a>
 			</div>
-              </div>
+		</div>
 	</div>
 </div>
-
+<div class="popup popup--notifications">
+	<div class="popup__close"><a href="#" class="close-popup" data-popup="notifications"><img src="mobile/assets/images/icons/blue/close.svg" alt="" title=""/></a></div>
+	<div class="search">	  
+		<div class="search__form">
+			<form>
+				<input type="text" class="search__input" id="" name="" value="" placeholder="SEARCH" />
+				<input type="submit" class="search__submit" value="Send" />
+			</form>		
+		</div>
+		<div class="search_text">
+			<a href="#">Samsung</a>
+			<a href="#">Galaxy</a>
+			<a href="#">Smart Phone</a>
+			<a href="#">iPhone</a>
+		</div>
+		<div class="search__results">
+			<h3>Results</h3>
+			<div class="search-result">
+				<div class="search-result__thumb"><img src="mobile/assets/img/prod1.jpg" alt="" title=""/></div>
+				<div class="search-result__details">
+					<p>NewSamsung Galaxy Note 10</a></p>
+				</div>
+			</div>
+			<div class="search-result">
+				<div class="search-result__thumb"><img src="mobile/assets/images/photos/image-2.jpg" alt="" title=""/></div>
+				<div class="search-result__details">
+					<p>Search Result 2</p>
+				</div>
+			</div>
+		</div>
+				
+	</div>
+</div>
 
 <div class="page page--main" data-page="products">
 	
@@ -136,7 +205,7 @@
                     </div>
                 </div>
                 <div class="swiper-slide slider-thumbs__slide slider-thumbs__slide--4">
-                    <div class="slider-thumbs__icon slider-thumbs__icon--round-corners"><a href="#"><img src="mobile/assets/images/icons/blue/smart-refrigerator.svg" alt="" title=""/></a></div>
+                    <div class="slider-thumbs__icon slider-thumbs__icon--round-corners"><a href="#"><img src="mobile/assets/images/icons/blue/refrigerator.svg" alt="" title=""/></a></div>
                     <div class="slider-thumbs__caption caption">
                         <div class="caption__content">
                             <h2 class="caption__title caption__title--smaller caption__title--centered">Refrigerator</h2>
@@ -173,7 +242,7 @@
         </div>
 
         <div class="page__title-bar">
-            <h3>All Products</h3>
+            <h2 class="page__title">All Products</h2>
             <div class="product-view">
                 <ul class="product-layout">
                     <li class="selected" data-products="11"><img src="mobile/assets/images/icons/blue/gallery-switch-11.svg" alt="" title="" /></li>
@@ -273,21 +342,113 @@
                     <a class="card_cart addtocart" href="#"><i class="fas fa-cart-plus"></i> Add to Cart</a>
                 </div>
             </div>
+            <div class="card card--style-thumb">
+                <div class="card__thumb card__thumb--round-corners">
+                    <a href="#"><img src="mobile/assets/img/product3.jpg" alt="" title=""/></a>
+                    <div class="card_latest"><span>Latest</span></div>
+                    <div class="card__top-right-info">
+                        <div class="card__rating">
+                            <span class="fas fa-star checked"></span>
+                            <span class="fas fa-star checked"></span>
+                            <span class="fas fa-star checked"></span>
+                            <span class="fas fa-star checked"></span>
+                            <span class="fas fa-star"></span>
+                        </div>
+                    </div>
+                    <div class="card__bottom-right-info">
+                        <div class="card_wishlist"><a href="#"><img src="mobile/assets/images/icons/black/love.svg" alt="" title=""/></a></div>
+                    </div>
+                </div>
+                <h4 class="card__title">Samsung Galaxy</h4>
+                <div style="display:flex;">
+                    <p class="card_price">NPR 49,999</p>
+                    <a class="card_cart addtocart" href="#"><i class="fas fa-cart-plus"></i> Add to Cart</a>
+                </div>
+            </div>
+            <div class="card card--style-thumb">
+                <div class="card__thumb card__thumb--round-corners">
+                    <a href="#"><img src="mobile/assets/img/prod2.jpg" alt="" title=""/></a>
+                    <div class="card_latest"><span>Latest</span></div>
+                    <div class="card__top-right-info">
+                        <div class="card__rating">
+                            <span class="fas fa-star checked"></span>
+                            <span class="fas fa-star checked"></span>
+                            <span class="fas fa-star checked"></span>
+                            <span class="fas fa-star checked"></span>
+                            <span class="fas fa-star"></span>
+                        </div>
+                    </div>
+                    <div class="card__bottom-right-info">
+                        <div class="card_wishlist"><a href="#"><img src="mobile/assets/images/icons/black/love.svg" alt="" title=""/></a></div>
+                    </div>
+                </div>
+                <h4 class="card__title">Samsung Galaxy Note 10 Lite</h4>
+                <div style="display:flex;">
+                    <p class="card_price">NPR 49,999</p>
+                    <a class="card_cart addtocart" href="#"><i class="fas fa-cart-plus"></i> Add to Cart</a>
+                </div>
+            </div>
+            <div class="card card--style-thumb">
+                <div class="card__thumb card__thumb--round-corners">
+                    <a href="#"><img src="mobile/assets/img/product2.jpg" alt="" title=""/></a>
+                    <div class="card_sale"><span>SALE</span></div>
+                    <div class="card__top-right-info">
+                            <div class="card__rating">
+                                <span class="fas fa-star checked"></span>
+                                <span class="fas fa-star checked"></span>
+                                <span class="fas fa-star checked"></span>
+                                <span class="fas fa-star checked"></span>
+                                <span class="fas fa-star"></span>
+                            </div>
+                        </div>
+                    <div class="card__bottom-right-info">
+                        <div class="card_wishlist"><a href="#"><img src="mobile/assets/images/icons/black/love.svg" alt="" title=""/></a></div>
+                    </div>
+                </div>
+                <h4 class="card__title">Samsung Galaxy A51</h4>
+                <div style="display:flex;">
+                    <p class="card_price">NPR 49,999</p>
+                    <a class="card_cart addtocart" href="#"><i class="fas fa-cart-plus"></i> Add to Cart</a>
+                </div>
+            </div>
+            <div class="card card--style-thumb">
+                <div class="card__thumb card__thumb--round-corners">
+                    <a href="#"><img src="mobile/assets/img/prod3.jpg" alt="" title=""/></a>
+                    <div class="card__top-right-info">
+                            <div class="card__rating">
+                                <span class="fas fa-star checked"></span>
+                                <span class="fas fa-star checked"></span>
+                                <span class="fas fa-star checked"></span>
+                                <span class="fas fa-star checked"></span>
+                                <span class="fas fa-star"></span>
+                            </div>
+                        </div>
+                    <div class="card__bottom-right-info">
+                        <div class="card_wishlist"><a href="#"><img src="mobile/assets/images/icons/black/love.svg" alt="" title=""/></a></div>
+                    </div>
+                </div>
+                <h4 class="card__title">Samsung Galaxy A51</h4>
+                <div style="display:flex;">
+                    <p class="card_price">NPR 49,999</p>
+                    <a class="card_cart addtocart" href="#"><i class="fas fa-cart-plus"></i> Add to Cart</a>
+                </div>
+            </div>
         </div>
 	</div>
 	<!-- PAGE END -->
 
 	<!-- Bottom Navigation -->
-	<div class="bottom-navigation">
+	<div class="bottom-navigation bottom-navigation--gradient">
 		<ul class="bottom-navigation__icons">
 			<li><a href="./"><img src="mobile/assets/images/icons/blue/home.svg" alt="" title="" /><span>Home</span></a></li>
 			<li><a href="./shop"><img src="mobile/assets/images/icons/blue/cart.svg" alt="" title="" /><span>Shop</span></a></li>
+			<a href="#" class="open-popup" data-popup="notifications"><li class="centered"><img src="mobile/assets/images/icons/blue/magnifier.svg" alt="" title="" /></li></a>
 			<li><a href="#"><img src="mobile/assets/images/icons/blue/user.svg" alt="" title="" /><span>Account</span></a></li>
 			<li><a href="#"><img src="mobile/assets/images/icons/blue/chat.svg" alt="" title="" /><span>Chat</span></a></li>
 		</ul>
 	</div>	
 	<!-- Bottom Navigation Ends -->	
-	<script src="{{asset('mobile/vendor/jquery/jquery-3.5.1.min.js')}}"></script>
+	<script src="{{asset('js/mobile.js')}}"></script>
 	<script src="{{asset('mobile/vendor/swiper/swiper.min.js')}}"></script>
 	<script src="{{asset('mobile/main/js/swiper-init.js')}}"></script>
 	<script src="{{asset('mobile/main/js/swiper-init-swipe.js')}}"></script>
