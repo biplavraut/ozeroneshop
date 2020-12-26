@@ -21,10 +21,7 @@ class PageController extends Controller
     {
         $sliders = Slider::orderBy("order_item")->get();
         $blogs = Blog::with('getBrandRelation')->orderBy("order_item")->get();
-        $featured = Product::with('getStorageRelation')->with('getColorRelation')->with('getImageRelation')->with('getDetailRelation')->where('display','=',1)->where('featured','=',1)->get();
-        
-        $elect_product = Product_Electronics::with('getElectronicsRelation')->distinct()->pluck('electronic_id');
-        $elect_categories = Electronics::where('display','=',1)->whereIn('id', $elect_product)->orderBy('order_item')->get();
+        $featured = Product::with('getStorageRelation')->with('getColorRelation')->with('getImageRelation')->with('getDetailRelation')->orderBy("order_item")->where('display','=',1)->where('featured','=',1)->get();
 
         $electronics_products = Product_Electronics::where('electronic_id','=',1)->pluck('product_id');
         $smart_phones = Product::where('display','=',1)->whereIn('id', $electronics_products)->with('getImageRelation')->get();
