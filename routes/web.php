@@ -26,19 +26,35 @@ function isMobile() {
     return 0 ;
 }
 if(isMobile()) {
-    Route::namespace('Frontend\Client')->group(function() {
+    Route::namespace('Mobile\Client')->group(function() {
+        Route::get('/login', [App\Http\Controllers\Mobile\Client\Auth\LoginController::class, 'showLoginForm'])->name('login');
+        Route::post('/login', [App\Http\Controllers\Mobile\Client\Auth\LoginController::class, 'login'])->name('login');
+        Route::get('/register', [App\Http\Controllers\Mobile\Client\Auth\RegisterController::class, 'showRegistrationForm'])->name('register');
+        Route::post('/register', [App\Http\Controllers\Mobile\Client\Auth\RegisterController::class, 'register'])->name('register');
         Auth::routes();
+        // Route::get('/password/request', [App\Http\Controllers\Mobile\Client\Auth\ForgotPasswordController::class, 'showLinkRequestForm'])->name('forget-password');
+        // Route::get('/password/reset', [App\Http\Controllers\Mobile\Client\Auth\ResetPasswordController::class, 'showResetForm'])->name('reset');
+        // Route::post('/password/reset', [App\Http\Controllers\Mobile\Client\Auth\ResetPasswordController::class, 'reset'])->name('reset');
+    
     
         Route::middleware(['auth'])->group(function () {
-            Route::get('/dashboard', [App\Http\Controllers\Frontend\Client\DashboardController::class, 'index'])->name('dashboard');
+            Route::post('/logout', [App\Http\Controllers\Mobile\Client\Auth\LoginController::class, 'logout'])->name('logout');
+            Route::get('/dashboard', [App\Http\Controllers\Mobile\Client\DashboardController::class, 'index'])->name('dashboard');
         });
     });  
     
     // No Auth Need
     
-    Route::namespace('Frontend')->group(function() {
-        Route::get('/', [App\Http\Controllers\Frontend\PageController::class, 'mobile']);
-        Route::get('/shop', [App\Http\Controllers\Frontend\PageController::class, 'shop']);
+    Route::namespace('Mobile')->group(function() {
+        Route::get('/', [App\Http\Controllers\Mobile\PageController::class, 'mobile']);
+        Route::get('/home', [App\Http\Controllers\Mobile\PageController::class, 'mobile']);
+        Route::get('/products/{slug}', [App\Http\Controllers\Mobile\PageController::class, 'products']);
+        Route::get('/product-detail/{slug}', [App\Http\Controllers\Mobile\PageController::class, 'productDetail']);
+
+        Route::get('/blog-news', [App\Http\Controllers\Mobile\PageController::class, 'blogNews']);
+        Route::get('/faqs', [App\Http\Controllers\Mobile\PageController::class, 'faqs']);
+        Route::get('/about', [App\Http\Controllers\Mobile\PageController::class, 'about']);
+        Route::get('/contact', [App\Http\Controllers\Mobile\PageController::class, 'contact']);
     });
 
 } else {

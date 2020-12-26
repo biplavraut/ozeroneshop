@@ -66,17 +66,19 @@ class ElectronicsController extends Controller
             $path = public_path().'/img/electronics';
             if(!file_exists($path)){
                 \File::makeDirectory($path, $mode = 0777, true, true);
-                \File::makeDirectory($path . '/thumbs', $mode = 0777, true, true);
             }
             if ($request->image){                
                 $extension = explode('/',explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
                 $imageName = $slug;
-                $image_name = $imageName.'.'.$extension;
-                \Image::make($request->image)->save($path.'/'.$image_name);
-                resize_crop_image(500, 500, $path."/". $image_name, $path."/thumbs/" . $image_name, $extension);
-                $request->merge(['image' => $image_name]);
+                $image_name = $imageName.'.svg';
+                if($extension == 'svg+xml'){
+                    $svgFile = file_get_contents($request->image);
+                    file_put_contents( $path.'/'.$image_name, $svgFile);
+                }else{  
+                    return ['result'=>'error', 'message' =>'SVG file only supported.'];
+                }
             }else{
-                $image_name = "no-image.png";
+                $image_name = "no-photos.svg";
             }
             $order = Electronics::max('order_item')+1;
             if($request->display == ''){
@@ -139,15 +141,17 @@ class ElectronicsController extends Controller
             if($request->image != $electronics->image){
                 $path = public_path().'/img/electronics';                
                 $electronicsPhoto = public_path('img/electronics/').$electronics->image;
-                $electronicsThumb = public_path('img/electronics/thumbs/').$electronics->image;
                 //Delete old images
                 unlink($electronicsPhoto);
-                unlink($electronicsThumb);
                 $extension = explode('/',explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
                 $imageName = $request->slug;
-                $image_name = $imageName.'.'.$extension;
-                \Image::make($request->image)->save($path.'/'.$image_name);
-                resize_crop_image(500, 500, $path."/". $image_name, $path."/thumbs/" . $image_name, $extension);                
+                $image_name = $imageName.'.svg';
+                if($extension == 'svg+xml'){
+                    $svgFile = file_get_contents($request->image);
+                    file_put_contents( $path.'/'.$image_name, $svgFile);
+                }else{  
+                    return ['result'=>'error', 'message' =>'SVG file only supported.'];
+                }                
                 $request->merge(['image' => $image_name]);
             }
 
@@ -155,9 +159,7 @@ class ElectronicsController extends Controller
             if ($electronics->slug != $request->slug && $request->image == $electronics->image){
                 $ext = getExtension($electronics->image);
                 $electronicsPhoto = public_path().'/img/electronics/';
-                $electronicsThumb = public_path().'/img/electronics/thumbs/';
                 rename($electronicsPhoto.$electronics->image, $electronicsPhoto.$request->slug.'.'.$ext);
-                rename($electronicsThumb.$electronics->image, $electronicsThumb.$request->slug.'.'.$ext);
                 $request->merge(['image' => $request->slug.'.'.$ext]);
             }
 
@@ -185,12 +187,13 @@ class ElectronicsController extends Controller
         if (\Gate::allows('canDelete')){
             //$this->authorize('isAdmin');
             $content = Electronics::where('slug', '=', $slug)->firstOrFail();
+            if($content->child == 1){
+                return ['result'=>'error', 'message' =>'Item has sub category.'];
+            }
             $old_image =  $content->image;
             $electronicsPhoto = public_path('img/electronics/').$old_image;
-            $electronicsThumb = public_path('img/electronics/thumbs/').$old_image;
             if(file_exists($electronicsPhoto)){
                 unlink($electronicsPhoto);
-                unlink($electronicsThumb);
             }
             //delete the electronics
             $content->delete();

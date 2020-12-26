@@ -72,6 +72,7 @@ class BlogController extends Controller
             $add = Blog::create([
                 'title' => $request['title'],
                 'slug' => $slug,
+                'brand' => $request['brand'],
                 'image' => $image_name,
                 'author' => $request['author'],
                 'date' => $request['date'],

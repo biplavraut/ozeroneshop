@@ -135,7 +135,7 @@
                                             :hide-selected="true"
                                             :searchable="true"
                                             :preserve-search="true"
-                                            :taggable="true" @input="checkSubBrand()"></multiselect>
+                                            :taggable="true" @input="checkChanges()"></multiselect>
                                         
                                         <!-- <div v-for="shopsection in shopsections" :key="shopsection.id">
                                             <b-form-group :label="shopsection.title">
@@ -708,6 +708,7 @@
                     brand:'',
                     sub_brand:'',
                     shop_category:'',
+                    change_shop_category: '0',
                     screen_detail:'',
                     operating_system:'',
                     main_camera:'',
@@ -744,6 +745,9 @@
             checkSubBrand(){
                 this.cform.subbrand = '';
                 this.sub_brands = this.cform.brand.children;
+            },
+            checkChanges(){
+                this.cform.change_shop_category = 1;
             },
             // Add, Edit or Delete Storage, Ram with Price 
             newStorage(){
@@ -1085,6 +1089,7 @@
                 if (this.$gate.isAuthorized()){
                     axios.get("../../../api/product?slug="+this.product_slug).then(({ data }) => (
                         this.cform.fill(data),
+                        this.cform.change_shop_category = 0,
                         this.cform.brand = JSON.parse(data.brand),
                         this.cform.sub_brand = JSON.parse(data.sub_brand),
                         this.cform.shop_category = JSON.parse(data.shop_category),
@@ -1104,6 +1109,7 @@
                     axios.get("../../../api/electronics").then(({ data }) => (this.electronics = data));
                     axios.get("../../../api/product?slug="+this.product_slug).then(({ data }) => (
                         this.cform.fill(data),
+                        this.cform.change_shop_category = 0,
                         this.cform.brand = JSON.parse(data.brand),
                         this.cform.sub_brand = JSON.parse(data.sub_brand),
                         this.cform.shop_category = JSON.parse(data.shop_category),

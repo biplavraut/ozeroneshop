@@ -55,17 +55,19 @@ class BrandController extends Controller
             $path = public_path().'/img/brand';
             if(!file_exists($path)){
                 \File::makeDirectory($path, $mode = 0777, true, true);
-                \File::makeDirectory($path . '/thumbs', $mode = 0777, true, true);
             }
-            if ($request->image){                
+            if ($request->image){            
                 $extension = explode('/',explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
                 $imageName = $slug;
-                $image_name = $imageName.'.'.$extension;
-                \Image::make($request->image)->save($path.'/'.$image_name);
-                resize_crop_image(500, 500, $path."/". $image_name, $path."/thumbs/" . $image_name, $extension);
-                $request->merge(['image' => $image_name]);
+                $image_name = $imageName.'.svg';
+                if($extension == 'svg+xml'){
+                    $svgFile = file_get_contents($request->image);
+                    file_put_contents( $path.'/'.$image_name, $svgFile);
+                }else{  
+                    return ['result'=>'error', 'message' =>'SVG file only supported.'];
+                }
             }else{
-                $image_name = "no-image.png";
+                $image_name = "no-photos.svg";
             }
             $order = Brand::max('order_item')+1;
             if($request->display == ''){
@@ -127,15 +129,18 @@ class BrandController extends Controller
             if($request->image != $brand->image){
                 $path = public_path().'/img/brand';                
                 $brandPhoto = public_path('img/brand/').$brand->image;
-                $brandThumb = public_path('img/brand/thumbs/').$brand->image;
                 //Delete old images
                 unlink($brandPhoto);
-                unlink($brandThumb);
                 $extension = explode('/',explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
                 $imageName = $request->slug;
                 $image_name = $imageName.'.'.$extension;
-                \Image::make($request->image)->save($path.'/'.$image_name);
-                resize_crop_image(500, 500, $path."/". $image_name, $path."/thumbs/" . $image_name, $extension);                
+                $image_name = $imageName.'.svg';
+                if($extension == 'svg+xml'){
+                    $svgFile = file_get_contents($request->image);
+                    file_put_contents( $path.'/'.$image_name, $svgFile);
+                }else{  
+                    return ['result'=>'error', 'message' =>'SVG file only supported.'];
+                }              
                 $request->merge(['image' => $image_name]);
             }
 
@@ -143,9 +148,7 @@ class BrandController extends Controller
             if ($brand->slug != $request->slug && $request->image == $brand->image){
                 $ext = getExtension($brand->image);
                 $brandPhoto = public_path().'/img/brand/';
-                $brandThumb = public_path().'/img/brand/thumbs/';
                 rename($brandPhoto.$brand->image, $brandPhoto.$request->slug.'.'.$ext);
-                rename($brandThumb.$brand->image, $brandThumb.$request->slug.'.'.$ext);
                 $request->merge(['image' => $request->slug.'.'.$ext]);
             }
 
@@ -175,10 +178,8 @@ class BrandController extends Controller
             $content = Brand::where('slug', '=', $slug)->firstOrFail();
             $old_image =  $content->image;
             $brandPhoto = public_path('img/brand/').$old_image;
-            $brandThumb = public_path('img/brand/thumbs/').$old_image;
             if(file_exists($brandPhoto)){
                 unlink($brandPhoto);
-                unlink($brandThumb);
             }
             //delete the brand
             $content->delete();

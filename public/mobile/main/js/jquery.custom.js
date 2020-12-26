@@ -1,68 +1,10 @@
 /*------------------------------------------------------------------
 jQuery document ready
 -------------------------------------------------------------------*/
-$(document).ready(function () {
+$(function () {
 	"use strict";
 	// GET PAGE ID
 	var pageid = $('.page').data("page");
-	
-	// LOAD PANEL LEFT
-	$( "#panel-left" ).load( "panel-left.html", function() {
-		var swipersubnav = new Swiper ('.panel__navigation', {
-			direction: 'horizontal',
-			effect: 'slide',
-			slidesPerView: 1,
-			slidesPerGroup: 1
-		}); 
-		swipersubnav.on('slideChangeTransitionEnd', function () {
-			$(".panel").animate({ scrollTop: 0 }, "slow");
-		});
-		$(".opensubnav").on('click', function(e) { 
-			swipersubnav.slideNext();
-		});
-		$(".backtonav").on('click', function(e) { 
-			swipersubnav.slidePrev();
-		});
-	});
-	
-	// LOAD PANEL RIGHT
-	$( "#panel-right" ).load( "panel-right.html" );
-	
-	//LOAD SOCIAL POPUP
-	$( "#popup-social" ).load( "popup-social.html" );
-	
-	//LOAD ALERT POPUP
-	$( "#popup-alert" ).load( "popup-alert.html" );
-	
-	//LOAD NOTIFICATIONS POPUP
-	$( "#popup-notifications" ).load( "popup-notifications.html" );
-	
-	//LOAD BOTTOM NAVIGATION
-	$( "#bottom-toolbar" ).load( "bottom-navigation.html", function() {
-		var swipernav = new Swiper ('.swiper-toolbar', {
-			direction: 'horizontal',
-			effect: 'slide',
-			slidesPerView: 1,
-			slidesPerGroup: 1,
-			spaceBetween: 0,
-/* 			pagination: {
-			el: '.bottom-navigation__pagination'
-			}, */
-			on: {
-			reachEnd: function () {
-			  $('.bottom-navigation__more').hide();
-			},
-			reachBeginning: function () {
-			  $('.bottom-navigation__more').show();
-			},
-			}
-		});
-		$(".bottom-navigation").on('click', '.bottom-navigation__more' ,function(){
-			swipernav.slideNext();
-		});
-	});
-
-	
 	
 	//OPEN PANEL ACTION
 	$(document).on('click', '.open-panel' ,function(){

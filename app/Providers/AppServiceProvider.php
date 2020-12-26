@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Electronics;
+use App\Models\Product_Electronics;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +26,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        //Share data to all views
+        $elect_product = Product_Electronics::with('getElectronicsRelation')->distinct()->pluck('electronic_id');
+        $elect_categories = Electronics::where('display','=',1)->whereIn('id', $elect_product)->orderBy('order_item')->get();
+        View::share('elect_categories', $elect_categories);
+
+        // Share data to selected views using view composer
+
+        // View::composer(['','home','products.*','blog-news'], function($view){
+        //     $view->with('elect_categories', $elect_categories)
+        // });
+
+        
     }
 }

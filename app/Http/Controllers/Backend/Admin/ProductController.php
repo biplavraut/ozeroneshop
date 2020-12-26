@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Product;
+use App\Models\Product_Section;
+use App\Models\Product_Electronics;
 
 class ProductController extends Controller
 {
@@ -108,6 +110,19 @@ class ProductController extends Controller
     {
         //
         if (\Gate::allows('canEdit')){
+            if($request->change_shop_category == 1){
+                $del = Product_Electronics::where('product_id', '=', $request->id)->delete();
+                $product_id = $request->id;
+                $categories = array();
+                $categories = $request->shop_category;
+                for($i = 0; $i < count($categories); $i++) {
+                    $electronic_id = $categories[$i]['id'];
+                    $add_electronics = Product_Electronics::create([
+                        'product_id' => $product_id,
+                        'electronic_id' => $electronic_id
+                    ]);
+                }
+            }
             $this->validate($request, [
                 'title' => 'required|string|max:250'
             ]);

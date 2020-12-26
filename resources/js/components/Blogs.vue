@@ -151,6 +151,17 @@
                                     <div class="form-group">
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend">
+                                                <div class="input-group-text">Brand</div>
+                                            </div>
+                                            <b-form-select v-model="form.brand" :options="brands" value-field="id" text-field="title"></b-form-select>
+                                            <has-error :form="form" field="brand"></has-error>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="input-group mb-2">
+                                            <div class="input-group-prepend">
                                                 <div class="input-group-text">Image</div>
                                             </div>
                                             <input type="file" name="image"  @change="imageUpload"
@@ -280,6 +291,7 @@
                 editmode: false,
                 totalblog : 0,
                 blogs : [],
+                brands: [],
                 form: new Form({
                     id:'',
                     title :'',
@@ -287,6 +299,7 @@
                     image:'',
                     display:'',
                     author:'',
+                    brand:'',
                     date:'',
                     meta_keywords:'',
                     meta_tags:'',
@@ -441,6 +454,7 @@
                 this.$Progress.start();
                 if (this.$gate.isAuthorized()){
                     axios.get("../../api/blog").then(({ data }) => (this.blogs = data, this.totalblog = data.total));
+                    axios.get("../../../api/brand").then(({ data }) => (this.brands = data));
                     this.$Progress.finish();
                 }
             }

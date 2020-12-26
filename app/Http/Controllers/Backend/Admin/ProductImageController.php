@@ -48,7 +48,7 @@ class ProductImageController extends Controller
                 $imageName = $request->content_slug;
                 $image_name = $imageName.'_'.$unique.'.'.$extension;
                 \Image::make($request->image)->save($path.'/'.$image_name);
-                resize_crop_image(280, 180, $path."/". $image_name, $path."/thumbs/" . $image_name, $extension);                
+                resize_crop_image(1000, 1000, $path."/". $image_name, $path."/thumbs/" . $image_name, $extension);                
             }else{
                 $image_name = "no-image.png";
             }

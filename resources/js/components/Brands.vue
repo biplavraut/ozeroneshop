@@ -103,7 +103,7 @@
                                                 <span class="d-none d-md-block"><i class="fas fa-edit"></i> Edit</span>
                                                 <span class="d-md-none"><i class="fas fa-edit"></i></span>
                                             </a>
-                                            <a href="#" @click="deleteSlider(item.slug)" class="btn btn-sm btn-danger">
+                                            <a href="#" @click="deleteBrand(item.slug)" class="btn btn-sm btn-danger">
                                                 <span class="d-none d-md-block"><i class="fas fa-trash"></i> Delete</span>
                                                 <span class="d-md-none"><i class="fas fa-trash"></i></span>
                                             </a>
@@ -148,7 +148,7 @@
                                     <div class="form-group">
                                 <div class="input-group mb-2">
                                     <div class="input-group-prepend">
-                                        <div class="input-group-text">Image</div>
+                                        <div class="input-group-text">SVG <small>512x512</small></div>
                                     </div>
                                     <input type="file" name="image"  @change="imageUpload"
                                         placeholder="Image"

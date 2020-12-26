@@ -3,11 +3,12 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-window.$ = window.jQuery = require('jquery');
+// window.$ = window.jQuery = require('jquery');
+require('./bootstrap');
 window.Vue = require('vue');
 
-Vue.component(HasError.name, HasError);
-Vue.component(AlertError.name, AlertError);
+// Vue.component(HasError.name, HasError);
+// Vue.component(AlertError.name, AlertError);
 
 
 /*Start of Progress Bar*/
@@ -138,13 +139,5 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
-    router,
-    data:{
-        search:''
-    },
-    methods:{
-        searchit: _.debounce(() =>{
-            Fire.$emit('searching');
-        },1000)
-    }
+    router
 });

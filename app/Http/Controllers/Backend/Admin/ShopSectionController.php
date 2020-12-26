@@ -57,18 +57,19 @@ class ShopSectionController extends Controller
             $path = public_path().'/img/shopsection';
             if(!file_exists($path)){
                 \File::makeDirectory($path, $mode = 0777, true, true);
-                \File::makeDirectory($path . '/thumbs', $mode = 0777, true, true);
             }
             if ($request->image){
                 $extension = explode('/',explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
                 $imageName = $slug;
-                $image_name = $imageName.'.'.$extension;
-                \Image::make($request->image)->save($path.'/'.$image_name);
-                resize_crop_image(500, 500, $path."/". $image_name, $path.'/thumbs/'. $image_name, $extension);
-                $request->merge(['image' => $image_name]);
-                $image = $image_name;
+                $image_name = $imageName.'.svg';
+                if($extension == 'svg+xml'){
+                    $svgFile = file_get_contents($request->image);
+                    file_put_contents( $path.'/'.$image_name, $svgFile);
+                }else{  
+                    return ['result'=>'error', 'message' =>'SVG file only supported.'];
+                }
             }else{
-                $image_name = "no-image.png";
+                $image_name = "no-photos.svg";
             }
             $order = Shopsection::max('order_item')+1;
             if($request->display == ''){
@@ -127,15 +128,17 @@ class ShopSectionController extends Controller
             if($request->image != $section->image){
                 $path = public_path().'/img/shopsection';
                 $sectionPhoto = public_path('img/shopsection/').$section->image;
-                $sectionThumb = public_path('img/shopsection/thumbs/').$section->image;
                 //Delete old section image
                 unlink($sectionPhoto);
-                unlink($sectionThumb);
                 $extension = explode('/',explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
                 $imageName = $request->slug;
-                $image_name = $imageName.'.'.$extension;
-                \Image::make($request->image)->save($path.'/'.$image_name);
-                resize_crop_image(500, 500, $path."/". $image_name, $path.'/thumbs/'. $image_name, $extension);
+                $image_name = $imageName.'.svg';
+                if($extension == 'svg+xml'){
+                    $svgFile = file_get_contents($request->image);
+                    file_put_contents( $path.'/'.$image_name, $svgFile);
+                }else{  
+                    return ['result'=>'error', 'message' =>'SVG file only supported.'];
+                }
                 $request->merge(['image' => $image_name]);
             }
 
@@ -143,9 +146,7 @@ class ShopSectionController extends Controller
             if ($section->slug != $request->slug && $request->image == $section->image){
                 $ext = getExtension($section->image);
                 $sectionPhoto = public_path().'/img/shopsection/';
-                $sectionThumb = public_path().'/img/shopsection/thumbs/';
                 rename($sectionPhoto.$section->image, $sectionPhoto.$request->slug.'.'.$ext);
-                rename($sectionThumb.$section->image, $sectionThumb.$request->slug.'.'.$ext);
                 $request->merge(['image' => $request->slug.'.'.$ext]);
             }
 
@@ -171,13 +172,14 @@ class ShopSectionController extends Controller
         if (\Gate::allows('canDelete')){
             //$this->authorize('isAdmin');
             $content = Shopsection::where('slug', '=', $slug)->firstOrFail();
+            if(count($content->getElectronicsRelation) > 0){
+                return ['result'=>'error', 'message' =>'Shop Section contains categories.'];
+            }
             $old_image =  $content->image;
             $sectionPhoto = public_path('img/shopsection/').$old_image;
-            $sectionThumb = public_path('img/shopsection/thumbs/').$old_image;
-                if(file_exists($sectionPhoto)){
-                    unlink($sectionPhoto);
-                    unlink($sectionThumb);
-                }
+            if(file_exists($sectionPhoto)){
+                unlink($sectionPhoto);
+            }
             //delete the section
             $content->delete();
             return ['result'=>'success', 'message' => $content->title .' deleted successfully'];

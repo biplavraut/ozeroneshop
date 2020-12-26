@@ -17,6 +17,7 @@ class CreateBlogsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug')->unique();
+            $table->int('brand');
             $table->string('image')->default('no-image.png')->nullable();
             $table->tinyInteger('display')->default(0);
             $table->string('date')->nullable();

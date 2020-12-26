@@ -9,6 +9,9 @@ class Blog extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'title','slug','image','author','date','display','order_item','meta_keywords','meta_tags','meta_categories','excerpt'
+        'title','slug','brand','image','author','date','display','order_item','meta_keywords','meta_tags','meta_categories','excerpt'
     ];
+    public function getBrandRelation(){
+        return $this->hasOne('App\Models\Brand', 'id', 'brand');
+    }
 }
