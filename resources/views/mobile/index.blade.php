@@ -126,10 +126,24 @@
 				</div> -->
 		</div>
 		@endforeach
-			<div class="page__title-bar">
-				<h2 class="page__title">Smart Phones</h2>
+			
+		<div class="fieldset">
+			<h2 class="page__title">Top Brands</h2>
+			<div class="cards cards--14">
+				@foreach($brands as $brand)
+				<div class="card card--style-thumb">
+					<div class="card__thumb card__thumb--round-corners-full">
+						<img src="{{asset('img/brand/'. $brand->image .'')}}" alt="" title=""/> 
+					</div>
+					<h4 class="card__title card__title--centered">{{$brand->title}}</h4>
+				</div>
+				@endforeach
 			</div>
-			<div class="product-view cards cards--12" id="loadlist-shop">
+		</div>
+		<div class="page__title-bar">
+			<h2 class="page__title">Smart Phones</h2>
+		</div>
+		<div class="product-view cards cards--12" id="loadlist-shop">
 			@foreach($smart_phones as $smart_phone)
             <div class="card card--style-thumb">
                 <div class="card__thumb card__thumb--round-corners product">
