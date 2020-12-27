@@ -72,7 +72,7 @@
 						<a href="/product-detail/{{$feature->slug}}"><img src="img/product/{{ $feature->slug }}/thumbs/{{ $display_image->image }}" alt="" title=""/></a>					
 						@endif
 					@endforeach
-					@if ($feature->discount > 0)<div class="slider-thumbs__discount"><span>-{{$feature->discount}}%</span></div>@endif
+					<!-- @if ($feature->discount > 0)<div class="slider-thumbs__discount"><span>-{{$feature->discount}}%</span></div>@endif -->
 						<div class="slider-thumbs__top-right-info">
 							<div class="slider-thumbs__rating">
 								<span class="fas fa-star checked"></span>
@@ -83,16 +83,17 @@
 							</div>
 						</div>
 						<div class="slider-thumbs__bottom-right-info">
-							<div class="slider-thumbs__wishlist"><a href="#"><img src="mobile/assets/images/icons/black/love.svg" alt="" title=""/></a></div>
+							<div class="slider-thumbs__wishlist"><a href="#"><img src="mobile/assets/images/icons/blue/love.svg" alt="" title=""/></a></div>
 						</div>
 					</div>
 					<div class="slider-thumbs__caption caption">
 						<div class="caption__content">
-							<h2 class="caption__title">{{$feature->title}}</h2>
-							<a class="caption__price" href="#">@if ($feature->discount > 0)<span> NPR {{$feature->price}} </span><br> NPR {{$feature->price - ($feature->discount/100*$feature->price)}}@else <br> NPR {{$feature->price}} @endif</a>
-							<a class="caption__cart addtocart" href="#"><i class="fas fa-cart-plus"></i> Add to Cart</a>
+							<h2 class="caption__title">{{ substr($feature->title, 0, 55)}}</h2>
+							<a class="caption__price" href="#">@if ($feature->discount > 0)NPR <span>{{$feature->price}} </span> {{ round($feature->price - ($feature->discount/100*$feature->price))}}@else NPR {{$feature->price}} @endif</a>
+							<a class="caption__cart addtocart" href="#">Buy Now</a>
 						</div>
 					</div>
+					
 				</div> 
 				@endforeach				 
 			</div>
@@ -150,7 +151,7 @@
 						@endforeach
 					@endif
                     <div class="card_latest"><span>Latest</span></div>
-                    <div class="card__top-right-info">
+                    <!-- <div class="card__top-right-info">
                         <div class="card__rating">
                             <span class="fas fa-star checked"></span>
                             <span class="fas fa-star checked"></span>
@@ -158,16 +159,26 @@
                             <span class="fas fa-star checked"></span>
                             <span class="fas fa-star"></span>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="card__bottom-right-info">
-                        <div class="card_wishlist"><a href="#"><img src="{{asset('mobile/assets/images/icons/black/love.svg')}}" alt="Ozerone Wishlist" title="Add to Wishlist"/></a></div>
+                        <div class="card_wishlist"><a href="#"><img src="{{asset('mobile/assets/images/icons/blue/love.svg')}}" alt="Ozerone Wishlist" title="Add to Wishlist"/></a></div>
                     </div>
-                </div>
-                <h4 class="card__title">{{$smart_phone->title}}</h4>
-                <div style="display:flex;">
-                    <p class="card_price">NPR {{$smart_phone->price}}</p>
-                    <a class="card_cart addtocart" href="#"><i class="fas fa-cart-plus"></i> Add to Cart</a>
-                </div>
+				</div>
+				<div class="card-detail">
+					<h4 class="card__title">{{ substr($smart_phone->title, 0, 55)}}</h4>
+					<div style="display:flex;">
+						<p class="card_price">NPR {{$smart_phone->price}}</p>
+						<a class="card_cart addtocart" href="#">Cart</a>
+					</div>
+					<div class="card__rating">
+                            <span class="fas fa-star checked"></span>
+                            <span class="fas fa-star checked"></span>
+                            <span class="fas fa-star checked"></span>
+                            <span class="fas fa-star checked"></span>
+							<span class="fas fa-star"></span>
+                        </div>
+				</div>
+					
             </div>
 			@endforeach
             
