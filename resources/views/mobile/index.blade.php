@@ -150,7 +150,7 @@
 						@endif
 						@endforeach
 					@endif
-                    <div class="card_latest"><span>Latest</span></div>
+                    @if($smart_phone->id==1)<div class="card_latest"><span>Latest</span></div>@endif
                     <!-- <div class="card__top-right-info">
                         <div class="card__rating">
                             <span class="fas fa-star checked"></span>
