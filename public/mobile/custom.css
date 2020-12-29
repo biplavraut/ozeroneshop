@@ -178,6 +178,13 @@ body{
     max-width: 50%;
     border-radius: 0px !important; 
 }
+.my-slider-thumbs .cap {
+    padding: 0;
+    text-align: left;
+    color: #0d3567;
+    /* background: #f1f8fc; */
+    border-radius: 0 0 15px 15px;
+}
 /* Featured Slider */
 .slider-thumbs__image--round-corners img {
     border-radius: 15px 15px 0 0;
@@ -497,4 +504,23 @@ input[type=number] {
 .size-selectors input[type="radio"]:checked + label {
     background-color: #165293;
     color: #ffffff;
+}
+
+/* HOme page brand logo */
+.brand-thumb{
+    padding: 10px;
+}
+
+/* Promo */
+/* .promo__gradient{
+    background: linear-gradient(to bottom, rgba(0, 9, 95, 0), #4d91c6);
+} */
+.promo__gradient {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    z-index: 11;
+    background: linear-gradient(to bottom, rgba(0, 9, 95, 0), #4d91c6);
 }

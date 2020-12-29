@@ -22,7 +22,7 @@ class PageController extends Controller
     {
         $brands = Brand::with('getSectionRelation')->orderBy("order_item")->get();
         $sliders = Slider::orderBy("order_item")->get();
-        $blogs = Blog::with('getBrandRelation')->orderBy("order_item")->get();
+        $blogs = Blog::with('getBrandRelation')->orderBy("order_item")->limit(1)->get();
         $featured = Product::with('getStorageRelation')->with('getColorRelation')->with('getImageRelation')->with('getDetailRelation')->orderBy("order_item")->where('display','=',1)->where('featured','=',1)->get();
 
         $electronics_products = Product_Electronics::where('electronic_id','=',1)->pluck('product_id');

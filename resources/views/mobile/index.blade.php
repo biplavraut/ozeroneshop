@@ -100,7 +100,23 @@
 			<div class="swiper-pagination slider-thumbs__pagination"></div>
 	
 		</div>
-		<!-- SLIDER THUMBS 4 round -->
+		<!-- End of Featured -->
+		<div class="page__title-bar">
+		<h3>Get flat 10% discount on XIAOMI Phones<span> Promo Code 'O01XOMI'</span></h3>
+		</div>
+		<div class="cards cards--11">			
+			<div class="card card--style-cover card--style-round-corners" style="background-image:url(img/promo/prmo-1.png);  background-repeat: no-repeat;  background-size: cover; min-height:150px;">
+				<!-- <div class="promo__gradient"></div> -->
+
+				<!-- <div class="card__icon card__icon--centered"><img src="mobile/assets/images/icons/brands/xiaomi.svg" alt="" title=""/></div>
+				<h4 class="card__title card__title--centered">PROMO CODE O01-XOMI10</h4>
+				<p class="card__text card__text--centered">Get flat 10% on XIAOMI Phone</p> -->
+				<div class="card__top-right-info">
+					<div class="card__more"><a href="#"><img src="mobile/assets/images/icons/white/more.svg" alt="" title=""/></a></div>
+				</div>
+				  
+			</div>
+		</div>
 		
 		<div class="page__title-bar">
 			<h2 class="page__title">Latest News</h2>
@@ -132,7 +148,7 @@
 			<div class="cards cards--14">
 				@foreach($brands as $brand)
 				<div class="card card--style-thumb">
-					<div class="card__thumb card__thumb--round-corners-full">
+					<div class="card__thumb brand-thumb">
 						<img src="{{asset('img/brand/'. $brand->image .'')}}" alt="" title=""/> 
 					</div>
 					<h4 class="card__title card__title--centered">{{$brand->title}}</h4>
@@ -182,7 +198,7 @@
 					<h4 class="card__title">{{ substr($smart_phone->title, 0, 55)}}</h4>
 					<div style="display:flex;">
 						<p class="card_price">NPR {{$smart_phone->price}}</p>
-						<a class="card_cart addtocart" href="#">Cart</a>
+						<a class="card_cart addtocart" href="#">Add to Cart</a>
 					</div>
 					<div class="card__rating">
                             <span class="fas fa-star checked"></span>
