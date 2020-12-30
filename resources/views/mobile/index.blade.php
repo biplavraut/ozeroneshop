@@ -21,9 +21,9 @@
 @include('mobile.includes.sidebar')
 @include('mobile.includes.cart')
 @include('mobile.includes.search')
+@include('mobile.includes.popups')
 
 <div class="page page--main" data-page="shop">
-	
 	<!-- HEADER -->
 	<header class="header header--fixed header--change">	
 		<div class="header__inner">	
@@ -83,7 +83,11 @@
 							</div>
 						</div>
 						<div class="slider-thumbs__bottom-right-info">
+							@auth
 							<div class="slider-thumbs__wishlist"><a href="#"><img src="mobile/assets/images/icons/blue/love.svg" alt="" title=""/></a></div>
+							@else
+							<div class="slider-thumbs__wishlist"><a href="#" data-popup="wishlist" class="open-popup"><img src="mobile/assets/images/icons/blue/love.svg" alt="" title=""/></a></div>
+							@endif
 						</div>
 					</div>
 					<div class="slider-thumbs__caption caption">
@@ -112,7 +116,7 @@
 				<h4 class="card__title card__title--centered">PROMO CODE O01-XOMI10</h4>
 				<p class="card__text card__text--centered">Get flat 10% on XIAOMI Phone</p> -->
 				<div class="card__top-right-info">
-					<div class="card__more"><a href="#"><img src="mobile/assets/images/icons/white/more.svg" alt="" title=""/></a></div>
+					<div class="view__more"><a href="#"><img src="logo/logo.svg" style="width:25px;" alt="" title=""/></a></div>
 				</div>
 				  
 			</div>
@@ -149,9 +153,9 @@
 				@foreach($brands as $brand)
 				<div class="card card--style-thumb">
 					<div class="card__thumb brand-thumb">
-						<img src="{{asset('img/brand/'. $brand->image .'')}}" alt="" title=""/> 
+						<a href=""><img src="{{asset('img/brand/'. $brand->image .'')}}" alt="" title=""/> </a>
 					</div>
-					<h4 class="card__title card__title--centered">{{$brand->title}}</h4>
+					<a href=""><h4 class="card__title card__title--centered">{{$brand->title}}</h4></a>
 				</div>
 				@endforeach
 			</div>

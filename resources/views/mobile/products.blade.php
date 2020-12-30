@@ -17,6 +17,7 @@
 @include('mobile.includes.sidebar')
 @include('mobile.includes.cart')
 @include('mobile.includes.search')
+@include('mobile.includes.popups')
 
 <div class="page page--main" data-page="products">
 	

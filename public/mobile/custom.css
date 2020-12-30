@@ -524,3 +524,15 @@ input[type=number] {
     z-index: 11;
     background: linear-gradient(to bottom, rgba(0, 9, 95, 0), #4d91c6);
 }
+.view__more{
+    width: 25px;
+    padding: 5px;    
+}
+.view__more img{
+    -webkit-animation:spin 6s linear infinite;
+    -moz-animation:spin 6s linear infinite;
+    animation:spin 6s linear infinite;
+}
+@-moz-keyframes spin { 100% { -moz-transform: rotate(-360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(-360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(-360deg); transform:rotate(-360deg); } }
