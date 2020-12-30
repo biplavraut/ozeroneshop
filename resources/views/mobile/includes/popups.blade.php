@@ -12,7 +12,7 @@
 
 <div class="popup popup--half popup--wishlist">
       <div class="popup__close"><a href="#" class="close-popup" data-popup="wishlist"><img src="{{asset('mobile/assets/images/icons/blue/close.svg')}}" alt="" title=""/></a></div>
-      <h2 class="popup__title">Share</h2>
+      <h2 class="popup__title">Wishlist</h2>
       <nav class="social-nav">
       <p>Please! login or Register to continue.</p>
 		  <div class="splash__buttons">
