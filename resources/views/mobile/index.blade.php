@@ -195,7 +195,11 @@
                         </div>
                     </div> -->
                     <div class="card__bottom-right-info">
-                        <div class="card_wishlist"><a href="#"><img src="{{asset('mobile/assets/images/icons/blue/love.svg')}}" alt="Ozerone Wishlist" title="Add to Wishlist"/></a></div>
+						@auth
+						<div class="card_wishlist"><a href="#"><img src="{{asset('mobile/assets/images/icons/blue/love.svg')}}" alt="Ozerone Wishlist" title="Add to Wishlist"/></a></div>
+						@else
+						<div class="card_wishlist"><a href="#" data-popup="wishlist" class="open-popup"><img src="{{asset('mobile/assets/images/icons/blue/love.svg')}}" alt="Ozerone Wishlist" title="Add to Wishlist"/></a></div>
+						@endif
                     </div>
 				</div>
 				<div class="card-detail">

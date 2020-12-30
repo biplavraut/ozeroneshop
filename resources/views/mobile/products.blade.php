@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, minimal-ui">
 <title>Shop, Online electronics shop in Nepal</title>
+<!-- Favicon -->
+<link rel="icon" href="{{asset('logo/favicon.png')}}" type="image/png">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;300;400;500;600;700;900&display=swap" rel="stylesheet">  
 <link rel="stylesheet" href="{{asset('mobile/vendor/swiper/swiper.min.css')}}">
@@ -68,13 +70,30 @@
                 </ul>
             </div>
         </div>
-        <div class="product-view cards cards--11" id="loadlist-shop">
-            @foreach($products as $product)
+        <div class="product-view cards cards--12" id="loadlist-shop">
+			@foreach($products as $product)
             <div class="card card--style-thumb">
-                <div class="card__thumb card__thumb--round-corners">
-                    <a href="#"><img src="{{asset('mobile/assets/img/product3.jpg')}}" alt="" title=""/></a>
-                    <div class="card_latest"><span>Latest</span></div>
-                    <div class="card__top-right-info">
+                <div class="card__thumb card__thumb--round-corners product">
+					@if(count($product->getImageRelation)>10)
+					<div class="swiper-container slider-simple slider-simple--round-corners slider-init mb-10" data-paginationtype="bullets" data-spacebetweenitems="0" data-itemsperview="1">
+						<div class="swiper-wrapper">
+							@foreach($product->getImageRelation as $display_image)
+							<div class="swiper-slide slider-simple__slide" style="background-image:url(../img/product/{{ $product->slug }}/{{ $display_image->image }});">
+							</div>
+							@endforeach
+						</div>
+						<div class="swiper-pagination slider-simple__pagination"></div>
+					</div>
+					@else
+						@foreach($product->getImageRelation as $display_image)
+                        @if($display_image->primary == 1)
+                        
+						<a href="/product-detail/{{$product->slug}}"><img src="{{asset('img/product/'.$product->slug.'/thumbs/'. $display_image->image .'')}}" alt="{{ $product->slug }}" title="{{ $display_image->image }}"/></a>					
+						@endif
+						@endforeach
+					@endif
+                    @if($product->id==1)<div class="card_latest"><span>Latest</span></div>@endif
+                    <!-- <div class="card__top-right-info">
                         <div class="card__rating">
                             <span class="fas fa-star checked"></span>
                             <span class="fas fa-star checked"></span>
@@ -82,42 +101,33 @@
                             <span class="fas fa-star checked"></span>
                             <span class="fas fa-star"></span>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="card__bottom-right-info">
-                        <div class="card_wishlist"><a href="#"><img src="{{asset('mobile/assets/images/icons/black/love.svg')}}" alt="" title=""/></a></div>
+                        @auth
+                        <div class="card_wishlist"><a href="#"><img src="{{asset('mobile/assets/images/icons/blue/love.svg')}}" alt="Ozerone Wishlist" title="Add to Wishlist"/></a></div>
+                        @else
+                        <div class="card_wishlist"><a href="#" data-popup="wishlist" class="open-popup"><img src="{{asset('mobile/assets/images/icons/blue/love.svg')}}" alt="Ozerone Wishlist" title="Add to Wishlist"/></a></div>
+                        @endif
                     </div>
-                </div>
-                <h4 class="card__title">Samsung Galaxy</h4>
-                <div style="display:flex;">
-                    <p class="card_price">NPR 49,999</p>
-                    <a class="card_cart addtocart" href="#"><i class="fas fa-cart-plus"></i> Add to Cart</a>
-                </div>
-            </div>
-            @endforeach
-            
-            <div class="card card--style-thumb">
-                <div class="card__thumb card__thumb--round-corners">
-                    <a href="#"><img src="{{asset('mobile/assets/img/product2.jpg')}}" alt="" title=""/></a>
-                    <div class="card_sale"><span>SALE</span></div>
-                    <div class="card__top-right-info">
-                            <div class="card__rating">
-                                <span class="fas fa-star checked"></span>
-                                <span class="fas fa-star checked"></span>
-                                <span class="fas fa-star checked"></span>
-                                <span class="fas fa-star checked"></span>
-                                <span class="fas fa-star"></span>
-                            </div>
+				</div>
+				<div class="card-detail">
+					<h4 class="card__title">{{ substr($product->title, 0, 55)}}</h4>
+					<div style="display:flex;">
+						<p class="card_price">NPR {{$product->price}}</p>
+						<a class="card_cart addtocart" href="#">Add to Cart</a>
+					</div>
+					<div class="card__rating">
+                            <span class="fas fa-star checked"></span>
+                            <span class="fas fa-star checked"></span>
+                            <span class="fas fa-star checked"></span>
+                            <span class="fas fa-star checked"></span>
+							<span class="fas fa-star"></span>
                         </div>
-                    <div class="card__bottom-right-info">
-                        <div class="card_wishlist"><a href="#"><img src="{{asset('mobile/assets/images/icons/black/love.svg')}}" alt="" title=""/></a></div>
-                    </div>
-                </div>
-                <h4 class="card__title">Samsung Galaxy A51</h4>
-                <div style="display:flex;">
-                    <p class="card_price">NPR 49,999</p>
-                    <a class="card_cart addtocart" href="#"><i class="fas fa-cart-plus"></i> Add to Cart</a>
-                </div>
+				</div>
+					
             </div>
+			@endforeach
+            
         </div>
 	</div>
 	<!-- PAGE END -->
