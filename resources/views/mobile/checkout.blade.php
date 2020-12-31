@@ -86,78 +86,27 @@
 		
 		<div class="fieldset">
 			<div class="cart cart--page">
-				<div class="swiper-container slider-init-swipe cart__item" id="item0">
+				@if(Cart::count() > 0)
+				@foreach(Cart::content() as $item)
+				<div class="swiper-container slider-init-swipe cart__item" id="item{{ $loop->index }}">
 					<div class="swiper-wrapper">
 						<div class="swiper-slide cart__item-details">
 							<div class="cart__item-thumb cart__item-thumb--round-corners"><a href="shop-details.html"><img src="../../assets/images/products/image-6.jpg" alt="" title=""/></a></div>
-							<h4 class="cart__item-title">Smart Chair <span>$40</span></h4>
+							<h4 class="cart__item-title">{{$item->model->title}} <span>NPR {{$item->model->price}}</span></h4>
 							<div class="cart__item-qty">
 								<form id="myform" method="POST" action="#" class="quantity quantity--small quantity--page">
-									<input type="button" value="-" class="quantity__button quantity__button--minus" field="quantity1" />
-									<input type="text" name="quantity1" value="1" class="quantity__input" />
-									<input type="button" value="+" class="quantity__button quantity__button--plus" field="quantity1" />
+									<input type="button" value="-" class="quantity__button quantity__button--minus" field="quantity{{ $loop->index }}" />
+									<input type="text" name="quantity{{ $loop->index }}" value="{{$item->qty}}" class="quantity__input" />
+									<input type="button" value="+" class="quantity__button quantity__button--plus" field="quantity{{ $loop->index }}" />
 								</form>
 							</div>
-							<div class="cart__item-more" data-swipe-item="0"><img src="../../assets/images/icons/blue/more.svg" alt="" title=""/></div>
+							<div class="cart__item-more" data-swipe-item="{{ $loop->index }}"><img src="../../assets/images/icons/blue/more.svg" alt="" title=""/></div>
 						</div>
-						<div class="swiper-slide cart__item-delete"><a href="#" class="delete-item" data-delete-item="0">REMOVE</a></div>
+						<div class="swiper-slide cart__item-delete"><a href="#" class="delete-item" data-delete-item="{{ $loop->index }}">REMOVE</a></div>
 					</div>
 				</div>
-				
-				<div class="swiper-container slider-init-swipe cart__item" id="item1">
-					<div class="swiper-wrapper">
-						<div class="swiper-slide cart__item-details">
-							<div class="cart__item-thumb cart__item-thumb--round-corners"><a href="shop-details.html"><img src="../../assets/images/products/image-1.jpg" alt="" title=""/></a></div>
-							<h4 class="cart__item-title">Designer Bag<span>$580</span></h4>
-							<div class="cart__item-qty">
-								<form id="myform" method="POST" action="#" class="quantity quantity--small quantity--page">
-									<input type="button" value="-" class="quantity__button quantity__button--minus" field="quantity2" />
-									<input type="text" name="quantity2" value="1" class="quantity__input" />
-									<input type="button" value="+" class="quantity__button quantity__button--plus" field="quantity2" />
-								</form>
-							</div>
-							<div class="cart__item-more" data-swipe-item="1"><img src="../../assets/images/icons/blue/more.svg" alt="" title=""/></div>
-						</div>
-						<div class="swiper-slide cart__item-delete"><a href="#" class="delete-item" data-delete-item="1">REMOVE</a></div>
-					</div>
-				</div>
-				
-				<div class="swiper-container slider-init-swipe cart__item" id="item2">
-					<div class="swiper-wrapper">
-						<div class="swiper-slide cart__item-details">
-							<div class="cart__item-thumb cart__item-thumb--round-corners"><a href="shop-details.html"><img src="../../assets/images/products/image-5.jpg" alt="" title=""/></a></div>
-							<h4 class="cart__item-title">Smart Watch <span>$250</span></h4>
-							<div class="cart__item-qty">
-								<form id="myform" method="POST" action="#" class="quantity quantity--small quantity--page">
-									<input type="button" value="-" class="quantity__button quantity__button--minus" field="quantity3" />
-									<input type="text" name="quantity3" value="1" class="quantity__input" />
-									<input type="button" value="+" class="quantity__button quantity__button--plus" field="quantity3" />
-								</form>
-							</div>
-							<div class="cart__item-more" data-swipe-item="2"><img src="../../assets/images/icons/blue/more.svg" alt="" title=""/></div>
-						</div>
-						<div class="swiper-slide cart__item-delete"><a href="#" class="delete-item" data-delete-item="2">REMOVE</a></div>
-					</div>
-				</div>
-				
-				<div class="swiper-container slider-init-swipe cart__item" id="item3">
-					<div class="swiper-wrapper">
-						<div class="swiper-slide cart__item-details">
-							<div class="cart__item-thumb cart__item-thumb--round-corners"><a href="shop-details.html"><img src="../../assets/images/products/image-3.jpg" alt="" title=""/></a></div>
-							<h4 class="cart__item-title">Brand Shoes<span>$80</span></h4>
-							<div class="cart__item-qty">
-								<form id="myform" method="POST" action="#" class="quantity quantity--small quantity--page">
-									<input type="button" value="-" class="quantity__button quantity__button--minus" field="quantity4" />
-									<input type="text" name="quantity4" value="1" class="quantity__input" />
-									<input type="button" value="+" class="quantity__button quantity__button--plus" field="quantity4" />
-								</form>
-							</div>
-							<div class="cart__item-more" data-swipe-item="3"><img src="../../assets/images/icons/blue/more.svg" alt="" title=""/></div>
-						</div>
-						<div class="swiper-slide cart__item-delete"><a href="#" class="delete-item" data-delete-item="3">REMOVE</a></div>
-					</div>
-				</div>
-
+				@endforeach
+				@endif
 			 </div>
 		</div>
 		<h2 class="page__title">Select Payment</h2>
@@ -184,16 +133,16 @@
 		<h2 class="page__title">Your Total</h2> 
 		<div class="cart__total cart__total--page">
 			<div class="d-flex align-items-center justify-space pb-10">
-				<span>CART TOTAL</span>  <b>$ 950.00</b>
+				<span>CART TOTAL</span>  <b>NPR {{$item->total}}</b>
 			</div>
-			<div class="d-flex align-items-center justify-space pb-10">
+			<!-- <div class="d-flex align-items-center justify-space pb-10">
 				<span>VAT (10%)</span>  <b>$ 95.00</b>
-			</div>
+			</div> -->
 			<div class="d-flex align-items-center justify-space pb-10">
-				<span>SHIPPING</span>  <b>$ 25.00</b>
+				<span>SHIPPING</span>  <b>NPR 200.00</b>
 			</div>
 			<div class="total d-flex align-items-center justify-space pb-10">
-				<span>TOTAL</span> <strong>$ 1,065.00</strong>
+				<span>TOTAL</span> <strong>NPR {{$item->total+200}}</strong>
 			</div>
 		</div>
 		<div class="buttons buttons--centered mb-40">

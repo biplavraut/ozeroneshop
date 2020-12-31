@@ -28,11 +28,11 @@
 			  	<div class="d-flex align-items-center justify-space pb-10">
 					<span>CART TOTAL</span>  <b>NPR {{$item->total}}</b>
 			  	</div>
-			  	<div class="d-flex align-items-center justify-space pb-10">
+			  	<!-- <div class="d-flex align-items-center justify-space pb-10">
 					<span>VAT (10%)</span>  <b>NPR 1,59,0</b>
-			  	</div>
+			  	</div> -->
 			  	<div class="total d-flex align-items-center justify-space pb-10">
-					<span>TOTAL</span> <strong>NPR 1,61,000</strong>
+					<span>TOTAL</span> <strong>NPR {{$item->total+200}}</strong>
 			  	</div>
 			</div>
 			<div class="buttons buttons--centered mt-20">
