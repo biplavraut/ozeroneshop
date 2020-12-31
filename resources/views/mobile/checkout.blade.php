@@ -133,7 +133,7 @@
 		<h2 class="page__title">Your Total</h2> 
 		<div class="cart__total cart__total--page">
 			<div class="d-flex align-items-center justify-space pb-10">
-				<span>CART TOTAL</span>  <b>NPR {{$item->total}}</b>
+				<span>CART TOTAL</span> @if(Cart::count() > 0) <b>NPR {{$item->total}}</b> @endif
 			</div>
 			<!-- <div class="d-flex align-items-center justify-space pb-10">
 				<span>VAT (10%)</span>  <b>$ 95.00</b>
@@ -142,7 +142,7 @@
 				<span>SHIPPING</span>  <b>NPR 200.00</b>
 			</div>
 			<div class="total d-flex align-items-center justify-space pb-10">
-				<span>TOTAL</span> <strong>NPR {{$item->total+200}}</strong>
+				<span>TOTAL</span> @if(Cart::count() > 0)<strong>NPR {{$item->total+200}}</strong> @endif
 			</div>
 		</div>
 		<div class="buttons buttons--centered mb-40">
