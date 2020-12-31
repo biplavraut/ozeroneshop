@@ -11,9 +11,11 @@ use App\Models\Electronics;
 use App\Models\Product_Electronics;
 use App\Models\Brand;
 use App\Models\Faq;
+use Cart;
 
 class PageController extends Controller
 {
+    
     public function index() 
     {
         return view('frontend.index');
@@ -89,8 +91,23 @@ class PageController extends Controller
             'products' => $products            
         ]);
     }
-    public function list()
+    public function cartstore(Request $request)
     {
-        return Slider::orderBy("order_item")->get();
+        Cart::add($request['id'], $request['title'],1,$request['price'])->associate('App\Models\Product');
+        //session()->flash('success_message','Item added to cart');
+        return response()->json(['success'=>'Item added']);
+        //return view('mobile.cart');
+    }
+    public function cart()
+    {
+        return view('mobile.cart', 
+        [
+        ]);
+    }
+    public function checkout()
+    {
+        return view('mobile.checkout', 
+        [
+        ]);
     }
 }

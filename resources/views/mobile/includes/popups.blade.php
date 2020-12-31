@@ -3,9 +3,9 @@
       <h2 class="popup__title">Share</h2>
       <nav class="social-nav">
 		  <ul>
-		  <li><a href="#"><img src="../../assets/images/icons/blue/twitter.svg" alt="" title="" /><span>TWITTER</span></a></li>
-		  <li><a href="#"><img src="../../assets/images/icons/blue/facebook.svg" alt="" title="" /><span>FACEBOOK</span></a></li>
-		  <li><a href="#"><img src="../../assets/images/icons/blue/instagram.svg" alt="" title="" /><span>INSTAGRAM</span></a></li>
+		  <li><a href="#"><img src="{{asset('mobile/assets/images/icons/blue/twitter.svg')}}" alt="" title="" /><span>TWITTER</span></a></li>
+		  <li><a href="#"><img src="{{asset('mobile/assets/images/icons/blue/facebook.svg')}}" alt="" title="" /><span>FACEBOOK</span></a></li>
+		  <li><a href="#"><img src="{{asset('mobile/assets/images/icons/blue/instagram.svg')}}" alt="" title="" /><span>INSTAGRAM</span></a></li>
 		  </ul>
       </nav>
 </div>

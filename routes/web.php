@@ -55,6 +55,10 @@ if(isMobile()) {
         Route::get('/faqs', [App\Http\Controllers\Mobile\PageController::class, 'faqs']);
         Route::get('/about', [App\Http\Controllers\Mobile\PageController::class, 'about']);
         Route::get('/contact', [App\Http\Controllers\Mobile\PageController::class, 'contact']);
+        Route::get('/cart', [App\Http\Controllers\Mobile\PageController::class, 'cart']);
+        Route::get('/checkout', [App\Http\Controllers\Mobile\PageController::class, 'checkout']);
+
+        Route::post('cartstore', [App\Http\Controllers\Mobile\PageController::class, 'cartstore'])->name('cartstore.post');
     });
 
 } else {
