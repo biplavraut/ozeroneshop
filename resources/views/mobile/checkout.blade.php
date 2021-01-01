@@ -6,6 +6,8 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, minimal-ui">
 <title>Checkout - Ozerone Shop, Online electronics shop in Nepal</title>
+<!-- Favicon -->
+<link rel="icon" href="{{asset('logo/favicon.png')}}" type="image/png">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;300;400;500;600;700;900&display=swap" rel="stylesheet"> 
 <link rel="stylesheet" href="{{asset('mobile/vendor/swiper/swiper.min.css')}}">
@@ -91,7 +93,7 @@
 				<div class="swiper-container slider-init-swipe cart__item" id="item{{ $loop->index }}">
 					<div class="swiper-wrapper">
 						<div class="swiper-slide cart__item-details">
-							<div class="cart__item-thumb cart__item-thumb--round-corners"><a href="shop-details.html"><img src="../../assets/images/products/image-6.jpg" alt="" title=""/></a></div>
+							<div class="cart__item-thumb cart__item-thumb--round-corners"><a href="shop-details.html"><img src="{{asset('img/product/'. $item->model->slug .'/thumbs/'. $item->options->image .'')}}" alt="{{$item->model->title}} " title="{{$item->model->title}} "/></a></div>
 							<h4 class="cart__item-title">{{$item->model->title}} <span>NPR {{$item->model->price}}</span></h4>
 							<div class="cart__item-qty">
 								<form id="myform" method="POST" action="#" class="quantity quantity--small quantity--page">
@@ -100,7 +102,7 @@
 									<input type="button" value="+" class="quantity__button quantity__button--plus" field="quantity{{ $loop->index }}" />
 								</form>
 							</div>
-							<div class="cart__item-more" data-swipe-item="{{ $loop->index }}"><img src="../../assets/images/icons/blue/more.svg" alt="" title=""/></div>
+							<div class="cart__item-more" data-swipe-item="{{ $loop->index }}"><img src="{{asset('mobile/assets/images/icons/blue/more.svg')}}" alt="" title=""/></div>
 						</div>
 						<div class="swiper-slide cart__item-delete"><a href="#" class="delete-item" data-delete-item="{{ $loop->index }}">REMOVE</a></div>
 					</div>

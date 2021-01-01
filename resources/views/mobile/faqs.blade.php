@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, minimal-ui">
 <title>FAQs - Ozerone Shop, Online electronics shop in Nepal</title>
+<!-- Favicon -->
+<link rel="icon" href="{{asset('logo/favicon.png')}}" type="image/png">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;300;400;500;600;700;900&display=swap" rel="stylesheet"> 
 <link rel="stylesheet" href="{{asset('mobile/vendor/swiper/swiper.min.css')}}">

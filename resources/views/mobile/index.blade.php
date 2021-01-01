@@ -94,7 +94,7 @@
 						<div class="caption__content">
 							<h2 class="caption__title">{{ substr($feature->title, 0, 55)}}</h2>
 							<a class="caption__price" href="#">@if ($feature->discount > 0)NPR <span>{{$feature->price}} </span> {{ round($feature->price - ($feature->discount/100*$feature->price))}}@else NPR {{$feature->price}} @endif</a>
-							<a class="caption__cart" href="#" onclick="addtocart({{$feature->id}}, '{{$feature->title}}', {{$feature->price}})">Buy Now</a>
+							<a class="caption__cart" href="#" onclick="addtocart({{$feature->id}}, '{{$feature->title}}', {{$feature->price}}, '{{ $display_image->image }}' )">Buy Now</a>
 						</div>
 					</div>
 					
@@ -206,7 +206,7 @@
 					<h4 class="card__title">{{ substr($smart_phone->title, 0, 55)}}</h4>
 					<div style="display:flex;">
 						<p class="card_price">NPR {{$smart_phone->price}}</p>
-						<a class="card_cart" href="#" onclick="addtocart({{$smart_phone->id}}, '{{$smart_phone->title}}', {{$smart_phone->price}})">Add to Cart</a>
+						<a class="card_cart" href="#" onclick="addtocart({{$smart_phone->id}}, '{{$smart_phone->title}}', {{$smart_phone->price}}, '{{ $display_image->image }}')">Add to Cart</a>
 					</div>
 					<div class="card__rating">
                             <span class="fas fa-star checked"></span>
@@ -242,14 +242,15 @@
 			}
 
 		});
-		function addtocart(id, title, price){
+		function addtocart(id, title, price, image){
 			var id = id;
 			var title = title;
 			var price = price;
+			var image = image;
 			$.ajax({
 				type:'POST',
 				url:"{{ route('cartstore.post') }}",
-				data:{id:id, title:title, price:price},
+				data:{id:id, title:title, price:price, image:image},
 				success:function(data){
 					console.log(data.success);
 					$("#panel-right-cart").load(location.href + " #panel-right-cart"); // Add space between URL and selector.

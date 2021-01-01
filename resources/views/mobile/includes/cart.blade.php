@@ -8,7 +8,7 @@
 			<div class="swiper-container slider-init-swipe cart__item" id="item{{ $loop->index }}">
 				<div class="swiper-wrapper">
 					<div class="swiper-slide cart__item-details">
-						<div class="cart__item-thumb cart__item-thumb--round-corners"><a href="#"><img src="{{asset('img/product/'. $item->model->slug .'/thumbs/'. $item->model->image .'')}}" alt="{{$item->model->title}}" title="{{$item->model->title}}"/></a></div>
+						<div class="cart__item-thumb cart__item-thumb--round-corners"><a href="#"><img src="{{asset('img/product/'. $item->model->slug .'/thumbs/'. $item->options->image .'')}}" alt="{{$item->model->title}}" title="{{$item->model->title}}"/></a></div>
 						<h4 class="cart__item-title">{{$item->model->title}} <span>NPR {{$item->model->price}}</span></h4>
 						<div class="cart__item-qty">
 							<form id="myform" method="POST" action="#" class="quantity quantity--small">
