@@ -31,6 +31,9 @@
 			  	<!-- <div class="d-flex align-items-center justify-space pb-10">
 					<span>VAT (10%)</span>  <b>NPR 1,59,0</b>
 			  	</div> -->
+				  <div class="d-flex align-items-center justify-space pb-10">
+					<span>SHIPPING</span>  <b>NPR 200.00</b>
+				</div>
 			  	<div class="total d-flex align-items-center justify-space pb-10">
 					<span>TOTAL</span> <strong>NPR {{$item->total+200}}</strong>
 			  	</div>
