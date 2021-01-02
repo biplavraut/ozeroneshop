@@ -6,8 +6,6 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, minimal-ui">
 <title>{{$product->title}} - Ozerone Shop, Online electronics shop in Nepal</title>
-<!-- Favicon -->
-<link rel="icon" href="{{asset('logo/favicon.png')}}" type="image/png">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;300;400;500;600;700;900&display=swap" rel="stylesheet"> 
 <link rel="stylesheet" href="{{asset('mobile/vendor/swiper/swiper.min.css')}}">
@@ -157,15 +155,18 @@
         </div> 
         @endif	
 		<h3>Product Informations</h3>
-		<div class="cards cards--12" id="loadlist-shop">	
+		<div class="cards cards--11" id="loadlist-shop">	
 			@if (count($product->getDetailRelation) >= 1)
 				@foreach ($product->getDetailRelation as $product_detail) 
-				<h4>{{ $product_detail->title }}</h4>
-				<div class="detail-content">{!! $product_detail->excerpt !!}</div>
+				<div class="card">
+					<h4>{{ $product_detail->title }}</h3>
+					<div class="detail-content">{!! $product_detail->excerpt !!}</div>
+				</div>
+				
 				@endforeach 	
 				<div class="buttons buttons--centered">
 					<div id="loadMore" class="button button--more">More Detail</div>
-					<div id="showLess" class="button button--disabled">Search your products</div> 
+					<div id="showLess" class="button button--disabled">No More Detail</div> 
 				</div>
 			@endif
 		</div>
