@@ -23,6 +23,10 @@
                 $image = "imagejpeg";
                 $quality = 90;
                 break;
+            case 'image/webp':
+                $image_create = "imagecreatefromwebp";
+                $image = "imagewebp";
+                break;                 
     
             default:
                 return false;

@@ -69,7 +69,7 @@
 					<div class="slider-thumbs__image slider-thumbs__image--round-corners">
 					@foreach($feature->getImageRelation as $display_image)
 						@if($display_image->primary == 1)
-						<a href="/product-detail/{{$feature->slug}}"><img src="img/product/{{ $feature->slug }}/thumbs/{{ $display_image->image }}" alt="" title=""/></a>					
+						<a href="/product-detail/{{$feature->slug}}"><img src="img/product/{{ $feature->slug }}/thumbs/{{ $display_image->image }}" alt="$feature->title" title="$feature->title"/></a>					
 						@endif
 					@endforeach
 					<!-- @if ($feature->discount > 0)<div class="slider-thumbs__discount"><span>-{{$feature->discount}}%</span></div>@endif -->
@@ -84,9 +84,9 @@
 						</div>
 						<div class="slider-thumbs__bottom-right-info">
 							@auth
-							<div class="slider-thumbs__wishlist"><a href="#"><img src="mobile/assets/images/icons/blue/love.svg" alt="" title=""/></a></div>
+							<div class="slider-thumbs__wishlist"><a href="#"><img src="mobile/assets/images/icons/blue/love.svg" alt="Wishlist" title="Wishlist"/></a></div>
 							@else
-							<div class="slider-thumbs__wishlist"><a href="#" data-popup="wishlist" class="open-popup"><img src="mobile/assets/images/icons/blue/love.svg" alt="" title=""/></a></div>
+							<div class="slider-thumbs__wishlist"><a href="#" data-popup="wishlist" class="open-popup"><img src="mobile/assets/images/icons/blue/love.svg" alt="Wishlist" title="Wishlist"/></a></div>
 							@endif
 						</div>
 					</div>

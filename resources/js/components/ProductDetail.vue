@@ -66,7 +66,7 @@
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text">Price</div>
                                                 </div>
-                                                <input v-model="cform.price" type="text" name="price"
+                                                <input v-model="cform.price" type="number" name="price"
                                                     placeholder="Product Price."
                                                     class="form-control">
                                             </div>
