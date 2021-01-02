@@ -387,7 +387,7 @@
                                             </button>
                                         </b-col>
                                     </b-row>
-                                    <b-card-text>{{detail.excerpt }}</b-card-text>
+                                    <b-card-text v-html="detail.excerpt.substring(0,50)+'...'"></b-card-text>
                                 </card>
                             </b-col>
                         </b-row>
