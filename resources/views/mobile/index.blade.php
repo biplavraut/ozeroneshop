@@ -69,7 +69,7 @@
 					<div class="slider-thumbs__image slider-thumbs__image--round-corners">
 					@foreach($feature->getImageRelation as $display_image)
 						@if($display_image->primary == 1)
-						<a href="/product-detail/{{$feature->slug}}"><img src="img/product/{{ $feature->slug }}/thumbs/{{ $display_image->image }}" alt="$feature->title" title="$feature->title"/></a>					
+						<a href="/product-detail/{{$feature->slug}}"><img src="img/product/{{ $feature->slug }}/thumbs/{{ $display_image->image }}" alt="{{$feature->title}}" title="{{$feature->title}}"/></a>					
 						@endif
 					@endforeach
 					<!-- @if ($feature->discount > 0)<div class="slider-thumbs__discount"><span>-{{$feature->discount}}%</span></div>@endif -->
