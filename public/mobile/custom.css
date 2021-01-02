@@ -536,3 +536,17 @@ input[type=number] {
 @-moz-keyframes spin { 100% { -moz-transform: rotate(-360deg); } }
 @-webkit-keyframes spin { 100% { -webkit-transform: rotate(-360deg); } }
 @keyframes spin { 100% { -webkit-transform: rotate(-360deg); transform:rotate(-360deg); } }
+
+
+
+/* Product Detail */
+.detail-content{
+ width: calc(100% - 10px);
+}
+.detail-content p{
+    justify-content: center;
+}
+.detail-content img{
+    width: 100%;
+    height: auto;
+}
