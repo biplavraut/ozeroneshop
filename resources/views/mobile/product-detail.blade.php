@@ -160,7 +160,7 @@
 		<div class="cards cards--11" id="loadlist-shop">	
 			@if (count($product->getDetailRelation) >= 1)
 				@foreach ($product->getDetailRelation as $product_detail) 
-				<div class="card">
+				<div class="card mb-0">
 					<h4>{{ $product_detail->title }}</h3>
 					<div class="detail-content">{!! $product_detail->excerpt !!}</div>
 				</div>

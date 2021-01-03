@@ -163,7 +163,7 @@
 		<div class="page__title-bar">
 			<h2 class="page__title">Smart Phones</h2>
 		</div>
-		<div class="product-view cards cards--12" id="loadlist-shop">
+		<div class="product-view cards cards--12">
 			@foreach($smart_phones as $smart_phone)
             <div class="card card--style-thumb">
                 <div class="card__thumb card__thumb--round-corners product">
@@ -207,6 +207,68 @@
 					<div style="display:flex;">
 						<p class="card_price">NPR {{$smart_phone->price}}</p>
 						<a class="card_cart" href="#" onclick="addtocart({{$smart_phone->id}}, '{{$smart_phone->title}}', {{$smart_phone->price}}, '{{ $display_image->image }}')">Add to Cart</a>
+					</div>
+					<div class="card__rating">
+                            <span class="fas fa-star checked"></span>
+                            <span class="fas fa-star checked"></span>
+                            <span class="fas fa-star checked"></span>
+                            <span class="fas fa-star checked"></span>
+							<span class="fas fa-star"></span>
+                        </div>
+				</div>
+					
+            </div>
+			@endforeach
+            
+        </div>
+
+		<div class="page__title-bar">
+			<h2 class="page__title">Best Selling</h2>
+		</div>
+		<div class="product-view cards cards--12" id="loadlist-shop">
+			@foreach($all_products as $all_product)
+            <div class="card card--style-thumb">
+                <div class="card__thumb card__thumb--round-corners product">
+					@if(count($all_product->getImageRelation)>10)
+					<div class="swiper-container slider-simple slider-simple--round-corners slider-init mb-10" data-paginationtype="bullets" data-spacebetweenitems="0" data-itemsperview="1">
+						<div class="swiper-wrapper">
+							@foreach($all_product->getImageRelation as $display_image)
+							<div class="swiper-slide slider-simple__slide" style="background-image:url(img/product/{{ $all_product->slug }}/{{ $display_image->image }});">
+							</div>
+							@endforeach
+						</div>
+						<div class="swiper-pagination slider-simple__pagination"></div>
+					</div>
+					@else
+						@foreach($all_product->getImageRelation as $display_image)
+						@if($display_image->primary == 1)
+						<a href="/product-detail/{{$all_product->slug}}"><img src="img/product/{{ $all_product->slug }}/thumbs/{{ $display_image->image }}" alt="{{ $all_product->slug }}" title="{{ $display_image->image }}"/></a>					
+						@endif
+						@endforeach
+					@endif
+                    @if($all_product->id==1)<div class="card_latest"><span>Latest</span></div>@endif
+                    <!-- <div class="card__top-right-info">
+                        <div class="card__rating">
+                            <span class="fas fa-star checked"></span>
+                            <span class="fas fa-star checked"></span>
+                            <span class="fas fa-star checked"></span>
+                            <span class="fas fa-star checked"></span>
+                            <span class="fas fa-star"></span>
+                        </div>
+                    </div> -->
+                    <div class="card__bottom-right-info">
+						@auth
+						<div class="card_wishlist"><a href="#"><img src="{{asset('mobile/assets/images/icons/blue/love.svg')}}" alt="Ozerone Wishlist" title="Add to Wishlist"/></a></div>
+						@else
+						<div class="card_wishlist"><a href="#" data-popup="wishlist" class="open-popup"><img src="{{asset('mobile/assets/images/icons/blue/love.svg')}}" alt="Ozerone Wishlist" title="Add to Wishlist"/></a></div>
+						@endif
+                    </div>
+				</div>
+				<div class="card-detail">
+					<h4 class="card__title">{{ substr($all_product->title, 0, 55)}}</h4>
+					<div style="display:flex;">
+						<p class="card_price">NPR {{$all_product->price}}</p>
+						<a class="card_cart" href="#" onclick="addtocart({{$all_product->id}}, '{{$all_product->title}}', {{$all_product->price}}, '{{ $display_image->image }}')">Add to Cart</a>
 					</div>
 					<div class="card__rating">
                             <span class="fas fa-star checked"></span>

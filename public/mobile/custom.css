@@ -541,7 +541,7 @@ input[type=number] {
 
 /* Product Detail */
 .detail-content{
- width: calc(100% - 10px);
+ width: 100%;
 }
 .detail-content p{
     justify-content: center;
