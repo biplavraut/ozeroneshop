@@ -553,6 +553,6 @@ input[type=number] {
 .product-excerpt{
     padding: 0 10px;
 }
-.product-excerpt ol, ul{
+.product-excerpt ol, .product-excerpt ul{
     list-style: disclosure-closed;
 }
