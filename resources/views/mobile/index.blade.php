@@ -65,7 +65,7 @@
 		<div class="swiper-container slider-thumbs slider-init mb-20" data-paginationtype="progressbar" data-spacebetweenitems="10" data-itemsperview="auto">
 			<div class="swiper-wrapper">
 				@foreach($featured as $feature)
-				<div class="swiper-slide slider-thumbs__slide slider-thumbs__slide--1h">
+				<div class="swiper-slide slider-thumbs__slide slider-thumbs__slide--1h featured-card-shadow">
 					<div class="slider-thumbs__image slider-thumbs__image--round-corners">
 					@foreach($feature->getImageRelation as $display_image)
 						@if($display_image->primary == 1)
