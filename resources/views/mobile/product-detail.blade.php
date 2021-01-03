@@ -131,7 +131,7 @@
 			<div class="product-details-price">NPR {{ number_format($product->price) }}</div>
 		</div>
 		
-		<p class="welcome">
+		<p>
 		{!! $product->excerpt !!}
         </p>
         @if (count($product->getStorageRelation) >= 1)
