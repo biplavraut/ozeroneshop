@@ -550,3 +550,9 @@ input[type=number] {
     width: 100%;
     height: auto;
 }
+.product-excerpt{
+    padding: 0 10px;
+}
+.product-excerpt ol, ul{
+    list-style: disclosure-closed;
+}

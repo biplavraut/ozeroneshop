@@ -130,10 +130,9 @@
 			<h2 class="page__title mb-0">{{$product->title}}</h2>
 			<div class="product-details-price">NPR {{ number_format($product->price) }}</div>
 		</div>
-		
-		<p>
-		{!! $product->excerpt !!}
-        </p>
+		<div class="product-excerpt">
+			{!! $product->excerpt !!}
+		</div>		
         @if (count($product->getStorageRelation) >= 1)
 		<h3>Storage Option</h3>
         <div class="size-selectors">
