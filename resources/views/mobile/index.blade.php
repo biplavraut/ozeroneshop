@@ -93,8 +93,17 @@
 					<div class="slider-thumbs__caption caption">
 						<div class="caption__content">
 							<h2 class="caption__title">{{ substr($feature->title, 0, 55)}}</h2>
-							<a class="caption__price" href="#">@if ($feature->discount > 0)NPR <span>{{$feature->price}} </span> {{ round($feature->price - ($feature->discount/100*$feature->price))}}@else NPR {{$feature->price}} @endif</a>
-							<a class="caption__cart" href="#" onclick="addtocart({{$feature->id}}, '{{$feature->title}}', {{$feature->price}}, '{{ $display_image->image }}' )">Buy Now</a>
+							@php
+							if ($feature->discount > 0){
+								$marked_price = $feature->price;
+								$discount = $feature->discount;
+								$price = round($marked_price - ($discount/100*$marked_price));
+							}else{
+								$price = $feature->price;
+							}
+							@endphp
+							<a class="caption__price" href="#">@if ($feature->discount > 0)NPR <span>{{number_format($marked_price)}} </span> {{ number_format($price)}} @else NPR {{number_format($price)}} @endif</a>
+							<a class="caption__cart" href="#" onclick="addtocart({{$feature->id}}, '{{$feature->title}}', {{$price}}, '{{ $display_image->image }}' )">Buy Now</a>
 						</div>
 					</div>
 					
@@ -207,7 +216,7 @@
 				<div class="card-detail">
 					<h4 class="card__title">{{ substr($smart_phone->title, 0, 55)}}</h4>
 					<div style="display:flex;">
-						<p class="card_price">NPR {{$smart_phone->price}}</p>
+						<p class="card_price">NPR {{number_format($smart_phone->price)}}</p>
 						<a class="card_cart" href="#" onclick="addtocart({{$smart_phone->id}}, '{{$smart_phone->title}}', {{$smart_phone->price}}, '{{ $display_image->image }}')">Add to Cart</a>
 					</div>
 					<div class="card__rating">
@@ -269,7 +278,7 @@
 				<div class="card-detail">
 					<h4 class="card__title">{{ substr($all_product->title, 0, 55)}}</h4>
 					<div style="display:flex;">
-						<p class="card_price">NPR {{$all_product->price}}</p>
+						<p class="card_price">NPR {{number_format($all_product->price)}}</p>
 						<a class="card_cart" href="#" onclick="addtocart({{$all_product->id}}, '{{$all_product->title}}', {{$all_product->price}}, '{{ $display_image->image }}')">Add to Cart</a>
 					</div>
 					<div class="card__rating">
