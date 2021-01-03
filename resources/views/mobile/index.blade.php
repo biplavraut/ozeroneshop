@@ -72,7 +72,7 @@
 						<a href="/product-detail/{{$feature->slug}}"><img src="img/product/{{ $feature->slug }}/thumbs/{{ $display_image->image }}" alt="{{$feature->title}}" title="{{$feature->title}}"/></a>					
 						@endif
 					@endforeach
-					<!-- @if ($feature->discount > 0)<div class="slider-thumbs__discount"><span>-{{$feature->discount}}%</span></div>@endif -->
+					@if ($feature->discount > 0)<div class="slider-thumbs__discount"><span>-{{$feature->discount}}%</span></div>@endif
 						<div class="slider-thumbs__top-right-info">
 							<div class="slider-thumbs__rating">
 								<span class="fas fa-star checked"></span>
@@ -103,7 +103,11 @@
 							}
 							@endphp
 							<a class="caption__price" href="#">@if ($feature->discount > 0)NPR <span>{{number_format($marked_price)}} </span> {{ number_format($price)}} @else NPR {{number_format($price)}} @endif</a>
-							<a class="caption__cart" href="#" onclick="addtocart({{$feature->id}}, '{{$feature->title}}', {{$price}}, '{{ $display_image->image }}' )">Buy Now</a>
+							@if(count($feature->getStorageRelation) > 0)
+								<a class="caption__cart" href="/product-detail/{{$feature->slug}}" >View Options</a>
+							@else
+								<a class="caption__cart" href="#" onclick="addtocart({{$feature->id}}, '{{$feature->title}}', {{$price}}, '{{ $display_image->image }}' )">Buy Now</a>
+							@endif
 						</div>
 					</div>
 					
