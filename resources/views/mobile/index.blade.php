@@ -151,7 +151,7 @@
 			<h2 class="page__title">Top Brands</h2>
 			<div class="cards cards--14">
 				@foreach($brands as $brand)
-				@if($brand->parent == 0)
+				@if($brand->parent_id == 0)
 				<div class="card card--style-thumb">
 					<div class="card__thumb brand-thumb">
 						<a href=""><img src="{{asset('img/brand/'. $brand->image .'')}}" alt="" title=""/> </a>
