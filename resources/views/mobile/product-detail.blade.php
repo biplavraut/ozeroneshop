@@ -128,11 +128,11 @@
 
 		<div class="d-flex justify-space align-items-center">
 			<h2 class="page__title mb-0">{{$product->title}}</h2>
-			<div class="product-details-price">NPR {{$product->price}}</div>
+			<div class="product-details-price">NPR {{ number_format($product->price) }}</div>
 		</div>
 		
 		<p class="welcome">
-		{{ strip_tags($product->excerpt) }}
+		{!! $product->excerpt !!}
         </p>
         @if (count($product->getStorageRelation) >= 1)
 		<h3>Storage Option</h3>
