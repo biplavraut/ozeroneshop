@@ -29,7 +29,7 @@ class PageController extends Controller
 
         $electronics_products = Product_Electronics::where('electronic_id','=',1)->pluck('product_id');
         $smart_phones = Product::where('display','=',1)->whereIn('id', $electronics_products)->with('getImageRelation')->get();
-        $all_products = Product::with('getStorageRelation')->with('getColorRelation')->with('getImageRelation')->with('getDetailRelation')->orderBy("order_item")->where('display','=',1)->where('featured','=',1)->get();
+        $all_products = Product::with('getImageRelation')->orderBy("order_item")->where('display','=',1)->get();
 
         // $contents = Contents::get()->sortBy('order_item');
         // $project = project::get()->sortBy('order_item');
