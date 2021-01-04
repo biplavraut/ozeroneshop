@@ -67,8 +67,9 @@
 				@foreach($featured as $feature)
 				<div class="swiper-slide slider-thumbs__slide slider-thumbs__slide--1h featured-card-shadow">
 					<div class="slider-thumbs__image slider-thumbs__image--round-corners">
+					@if(count($feature->getImageRelation) > 0)
 					@foreach($feature->getImageRelation as $display_image)
-						@if($display_image->primary == 1)
+					@if($display_image->primary == 1)
 						<a href="/product-detail/{{$feature->slug}}"><img src="img/product/{{ $feature->slug }}/thumbs/{{ $display_image->image }}" alt="{{$feature->title}}" title="{{$feature->title}}"/></a>					
 						@endif
 					@endforeach
@@ -110,6 +111,7 @@
 							@endif
 						</div>
 					</div>
+					@endif
 					
 				</div> 
 				@endforeach				 
