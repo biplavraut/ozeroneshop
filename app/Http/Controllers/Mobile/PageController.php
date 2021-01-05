@@ -85,7 +85,9 @@ class PageController extends Controller
         if($slug == 'all'){
             $products =  Product::with('getStorageRelation')->with('getColorRelation')->with('getImageRelation')->with('getDetailRelation')->orderBy("order_item")->where('display','=',1)->get();
         }else{
-            $products =  Product::with('getStorageRelation')->with('getColorRelation')->with('getImageRelation')->with('getDetailRelation')->orderBy("order_item")->where('display','=',1)->get();
+            $electronic_id =  Electronics::where('slug','LIKE',"%$slug%")->value('id');;
+            $products_id = Product_Electronics::where('electronic_id','=',$electronic_id)->pluck('product_id');
+            $products =  Product::whereIn('id', $products_id)->with('getStorageRelation')->with('getColorRelation')->with('getImageRelation')->with('getDetailRelation')->orderBy("order_item")->where('display','=',1)->get();
 
         }        
         return view('mobile.products', 
