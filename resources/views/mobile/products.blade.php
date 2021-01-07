@@ -31,7 +31,7 @@
 				<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" height="30" viewBox="0 0 30 30"><defs><style>.cls-1{fill:#4d91c6;}.cls-2{fill:#f0ede5;}</style></defs><title>logo-light</title><path class="cls-1" d="M19,12.83H15.71V3.18l-3.42,3L10.13,3.75l1.93-1.7A4.16,4.16,0,0,1,19,5.17Z"/><path class="cls-2" d="M18.78,17.82,17.15,15l8.36-4.83L21.18,8.72l1-3.09,2.44.82A4.16,4.16,0,0,1,25.41,14Z"/><path class="cls-1" d="M14.36,20.15,16,17.33l8.36,4.82-.91-4.47,3.2-.65.51,2.53A4.16,4.16,0,0,1,21,24Z"/><path class="cls-2" d="M10.13,17.49h3.26v9.65l3.42-3L19,26.56,17,28.27a4.16,4.16,0,0,1-6.91-3.12Z"/><path class="cls-1" d="M10.32,12.5,12,15.32,3.59,20.15,7.92,21.6l-1,3.09-2.44-.82a4.16,4.16,0,0,1-.76-7.54Z"/><path class="cls-2" d="M14.74,10.16,13.11,13,4.75,8.16l.91,4.48-3.2.64L2,10.76A4.16,4.16,0,0,1,8.11,6.33Z"/></svg>
 			</div>	
 			
-			<div class="header__icon header__icon--cart open-panel" data-panel="right"><img src="{{asset('mobile/assets/images/icons/white/shopping-bag.svg')}}" alt="" title=""/><span class="cart-items-nr">0</span></div>
+			<div class="header__icon header__icon--cart open-panel" data-panel="right"><img src="{{asset('mobile/assets/images/icons/white/shopping-bag.svg')}}" alt="" title=""/><span class="cart-items-nr">{{Cart::count() }}</span></div>
 			</div>
 	</header>
 	<!-- SLIDER SIMPLE -->
@@ -47,6 +47,13 @@
             <div class="swiper-wrapper">
                 @foreach($elect_categories as $elect_category)
                     @if($elect_category->parent_id == 0)
+                    @php
+                    if(request()->route()->slug == $elect_category->slug){
+                        $cat_title = $elect_category->title;
+                    }else{
+                        $title = "All Products";
+                    }
+                    @endphp
                     <div class="swiper-slide slider-thumbs__slide slider-thumbs__slide--4">
                         <div class="slider-thumbs__icon slider-thumbs__icon--round-corners {{ (request()->route()->slug == $elect_category->slug) ? 'active-category' : '' }} "><a href="/products/{{$elect_category->slug}}"><img src="{{asset('img/electronics/'. $elect_category->image .'')}}" alt="{{$elect_category->title}}" title="{{$elect_category->title}}"/></a></div>
                         <div class="my-slider-thumbs cap">
@@ -62,7 +69,7 @@
         </div>
 
         <div class="page__title-bar">
-            <h2 class="page__title">All Products</h2>
+            <h2 class="page__title">{{ (@$cat_title != null) ? $cat_title : $title }}</h2>
             <div class="product-view">
                 <ul class="product-layout">
                     <li class="selected" data-products="11"><img src="{{asset('mobile/assets/images/icons/blue/gallery-switch-11.svg')}}" alt="" title="" /></li>
@@ -87,8 +94,8 @@
 					@else
 						@foreach($product->getImageRelation as $display_image)
                         @if($display_image->primary == 1)
-                        
-						<a href="/product-detail/{{$product->slug}}"><img src="{{asset('img/product/'.$product->slug.'/thumbs/'. $display_image->image .'')}}" alt="{{ $product->slug }}" title="{{ $display_image->image }}"/></a>					
+                        @php $image = $display_image->image  @endphp
+						<a href="/product-detail/{{$product->slug}}"><img src="{{asset('img/product/'.$product->slug.'/thumbs/'. $image .'')}}" alt="{{ $product->slug }}" title="{{ $display_image->image }}"/></a>					
 						@endif
 						@endforeach
 					@endif
@@ -113,8 +120,17 @@
 				<div class="card-detail">
 					<h4 class="card__title">{{ substr($product->title, 0, 55)}}</h4>
 					<div style="display:flex;">
-						<p class="card_price">NPR {{$product->price}}</p>
-						<a class="card_cart addtocart" href="#">Add to Cart</a>
+                        @php
+							if ($product->discount > 0){
+								$marked_price = $product->price;
+								$discount = $product->discount;
+								$price = round($marked_price - ($discount/100*$marked_price));
+							}else{
+								$price = $product->price;
+							}
+						@endphp
+						<p class="card_price">NPR {{number_format($price)}}</p>
+						<a class="card_cart" href="#" onclick="addtocart({{$product->id}}, '{{$product->title}}', {{ $price }}, '{{ $image }}')">Add to Cart</a>
 					</div>
 					<div class="card__rating">
                             <span class="fas fa-star checked"></span>
@@ -137,6 +153,30 @@
 	<script src="{{asset('mobile/vendor/swiper/swiper.min.js')}}"></script>
 	<script src="{{asset('mobile/main/js/swiper-init.js')}}"></script>
 	<script src="{{asset('mobile/main/js/swiper-init-swipe.js')}}"></script>
-	<script src="{{asset('mobile/main/js/jquery.custom.js')}}"></script>
+    <script src="{{asset('mobile/main/js/jquery.custom.js')}}"></script>
+    <script>
+		function addtocart(id, title, price, image){
+			var id = id;
+			var title = title;
+			var price = price;
+			var image = image;
+			$.ajax({
+				type:'POST',
+				url:"{{ route('cartstore.post') }}",
+				data:{"_token": "{{ csrf_token() }}",id:id, title:title, price:price, image:image},
+				success:function(data){
+					console.log(data.success);
+					$("#panel-right-cart").load(location.href + " #panel-right-cart"); // Add space between URL and selector.
+					$("#cart-count").load(location.href + " #cart-count");
+
+					$('.cart-items-nr').addClass('animate');
+					setTimeout(function() {
+						$('.cart-items-nr').removeClass('animate');
+					}, 1500);
+					
+				}
+			});
+		};
+	</script>
 </body>
 </html>

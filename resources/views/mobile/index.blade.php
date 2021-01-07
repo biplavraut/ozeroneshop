@@ -71,7 +71,8 @@
 					
 					@foreach($feature->getImageRelation as $display_image)
 						@if($display_image->primary == 1)
-						<a href="/product-detail/{{$feature->slug}}"><img src="img/product/{{ $feature->slug }}/thumbs/{{ $display_image->image }}" alt="{{$feature->title}}" title="{{$feature->title}}"/></a>					
+						@php $image = $display_image->image  @endphp
+						<a href="/product-detail/{{$feature->slug}}"><img src="img/product/{{ $feature->slug }}/thumbs/{{ $image }}" alt="{{$feature->title}}" title="{{$feature->title}}"/></a>					
 						@endif
 					@endforeach
 					@if ($feature->discount > 0)<div class="slider-thumbs__discount"><span>-{{$feature->discount}}%</span></div>@endif
@@ -108,7 +109,7 @@
 							@if(count($feature->getStorageRelation) > 0)
 								<a class="caption__cart" href="/product-detail/{{$feature->slug}}" >View Options</a>
 							@else
-								<a class="caption__cart" href="#" onclick="addtocart({{$feature->id}}, '{{$feature->title}}', {{$price}}, '{{ $display_image->image }}' )">Buy Now</a>
+								<a class="caption__cart" href="#" onclick="addtocart({{$feature->id}}, '{{$feature->title}}', {{$price}}, '{{ $image }}' )">Buy Now</a>
 							@endif
 						</div>
 					</div>
@@ -198,7 +199,8 @@
 					@else
 						@foreach($smart_phone->getImageRelation as $display_image)
 						@if($display_image->primary == 1)
-						<a href="/product-detail/{{$smart_phone->slug}}"><img src="img/product/{{ $smart_phone->slug }}/thumbs/{{ $display_image->image }}" alt="{{ $smart_phone->slug }}" title="{{ $display_image->image }}"/></a>					
+						@php $image = $display_image->image  @endphp
+						<a href="/product-detail/{{$smart_phone->slug}}"><img src="img/product/{{ $smart_phone->slug }}/thumbs/{{ $image }}" alt="{{ $smart_phone->slug }}" title="{{ $display_image->image }}"/></a>					
 						@endif
 						@endforeach
 					@endif
@@ -223,8 +225,17 @@
 				<div class="card-detail">
 					<h4 class="card__title">{{ substr($smart_phone->title, 0, 55)}}</h4>
 					<div style="display:flex;">
-						<p class="card_price">NPR {{number_format($smart_phone->price)}}</p>
-						<a class="card_cart" href="#" onclick="addtocart({{$smart_phone->id}}, '{{$smart_phone->title}}', {{$smart_phone->price}}, '{{ $display_image->image }}')">Add to Cart</a>
+						@php
+							if ($smart_phone->discount > 0){
+								$marked_price = $smart_phone->price;
+								$discount = $smart_phone->discount;
+								$price = round($marked_price - ($discount/100*$marked_price));
+							}else{
+								$price = $smart_phone->price;
+							}
+						@endphp
+						<p class="card_price">NPR {{number_format($price)}}</p>
+						<a class="card_cart" href="#" onclick="addtocart({{$smart_phone->id}}, '{{$smart_phone->title}}', {{$price}}, '{{ $image }}')">Add to Cart</a>
 					</div>
 					<div class="card__rating">
                             <span class="fas fa-star checked"></span>
@@ -237,6 +248,9 @@
 					
             </div>
 			@endforeach
+			<div class="buttons buttons--centered mb-40">
+				<a href="/products/smart-phone" class="button button--more"> Show All <i class="fas fa-arrow-right"></i> </a>
+			</div>
             
         </div>
 
@@ -260,7 +274,8 @@
 					@else
 						@foreach($all_product->getImageRelation as $display_image)
 						@if($display_image->primary == 1)
-						<a href="/product-detail/{{$all_product->slug}}"><img src="img/product/{{ $all_product->slug }}/thumbs/{{ $display_image->image }}" alt="{{ $all_product->slug }}" title="{{ $display_image->image }}"/></a>					
+						@php $image = $display_image->image  @endphp
+						<a href="/product-detail/{{$all_product->slug}}"><img src="img/product/{{ $all_product->slug }}/thumbs/{{ $image }}" alt="{{ $all_product->slug }}" title="{{ $display_image->image }}"/></a>					
 						@endif
 						@endforeach
 					@endif
@@ -285,8 +300,17 @@
 				<div class="card-detail">
 					<h4 class="card__title">{{ substr($all_product->title, 0, 55)}}</h4>
 					<div style="display:flex;">
-						<p class="card_price">NPR {{number_format($all_product->price)}}</p>
-						<a class="card_cart" href="#" onclick="addtocart({{$all_product->id}}, '{{$all_product->title}}', {{$all_product->price}}, '{{ $display_image->image }}')">Add to Cart</a>
+						@php
+							if ($all_product->discount > 0){
+								$marked_price = $all_product->price;
+								$discount = $all_product->discount;
+								$price = round($marked_price - ($discount/100*$marked_price));
+							}else{
+								$price = $all_product->price;
+							}
+						@endphp
+						<p class="card_price">NPR {{number_format($price)}}</p>
+						<a class="card_cart" href="#" onclick="addtocart({{$all_product->id}}, '{{$all_product->title}}', {{$price}}, '{{ $image }}')">Add to Cart</a>
 					</div>
 					<div class="card__rating">
                             <span class="fas fa-star checked"></span>
@@ -316,12 +340,12 @@
 	<script src="{{asset('mobile/main/js/swiper-init-swipe.js')}}"></script>
 	<script src="{{asset('mobile/main/js/jquery.custom.js')}}"></script>
 	<script>
-		$.ajaxSetup({
-			headers: {
-				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-			}
+		// $.ajaxSetup({
+		// 	headers: {
+		// 		'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		// 	}
 
-		});
+		// });
 		function addtocart(id, title, price, image){
 			var id = id;
 			var title = title;
@@ -330,7 +354,7 @@
 			$.ajax({
 				type:'POST',
 				url:"{{ route('cartstore.post') }}",
-				data:{id:id, title:title, price:price, image:image},
+				data:{"_token": "{{ csrf_token() }}", id:id, title:title, price:price, image:image},
 				success:function(data){
 					console.log(data.success);
 					$("#panel-right-cart").load(location.href + " #panel-right-cart"); // Add space between URL and selector.

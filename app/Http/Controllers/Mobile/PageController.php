@@ -28,11 +28,8 @@ class PageController extends Controller
         $featured = Product::with('getStorageRelation')->with('getColorRelation')->with('getImageRelation')->with('getDetailRelation')->orderBy("order_item")->where('display','=',1)->where('featured','=',1)->limit(10)->get();
 
         $electronics_products = Product_Electronics::where('electronic_id','=',1)->pluck('product_id');
-        $smart_phones = Product::where('display','=',1)->whereIn('id', $electronics_products)->with('getImageRelation')->get();
-        $all_products = Product::with('getImageRelation')->orderBy("order_item")->where('display','=',1)->get();
-
-        // $contents = Contents::get()->sortBy('order_item');
-        // $project = project::get()->sortBy('order_item');
+        $smart_phones = Product::where('display','=',1)->where('featured','!=',1)->whereIn('id', $electronics_products)->with('getImageRelation')->limit(6)->get();
+        $all_products = Product::with('getImageRelation')->orderBy("order_item")->whereNotIn('id', $electronics_products)->where('display','=',1)->where('featured','!=',1)->get();
 
         return view('mobile.index' , 
         [

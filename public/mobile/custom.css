@@ -170,7 +170,7 @@ body{
     display: block;
     width: 30px;
     height: 30px;
-    background-color: #165293;
+    background-color: #f1f8fc;
     border-radius: 100%;
     display: flex;
     align-items: center;
@@ -348,19 +348,20 @@ body{
 }
 .cards--11 .card__rating {
     color: #165293;
-    font-size: 1.0rem !important;
-    padding: 5px 10px;
-    font-weight: 600;
+    font-size: 0.8rem !important;
+    padding: 2px 0 5px 5px;
 }
 .cards--11 .card_price{
-    color: #f4364c;
+    color: #165293;
     font-size: 1.5rem;
+    font-weight: 500;
+    padding-bottom: 5px !important;
 }
 .cards--11 .card_wishlist a {
     display: block;
     width: 30px;
     height: 30px;
-    background-color: #f4364c;
+    background-color: #f1f8fc;
     border-radius: 100%;
     display: flex;
     align-items: center;
@@ -373,17 +374,21 @@ body{
 }
 .cards--11 .card_cart {
     display: inline-block;
-    background-color: #ffd600;
+    border: 1.5px solid #83cbf8;
     color: #292935;
     font-size: 1.2rem;
     font-weight: 500;
-    font-size: 1rem;
     padding: 5px 15px;
-    margin: 0;
+    margin: 0 5px;
     letter-spacing: 0.2px;
     position: absolute;
     right: 0px;    
     border-radius: 5px;
+}
+.cards--11 .card__title {
+    font-size: 1.6rem !important;
+    font-weight: 400;
+    padding-bottom: 0px;
 }
 .cards--12 .card_latest{
     font-size: 0.8rem;
@@ -424,7 +429,7 @@ body{
     display: block;
     width: 20px;
     height: 20px;
-    background-color: #165293;
+    background-color: #f1f8fc;
     border-radius: 100%;
     display: flex;
     align-items: center;
@@ -570,4 +575,8 @@ input[type=number] {
 
 .active-category{
  background-color: #f0f8ff;
+}
+
+ul.custom-listing--checked li {
+    background-image: url(assets/images/icons/blue/checked-simple.svg);
 }

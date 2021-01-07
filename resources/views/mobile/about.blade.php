@@ -39,12 +39,40 @@
 	<!-- PAGE CONTENT -->
 	<div class="page__content page__content--with-header">
         <h2 class="page__title mt-20">Welcome</h2>
-            <p class="welcome">
-            Ozerone shop
-            </p>	  
+        <p class="welcome">
+        We firmly believe that we can put a dent in the universe if we put our mind to it. We strive to bring change wherever we go by informing, educating and entertaining everyone we touch. We strive to provide better products at affordable prices that help people be more productive and make their daily life joyful. 
+        </p>
+        <blockquote>To empower people with the help of technologyand achieve great things together. </blockquote>
+        <h3>For OZERONE</h3>
+        <ul class="custom-listing custom-listing--checked mb-20">
+            <li>WHAT: the ONLY electronics ecommerce</li>
+            <li>HOW: that strive to bring change wherever we go by informing, educating and entertaining </li>
+            <li>WHO: the youths and go-getters</li>
+            <li>WHERE: In NepalWHY: who want to achieve great things</li>
+            <li>WHEN: in an era of political uncertainty and social unrest</li>
+        </ul>
+        <h3>Be Different</h3>
+        <blockquote class="pb-0">BUSINESS HAS ONLY TWO BASIC FUNCTIONS: MARKETING AND INNOVATION.</blockquote>
+        <p class="mb-20"><i> -PETER DRUCKER </i></p>
+        <p>Brand-building isn’t a series of isolated activities, it is a complete system in which five disciplines combine to produce sustainable competitive advantage.</p>
+        <ul class="custom-listing custom-listing--checked mb-10">
+            <li>Differentiation</li>
+            <li>Collaboration</li>
+            <li>Innovation</li>
+            <li>Validation</li>
+            <li>Cultivation</li>
+        </ul>
+        <p>All design relies on heuristic thinking more than algorithmic thinking—meaning that there is no set path, no mathematical formula, for reaching your goal. But we still need rigor and process, other- wise we’ll drift from one thought to the next with no more hope of it making sense.</p>        
         <h3>Customer Relationship</h3> 
-        <p>What type of relationship does each of our CustomerSegments expect us to establish and maintain with them?Which ones have we established? How are they integrated with the rest of our business model?How costly are they?</p>
-		
+        <p>What type of relationship does each of our Customer Segments expect us to establish and maintain with them?  <br>
+            Which ones have we established? <br>
+            How are they integrated with the rest of our business model? <br>
+            How costly are they?</p>
+        <div class="detail-content mb-20">
+            <img src="{{asset('img/about-focus.png')}}" alt="About Ozerone">
+        </div>
+        <p>When focus is paired with differentiation, supported by a trend, and surrounded by compelling communications, we have a basic ingredient to design our brand.</p>
+		<h2 class="page__title mb-40">Thank you</h2>
 	</div>
 			  
 
