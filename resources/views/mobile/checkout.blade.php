@@ -108,6 +108,8 @@
 					</div>
 				</div>
 				@endforeach
+				@else
+				<b>No Product in Cart</b>
 				@endif
 			 </div>
 		</div>

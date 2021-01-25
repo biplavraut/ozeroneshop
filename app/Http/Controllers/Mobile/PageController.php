@@ -99,6 +99,22 @@ class PageController extends Controller
         return response()->json(['success'=>'Item added to Cart']);
         //return view('mobile.cart');
     }
+    public function increaseQuantity(Request $request)
+    {
+        $product = Cart::get($request['rowId']);
+        $qty = $product->qty+1;
+        Cart::update($request['rowId'], $qty);
+    }
+    public function decreaseQuantity(Request $request)
+    {
+        $product = Cart::get($request['rowId']);
+        $qty = $product->qty-1;
+        Cart::update($request['rowId'], $qty);
+    }
+    public function removeCartProduct(Request $request)
+    {
+        Cart::remove($request['rowId']);
+    }
     public function cart()
     {
         return view('mobile.cart', 

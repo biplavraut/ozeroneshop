@@ -59,6 +59,10 @@ if(isMobile()) {
         Route::get('/checkout', [App\Http\Controllers\Mobile\PageController::class, 'checkout']);
 
         Route::post('cartstore', [App\Http\Controllers\Mobile\PageController::class, 'cartstore'])->name('cartstore.post');
+        Route::post('increasequantity', [App\Http\Controllers\Mobile\PageController::class, 'increaseQuantity'])->name('increasequantity.post');
+        Route::post('decreasequantity', [App\Http\Controllers\Mobile\PageController::class, 'decreaseQuantity'])->name('decreasequantity.post');
+        Route::post('removecartproduct', [App\Http\Controllers\Mobile\PageController::class, 'removeCartProduct'])->name('removecartproduct.post');
+        
     });
 
 } else {

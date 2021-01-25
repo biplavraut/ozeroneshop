@@ -36,15 +36,18 @@
                         	<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" height="30" viewBox="0 0 30 30"><defs><style>.cls-1{fill:#4d91c6;}.cls-2{fill:#f0ede5;}</style></defs><title>logo-light</title><path class="cls-1" d="M19,12.83H15.71V3.18l-3.42,3L10.13,3.75l1.93-1.7A4.16,4.16,0,0,1,19,5.17Z"/><path class="cls-2" d="M18.78,17.82,17.15,15l8.36-4.83L21.18,8.72l1-3.09,2.44.82A4.16,4.16,0,0,1,25.41,14Z"/><path class="cls-1" d="M14.36,20.15,16,17.33l8.36,4.82-.91-4.47,3.2-.65.51,2.53A4.16,4.16,0,0,1,21,24Z"/><path class="cls-2" d="M10.13,17.49h3.26v9.65l3.42-3L19,26.56,17,28.27a4.16,4.16,0,0,1-6.91-3.12Z"/><path class="cls-1" d="M10.32,12.5,12,15.32,3.59,20.15,7.92,21.6l-1,3.09-2.44-.82a4.16,4.16,0,0,1-.76-7.54Z"/><path class="cls-2" d="M14.74,10.16,13.11,13,4.75,8.16l.91,4.48-3.2.64L2,10.76A4.16,4.16,0,0,1,8.11,6.33Z"/></svg>
 						</a>
 					</div>
-					<div class="header__icon header__icon--cart open-panel" data-panel="right"><img src="{{asset('mobile/assets/images/icons/white/cart.svg')}}" alt="" title=""/><span class="cart-items-nr">0</span></div>
-				</div>
+					<div class="header__icon header__icon--cart open-panel" data-panel="right"><img src="{{asset('mobile/assets/images/icons/white/shopping-bag.svg')}}" alt="" title=""/><span class="cart-items-nr"><b id="cart-count">{{Cart::count() }}</b></span></div>
+			</div>
 		</header>
 	
 		<!-- SLIDER SIMPLE -->
 		<div class="page__content--with-header swiper-container slider-simple slider-simple slider-simple--vw-width slider-init" data-paginationtype="bullets" data-spacebetweenitems="0" data-itemsperview="1">
 			<div class="swiper-wrapper">
-                @foreach ($product->getImageRelation as $image)
-				<div class="swiper-slide slider-simple__slide" style="background-image:url(../../img/product/{{ $product->slug }}/{{ $image->image }});">
+                @foreach ($product->getImageRelation as $product_image)
+					@if($product_image->primary == 1)
+                        @php $image = $product_image->image  @endphp
+					@endif
+				<div class="swiper-slide slider-simple__slide" style="background-image:url(../../img/product/{{ $product->slug }}/{{ $product_image->image }});">
 				</div> 
 				@endforeach
 			</div>
@@ -53,13 +56,22 @@
 			<div class="slider-thumbs__wishlist"><a href="#"><img src="mobile/assets/images/icons/blue/love.svg" alt="Wishlist" title="Wishlist"/></a></div>
 			<div class="shop-details-share"><a href="#" data-popup="social" class="open-popup"><img src="{{asset('mobile/assets/images/icons/white/love.svg')}}" alt="" title=""/></a></div>
 			@else
-			<div class="shop-details-share"><a href="#" data-popup="wishlist" class="open-popup"><img src="{{asset('mobile/assets/images/icons/white/love.svg')}}" alt="Wishlist" title="Wishlist"/></a></div>
+			<div class="shop-details-share"><a href="#" data-popup="wishlist" class="open-popup"><img src="{{asset('mobile/assets/images/icons/blue/love.svg')}}" alt="Wishlist" title="Wishlist"/></a></div>
 			@endif
 		</div>
 
 		<div class="d-flex justify-space align-items-center">
 			<h2 class="page__title mb-0">{{$product->title}}</h2>
-			<div class="product-details-price">NPR {{ number_format($product->price) }}</div>
+			@php
+				if ($product->discount > 0){
+					$marked_price = $product->price;
+					$discount = $product->discount;
+					$price = round($marked_price - ($discount/100*$marked_price));
+				}else{
+					$price = $product->price;
+				}
+			@endphp
+			<div class="product-details-price">NPR {{ number_format($price) }}</div>
 		</div>
 		<div class="product-excerpt">
 			{!! $product->excerpt !!}
@@ -120,24 +132,39 @@
 				</form>
             </div>
             <div class="header__icon"><a href="tel:+977 9860469153"><img src="{{asset('mobile/assets/images/icons/white/call.svg')}}" alt="" title=""/></a></div>
-			<div class="bottom-navigation__shop-cart button button--small button--detail addtocart">ADD TO CART</div>
+			<div class="bottom-navigation__shop-cart button button--small button--detail" onclick="addtocart({{$product->id}}, '{{$product->title}}', {{ $price }}, '{{ $image }}')">ADD TO CART</div>
 		</div>
 	</div>	
 </div>
-
-<!-- Social Icons Popup -->
-<div id="popup-social"></div>
- 
-<!-- Alert --> 
-<div id="popup-alert"></div>  
-
-<!-- Notifications --> 
-<div id="popup-notifications"></div>  
 
 <script src="{{asset('mobile/vendor/jquery/jquery-3.5.1.min.js')}}"></script>
 <script src="{{asset('mobile/vendor/swiper/swiper.min.js')}}"></script>
 <script src="{{asset('mobile/main/js/swiper-init.js')}}"></script>
 <script src="{{asset('mobile/main/js/swiper-init-swipe.js')}}"></script>
 <script src="{{asset('mobile/main/js/jquery.custom.js')}}"></script>
+<script>
+	function addtocart(id, title, price, image){
+		var id = id;
+		var title = title;
+		var price = price;
+		var image = image;
+		$.ajax({
+			type:'POST',
+			url:"{{ route('cartstore.post') }}",
+			data:{"_token": "{{ csrf_token() }}",id:id, title:title, price:price, image:image},
+			success:function(data){
+				console.log(data.success);
+				$("#panel-right-cart").load(location.href + " #panel-right-cart"); // Add space between URL and selector.
+				$("#cart-count").load(location.href + " #cart-count");
+
+				$('.cart-items-nr').addClass('animate');
+				setTimeout(function() {
+					$('.cart-items-nr').removeClass('animate');
+				}, 1500);
+				
+			}
+		});
+	};
+</script>
 </body>
 </html>
