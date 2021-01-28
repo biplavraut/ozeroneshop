@@ -32,14 +32,19 @@
 					<span>TAX (10%)</span>  <b>NPR {{Cart::tax()}}</b>
 			  	</div> -->
 				  <div class="d-flex align-items-center justify-space pb-10">
-					<span>SHIPPING</span>  <b>NPR 200.00</b>
+					<span>SHIPPING</span>  <b>Free Shipping</b>
 				</div>
 			  	<div class="total d-flex align-items-center justify-space pb-10">
 					<span>TOTAL</span> <strong>NPR {{Cart::total()}}</strong>
 			  	</div>
 			</div>
 			<div class="buttons buttons--centered mt-20">
+				@auth
 				<a href="/checkout" class="button button--main button--full">PROCEED TO CHECKOUT</a>
+				@else
+				<a href="#" data-popup="checkout" class="button button--main button--full open-popup">PROCEED TO CHECKOUT</a>
+				
+				@endif
 			</div>
 			@else
 			<strong>No Item in Cart.</strong>

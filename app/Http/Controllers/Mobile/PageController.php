@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Mobile;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Slider;
@@ -12,6 +12,9 @@ use App\Models\Product_Electronics;
 use App\Models\Brand;
 use App\Models\Faq;
 use Cart;
+use App\Models\Customer_Detail;
+use App\Models\Shipping_Detail;
+use App\Models\Order;
 
 class PageController extends Controller
 {
@@ -94,7 +97,7 @@ class PageController extends Controller
     }
     public function cartstore(Request $request)
     {
-        return Cart::add($request['id'], $request['title'],1,$request['price'],['image' => $request['image']], 0)->associate('App\Models\Product');
+        return Cart::add($request['id'], $request['title'],1,$request['price'],['image' => $request['image'],'color' => $request['color'],'storage' => $request['storage']], 0)->associate('App\Models\Product');
         //session()->flash('success_message','Item added to cart');
         return response()->json(['success'=>'Item added to Cart']);
         //return view('mobile.cart');
@@ -122,9 +125,22 @@ class PageController extends Controller
         ]);
     }
     public function checkout()
-    {
-        return view('mobile.checkout', 
-        [
-        ]);
+    {       
+        
+        if(auth()->user()){
+            $user =  auth()->user();
+            $shipping = Shipping_Detail::where('customer_id', '=', $user->id)->firstorfail();
+            $customer = Customer_Detail::where('customer_id', '=', $user->id)->firstorfail();
+            return view('mobile.checkout' , 
+            [
+                'customer' => $customer ,
+                'shipping' => $shipping           
+            ]);
+        }else{
+            
+            return view('mobile.checkout', 
+            [
+            ]);
+        }
     }
 }

@@ -39,53 +39,8 @@
 	
 	<!-- PAGE CONTENT -->
 	<div class="page__content page__content--with-header">
-		<h2 class="page__title mt-20">Your Details</h2>
-		<div class="fieldset">
-			<div class="tabs">
-				<input type="radio" name="login" class="tabs__radio" id="tab1" checked="checked">
-				<label class="tabs__label tabs__label--auto" for="tab1">Login</label>	
-				
-				<div class="tabs__content">
-					<div class="form">
-						<form id="LoginForm" method="post" action="checkout.html">
-							<div class="form__row">
-								<input type="text" name="Username" value="" class="form__input required" placeholder="Username" />
-							</div>
-							<div class="form__row">
-								<input type="password" name="password" value="" class="form__input required" placeholder="Password" />
-							</div>
-							<div class="form__row">
-								<input type="submit" name="submit" class="form__submit button button--main button--full" id="submit" value="LOGIN" />
-							</div>
-						</form>
-					</div>
-				</div>
-
-				<input type="radio" name="login" class="tabs__radio" id="tab2">
-				<label class="tabs__label tabs__label--auto" for="tab2">Order without account</label>
-				
-				<div class="tabs__content">
-					<div class="form">
-						<form id="LoginForm" method="post" action="checkout.html">
-							<div class="form__row">
-								<input type="text" name="Name" value="" class="form__input required" placeholder="Name" />
-							</div>
-							<div class="form__row">
-								<input type="text" name="Email" value="" class="form__input email required" placeholder="Email" />
-							</div>
-							<div class="form__row">
-								<input type="text" name="Phone" value="" class="form__input required" placeholder="Phone" />
-							</div>
-							<div class="form__row">
-								<textarea name="Adddress" class="form__textarea required" placeholder="Address"></textarea>
-							</div>
-						</form>
-					</div>
-				</div>   
-			</div>
-		</div>
-		<h2 class="page__title">Your Order</h2>
-		
+		@if(Cart::count() > 0)
+		<h2 class="page__title mt-20">Order Summary</h2>		
 		<div class="fieldset">
 			<div class="cart cart--page">
 				@if(Cart::count() > 0)
@@ -97,25 +52,63 @@
 							<h4 class="cart__item-title">{{$item->model->title}} <span>NPR {{$item->model->price}}</span></h4>
 							<div class="cart__item-qty">
 								<form id="myform" method="POST" action="#" class="quantity quantity--small quantity--page">
-									<input type="button" value="-" class="quantity__button quantity__button--minus" field="quantity{{ $loop->index }}" />
+									<input type="button" onclick="decreaseQuantity('{{ $item->rowId }}')" value="-" class="quantity__button quantity__button--minus" field="quantity{{ $loop->index }}" />
 									<input type="text" name="quantity{{ $loop->index }}" value="{{$item->qty}}" class="quantity__input" />
-									<input type="button" value="+" class="quantity__button quantity__button--plus" field="quantity{{ $loop->index }}" />
+									<input type="button" onclick="increaseQuantity('{{ $item->rowId }}')" value="+" class="quantity__button quantity__button--plus" field="quantity{{ $loop->index }}" />
 								</form>
 							</div>
 							<div class="cart__item-more" data-swipe-item="{{ $loop->index }}"><img src="{{asset('mobile/assets/images/icons/blue/more.svg')}}" alt="" title=""/></div>
 						</div>
-						<div class="swiper-slide cart__item-delete"><a href="#" class="delete-item" data-delete-item="{{ $loop->index }}">REMOVE</a></div>
+						<div class="swiper-slide cart__item-delete"><a href="#" onclick="removeCartProduct('{{ $item->rowId }}')" class="delete-item" data-delete-item="{{ $loop->index }}">REMOVE</a></div>
 					</div>
 				</div>
 				@endforeach
+				<div class="cart__total">
+					<div class="d-flex align-items-center justify-space pb-10">
+						<span>SUB TOTAL</span>  <b>NPR {{Cart::subtotal()}}</b>
+					</div>
+					<!-- <div class="d-flex align-items-center justify-space pb-10">
+						<span>TAX (10%)</span>  <b>NPR {{Cart::tax()}}</b>
+					</div> -->
+					<div class="d-flex align-items-center justify-space pb-10">
+						<span>SHIPPING</span>  <b>Free Shipping</b>
+					</div>
+					<div class="total d-flex align-items-center justify-space pb-10">
+						<span>TOTAL</span> <strong>NPR {{Cart::total()}}</strong>
+					</div>
+				</div>
 				@else
 				<b>No Product in Cart</b>
 				@endif
 			 </div>
 		</div>
-		<h2 class="page__title">Select Payment</h2>
+		<h2 class="page__title">Your Details</h2>
+		@auth
 		<div class="fieldset">
-			<div class="radio-option radio-option--full">
+            <div style="display:flex;">
+                <h3>Account Detail</h3>
+                <a href="/accountdetail" style="position:absolute; right: 40px;"><span> Setting <i class="fas fa-cog"></i> </span></a>
+            </div>
+            <p>Name: {{ $customer->name }}</p>
+            <p>Email: {{ $customer->email }}</p>
+            <p>Phone: {{ $customer->primary_phone }}</p>
+            <p>Address: {{ $customer->address }}</p>
+			
+		</div>
+        <div class="fieldset">
+            <div style="display:flex;">
+                <h3>Shipping Detail</h3>
+                <a href="/shippingdetail" style="position:absolute; right: 40px;"><span> Edit Detail <i class="fas fa-edit"></i> </span></a>
+            </div>
+            <p>Name: {{ $shipping->name }}</p>
+            <p>Email: {{ $shipping->email }}</p>
+            <p>Primary Phone: {{ $shipping->primary_phone }}</p>
+			<p>Secondary Phone: {{ $shipping->secondary_phone }}</p>
+            <p>Address: {{ $shipping->address }}</p>			
+		</div>
+		<h2 class="page__title">Payment</h2>
+		<div class="fieldset">
+			<!-- <div class="radio-option radio-option--full">
 				<input type="radio" name="payment" id="op4" value="paypal" /><label for="op4">Bank Transfer</span></label>
 			</div>
 			<div class="option-hidden" id="show-paypal-info">
@@ -128,37 +121,74 @@
 			
 			<div class="radio-option radio-option--full">
 				<input type="radio" name="payment" id="op8" value="eSewa" /><label for="op8">eSewa</label>
-            </div>
+            </div> -->
             
 			<div class="radio-option radio-option--full mb-0">
-				<input type="radio" name="payment" id="op6" value="pickup" /><label for="op6">Cash On Delivery</label>
+				<input type="radio" name="payment" id="op6" value="pickup" checked/><label for="op6">Cash On Delivery</label>
 			</div>
 		</div>	
-		<h2 class="page__title">Your Total</h2> 
-		<div class="cart__total cart__total--page">
-			<div class="d-flex align-items-center justify-space pb-10">
-				<span>CART TOTAL</span> @if(Cart::count() > 0) <b>NPR {{$item->total}}</b> @endif
-			</div>
-			<!-- <div class="d-flex align-items-center justify-space pb-10">
-				<span>VAT (10%)</span>  <b>$ 95.00</b>
-			</div> -->
-			<div class="d-flex align-items-center justify-space pb-10">
-				<span>SHIPPING</span>  <b>NPR 200.00</b>
-			</div>
-			<div class="total d-flex align-items-center justify-space pb-10">
-				<span>TOTAL</span> @if(Cart::count() > 0)<strong>NPR {{$item->total+200}}</strong> @endif
-			</div>
-		</div>
+		@if($shipping->primary_phone == '' || $shipping->address == '' )
 		<div class="buttons buttons--centered mb-40">
-			<a href="#" data-popup="success" class="button button--main button--full open-popup">Order</a>
+			<a href="#" data-popup="less-data" class="button button--main button--full open-popup">Place an Order</a>
 		</div>
+		@else
+		<div class="buttons buttons--centered mb-40">
+			<a href="/order" class="button button--main button--full">Place an Order</a>
+		</div>
+		@endif
+		@else
+		<div class="fieldset mb-40">
+            <div class="form">
+				<h3>Orderer Detail</h3>
+                <form id="LoginForm" method="post" action="/nologinorder">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                    <div class="form__row">
+                        <input type="text" name="cust_name" value="" class="form__input required" placeholder="Name"/>
+                    </div>
+                    <div class="form__row">
+                        <input type="text" name="cust_email" value="" class="form__input email required" placeholder="Email"/>
+                    </div>
+                    <div class="form__row">
+                        <input type="text" name="cust_primary_phone" value="" class="form__input required" placeholder="Primary Phone" />
+                    </div>
+                    <div class="form__row">
+                        <textarea name="cust_address" class="form__textarea required" placeholder="Address"></textarea>
+                    </div>
+					<h3>Shipping Detail</h3>
+					<div class="form__row">
+                        <input type="text" name="ship_name" value="" class="form__input required" placeholder="Name"/>
+                    </div>
+                    <div class="form__row">
+                        <input type="text" name="ship_email" value="" class="form__input email required" placeholder="Email"/>
+                    </div>
+                    <div class="form__row">
+                        <input type="text" name="ship_primary_phone" value="" class="form__input required" placeholder="Primary Phone" />
+                    </div>
+                    <div class="form__row">
+                        <input type="text" name="ship_secondary_phone" value="" class="form__input required" placeholder="Secondary Phone" />
+                    </div>
+                    <div class="form__row">
+                        <textarea name="ship_address" class="form__textarea required" placeholder="Address"></textarea>
+                    </div>
+					<h3>Payment</h3>
+					<div class="radio-option radio-option--full mb-20">
+						<input type="radio" name="payment" id="op6" value="pickup" checked/><label for="op6">Cash On Delivery</label>
+					</div>
+                    <div class="buttons buttons--centered">
+                        <button type="submit" class="button button--main button--full">Place an Order</button>
+                    </div>
+                </form>
+            </div>
+		</div>
+		@endif
 		 
-		
+		@else
+		<h2 class="page__title mt-20">No product in Cart</h2>
+		<div class="buttons buttons--centered">
+			<a href="/products/all" class="button button--main button--full">Shop Now</a>
+		</div>
+		@endif
 	</div>
-			  
-
-
-
 </div>
 <!-- PAGE END --> 
 @include('mobile.includes.bottombar')

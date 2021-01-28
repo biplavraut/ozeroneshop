@@ -40,6 +40,11 @@ if(isMobile()) {
         Route::middleware(['auth'])->group(function () {
             Route::post('/logout', [App\Http\Controllers\Mobile\Client\Auth\LoginController::class, 'logout'])->name('logout');
             Route::get('/dashboard', [App\Http\Controllers\Mobile\Client\DashboardController::class, 'index'])->name('dashboard');
+            Route::get('/accountdetail', [App\Http\Controllers\Mobile\AccountController::class, 'accountdetail']);
+            Route::post('/accountupdate', [App\Http\Controllers\Mobile\AccountController::class, 'accountupdate']);
+            Route::get('/shippingdetail', [App\Http\Controllers\Mobile\AccountController::class, 'shippingdetail']);
+            Route::post('/updateshipping', [App\Http\Controllers\Mobile\AccountController::class, 'updateshipping']);
+            Route::post('addwishlist', [App\Http\Controllers\Mobile\AccountController::class, 'addwishlist'])->name('addwishlist.post');
         });
     });  
     
@@ -57,7 +62,9 @@ if(isMobile()) {
         Route::get('/contact', [App\Http\Controllers\Mobile\PageController::class, 'contact']);
         Route::get('/cart', [App\Http\Controllers\Mobile\PageController::class, 'cart']);
         Route::get('/checkout', [App\Http\Controllers\Mobile\PageController::class, 'checkout']);
-
+        Route::get('/order', [App\Http\Controllers\Mobile\OrderController::class, 'order']);
+        Route::post('/nologinorder', [App\Http\Controllers\Mobile\OrderController::class, 'nologinorder']);
+        
         Route::post('cartstore', [App\Http\Controllers\Mobile\PageController::class, 'cartstore'])->name('cartstore.post');
         Route::post('increasequantity', [App\Http\Controllers\Mobile\PageController::class, 'increaseQuantity'])->name('increasequantity.post');
         Route::post('decreasequantity', [App\Http\Controllers\Mobile\PageController::class, 'decreaseQuantity'])->name('decreasequantity.post');

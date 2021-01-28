@@ -85,9 +85,18 @@
 								<span class="fas fa-star"></span>
 							</div>
 						</div>
+						@php
+						if ($feature->discount > 0){
+							$marked_price = $feature->price;
+							$discount = $feature->discount;
+							$price = round($marked_price - ($discount/100*$marked_price));
+						}else{
+							$price = $feature->price;
+						}
+						@endphp
 						<div class="slider-thumbs__bottom-right-info">
 							@auth
-							<div class="slider-thumbs__wishlist"><a href="#"><img src="mobile/assets/images/icons/blue/love.svg" alt="Wishlist" title="Wishlist"/></a></div>
+							<div class="slider-thumbs__wishlist"><a href="#" onclick="addtowishlist({{$feature->id}}, {{ $price }})"><img src="mobile/assets/images/icons/blue/love.svg" alt="Wishlist" title="Wishlist"/></a></div>
 							@else
 							<div class="slider-thumbs__wishlist"><a href="#" data-popup="wishlist" class="open-popup"><img src="mobile/assets/images/icons/blue/love.svg" alt="Wishlist" title="Wishlist"/></a></div>
 							@endif
@@ -96,15 +105,7 @@
 					<div class="slider-thumbs__caption caption">
 						<div class="caption__content">
 							<h2 class="caption__title">{{ substr($feature->title, 0, 55)}}</h2>
-							@php
-							if ($feature->discount > 0){
-								$marked_price = $feature->price;
-								$discount = $feature->discount;
-								$price = round($marked_price - ($discount/100*$marked_price));
-							}else{
-								$price = $feature->price;
-							}
-							@endphp
+							
 							<a class="caption__price" href="#">@if ($feature->discount > 0)NPR <span>{{number_format($marked_price)}} </span> {{ number_format($price)}} @else NPR {{number_format($price)}} @endif</a>
 							@if(count($feature->getStorageRelation) > 0)
 								<a class="caption__cart" href="/product-detail/{{$feature->slug}}" >View Options</a>
@@ -214,9 +215,18 @@
                             <span class="fas fa-star"></span>
                         </div>
                     </div> -->
+					@php
+						if ($smart_phone->discount > 0){
+							$marked_price = $smart_phone->price;
+							$discount = $smart_phone->discount;
+							$price = round($marked_price - ($discount/100*$marked_price));
+						}else{
+							$price = $smart_phone->price;
+						}
+					@endphp
                     <div class="card__bottom-right-info">
 						@auth
-						<div class="card_wishlist"><a href="#"><img src="{{asset('mobile/assets/images/icons/blue/love.svg')}}" alt="Ozerone Wishlist" title="Add to Wishlist"/></a></div>
+						<div class="card_wishlist"><a href="#" onclick="addtowishlist({{$smart_phone->id}}, {{ $price }})"><img src="{{asset('mobile/assets/images/icons/blue/love.svg')}}" alt="Ozerone Wishlist" title="Add to Wishlist"/></a></div>
 						@else
 						<div class="card_wishlist"><a href="#" data-popup="wishlist" class="open-popup"><img src="{{asset('mobile/assets/images/icons/blue/love.svg')}}" alt="Ozerone Wishlist" title="Add to Wishlist"/></a></div>
 						@endif
@@ -225,15 +235,7 @@
 				<div class="card-detail">
 					<h4 class="card__title">{{ substr($smart_phone->title, 0, 55)}}</h4>
 					<div style="display:flex;">
-						@php
-							if ($smart_phone->discount > 0){
-								$marked_price = $smart_phone->price;
-								$discount = $smart_phone->discount;
-								$price = round($marked_price - ($discount/100*$marked_price));
-							}else{
-								$price = $smart_phone->price;
-							}
-						@endphp
+						
 						<p class="card_price">NPR {{number_format($price)}}</p>
 						<a class="card_cart" href="#" onclick="addtocart({{$smart_phone->id}}, '{{$smart_phone->title}}', {{$price}}, '{{ $image }}')">Add to Cart</a>
 					</div>
@@ -289,9 +291,18 @@
                             <span class="fas fa-star"></span>
                         </div>
                     </div> -->
+					@php
+						if ($all_product->discount > 0){
+							$marked_price = $all_product->price;
+							$discount = $all_product->discount;
+							$price = round($marked_price - ($discount/100*$marked_price));
+						}else{
+							$price = $all_product->price;
+						}
+					@endphp
                     <div class="card__bottom-right-info">
 						@auth
-						<div class="card_wishlist"><a href="#"><img src="{{asset('mobile/assets/images/icons/blue/love.svg')}}" alt="Ozerone Wishlist" title="Add to Wishlist"/></a></div>
+						<div class="card_wishlist"><a href="#" onclick="addtowishlist({{$all_product->id}}, {{ $price }})"><img src="{{asset('mobile/assets/images/icons/blue/love.svg')}}" alt="Ozerone Wishlist" title="Add to Wishlist"/></a></div>
 						@else
 						<div class="card_wishlist"><a href="#" data-popup="wishlist" class="open-popup"><img src="{{asset('mobile/assets/images/icons/blue/love.svg')}}" alt="Ozerone Wishlist" title="Add to Wishlist"/></a></div>
 						@endif
@@ -300,15 +311,7 @@
 				<div class="card-detail">
 					<h4 class="card__title">{{ substr($all_product->title, 0, 55)}}</h4>
 					<div style="display:flex;">
-						@php
-							if ($all_product->discount > 0){
-								$marked_price = $all_product->price;
-								$discount = $all_product->discount;
-								$price = round($marked_price - ($discount/100*$marked_price));
-							}else{
-								$price = $all_product->price;
-							}
-						@endphp
+						
 						<p class="card_price">NPR {{number_format($price)}}</p>
 						<a class="card_cart" href="#" onclick="addtocart({{$all_product->id}}, '{{$all_product->title}}', {{$price}}, '{{ $image }}')">Add to Cart</a>
 					</div>
@@ -351,10 +354,12 @@
 			var title = title;
 			var price = price;
 			var image = image;
+			var color = 'Not Available';
+			var storage = 'Not Available';
 			$.ajax({
 				type:'POST',
 				url:"{{ route('cartstore.post') }}",
-				data:{"_token": "{{ csrf_token() }}", id:id, title:title, price:price, image:image},
+				data:{"_token": "{{ csrf_token() }}", id:id, title:title, price:price, image:image, color:color, storage:storage},
 				success:function(data){
 					console.log(data.success);
 					$("#panel-right-cart").load(location.href + " #panel-right-cart"); // Add space between URL and selector.
@@ -365,6 +370,33 @@
 						$('.cart-items-nr').removeClass('animate');
 					}, 1500);
 					
+				}
+			});
+		};
+
+		function addtowishlist(id, price){
+			var id = id;
+			var price = price;
+			$.ajax({
+				type:'POST',
+				url:"{{ route('addwishlist.post') }}",
+				data:{"_token": "{{ csrf_token() }}", id:id, price:price},
+				success:function(data){
+					if(data.message == 'wishlist_added'){
+						var popup = $('.popup--' + 'added');
+						popup.css({display: 'block'}).addClass('active');
+					}else{
+						if(data.message == 'wishlist_exist'){
+							var popup = $('.popup--' + 'exist');
+							popup.css({display: 'block'}).addClass('active');
+						}else{
+							var popup = $('.popup--' + 'error');
+							popup.css({display: 'block'}).addClass('active');
+						}
+					}
+					
+					
+										
 				}
 			});
 		};

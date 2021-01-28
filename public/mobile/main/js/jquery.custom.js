@@ -411,7 +411,7 @@ if (pageid == 'products') {
 /*-------------- Page Shop Cart----------- */
    if (pageid == 'checkout') {
 	   
-		$( "#popup-success" ).load( "popup-success.html" );
+		// $( "#popup-success" ).load( "popup-success.html" );
 		
 		$(".quantity__button--plus").on('click', function(e) { 							  
 			e.preventDefault();

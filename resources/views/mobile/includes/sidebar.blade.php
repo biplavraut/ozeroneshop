@@ -26,7 +26,7 @@
 							<li class="divider"></li>
 							@if (Route::has('login'))
 									@auth
-										<li><a href="/dashboard"><img src="mobile/assets/images/icons/blue/settings.svg" alt="" title="" /><span>Account</span></a></li>
+										<li><a href="/dashboard"><img src="{{asset('mobile/assets/images/icons/blue/settings.svg')}}" alt="" title="" /><span>Account</span></a></li>
 										<li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"><img src="{{asset('mobile/assets/images/icons/blue/logout.svg')}}" alt="" title="" /><span>Logout</span></a></li>
 										<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

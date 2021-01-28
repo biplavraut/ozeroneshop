@@ -42,7 +42,11 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        return view('mobile.client.auth.login');
+        if(auth()->user()){
+            return view('mobile.client.home');
+        }else{
+            return view('mobile.client.auth.login');
+        }        
     }
 
     public function logout(Request $request)
