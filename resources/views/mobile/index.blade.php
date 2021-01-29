@@ -124,7 +124,7 @@
 		</div>
 		<!-- End of Featured -->
 		<div class="page__title-bar">
-		<h3>Get flat 10% discount on XIAOMI Phones<span> Promo Code 'O01XOMI'</span></h3>
+		<h3>We deliver Happiness at your Doorstep.<span> Live Smart Live Easy</span></h3>
 		</div>
 		<div class="cards cards--11">			
 			<div class="card card--style-cover card--style-round-corners" style="background-image:url(img/promo/prmo-1.png);  background-repeat: no-repeat;  background-size: cover; min-height:150px;">
