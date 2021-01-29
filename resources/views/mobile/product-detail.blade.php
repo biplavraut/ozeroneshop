@@ -60,7 +60,7 @@
 			@endif
 		</div>
 
-		<div class="d-flex justify-space align-items-center">
+		<div class="d-flex justify-space align-items-center mt-20 mb-20">
 			<h2 class="page__title mb-0">{{$product->title}}</h2>
 			@php
 				if ($product->discount > 0){
@@ -98,12 +98,12 @@
             @endforeach
         </div> 
         @endif	
-		<h3>Product Informations</h3>
-		<div class="cards cards--11" id="loadlist-shop">	
+		<!-- <h3>Product Informations</h3> -->
+		<div class="" id="loadlist-shop">	
 			@if (count($product->getDetailRelation) >= 1)
 				@foreach ($product->getDetailRelation as $product_detail) 
 				<div class="card mb-0">
-					<h4>{{ $product_detail->title }}</h3>
+					<h3>{{ $product_detail->title }}</h3>
 					<div class="detail-content">{!! $product_detail->excerpt !!}</div>
 				</div>
 				

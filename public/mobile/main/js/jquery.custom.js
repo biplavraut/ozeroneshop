@@ -359,7 +359,7 @@ if (pageid == 'products') {
 		$('#loadMore').hide();
 		$('#showLess').show();
 		}
-		$(".page__content").animate({ scrollTop: $('.page__content').prop("scrollHeight")}, 500);
+		// $(".page__content").animate({ scrollTop: $('.page__content').prop("scrollHeight")}, 1000);
 		});
 		
 		

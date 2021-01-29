@@ -504,9 +504,9 @@ input[type=number] {
     color: #fb6340;
     font-weight: 700;
     font-size: 1.8rem;
-    line-height: 60px;
+    /* line-height: 60px; */
     text-align: center;
-    margin-left: 20px;
+    margin-left: 5px;
 }
 
 .size-selectors input[type="radio"]:checked + label {
@@ -559,7 +559,7 @@ input[type=number] {
     height: auto;
 }
 .product-excerpt{
-    padding: 0 10px 15px 20px;
+    /* padding: 0 10px 15px 20px; */
 }
 .product-excerpt ol, .product-excerpt ul{
     list-style: disclosure-closed;
