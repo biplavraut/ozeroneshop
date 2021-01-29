@@ -140,7 +140,7 @@
 					<input type="button" value="+" class="quantity__button quantity__button--plus" field="quantity" />
 				</form>
             </div> -->
-            <a  class="bottom-navigation__shop-call button button--small button--call" href="tel:+977 9860469153, 9841180064">Call Now</a>
+            <a  class="bottom-navigation__shop-call button button--small button--call" href="tel:+977 9860469153">Call Now</a>
 			<div class="bottom-navigation__shop-cart button button--small button--detail" onclick="addtocart()">ADD TO CART</div>
 		</div>
 	</div>	
