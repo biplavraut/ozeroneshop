@@ -630,6 +630,10 @@
             return {
                 product_slug: this.$route.params.slug,
                 ram: [
+                    { text: '1 GB', value: '1 GB' },
+                    { text: '2 GB', value: '2 GB' },
+                    { text: '3 GB', value: '3 GB' },
+                    { text: '4 GB', value: '4 GB' },
                     { text: '6 GB', value: '6 GB' },
                     { text: '8 GB', value: '8 GB' },
                     { text: '16 GB', value: '16 GB' },
@@ -637,6 +641,8 @@
                     { text: '64 GB', value: '64 GB' }
                 ],
                 storages: [
+                    { text: '4 GB', value: '4 GB' },
+                    { text: '8 GB', value: '8 GB' },
                     { text: '16 GB', value: '16 GB' },
                     { text: '32 GB', value: '32 GB' },
                     { text: '64 GB', value: '64 GB' },
