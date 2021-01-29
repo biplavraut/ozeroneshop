@@ -73,11 +73,8 @@
 			@endphp
 			<div class="product-details-price">NPR <span id="price_display">{{ number_format($price) }}</span></div>
 		</div>
-		<div class="product-excerpt">
-			{!! $product->excerpt !!}
-		</div>		
-        @if (count($product->getStorageRelation) >= 1)
-		<h3>Storage Option</h3>
+		@if (count($product->getStorageRelation) >= 1)
+		<!-- <h3>Storage Option</h3> -->
         <div class="size-selectors">
             @foreach ($product->getStorageRelation as $product_storage)                
             <div class="size-selectors__input"> 
@@ -96,6 +93,10 @@
             @endforeach	
         </div> 
         @endif
+		<div class="product-excerpt">
+			{!! $product->excerpt !!}
+		</div>		
+        
         @if (count($product->getColorRelation) >= 1)
 		<h3>Select color</h3>
 		<div class="color-selectors">   
