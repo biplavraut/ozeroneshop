@@ -59,7 +59,7 @@
             </div>
             <p>Name: {{ $shipping->name }}</p>
             <p>Email: {{ $shipping->email }}</p>
-            <p>Phone:{{ $shipping->primary_phone }}</p>
+            <p>Phone: {{ $shipping->primary_phone }}</p>
             <p>Address: {{ $shipping->address }}</p>
 			
 		</div>

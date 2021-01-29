@@ -25,7 +25,7 @@ class OrderController extends Controller
             // Estimate Ship date
             $ship_date = date('Y-m-d h:i:s');
             $ship_date = strtotime($ship_date);
-            $ship_date = strtotime("+7 day", $ship_date);
+            $ship_date = strtotime("+3 day", $ship_date);
             $ship_date = date('Y-m-d h:i:s', $ship_date);
             $shipping_id = Shipping_Detail::where('customer_id', '=', $user->id)->first()->id;
             
@@ -82,7 +82,7 @@ class OrderController extends Controller
         // Estimate Ship date
         $ship_date = date('Y-m-d h:i:s');
         $ship_date = strtotime($ship_date);
-        $ship_date = strtotime("+7 day", $ship_date);
+        $ship_date = strtotime("+3 day", $ship_date);
         $ship_date = date('Y-m-d h:i:s', $ship_date);
 
         $add_customer = Customer_Detail::create([
