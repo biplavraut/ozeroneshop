@@ -133,14 +133,14 @@
 <div id="bottom-toolbar-shop" class="bottom-toolbar">
 	<div class="bottom-navigation">
 		<div class="bottom-navigation__shop">
-			<div class="bottom-navigation__shop-qty">
+			<!-- <div class="bottom-navigation__shop-qty">
 				<form id="myform" method="POST" action="#" class="quantity">
 					<input type="button" value="-" class="quantity__button quantity__button--minus" field="quantity" />
 					<input type="number" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="quantity" value="1" class="quantity__input" />
 					<input type="button" value="+" class="quantity__button quantity__button--plus" field="quantity" />
 				</form>
-            </div>
-            <div class="header__icon"><a href="tel:+977 9860469153"><img src="{{asset('mobile/assets/images/icons/white/call.svg')}}" alt="" title=""/></a></div>
+            </div> -->
+            <a  class="bottom-navigation__shop-call button button--small button--call" href="tel:+977 9860469153, 9841180064">Call Now</a>
 			<div class="bottom-navigation__shop-cart button button--small button--detail" onclick="addtocart()">ADD TO CART</div>
 		</div>
 	</div>	

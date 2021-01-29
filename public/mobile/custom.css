@@ -583,3 +583,14 @@ input[type=number] {
 ul.custom-listing--checked li {
     background-image: url(assets/images/icons/blue/checked-simple.svg);
 }
+.bottom-navigation__shop-call {
+    background-image: url(assets/images/icons/white/call.svg?e6bf5bf20e18e3cb5b0455f7275eaedc);
+    background-repeat: no-repeat;
+    background-position: 20px 50%;
+    background-size: 18px;
+    padding-left: 50px;
+}
+.button--call {
+    color: #ffffff;
+    background-color: #4d91c6;
+}
