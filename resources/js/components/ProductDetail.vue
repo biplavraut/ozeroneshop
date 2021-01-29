@@ -41,7 +41,7 @@
                                             <div class="input-group mb-2 mr-sm-2">
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text">
-                                                        <input v-model="cform.display" type="checkbox" name="display">
+                                                        <input v-model="cform.display" :checked="cform.display == 1" type="checkbox" name="display">
                                                     </div>
                                                 </div>
                                                 <input type="text" value="Display" class="form-control" disabled>
@@ -53,7 +53,7 @@
                                             <div class="input-group mb-2 mr-sm-2">
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text">
-                                                        <input v-model="cform.featured" type="checkbox" name="featured">
+                                                        <input v-model="cform.featured" :checked="cform.featured == 1" type="checkbox" name="featured">
                                                     </div>
                                                 </div>
                                                 <input type="text" value="Featured" class="form-control" disabled>
@@ -152,7 +152,7 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <b>SPECS</b>
+                                <!-- <b>SPECS</b>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -226,7 +226,7 @@
                                             </div>
                                         </div>                            
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="form-group"> 
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">Description</div>
@@ -1108,6 +1108,13 @@
                 }
             },
             loadDetail(){
+                swal.fire({
+                    title: 'Please Wait! Loading...',
+                    showConfirmButton: false,
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    timer: 3000
+                    })
                 this.$Progress.start();
                 if (this.$gate.isAuthorized()){
                     axios.get("../../../api/brand").then(({ data }) => (this.brands = data));
@@ -1126,6 +1133,7 @@
                     ));
                     this.$Progress.finish();
                 }
+                // swal.close();
             }
         },
         created() {
