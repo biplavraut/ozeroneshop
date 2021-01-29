@@ -70,7 +70,12 @@ function increaseQuantity(rowId){
 			$('.cart-items-nr').addClass('animate');
 			setTimeout(function() {
 				$('.cart-items-nr').removeClass('animate');
-			}, 1500);				
+			}, 1500);
+			// GET PAGE ID
+			var cartpageid = $('.page').data("page");
+			if(cartpageid == 'checkout'){		
+				$("#orderSummary").load(location.href + " #orderSummary");
+			}				
 		}
 	});
 };
@@ -88,7 +93,12 @@ function decreaseQuantity(rowId){
 			$('.cart-items-nr').addClass('animate');
 			setTimeout(function() {
 				$('.cart-items-nr').removeClass('animate');
-			}, 1500);				
+			}, 1500);	
+			// GET PAGE ID
+			var cartpageid = $('.page').data("page");
+			if(cartpageid == 'checkout'){		
+				$("#orderSummary").load(location.href + " #orderSummary");
+			}			
 		}
 	});
 };
@@ -106,7 +116,12 @@ function removeCartProduct(rowId){
 			$('.cart-items-nr').addClass('animate');
 			setTimeout(function() {
 				$('.cart-items-nr').removeClass('animate');
-			}, 1500);				
+			}, 1500);	
+			// GET PAGE ID
+			var cartpageid = $('.page').data("page");
+			if(cartpageid == 'checkout'){		
+				$("#orderSummary").load(location.href + " #orderSummary");
+			}			
 		}
 	});
 };

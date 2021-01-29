@@ -42,7 +42,7 @@
 		@if(Cart::count() > 0)
 		<h2 class="page__title mt-20">Order Summary</h2>		
 		<div class="fieldset">
-			<div class="cart cart--page">
+			<div class="cart cart--page" id="orderSummary">
 				@if(Cart::count() > 0)
 				@foreach(Cart::content() as $item)
 				<div class="swiper-container slider-init-swipe cart__item" id="item{{ $loop->index }}">
