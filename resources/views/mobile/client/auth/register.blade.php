@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="{{asset('mobile/custom.css')}}">
 </head>
 <body>
-	
+@include('mobile.includes.popups')	
 <div class="page page--login" data-page="login">
 
 	<!-- HEADER -->
@@ -74,16 +74,16 @@
 					</form>	
                 </div>
                 <div class="splash__social-login">
-				<p>- Or Register with -</p>
+				<!-- <p>- Or Register with -</p>
 				<div class="splash__social-icons">
 					<a href="#" class="icon icon--social"><img src="{{asset('mobile/assets/images/icons/white/facebook.svg')}}" alt="" title=""/></a>
 					<a href="#" class="icon icon--social"><img src="{{asset('mobile/assets/images/icons/white/google.svg')}}" alt="" title=""/></a>
-				</div>
+				</div> -->
 			</div>
 		</div>
         </div>
 			  
-
+		@include('mobile.includes.bottombar')
 
 </div>
 <!-- PAGE END -->

@@ -550,6 +550,9 @@ input[type=number] {
 /* Product Detail */
 .detail-content{
  width: 100%;
+ /* border-bottom: 1px solid #165293;
+ border-radius: 5px;
+ margin-bottom: 5px; */
 }
 .detail-content p{
     justify-content: center;

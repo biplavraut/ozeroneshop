@@ -53,8 +53,8 @@
 			</div>
 			<div class="swiper-pagination slider-simple__pagination"></div>
 			@auth
-			<div class="slider-thumbs__wishlist"><a href="#"><img src="mobile/assets/images/icons/blue/love.svg" alt="Wishlist" title="Wishlist"/></a></div>
-			<div class="shop-details-share"><a href="#" data-popup="social" class="open-popup"><img src="{{asset('mobile/assets/images/icons/white/love.svg')}}" alt="" title=""/></a></div>
+			<div class="slider-thumbs__wishlist"><a href="#"><img src="{{asset('mobile/assets/images/icons/blue/love.svg')}}" alt="Wishlist" title="Wishlist"/></a></div>
+			<div class="shop-details-share"><a href="#" data-popup="social" class="open-popup"><img src="{{asset('mobile/assets/images/icons/blue/love.svg')}}" alt="" title=""/></a></div>
 			@else
 			<div class="shop-details-share"><a href="#" data-popup="wishlist" class="open-popup"><img src="{{asset('mobile/assets/images/icons/blue/love.svg')}}" alt="Wishlist" title="Wishlist"/></a></div>
 			@endif
@@ -71,7 +71,7 @@
 					$price = $product->price;
 				}
 			@endphp
-			<div class="product-details-price">NPR {{ number_format($price) }}</div>
+			<div class="product-details-price">NPR <span id="price_display">{{ number_format($price) }}</span></div>
 		</div>
 		<div class="product-excerpt">
 			{!! $product->excerpt !!}
@@ -81,7 +81,16 @@
         <div class="size-selectors">
             @foreach ($product->getStorageRelation as $product_storage)                
             <div class="size-selectors__input"> 
-				<input id="{{ $product_storage->ram }}" type="radio" name="ram" value="{{ $product_storage->ram }}" {{ ($loop->index == 0) ? "checked" : "" }}>  
+				@php
+					if ($product->discount > 0){
+						$marked_price = $product_storage->price;
+						$discount = $product->discount;
+						$storage_price = round($marked_price - ($discount/100*$marked_price));
+					}else{
+						$storage_price = $product_storage->price;
+					}
+				@endphp
+				<input id="{{ $product_storage->ram }}" onclick="storagechange({{ $storage_price }})" data-price="{{ $storage_price }}" type="radio" name="storage" value="{{ $product_storage->id }}" {{ ($loop->index == 0) ? "checked" : "" }}>  
 				<label for="{{ $product_storage->ram }}">{{ $product_storage->ram.' RAM-'. $product_storage->storage }}</label>
             </div>
             @endforeach	
@@ -92,7 +101,7 @@
 		<div class="color-selectors">   
             @foreach ($product->getColorRelation as $product_color) 
 			<div class="size-selectors__input"> 				
-				<input id="{{ $product_color->color }}" type="radio" name="color" value="{{ $product_color->color }}" {{ ($loop->index == 0) ? "checked" : "" }}>  
+				<input id="{{ $product_color->color }}" onclick="colorchange('{{$product_color->image}}')" type="radio" name="color" value="{{ $product_color->id }}" {{ ($loop->index == 0) ? "checked" : "" }}>  
 				<label for="{{ $product_color->color }}" class="gray" style="background-color: {{ $product_color->hex }};"></label>
 			</div>
             @endforeach
@@ -132,10 +141,14 @@
 				</form>
             </div>
             <div class="header__icon"><a href="tel:+977 9860469153"><img src="{{asset('mobile/assets/images/icons/white/call.svg')}}" alt="" title=""/></a></div>
-			<div class="bottom-navigation__shop-cart button button--small button--detail" onclick="addtocart({{$product->id}}, '{{$product->title}}', {{ $price }}, '{{ $image }}')">ADD TO CART</div>
+			<div class="bottom-navigation__shop-cart button button--small button--detail" onclick="addtocart()">ADD TO CART</div>
 		</div>
 	</div>	
 </div>
+<input type="hidden" value="{{$product->id}}" name="product_id">
+<input type="hidden" value="{{$product->title}}" name="product_title">
+<input type="hidden" value="{{$price}}" name="product_price">
+<input type="hidden" value="{{$image}}" name="product_image">
 
 <script src="{{asset('mobile/vendor/jquery/jquery-3.5.1.min.js')}}"></script>
 <script src="{{asset('mobile/vendor/swiper/swiper.min.js')}}"></script>
@@ -143,15 +156,39 @@
 <script src="{{asset('mobile/main/js/swiper-init-swipe.js')}}"></script>
 <script src="{{asset('mobile/main/js/jquery.custom.js')}}"></script>
 <script>
-	function addtocart(id, title, price, image){
-		var id = id;
-		var title = title;
-		var price = price;
-		var image = image;
+	$(function () {
+		if($( "input[type=radio][name=storage]:checked" ).data("price")){
+			var price = $( "input[type=radio][name=storage]:checked" ).data("price");
+			$( "input[type=hidden][name=product_price]" ).val(price);
+			$("#price_display").text(price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+		}		
+	})
+	function storagechange(price){
+		$( "input[type=hidden][name=product_price]" ).val(price);
+		$("#price_display").text(price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+	}
+	function colorchange(image){
+		$( "input[type=hidden][name=product_image]" ).val(image);
+		//$("#price_display").text(price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+	}
+	function addtocart(){
+		var id = $( "input[type=hidden][name=product_id]" ).val();
+		var title = $( "input[type=hidden][name=product_title]" ).val();
+		var price = $( "input[type=hidden][name=product_price]" ).val();
+		var image = $( "input[type=hidden][name=product_image]" ).val();
+		var color = $( "input[type=radio][name=color]:checked" ).val();
+		if(color == null){
+			color = 'Not Available'
+		}
+		var storage = $( "input[type=radio][name=storage]:checked" ).val();
+		if(storage == null){
+			storage = 'Not Available'
+		}
+		
 		$.ajax({
 			type:'POST',
 			url:"{{ route('cartstore.post') }}",
-			data:{"_token": "{{ csrf_token() }}",id:id, title:title, price:price, image:image},
+			data:{"_token": "{{ csrf_token() }}",id:id, title:title, price:price, image:image, color:color, storage:storage},
 			success:function(data){
 				console.log(data.success);
 				$("#panel-right-cart").load(location.href + " #panel-right-cart"); // Add space between URL and selector.

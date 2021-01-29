@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="{{asset('mobile/custom.css')}}">
 </head>
 <body>
-	
+@include('mobile.includes.popups')
 <div class="page page--login" data-page="login">
 
 	<!-- HEADER -->
@@ -70,7 +70,7 @@
         </div>
 			  
 
-
+		@include('mobile.includes.bottombar')
 </div>
 <!-- PAGE END -->
    

@@ -97,7 +97,7 @@ class PageController extends Controller
     }
     public function cartstore(Request $request)
     {
-        return Cart::add($request['id'], $request['title'],1,$request['price'],['image' => $request['image'],'color' => $request['color'],'storage' => $request['storage']], 0)->associate('App\Models\Product');
+        Cart::add($request['id'], $request['title'],1,$request['price'],['image' => $request['image'],'color' => $request['color'],'storage' => $request['storage']], 0)->associate('App\Models\Product');
         //session()->flash('success_message','Item added to cart');
         return response()->json(['success'=>'Item added to Cart']);
         //return view('mobile.cart');
