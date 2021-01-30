@@ -7,7 +7,8 @@
         <title>Ozerone</title>
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;300;400;500;600;700;900&display=swap" rel="stylesheet"> 
+        <!-- <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet"> -->
 
         <!-- Styles -->
         <style>
@@ -16,7 +17,7 @@
 
         <style>
             body {
-                font-family: 'Nunito';
+                font-family: 'Fira Sans', sans-serif !important;
             }
             .logo{
                 
