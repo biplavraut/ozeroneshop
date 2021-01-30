@@ -7,7 +7,8 @@
         <title>Ozerone</title>
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;300;400;500;600;700;900&display=swap" rel="stylesheet"> 
+        <!-- <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet"> -->
 
         <!-- Styles -->
         <style>
@@ -16,7 +17,7 @@
 
         <style>
             body {
-                font-family: 'Nunito';
+                font-family: 'Fira Sans', sans-serif !important;
             }
             .logo{
                 
@@ -45,11 +46,11 @@
             
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">     
                 <div class="logo">
-                    <img src="{{asset('logo/logo-long.png')}}" alt="Ozerone Shop Logo"><h1><b style="color:#f8ab16; font-weight:400;">Coming</b> Soon</h1>
+                    <img src="{{asset('logo/logo-long.png')}}" alt="Ozerone Shop Logo"><h1><b style="color:#f8ab16; font-weight:600;">Coming</b> Soon</h1>
                 </div>       
                 <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
                 <!-- <h1><b style="color:#f8ab16; font-weight:400;">OZERONE</b> SHOP</h1> -->
-                    <h2><b> Available only on mobile browser</b></h2>
+                    <h2> Available only on mobile browser</h2>
                 </div>
                     <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
                         Sorry for the inconvenience
