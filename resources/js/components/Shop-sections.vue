@@ -156,7 +156,7 @@
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">SVG <small>512x512</small></div>
                                             </div>
-                                            <input type="file" name="image"  @change="imageUpload"
+                                            <input type="file" name="image" ref="image" @change="imageUpload"
                                                 placeholder="Image"
                                                 class="btn btn-sm btn-info" :class="{ 'is-invalid': form.errors.has('image') }">
                                             <has-error :form="form" field="image"></has-error>
@@ -279,6 +279,8 @@
                 //Start Condition to check form is validate
                     .then(({data})=>{
                         $("#addNewShopSection").modal('hide'); //Hide the model
+                        this.form.reset();
+                        this.$refs["image"].value = "";
                         this.serverResponse(data);
                     })
                     //if form is not valid of handle any errors
@@ -338,6 +340,7 @@
                 this.form.put('../../api/shopsection/'+this.form.slug)
                     .then(({data}) =>{
                         this.form.reset();
+                        this.$refs["image"].value = "";
                         $("#addNewShopSection").modal('hide'); //Hide the model
                         this.serverResponse(data);
                     }).catch(()=>{

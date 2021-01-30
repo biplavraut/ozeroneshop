@@ -204,9 +204,9 @@
                                         <div class="form-group">
                                             <div class="input-group mb-2">
                                                 <div class="input-group-prepend">
-                                                    <div class="input-group-text">Image</div>
+                                                    <div class="input-group-text">Image {{form.image}}</div>
                                                 </div>
-                                                <input type="file" name="image"  @change="imageUpload"
+                                                <input type="file" name="image" ref="image" @change="imageUpload"
                                                     placeholder="Image"
                                                     class="btn btn-sm btn-info" :class="{ 'is-invalid': form.errors.has('image') }">
                                                 <has-error :form="form" field="image"></has-error>
@@ -345,6 +345,8 @@
                 //Start Condition to check form is validate
                     .then(({data})=>{
                         $("#addNewSlider").modal('hide'); //Hide the model
+                        this.form.reset();
+                        this.$refs["image"].value = "";
                         this.serverResponse(data);
                     })
                     //if form is not valid of handle any errors
@@ -407,6 +409,7 @@
                     .then(({data}) =>{
                         console.log(data);
                         this.form.reset();
+                        this.$refs["image"].value = "";
                         $("#addNewSlider").modal('hide'); //Hide the model
                         this.serverResponse(data);
 

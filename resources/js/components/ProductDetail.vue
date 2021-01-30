@@ -269,7 +269,7 @@
                                 </div>
                             </b-card-body>
                             <b-card-foot>
-                                <button class="btn btn-danger">Cancle</button>
+                                <button class="btn btn-danger">Cancel</button>
                                 <button class="btn btn-success float-right" type="submit">Update</button>
                             </b-card-foot>                        
                         </b-form>
@@ -448,7 +448,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-times fa-fw"></i>Close</button>
                             <button v-show="editstorage" type="submit" class="btn btn-success"><i class="fas fa-plus fa-fw"></i>Update Option</button>
-                            <button v-show="!editstorage" type="submit" class="btn bg-gradient-info"><i class="fas fa-plus fa-fw"></i>Create Option</button>
+                            <button v-show="!editstorage" type="submit" class="btn btn-primary"><i class="fas fa-plus fa-fw"></i>Create Option</button>
                         </div>
                     </form>
                 </div>
@@ -487,7 +487,7 @@
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">Image</div>
                                     </div>
-                                    <input type="file" name="image"  @change="imageValidate"
+                                    <input type="file" name="image" ref="colorimage" @change="imageValidate"
                                         placeholder="Image"
                                         class="btn btn-sm btn-info" :class="{ 'is-invalid': ciform.errors.has('image') }">
                                     <has-error :form="ciform" field="image"></has-error>
@@ -508,7 +508,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-times fa-fw"></i>Close</button>
                             <button v-show="editcolor" type="submit" class="btn btn-success"><i class="fas fa-plus fa-fw"></i>Update Color Image</button>
-                            <button v-show="!editcolor" type="submit" class="btn bg-gradient-info"><i class="fas fa-plus fa-fw"></i>Create Color Image</button>
+                            <button v-show="!editcolor" type="submit" class="btn btn-primary"><i class="fas fa-plus fa-fw"></i>Create Color Image</button>
                         </div>
                     </form>
                 </div>
@@ -532,7 +532,7 @@
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">Image</div>
                                     </div>
-                                    <input type="file" name="image"  @change="uploadImage"
+                                    <input type="file" name="image" ref="image" @change="uploadImage"
                                            placeholder="Image"
                                            class="btn btn-sm btn-info" :class="{ 'is-invalid': iform.errors.has('image') }">
                                     <has-error :form="iform" field="image"></has-error>
@@ -636,6 +636,7 @@
                     { text: '4 GB', value: '4 GB' },
                     { text: '6 GB', value: '6 GB' },
                     { text: '8 GB', value: '8 GB' },
+                    { text: '12 GB', value: '12 GB' },
                     { text: '16 GB', value: '16 GB' },
                     { text: '32 GB', value: '32 GB' },
                     { text: '64 GB', value: '64 GB' }
@@ -864,6 +865,7 @@
                 //Start Condition to check form is validate
                 .then(({data})=>{
                     $("#forColor").modal('hide'); //Hide the model
+                    this.$refs["colorimage"].value = "";
                     this.serverResponse(data);
                 })
                 //if form is not valid of handle any errors
@@ -888,6 +890,7 @@
                 this.ciform.put('../../../api/product_color/'+this.ciform.id)
                     .then((data) =>{
                         this.ciform.reset();
+                        this.$refs["colorimage"].value = "";
                         $("#forColor").modal('hide'); //Hide the model
                         this.serverResponse(data.data);
                     }).catch(()=>{
@@ -953,6 +956,7 @@
                     .then((data)=>{
                         Fire.$emit('AfterCreate'); //custom event to reload data
                         $("#addNewImage").modal('hide'); //Hide the model
+                        this.$refs["image"].value = "";
                         this.serverResponse(data.data);
                     })
                     .catch(()=>{

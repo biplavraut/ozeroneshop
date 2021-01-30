@@ -50,6 +50,7 @@ class SliderController extends Controller
     {
         if (\Gate::allows('canAdd')){
             $this->validate($request,[
+                'image' => 'required',
                 'title' => 'required|string|max:191',
             ]);
     
@@ -132,9 +133,11 @@ class SliderController extends Controller
                 $sliderThumb = public_path('img/slider/thumbs/').$slider->image;
                 $sliderThumbRect = public_path('img/slider/thumbs/rect_').$slider->image;
                 //Delete old images
-                unlink($sliderPhoto);
-                unlink($sliderThumb);
-                unlink($sliderThumbRect);
+                if(file_exists($sliderPhoto)){
+                    unlink($sliderPhoto);
+                    unlink($sliderThumb);
+                    unlink($sliderThumbRect);
+                }                
                 $extension = explode('/',explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
                 $imageName = $request->slug;
                 $image_name = $imageName.'.'.$extension;
