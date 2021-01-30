@@ -176,7 +176,7 @@
       loadCategories(){
           this.$Progress.start();
           if (this.$gate.isAuthorized()){
-              axios.get("../../api/shopsection")
+              axios.get("/api/shopsection")
                   .then(({ data }) => (this.categories = data));
               this.$Progress.finish();
           }

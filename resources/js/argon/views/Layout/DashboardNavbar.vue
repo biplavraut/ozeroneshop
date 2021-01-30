@@ -116,7 +116,7 @@ export default {
     }
   },
   created() {
-      axios.get("../../api/profile")
+      axios.get("/api/profile")
           .then(({data}) => (this.user.fill(data))).catch();
   }
 };

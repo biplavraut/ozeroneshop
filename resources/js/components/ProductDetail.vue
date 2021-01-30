@@ -486,9 +486,9 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <div class="input-group mb-2">
-                                            <div class="input-group-prepend">
+                                            <!-- <div class="input-group-prepend">
                                                 <div class="input-group-text">Image</div>
-                                            </div>
+                                            </div> -->
                                             <input type="file" name="image" ref="colorimage" @change="imageValidate"
                                                 placeholder="Image"
                                                 class="btn btn-sm btn-info" :class="{ 'is-invalid': ciform.errors.has('image') }">
@@ -497,8 +497,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-2">
-                                    <img v-show="editcolor" class="img-fluid" :src="'/img/product/'+$route.params.slug+'/thumbs/'+ciform.image">
-                                    <img v-show="!editcolor" class="img-fluid" :src="ciform.image">
+                                    <img v-show="editcolor" class="img-fluid" :src="'/img/product/'+$route.params.slug+'/thumbs/'+ciform.image" alt="">
+                                    <img v-show="!editcolor" class="img-fluid" :src="ciform.image" alt="">
                                 </div>
                             </div>                          
                             
@@ -743,7 +743,7 @@
                 //alert("I m here");
                 this.$Progress.start();
                 //console.log('editing data');
-                this.cform.put('../../../api/product/'+this.cform.slug)
+                this.cform.put('/api/product/'+this.cform.slug)
                     .then((data) =>{
                         this.serverResponse(data.data);
                         
@@ -773,7 +773,7 @@
             createStorage(){
                 this.sform.product_id = this.cform.id,
                 this.$Progress.start(); //start a progress bar
-                this.sform.post('../../../api/product_storage') // POST form data
+                this.sform.post('/api/product_storage') // POST form data
                 //Start Condition to check form is validate
                 .then(({data})=>{
                     $("#forStorage").modal('hide'); //Hide the model
@@ -798,7 +798,7 @@
             updateStorage(){
                 this.$Progress.start();
                 //console.log('editing data');
-                this.sform.put('../../../api/product_storage/'+this.sform.id)
+                this.sform.put('/api/product_storage/'+this.sform.id)
                     .then((data) =>{
                         this.sform.reset();
                         $("#forStorage").modal('hide'); //Hide the model
@@ -824,7 +824,7 @@
                 }).then((result) => {
                     //send an ajax request to the server
                     if (result.value) {
-                        this.sform.delete('../../../api/product_storage/' + id).then(({data}) => {
+                        this.sform.delete('/api/product_storage/' + id).then(({data}) => {
                             this.serverResponse(data);
                         }).catch(() => {
                             swal.fire(
@@ -864,12 +864,13 @@
             newColor(){
                 this.editcolor = false;
                 this.ciform.reset();
+                this.$refs["colorimage"].value = "";
                 $('#forColor').modal('show');
             },
             createColor(){
                 this.ciform.product_id = this.cform.id,
                 this.$Progress.start(); //start a progress bar
-                this.ciform.post('../../../api/product_color') // POST form data
+                this.ciform.post('/api/product_color') // POST form data
                 //Start Condition to check form is validate
                 .then(({data})=>{
                     $("#forColor").modal('hide'); //Hide the model
@@ -896,7 +897,7 @@
                 this.$Progress.start();
                 this.ciform.content_slug = this.$route.params.slug;
                 //console.log('editing data');
-                this.ciform.put('../../../api/product_color/'+this.ciform.id)
+                this.ciform.put('/api/product_color/'+this.ciform.id)
                     .then((data) =>{
                         this.ciform.reset();
                         this.$refs["colorimage"].value = "";
@@ -923,7 +924,7 @@
                 }).then((result) => {
                     //send an ajax request to the server
                     if (result.value) {
-                        this.ciform.delete('../../../api/product_color/' + id).then(({data}) => {
+                        this.ciform.delete('/api/product_color/' + id).then(({data}) => {
                             this.serverResponse(data);
                         }).catch(() => {
                             swal.fire(
@@ -940,6 +941,7 @@
             // Add, Edit or Delete Images
             newImage(){
                 this.iform.reset();
+                this.$refs["image"].value = "";
                 $('#addNewImage').modal('show');
             },
             uploadImage(e) {
@@ -961,7 +963,7 @@
             addImage(){
                 this.$Progress.start(); //start a progress bar
                 this.iform.product_id = this.cform.id,
-                this.iform.post('../../../api/product_image') // POST form data
+                this.iform.post('/api/product_image') // POST form data
                     .then((data)=>{
                         Fire.$emit('AfterCreate'); //custom event to reload data
                         $("#addNewImage").modal('hide'); //Hide the model
@@ -982,7 +984,7 @@
                 this.$Progress.start();
                 this.iform.fill(item);
                 //console.log('editing data');
-                this.iform.put('../../../api/product_image/'+this.iform.id)
+                this.iform.put('/api/product_image/'+this.iform.id)
                     .then((data) =>{
                         this.serverResponse(data.data);
                     }).catch(()=>{
@@ -1006,7 +1008,7 @@
                 }).then((result) => {
                     //send an ajax request to the server
                     if (result.value) {
-                        this.iform.delete('../../../api/product_image/' + id).then(({data}) => {
+                        this.iform.delete('/api/product_image/' + id).then(({data}) => {
                             this.serverResponse(data);
                         }).catch(() => {
                             swal.fire(
@@ -1030,7 +1032,7 @@
             createDetail(){
                 this.$Progress.start(); //start a progress bar
                 this.dform.product_id = this.cform.id,
-                this.dform.post('../../../api/product_detail') // POST form data
+                this.dform.post('/api/product_detail') // POST form data
                     .then((data)=>{
                         Fire.$emit('AfterCreate'); //custom event to reload data
 
@@ -1057,7 +1059,7 @@
             updateDetail(){
                 this.$Progress.start();
                 //console.log('editing data');
-                this.dform.put('../../../api/product_detail/'+this.dform.id)
+                this.dform.put('/api/product_detail/'+this.dform.id)
                     .then((data) =>{
                         $("#addNewDetail").modal('hide'); //Hide the model
                         this.serverResponse(data.data);
@@ -1083,7 +1085,7 @@
                 }).then((result) => {
                     //send an ajax request to the server
                     if (result.value) {
-                        this.dform.delete('../../../api/product_detail/' + id).then((data) => {
+                        this.dform.delete('/api/product_detail/' + id).then((data) => {
                             swal.fire(
                                 'Deleted!',
                                 'Product Detail has been deleted.',
@@ -1106,7 +1108,7 @@
             loadProduct(){
                 this.$Progress.start();
                 if (this.$gate.isAuthorized()){
-                    axios.get("../../../api/product?slug="+this.product_slug).then(({ data }) => (
+                    axios.get("/api/product?slug="+this.product_slug).then(({ data }) => (
                         this.cform.fill(data),
                         this.cform.change_shop_category = 0,
                         this.cform.brand = JSON.parse(data.brand),
@@ -1130,10 +1132,10 @@
                     })
                 this.$Progress.start();
                 if (this.$gate.isAuthorized()){
-                    axios.get("../../../api/brand").then(({ data }) => (this.brands = data));
-                    axios.get("../../../api/shopsection").then(({ data }) => (this.shopsections = data));
-                    axios.get("../../../api/electronics").then(({ data }) => (this.electronics = data));
-                    axios.get("../../../api/product?slug="+this.product_slug).then(({ data }) => (
+                    axios.get("/api/brand").then(({ data }) => (this.brands = data));
+                    axios.get("/api/shopsection").then(({ data }) => (this.shopsections = data));
+                    axios.get("/api/electronics").then(({ data }) => (this.electronics = data));
+                    axios.get("/api/product?slug="+this.product_slug).then(({ data }) => (
                         this.cform.fill(data),
                         this.cform.change_shop_category = 0,
                         this.cform.brand = JSON.parse(data.brand),
@@ -1152,7 +1154,7 @@
         created() {
             Fire.$on('searching',()=>{
                 let query =this.$parent.search; //take information from root
-                axios.get('../api/findDetail?q='+ query)
+                axios.get('/api/findDetail?q='+ query)
                     .then((data)=>{
                         this.details = data.data
                     }).catch(()=>{
