@@ -41,24 +41,6 @@ Copyright: Pers Creation, Gaze Nepal,Biplav Raj Raut.
 @endauth
   <script src="{{asset('js/app.js')}}"></script>
   <!-- Argon Scripts -->
-  <script type="text/javascript" src="https://chir.ag/projects/ntc/ntc.js"></script>
-<script type="text/javascript">
-    function colorName(){
-        hex = $('#inputcolorhex').val();
-        var n_match = ntc.name(hex);
-        n_rgb = n_match[0]; // RGB value of closest match
-        n_name = n_match[1]; // Text string: Color name
-        n_exactmatch = n_match[2]; // True if exact color match
-        //this.ciform.color = n_name;
-        //$('#inputcolorname').val(n_name);
-        if(n_name != 'Invalid Color'){
-            document.getElementById("inputcolorname").innerHTML=n_name; 
-        }
-        
-    } 
-
-</script>
-
 </body>
 
 </html>
