@@ -76,6 +76,12 @@
                     <slot name="links-categories">
                     </slot>
                 </ul>
+                <h6 class="navbar-heading text-muted"><i class="fas fa-bars"></i> Orders and Customers</h6>
+                <!--Navigation-->
+                <ul class="navbar-nav mb-md-3">
+                    <slot name="links-orders">
+                    </slot>
+                </ul>
             </div>
             </div>
     </nav>

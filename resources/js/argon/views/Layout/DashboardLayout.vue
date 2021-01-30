@@ -97,6 +97,32 @@
           </sidebar-item>
         </div>
       </template>
+      <template slot="links-orders">
+        <sidebar-item
+            :link="{
+              name: 'Orders Listing ',
+              path: '/backend/admin/orders',
+              icon: 'fas fa-luggage-cart text-blue'
+              }"
+            >
+        </sidebar-item>
+        <sidebar-item
+            :link="{
+              name: 'Customers',
+              path: '/backend/admin/customers',
+              icon: 'fas fa-store-alt text-blue'
+              }"
+            >
+        </sidebar-item>
+        <sidebar-item
+            :link="{
+              name: 'Brands',
+              path: '/backend/admin/brands',
+              icon: 'fas fa-copyright text-blue'
+              }"
+            >
+        </sidebar-item>
+      </template>
     </side-bar>
     <div class="main-content">
       <dashboard-navbar :type="$route.meta.navbarType"></dashboard-navbar>

@@ -130,7 +130,7 @@
 					<h4 class="card__title">{{ substr($product->title, 0, 55)}}</h4>
 					<div style="display:flex;">
 						<p class="card_price">NPR {{number_format($price)}}</p>
-						<a class="card_cart" href="#" onclick="addtocart({{$product->id}}, '{{$product->title}}', {{ $price }}, '{{ $image }}')">Add to Cart</a>
+						<a class="card_cart" href="#" onclick="addtocart({{$product->id}}, '{{$product->title}}', {{ $price }}, "'{{ $image ?? '' }}")">Add to Cart</a>
 					</div>
 					<div class="card__rating">
                             <span class="fas fa-star checked"></span>
