@@ -43,8 +43,8 @@
 			<div class="swiper-slide slider-simple__slide" style="background-image:linear-gradient(#29293560 0%, rgba(0, 0, 0, 0.0) 100%), url(img/slider/{{$slider->image}});">
 				<div class="slider-simple__caption caption caption--centered">
 					<div class="caption__content">
-						<h2 class="caption__title caption__title--centered">{{$slider->sub_title}}</h2>
-						<a href="{{$slider->link}}" target="_blank" class="button button--main button--ex-small">View The Collection</a>
+						<!-- <h2 class="caption__title caption__title--centered">{{$slider->sub_title}}</h2> -->
+						<a href="{{$slider->link}}" target="_blank" class="button button--main button--ex-small btn-bottom-center">View Product</a>
 					</div>
 				</div>
 			</div> 

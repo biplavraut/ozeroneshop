@@ -594,3 +594,11 @@ ul.custom-listing--checked li {
     color: #ffffff;
     background-color: #0d3567;
 }
+
+.btn-bottom-center{
+    position: absolute;
+    bottom: 40px;
+    right: 25%;
+    left: 65%;
+    margin-left: -150px;
+}
