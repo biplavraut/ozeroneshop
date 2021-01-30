@@ -66,7 +66,14 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('orderFaq', [App\Http\Controllers\Backend\Admin\FaqController::class, 'orderFaq']);
     Route::get('findFaq', [App\Http\Controllers\Backend\Admin\FaqController::class, 'search']);
     
+    Route::apiResources(['customer'=> Backend\Admin\CustomerController::class]);
+         
+    // Route::get('customer-profile',[App\Http\Controllers\Backend\Admin\CustomerController::class, 'profile']);
+    // Route::put('customer-profile',[App\Http\Controllers\Backend\Admin\CustomerController::class, 'updateProfile']);
+    // Route::post('customer-updatePassword',[App\Http\Controllers\Backend\Admin\CustomerController::class, 'updatePassword']);
+    // Route::get('findCustomer',[App\Http\Controllers\Backend\Admin\CustomerController::class, 'search']);
 
+    Route::apiResources(['order'=> Backend\Admin\OrderController::class]);
     
     // Route::get('loadseodata', [App\Http\Controllers\Backend\Admin\SeoController::class, 'profile']);
 

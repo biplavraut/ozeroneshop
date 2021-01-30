@@ -131,6 +131,9 @@ const routes = [
         { path: '/backend/admin/faq', name:'faqs management', component: require('./components/Faqs.vue').default},
         { path: '/backend/admin/seo', name:'seo management', component: require('./components/Seo.vue').default},
 
+        { path: '/backend/admin/orders', name:'Orders management', component: require('./components/Orders.vue').default},
+        { path: '/backend/admin/customers', name:'Customers management', component: require('./components/Customers.vue').default},
+
         { path: '/backend/admin/*', name:'page not found', component: require('./components/NotFound.vue').default}
       ]
     }

@@ -102,7 +102,7 @@
             :link="{
               name: 'Orders Listing ',
               path: '/backend/admin/orders',
-              icon: 'fas fa-luggage-cart text-blue'
+              icon: 'fas fa-luggage-cart text-green'
               }"
             >
         </sidebar-item>
@@ -110,15 +110,7 @@
             :link="{
               name: 'Customers',
               path: '/backend/admin/customers',
-              icon: 'fas fa-store-alt text-blue'
-              }"
-            >
-        </sidebar-item>
-        <sidebar-item
-            :link="{
-              name: 'Brands',
-              path: '/backend/admin/brands',
-              icon: 'fas fa-copyright text-blue'
+              icon: 'fas fa-people-arrows text-green'
               }"
             >
         </sidebar-item>

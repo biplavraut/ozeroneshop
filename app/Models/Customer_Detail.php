@@ -11,4 +11,7 @@ class Customer_Detail extends Model
     protected $fillable = [
         'customer_id','name','email','primary_phone','secondary_phone','gender','dob','region','city','area','address','label'
     ];
+    public function getUserRelation(){
+        return $this->hasOne('App\Models\User', 'customer_id', 'id');
+    }
 }
