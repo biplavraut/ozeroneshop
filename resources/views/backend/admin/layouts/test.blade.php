@@ -23,16 +23,15 @@ Copyright: Pers Creation, Gaze Nepal,Biplav Raj Raut.
 </head>
 
 <body>
-<div>
-  <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
-      @csrf
-  </form>
-</div>
-    <div class="wrapper" id="app">
-      <router-view :key="$route.fullPath"></router-view>
+  <div>
+    <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+        @csrf
+    </form>
+  </div>
+  <div class="wrapper" id="app">
+        <router-view :key="$route.fullPath"></router-view>
 
-      <vue-progress-bar></vue-progress-bar>
-    </div>
+        <vue-progress-bar></vue-progress-bar>
   </div>
   @auth
     <script>
