@@ -81,10 +81,13 @@
 			@foreach($products as $product)
             <div class="card card--style-thumb">
                 <div class="card__thumb card__thumb--round-corners product">
-					@if(count($product->getImageRelation)>10)
+					@if(count($product->getImageRelation)>20)
 					<div class="swiper-container slider-simple slider-simple--round-corners slider-init mb-10" data-paginationtype="bullets" data-spacebetweenitems="0" data-itemsperview="1">
 						<div class="swiper-wrapper">
 							@foreach($product->getImageRelation as $display_image)
+							@if($display_image->primary == 1)
+                        		@php $image = $display_image->image  @endphp
+							@endif
 							<div class="swiper-slide slider-simple__slide" style="background-image:url(../img/product/{{ $product->slug }}/{{ $display_image->image }});">
 							</div>
 							@endforeach
