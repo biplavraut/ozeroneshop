@@ -482,17 +482,25 @@
                                 </div>
                                 <p><small>Hint: <i id="inputcolorname"></i> </small></p>
                             </div>
-                            <div class="form-group">
-                                <div class="input-group mb-2">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">Image</div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="input-group mb-2">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">Image</div>
+                                            </div>
+                                            <input type="file" name="image" ref="colorimage" @change="imageValidate"
+                                                placeholder="Image"
+                                                class="btn btn-sm btn-info" :class="{ 'is-invalid': ciform.errors.has('image') }">
+                                            <has-error :form="ciform" field="image"></has-error>
+                                        </div>
                                     </div>
-                                    <input type="file" name="image" ref="colorimage" @change="imageValidate"
-                                        placeholder="Image"
-                                        class="btn btn-sm btn-info" :class="{ 'is-invalid': ciform.errors.has('image') }">
-                                    <has-error :form="ciform" field="image"></has-error>
                                 </div>
-                            </div>
+                                <div class="col-md-2">
+                                    <img v-show="editcolor" class="img-fluid" :src="'/img/product/'+$route.params.slug+'/thumbs/'+ciform.image">
+                                    <img v-show="!editcolor" class="img-fluid" :src="ciform.image">
+                                </div>
+                            </div>                          
                             
                             <div class="form-group">
                                 <div class="input-group mb-2 mr-sm-2">
@@ -886,6 +894,7 @@
             },
             updateColor(){
                 this.$Progress.start();
+                this.ciform.content_slug = this.$route.params.slug;
                 //console.log('editing data');
                 this.ciform.put('../../../api/product_color/'+this.ciform.id)
                     .then((data) =>{

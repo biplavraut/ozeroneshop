@@ -86,6 +86,24 @@ class ProductColorController extends Controller
         //
         if (\Gate::allows('canEdit')){
             $product = Product_Color::where('id', '=', $id)->firstOrFail();
+            $path = public_path().'/img/product/'.$request->content_slug;
+            if($request->image != $product->image){ 
+                $colorPhoto = $path."/".$product->image;
+                $colorThumb = $path."/thumbs/".$product->image;
+                //Delete old images
+                if(file_exists($colorPhoto)){
+                    unlink($colorPhoto);
+                    unlink($colorThumb);
+                } 
+                $color = Str::slug($request->color);              
+                $extension = explode('/',explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
+                $imageName = $request->content_slug;
+                $image_name = $imageName.'_'.$color.'.'.$extension;
+                \Image::make($request->image)->save($path.'/'.$image_name);
+                resize_crop_image(1000, 1000, $path."/". $image_name, $path."/thumbs/" . $image_name, $extension);   
+                $request->merge(['image' => $image_name]);             
+            }
+            
             $update = $product->update($request->all());
             if($update){
                 return ['result'=>'success', 'message' =>'Color Option updated successfully'];

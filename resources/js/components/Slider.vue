@@ -200,18 +200,22 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <div class="input-group mb-2">
-                                                <div class="input-group-prepend">
-                                                    <div class="input-group-text">Image {{form.image}}</div>
-                                                </div>
+                                                <!-- <div class="input-group-prepend">
+                                                    <div class="input-group-text">Image</div>
+                                                </div> -->
                                                 <input type="file" name="image" ref="image" @change="imageUpload"
                                                     placeholder="Image"
                                                     class="btn btn-sm btn-info" :class="{ 'is-invalid': form.errors.has('image') }">
                                                 <has-error :form="form" field="image"></has-error>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <img v-show="editmode" class="img-fluid" :src="'/img/slider/'+form.image">
+                                        <img v-show="!editmode" class="img-fluid" :src="form.image">
                                     </div>
 
                                     <div class="col-md-6">
