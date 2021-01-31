@@ -320,6 +320,7 @@
             newSlider(){
                 this.editmode = false;
                 this.form.reset();
+                this.$refs["image"].value = "";
                 $('#addNewSlider').modal('show');
             },
             imageUpload(e) {

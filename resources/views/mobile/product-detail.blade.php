@@ -87,8 +87,8 @@
 						$storage_price = $product_storage->price;
 					}
 				@endphp
-				<input id="{{ $product_storage->ram }}" onclick="storagechange({{ $storage_price }})" data-price="{{ $storage_price }}" type="radio" name="storage" value="{{ $product_storage->id }}" {{ ($loop->index == 0) ? "checked" : "" }}>  
-				<label for="{{ $product_storage->ram }}">{{ $product_storage->ram.' RAM-'. $product_storage->storage }}</label>
+				<input id="{{ $product_storage->id }}" onclick="storagechange({{ $storage_price }})" data-price="{{ $storage_price }}" type="radio" name="storage" value="{{ $product_storage->id }}" {{ ($loop->index == 0) ? "checked" : "" }}>  
+				<label for="{{ $product_storage->id }}">{{ $product_storage->ram.' RAM-'. $product_storage->storage }}</label>
             </div>
             @endforeach	
         </div> 
