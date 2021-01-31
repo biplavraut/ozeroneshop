@@ -56,6 +56,10 @@ class ElectronicsController extends Controller
     {
         //
         if (\Gate::allows('canAdd')){
+            $this->validate($request, [
+                'image' => 'required',
+                'title' => 'required|string'
+            ]);
             $section_id = Shopsection::select('id')->where('slug','LIKE',$request->shop_section)->first();
             $section_id = $section_id->id;
             try{
@@ -134,6 +138,10 @@ class ElectronicsController extends Controller
     {
         //
         if (\Gate::allows('canEdit')){
+            $this->validate($request, [
+                'image' => 'required',
+                'title' => 'required|string'
+            ]);
             $electronics = Electronics::where('slug', '=', $slug)->firstOrFail();                          // find if Electronics exist
             $request->merge(['slug' => $this->createSlug($request->title, $request->id)]);    // generate new slug
             
@@ -142,7 +150,10 @@ class ElectronicsController extends Controller
                 $path = public_path().'/img/electronics';                
                 $electronicsPhoto = public_path('img/electronics/').$electronics->image;
                 //Delete old images
-                unlink($electronicsPhoto);
+                if(file_exists($electronicsPhoto)){
+                    unlink($electronicsPhoto);
+                } 
+                
                 $extension = explode('/',explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
                 $imageName = $request->slug;
                 $image_name = $imageName.'.svg';
