@@ -140,7 +140,7 @@
 			</div>
 		</div>
 		
-		<div class="page__title-bar">
+		<!-- <div class="page__title-bar">
 			<h2 class="page__title">Latest News</h2>
 		</div>
 		@foreach($blogs as $blog)
@@ -149,7 +149,6 @@
 				<img src="img/brand/{{$blog->getBrandRelation->image}}" alt="" title=""/>
 				<span><strong>{{$blog->title}}</strong><a href="#">{{ '@'.$blog->getBrandRelation->title }}</a></span>
 			</div>
-			<!-- SLIDER SIMPLE -->
 			<div class="swiper-container slider-simple slider-simple--round-corners slider-init mb-10" data-paginationtype="bullets" data-spacebetweenitems="0" data-itemsperview="1">
 				<div class="swiper-wrapper">
 					<div class="swiper-slide slider-simple__slide" style="background-image:url(img/blog/{{$blog->image}});">
@@ -158,14 +157,11 @@
 				<div class="swiper-pagination slider-simple__pagination"></div>
 			</div>
 				<a href="#"><h4 class="card__text">{{ substr(strip_tags($blog->excerpt), 0,100)  }}  ... <i>Read More</i> </h4></a>
-				<!-- <div class="d-flex align-center mb-10">
-					<div class="card__likes">NPR 28k</div>
-					<div class="card__comments ml-20 open-popup" data-popup="comments">23 Sales</div>
-				</div> -->
+				
 		</div>
-		@endforeach
+		@endforeach -->
 			
-		<div class="fieldset">
+		<!-- <div class="fieldset">
 			<h2 class="page__title">Top Brands</h2>
 			<div class="cards cards--14">
 				@foreach($brands as $brand)
@@ -179,7 +175,7 @@
 				@endif
 				@endforeach
 			</div>
-		</div>
+		</div> -->
 		<div class="page__title-bar">
 			<h2 class="page__title">Smart Phones</h2>
 		</div>
