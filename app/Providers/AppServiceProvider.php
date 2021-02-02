@@ -32,7 +32,7 @@ class AppServiceProvider extends ServiceProvider
         $elect_categories = Electronics::where('display','=',1)->whereIn('id', $elect_product)->orderBy('order_item')->get();
         View::share('elect_categories', $elect_categories);
 
-        $brands = Brand::with('getSectionRelation')->orderBy("order_item")->get();
+        $brands = Brand::with('getSectionRelation')->where('display','=',1)->orderBy("order_item")->get();
         View::share('brands', $brands);
         // Share data to selected views using view composer
 

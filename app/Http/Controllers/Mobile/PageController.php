@@ -28,8 +28,8 @@ class PageController extends Controller
     public function mobile() 
     {
         
-        $sliders = Slider::orderBy("order_item")->get();
-        $blogs = Blog::with('getBrandRelation')->orderBy("order_item")->limit(1)->get();
+        $sliders = Slider::orderBy("order_item")->where('display','=',1)->get();
+        $blogs = Blog::with('getBrandRelation')->where('display','=',1)->orderBy("order_item")->limit(1)->get();
         $featured = Product::with('getStorageRelation')->with('getColorRelation')->with('getImageRelation')->with('getDetailRelation')->orderBy("order_item")->where('display','=',1)->where('featured','=',1)->limit(10)->get();
 
         $electronics_products = Product_Electronics::where('electronic_id','=',1)->pluck('product_id');
@@ -47,7 +47,7 @@ class PageController extends Controller
         ]);
     }
     public function productDetail($slug){
-        $product =  Product::with('getStorageRelation')->with('getColorRelation')->with('getImageRelation')->with('getDetailRelation')->where('slug','LIKE',"%$slug%")->first();
+        $product =  Product::with('getStorageRelation')->where('display','=',1)->with('getColorRelation')->with('getImageRelation')->with('getDetailRelation')->where('slug','LIKE',"%$slug%")->first();
         return view('mobile.product-detail' , 
         [
             'product' => $product            
@@ -55,7 +55,7 @@ class PageController extends Controller
     }
     public function blogNews(){
 
-        $blogs = Blog::with('getBrandRelation')->orderBy("order_item")->get();
+        $blogs = Blog::with('getBrandRelation')->where('display','=',1)->orderBy("order_item")->get();
         return view('mobile.blog-news' , 
         [
             'blogs' => $blogs          
@@ -63,7 +63,7 @@ class PageController extends Controller
     }
     
     public function faqs(){
-        $faqs = Faq::orderBy("order_item")->get();
+        $faqs = Faq::orderBy("order_item")->where('display','=',1)->get();
         return view('mobile.faqs' , 
         [
             'faqs' => $faqs            
@@ -102,7 +102,7 @@ class PageController extends Controller
             $products =  Product::with('getStorageRelation')->with('getColorRelation')->with('getImageRelation')->with('getDetailRelation')->orderBy("order_item")->where('display','=',1)->get();
         }else{
             $brand_id =  Brand::where('slug','LIKE',"%$slug%")->value('id');;
-            $products_id = Product::where('brand_id','=',$brand_id)->pluck('id');
+            $products_id = Product::where('brand_id','=',$brand_id)->where('display','=',1)->pluck('id');
             $products =  Product::whereIn('id', $products_id)->with('getStorageRelation')->with('getColorRelation')->with('getImageRelation')->with('getDetailRelation')->orderBy("order_item")->where('display','=',1)->get();
 
         }        
