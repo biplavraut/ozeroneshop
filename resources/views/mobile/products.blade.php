@@ -45,6 +45,31 @@
         <div class="mt-20"></div>
         <div class="swiper-container slider-thumbs slider-init mb-20" data-paginationtype="progressbar" data-spacebetweenitems="10" data-itemsperview="auto">
             <div class="swiper-wrapper">
+			@if (Route::name('brand.products'))
+				@foreach($brands as $brand)
+					@if($brand->parent_id == 0)
+					@php
+                    if(request()->route()->slug == $brand->slug){
+                        $cat_title = $brand->title;
+                    }else{
+                        $title = "All Brand";
+                    }
+                    @endphp
+					<div class="swiper-slide slider-thumbs__slide slider-thumbs__slide--4">
+						<div class="slider-thumbs__icon slider-thumbs__icon--round-corners {{ (request()->route()->slug == $brand->slug) ? 'active-category' : '' }}">
+							<a href="/brand/{{$brand->slug}}">
+							<img src="{{asset('img/brand/'. $brand->image .'')}}" alt="{{$brand->title}}" title="{{$brand->title}}"/>
+							</a>
+						</div>
+						<div class="my-slider-thumbs cap">
+							<div class="caption__content">
+								<h2 class="caption__title caption__title--smaller caption__title--centered"> {{$brand->title}}</h2>
+							</div>
+						</div>
+					</div>
+					@endif
+				@endforeach
+			@else
                 @foreach($elect_categories as $elect_category)
                     @if($elect_category->parent_id == 0)
                     @php
@@ -64,6 +89,7 @@
                     </div>
                     @endif
                 @endforeach
+			@endif
             </div>
             <div class="swiper-pagination slider-thumbs__pagination"></div>
         </div>
@@ -85,9 +111,9 @@
 					<div class="swiper-container slider-simple slider-simple--round-corners slider-init mb-10" data-paginationtype="bullets" data-spacebetweenitems="0" data-itemsperview="1">
 						<div class="swiper-wrapper">
 							@foreach($product->getImageRelation as $display_image)
-							@if($display_image->primary == 1)
-                        		@php $image = $display_image->image  @endphp
-							@endif
+								@if($display_image->primary == 1)
+									@php $image = $display_image->image  @endphp
+								@endif
 							<div class="swiper-slide slider-simple__slide" style="background-image:url(../img/product/{{ $product->slug }}/{{ $display_image->image }});">
 							</div>
 							@endforeach
@@ -133,7 +159,7 @@
 					<h4 class="card__title">{{ substr($product->title, 0, 55)}}</h4>
 					<div style="display:flex;">
 						<p class="card_price">NPR {{number_format($price)}}</p>
-						<a class="card_cart" href="#" onclick="addtocart({{$product->id}}, '{{$product->title}}', {{ $price }}, '{{ $image }}')">Add to Cart</a>
+						<a class="card_cart" href="#" onclick="addtocart({{$product->id}}, '{{$product->title}}', {{ $price ?? ''}}, '{{ $image ?? '' }}')">Add to Cart</a>
 					</div>
 					<div class="card__rating">
                             <span class="fas fa-star checked"></span>

@@ -53,6 +53,7 @@ if(isMobile()) {
     Route::namespace('Mobile')->group(function() {
         Route::get('/', [App\Http\Controllers\Mobile\PageController::class, 'mobile']);
         Route::get('/home', [App\Http\Controllers\Mobile\PageController::class, 'mobile']);
+        Route::get('/brand/{slug}', [App\Http\Controllers\Mobile\PageController::class, 'brandProducts'])->name('brand.products');
         Route::get('/products/{slug}', [App\Http\Controllers\Mobile\PageController::class, 'products']);
         Route::get('/product-detail/{slug}', [App\Http\Controllers\Mobile\PageController::class, 'productDetail']);
 
@@ -69,6 +70,8 @@ if(isMobile()) {
         Route::post('increasequantity', [App\Http\Controllers\Mobile\PageController::class, 'increaseQuantity'])->name('increasequantity.post');
         Route::post('decreasequantity', [App\Http\Controllers\Mobile\PageController::class, 'decreaseQuantity'])->name('decreasequantity.post');
         Route::post('removecartproduct', [App\Http\Controllers\Mobile\PageController::class, 'removeCartProduct'])->name('removecartproduct.post');
+
+        Route::post('search', [App\Http\Controllers\Mobile\PageController::class, 'search'])->name('search.post');
         
     });
 

@@ -118,7 +118,7 @@
                                         track-by="id"
                                         :options="sub_brands"
                                         :multiple="false"
-                                        :taggable="true"></multiselect>
+                                        :taggable="true" @input="setSubBrandId()"></multiselect>
                                     </div>                                        
                                 </div>
                                 <hr>
@@ -721,6 +721,8 @@
                     discount:'',
                     total_quantity:'',
                     brand:'',
+                    brand_id:'',
+                    sub_brand_id:'',
                     sub_brand:'',
                     shop_category:'',
                     change_shop_category: '0',
@@ -740,6 +742,13 @@
 
         methods : {
             updateProduct(){
+                if(this.cform.brand != null){
+                    this.cform.brand_id = this.cform.brand.id;
+                }
+                if(this.cform.sub_brand != null){
+                    this.cform.sub_brand_id = this.cform.sub_brand.id;
+                }
+                
                 //alert("I m here");
                 this.$Progress.start();
                 //console.log('editing data');
@@ -758,8 +767,14 @@
             },            
             // Checking if brand has Sub brands //
             checkSubBrand(){
-                this.cform.subbrand = '';
+                this.sub_brands = [];
+                this.cform.sub_brands = '';
+                this.cform.brand_id = this.cform.brand.id;
+                //alert(this.cform.brand_id);
                 this.sub_brands = this.cform.brand.children;
+            },
+            setSubBrandId(){
+                this.cform.sub_brand_id = this.cform.sub_brand.id;
             },
             checkChanges(){
                 this.cform.change_shop_category = 1;

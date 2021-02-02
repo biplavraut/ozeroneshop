@@ -19,8 +19,9 @@
             :class="{'navbar-search-dark': type === 'default', 'navbar-search-light': type === 'light'}"
             id="navbar-search-main">
         <b-form-group class="mb-0">
+          
           <b-input-group class="input-group-alternative input-group-merge">
-            <b-form-input placeholder="Search" type="text"> </b-form-input>
+            <!-- <b-form-input @keyup="searchit" v-model="search" placeholder="Search" type="search"> </b-form-input> -->
 
             <div class="input-group-append">
               <span class="input-group-text"><i class="fas fa-search"></i></span>

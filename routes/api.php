@@ -47,7 +47,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     
     Route::apiResources(['product'=> Backend\Admin\ProductController::class]);
     Route::post('orderProduct', [App\Http\Controllers\Backend\Admin\ProductController::class, 'orderProducts']);
-    Route::get('findProducts', [App\Http\Controllers\Backend\Admin\ProductController::class, 'search']);
+    Route::get('findProduct', [App\Http\Controllers\Backend\Admin\ProductController::class, 'search']);
     Route::apiResources(['product_storage'=> Backend\Admin\ProductStorageController::class]);
     Route::apiResources(['product_color'=> Backend\Admin\ProductColorController::class]);
     Route::apiResources(['product_image'=> Backend\Admin\ProductImageController::class]);

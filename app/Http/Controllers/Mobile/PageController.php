@@ -16,6 +16,8 @@ use App\Models\Customer_Detail;
 use App\Models\Shipping_Detail;
 use App\Models\Order;
 
+use Illuminate\Support\Facades\View;
+
 class PageController extends Controller
 {
     
@@ -25,7 +27,7 @@ class PageController extends Controller
     }
     public function mobile() 
     {
-        $brands = Brand::with('getSectionRelation')->orderBy("order_item")->get();
+        
         $sliders = Slider::orderBy("order_item")->get();
         $blogs = Blog::with('getBrandRelation')->orderBy("order_item")->limit(1)->get();
         $featured = Product::with('getStorageRelation')->with('getColorRelation')->with('getImageRelation')->with('getDetailRelation')->orderBy("order_item")->where('display','=',1)->where('featured','=',1)->limit(10)->get();
@@ -40,7 +42,6 @@ class PageController extends Controller
             'blogs' => $blogs,
             'featured' => $featured,
             'smart_phones' => $smart_phones,
-            'brands' => $brands,
             'all_products' => $all_products
             
         ]);
@@ -95,6 +96,22 @@ class PageController extends Controller
             'products' => $products            
         ]);
     }
+    public function brandProducts($slug) 
+    {
+        if($slug == 'all'){
+            $products =  Product::with('getStorageRelation')->with('getColorRelation')->with('getImageRelation')->with('getDetailRelation')->orderBy("order_item")->where('display','=',1)->get();
+        }else{
+            $brand_id =  Brand::where('slug','LIKE',"%$slug%")->value('id');;
+            $products_id = Product::where('brand_id','=',$brand_id)->pluck('id');
+            $products =  Product::whereIn('id', $products_id)->with('getStorageRelation')->with('getColorRelation')->with('getImageRelation')->with('getDetailRelation')->orderBy("order_item")->where('display','=',1)->get();
+
+        }        
+        return view('mobile.products', 
+        [
+            'products' => $products            
+        ]);
+    }
+    
     public function cartstore(Request $request)
     {
         Cart::add($request['id'], $request['title'],1,$request['price'],['image' => $request['image'],'color' => $request['color'],'storage' => $request['storage']], 0)->associate('App\Models\Product');
@@ -142,5 +159,13 @@ class PageController extends Controller
             [
             ]);
         }
+    }
+    
+    public function search(Request $request){
+        //return $request->search_query;
+        $search_products = Product::with('getImageRelation')->where('display','=',1)->where('title','LIKE',"%{$request->search_query}%")->orderBy('order_item')->limit(8)->get();
+        return Response($search_products);
+        // View::make('search_products', $search_products);
+        // return View::share('search_products', $search_products);
     }
 }

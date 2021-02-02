@@ -26,7 +26,9 @@ class CreateProductsTable extends Migration
             $table->integer('discount')->default(0)->nullable();
             $table->integer('total_quantity')->default(0)->nullable();
             $table->longText('brand')->nullable();
+            $table->integer('brand_id')->nullable();
             $table->longText('sub_brand')->nullable();
+            $table->integer('sub_brand_id')->nullable();
             $table->longText('shop_category')->nullable();
             $table->text('screen_detail')->nullable();
             $table->text('operating_system')->nullable();

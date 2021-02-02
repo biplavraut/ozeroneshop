@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Electronics;
+use App\Models\Brand;
 use App\Models\Product_Electronics;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -31,6 +32,8 @@ class AppServiceProvider extends ServiceProvider
         $elect_categories = Electronics::where('display','=',1)->whereIn('id', $elect_product)->orderBy('order_item')->get();
         View::share('elect_categories', $elect_categories);
 
+        $brands = Brand::with('getSectionRelation')->orderBy("order_item")->get();
+        View::share('brands', $brands);
         // Share data to selected views using view composer
 
         // View::composer(['','home','products.*','blog-news'], function($view){

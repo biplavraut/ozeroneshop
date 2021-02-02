@@ -3,7 +3,7 @@
     <ul class="bottom-navigation__icons">
         <li><a href="/"><img src="{{asset('mobile/assets/images/icons/blue/home.svg')}}" alt="Ozerone Shop" title="Home" /><span>Home</span></a></li>
         <li><a href="/products/all"><img src="{{asset('mobile/assets/images/icons/blue/cart.svg')}}" alt="Ozerone Products" title="Products" /><span>Shop</span></a></li>
-        <a href="#" class="open-popup" data-popup="notifications"><li class="centered"><img src="{{asset('mobile/assets/images/icons/blue/magnifier.svg')}}" alt="Search Products" title="Search" /></li></a>
+        <a href="#" class="open-popup" data-popup="search"><li class="centered"><img src="{{asset('mobile/assets/images/icons/blue/magnifier.svg')}}" alt="Search Products" title="Search" /></li></a>
         @auth
         <li><a href="/checkout"><img src="{{asset('mobile/assets/images/icons/blue/checkout.svg')}}" alt="Checkout" title="Checkout" /><span>Checkout</span></a></li>
         @else

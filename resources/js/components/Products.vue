@@ -276,7 +276,7 @@
             updateProduct(){
                 this.$Progress.start();
                 //console.log('editing data');
-                this.form.put('../../api/product/'+this.form.slug)
+                this.form.put('/api/product/'+this.form.slug)
                     .then((data) =>{
                         this.form.reset();
                         $("#addNewProduct").modal('hide'); //Hide the model
@@ -327,7 +327,7 @@
             loadProducts(){
                 this.$Progress.start();
                 if (this.$gate.isAuthorized()){
-                    axios.get("../../api/product").then(({ data }) => (this.products = data, this.totalproduct = data.total));
+                    axios.get("/api/product").then(({ data }) => (this.products = data, this.totalproduct = data.total));
                     this.$Progress.finish();
                 }
             }
@@ -335,7 +335,7 @@
         created() {
             Fire.$on('searching',()=>{
                 let query =this.$parent.search; //take information from root
-                axios.get('api/findProduct?q='+ query)
+                axios.get('/api/findProduct?q='+ query)
                     .then((data)=>{
                         this.products = data.data
                     }).catch(()=>{

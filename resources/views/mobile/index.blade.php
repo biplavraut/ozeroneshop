@@ -176,6 +176,31 @@
 				@endforeach
 			</div>
 		</div> -->
+		<div class="fieldset">
+		<h2 class="page__title">Brands</h2>
+			<div class="swiper-container slider-thumbs slider-init mb-20" data-paginationtype="progressbar" data-spacebetweenitems="10" data-itemsperview="auto">
+				<div class="swiper-wrapper">
+					@foreach($brands as $brand)
+						@if($brand->parent_id == 0)
+						
+						<div class="swiper-slide slider-thumbs__slide slider-thumbs__slide--4">
+							<div class="slider-thumbs__icon slider-thumbs__icon--round-corners">
+								<a href="/brand/{{$brand->slug}}">
+								<img src="{{asset('img/brand/'. $brand->image .'')}}" alt="{{$brand->title}}" title="{{$brand->title}}"/>
+								</a>
+							</div>
+							<div class="my-slider-thumbs cap">
+								<div class="caption__content">
+									<h2 class="caption__title caption__title--smaller caption__title--centered"> {{$brand->title}}</h2>
+								</div>
+							</div>
+						</div>
+						@endif
+					@endforeach
+				</div>
+				<div class="swiper-pagination slider-thumbs__pagination"></div>
+			</div>
+		</div>
 		<div class="page__title-bar">
 			<h2 class="page__title">Smart Phones</h2>
 		</div>
