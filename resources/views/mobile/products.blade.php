@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, minimal-ui">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, minimal-ui,user-scalable=0">
 <title>Shop, Online electronics shop in Nepal</title>
 <!-- Favicon -->
 <link rel="icon" href="{{asset('logo/favicon.png')}}" type="image/png">

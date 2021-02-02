@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <!-- CSRF Token -->
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, minimal-ui">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, minimal-ui,user-scalable=0">
 <title>Blogs and News - Ozerone Shop, Online electronics shop in Nepal</title>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;300;400;500;600;700;900&display=swap" rel="stylesheet"> 
