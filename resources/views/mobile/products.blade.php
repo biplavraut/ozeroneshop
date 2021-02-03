@@ -87,14 +87,6 @@
                             </div>
                         </div>
                     </div>
-					<div class="swiper-slide slider-thumbs__slide slider-thumbs__slide--4">
-                        <div class="slider-thumbs__icon slider-thumbs__icon--round-corners {{ (request()->route()->slug == $elect_category->slug) ? 'active-category' : '' }} "><a href="/products/{{$elect_category->slug}}"><img src="{{asset('img/electronics/'. $elect_category->image .'')}}" alt="{{$elect_category->title}}" title="{{$elect_category->title}}"/></a></div>
-                        <div class="my-slider-thumbs cap">
-                            <div class="caption__content">
-                                <h2 class="caption__title caption__title--smaller caption__title--centered"> {{$elect_category->title}}</h2>
-                            </div>
-                        </div>
-                    </div>
                     @endif
                 @endforeach
 			@endif
