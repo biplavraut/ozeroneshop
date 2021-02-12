@@ -1,5 +1,5 @@
 body{
-    background-color: #f0f2f5 !important;
+    background-color: #f6f6f6 !important;
 }
 .blue{
     color: #0d3567;
@@ -36,6 +36,10 @@ body{
     -moz-transition: all ease-in-out .5s;
     -o-transition: all ease-in-out .5s;
     transition: all ease-in-out .5s !important;
+}
+.user-details__thumb img {
+    max-width: 50px;
+    border-radius: 0%;
 }
 .page__content--with-header{
     padding-top: 55px !important;
@@ -76,7 +80,7 @@ body{
     background-image: url(assets/images/icons/blue/magnifier.svg);
 }
 .panel--left, .panel--right{
-    background-color: #f0ede5;
+    background-color: #f6f6f6;
 }
 /* .main-nav {
     font-family: "Oxygen", sans-serif;
@@ -145,7 +149,7 @@ body{
 }
 
 .user-details__thumb img {
-    max-width: 200px !important;
+    max-width: 125px !important;
 }
 
 .center {
