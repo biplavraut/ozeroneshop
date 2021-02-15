@@ -25,6 +25,7 @@ $(function () {
 				el: '.swiper-pagination'+index,
 				type: paginationtype,
 				},
+				loop: true,
 				navigation: {
 					nextEl: '.swiper-button-next'+index,
 					prevEl: '.swiper-button-prev'+index
