@@ -97,6 +97,9 @@ body{
 .slider-simple--full-height {
     height: 55vh;
 }
+.slider-simple--detail-height {
+    height: 45vh;
+}
 .slider-overlay{
     background-color: rgba(248, 247, 216, 0.7);
     position: absolute;
