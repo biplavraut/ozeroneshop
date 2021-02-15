@@ -278,7 +278,7 @@
             </div>
 
             <div class="page__title-bar">
-                <h2 class="page__title">Best Selling</h2>
+                <h2 class="page__title">Recently Added</h2>
             </div>
             <div class="product-view cards cards--12" id="loadlist-shop">
                 @foreach($all_products as $all_product)
