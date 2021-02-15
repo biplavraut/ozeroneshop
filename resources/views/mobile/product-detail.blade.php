@@ -40,7 +40,7 @@
 	<!-- PAGE CONTENT -->
 	<div class="page__content page__content--with-header">	
 		<!-- SLIDER SIMPLE -->
-		<div class="swiper-container slider-simple slider-simple slider-simple--vw-width slider-init" data-paginationtype="bullets" data-spacebetweenitems="0" data-itemsperview="1">
+		<div class="swiper-container slider-simple slider-simple slider-simple--vw-width slider-simple--full-height slider-init" data-paginationtype="bullets" data-spacebetweenitems="0" data-itemsperview="1">
 			<div class="swiper-wrapper">
                 @foreach ($product->getImageRelation as $product_image)
 					@if($product_image->primary == 1)
