@@ -46,7 +46,7 @@
 					@if($product_image->primary == 1)
                         @php $image = $product_image->image  @endphp
 					@endif
-				<div class="swiper-slide slider-simple__slide" style="background:url(../../img/product/{{ $product->slug }}/{{ $product_image->image }}) center center no-repeat; background-size: contain;">
+				<div class="swiper-slide slider-simple__slide" style="background:url(../../img/product/{{ $product->slug }}/{{ $product_image->image }}) center center no-repeat; background-size: cover;">
 				</div> 
 				@endforeach
 			</div>

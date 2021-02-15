@@ -606,3 +606,8 @@ ul.custom-listing--checked li {
     left: 65%;
     margin-left: -150px;
 }
+
+.slider-simple {
+    width: 100%;
+    height: 335px;
+}
