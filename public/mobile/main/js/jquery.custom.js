@@ -107,7 +107,7 @@ $(function () {
 		var nrposts = 4;
 		$('#loadlist-blog .card:lt('+nrposts+')').show();
 		$('#loadMore').on('click', function(e) {
-		nrposts= (nrposts+2 <= size_li) ? nrposts+2 : size_li;
+		nrposts= (nrposts+4 <= size_li) ? nrposts+4 : size_li;
 		$('#loadlist-blog .card:lt('+nrposts+')').show();
 		if(nrposts == size_li){
 		$('#loadMore').hide();
@@ -353,7 +353,7 @@ if (pageid == 'products') {
 		var nrposts = 4;
 		$('#loadlist-shop .card:lt('+nrposts+')').show();
 		$('#loadMore').on('click', function(e) {
-		nrposts= (nrposts+2 <= size_li) ? nrposts+2 : size_li;
+		nrposts= (nrposts+4 <= size_li) ? nrposts+4 : size_li;
 		$('#loadlist-shop .card:lt('+nrposts+')').show();
 		if(nrposts == size_li){
 		$('#loadMore').hide();
