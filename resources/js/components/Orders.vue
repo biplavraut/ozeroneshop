@@ -106,9 +106,10 @@
                                 <td>{{order.order_date | myDate}}</td>
                                 <td>{{order.ship_date | myDate}}</td>
                                 <td>
-                                    <a href="#" class="btn btn-sm btn-success">Actions
-                                        <i class="fa fa-edit"></i>
-                                    </a>
+                                    <router-link :to="'/backend/admin/order-detail/' + order.id" class="btn btn-sm btn-primary">
+                                        <span class="d-none d-md-block"><i class="fas fa-plus"></i> View Details</span>
+                                        <span class="d-md-none"><i class="fas fa-plus"></i></span>
+                                    </router-link>
                                     <!-- <a href="#" @click="editModal(customer)" class="btn btn-sm btn-success">Edit
                                         <i class="fa fa-edit"></i>
                                     </a>

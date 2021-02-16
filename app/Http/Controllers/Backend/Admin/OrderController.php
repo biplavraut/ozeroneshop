@@ -33,7 +33,14 @@ class OrderController extends Controller
         //
         //
         if (\Gate::allows('canView')){
-            return Order::with('getOrderDetail')->latest()->paginate(10);
+            if(\Request::get('id')){
+                $id = \Request::get('id');
+                //return Contents::latest()->where('slug','LIKE',"%$slug%")->get();
+                return Order::with('getOrderDetail')->with('getCustomerDetail')->with('getShippingDetail')->where('id','LIKE',"%$id%")->first();
+            }else{
+                return Order::with('getOrderDetail')->latest()->paginate(10);
+            }
+            
         }else{
             return ['result'=>'error', 'message' =>'Unauthorized! Access Denied'];
         }

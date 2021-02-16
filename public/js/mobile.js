@@ -8001,7 +8001,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.cascading-admin-card[data-v-299e239e] {\r\n  margin: 20px 0;\n}\n.cascading-admin-card .admin-up[data-v-299e239e] {\r\n  margin-left: 4%;\r\n  margin-right: 4%;\r\n  margin-top: -20px;\n}\n.cascading-admin-card .admin-up .fas[data-v-299e239e],\r\n.cascading-admin-card .admin-up .far[data-v-299e239e] {\r\n  box-shadow: 0 2px 9px 0 rgba(0, 0, 0, 0.2), 0 2px 13px 0 rgba(0, 0, 0, 0.19);\r\n  padding: 1.7rem;\r\n  font-size: 2rem;\r\n  color: #fff;\r\n  text-align: left;\r\n  margin-right: 1rem;\r\n  border-radius: 3px;\n}\n.cascading-admin-card .admin-up .data[data-v-299e239e] {\r\n  float: right;\r\n  margin-top: 2rem;\r\n  text-align: right;\n}\n.admin-up .data p[data-v-299e239e] {\r\n  color: #999999;\r\n  font-size: 12px;\n}\n.classic-admin-card .card-body[data-v-299e239e] {\r\n  color: #fff;\r\n  margin-bottom: 0;\r\n  padding: 0.9rem;\n}\n.classic-admin-card .card-body p[data-v-299e239e] {\r\n  font-size: 13px;\r\n  opacity: 0.7;\r\n  margin-bottom: 0;\n}\n.classic-admin-card .card-body h4[data-v-299e239e] {\r\n  margin-top: 10px;\n}\r\n", ""]);
+exports.push([module.i, "\n.cascading-admin-card[data-v-299e239e] {\n  margin: 20px 0;\n}\n.cascading-admin-card .admin-up[data-v-299e239e] {\n  margin-left: 4%;\n  margin-right: 4%;\n  margin-top: -20px;\n}\n.cascading-admin-card .admin-up .fas[data-v-299e239e],\n.cascading-admin-card .admin-up .far[data-v-299e239e] {\n  box-shadow: 0 2px 9px 0 rgba(0, 0, 0, 0.2), 0 2px 13px 0 rgba(0, 0, 0, 0.19);\n  padding: 1.7rem;\n  font-size: 2rem;\n  color: #fff;\n  text-align: left;\n  margin-right: 1rem;\n  border-radius: 3px;\n}\n.cascading-admin-card .admin-up .data[data-v-299e239e] {\n  float: right;\n  margin-top: 2rem;\n  text-align: right;\n}\n.admin-up .data p[data-v-299e239e] {\n  color: #999999;\n  font-size: 12px;\n}\n.classic-admin-card .card-body[data-v-299e239e] {\n  color: #fff;\n  margin-bottom: 0;\n  padding: 0.9rem;\n}\n.classic-admin-card .card-body p[data-v-299e239e] {\n  font-size: 13px;\n  opacity: 0.7;\n  margin-bottom: 0;\n}\n.classic-admin-card .card-body h4[data-v-299e239e] {\n  margin-top: 10px;\n}\n", ""]);
 
 // exports
 
@@ -94375,7 +94375,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! E:\xampp\htdocs\ozeroneshop\resources\js\mobile.js */"./resources/js/mobile.js");
+module.exports = __webpack_require__(/*! D:\xampp\htdocs\ozeroneshop\resources\js\mobile.js */"./resources/js/mobile.js");
 
 
 /***/ })

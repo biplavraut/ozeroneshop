@@ -74,6 +74,13 @@ class OrderController extends Controller
     }
 
     public function nologinorder(Request $request){
+        $this->validate($request,[
+            'cust_name' => 'required',
+            'cust_email' => 'required|string|email',
+            'cust_primary_phone' => 'required',
+            'ship_name'=> 'required',
+            'ship_primary_phone' => 'required',
+        ]);
         // Order Code generation
         $today = date("ymd");
         $rand = strtoupper(substr(uniqid(sha1(time())),0,4));
@@ -97,7 +104,7 @@ class OrderController extends Controller
                 'name' => $request->ship_name,
                 'email' => $request->ship_email,
                 'primary_phone' => $request->ship_primary_phone,
-                'primary_phone' => $request->ship_secondary_phone,
+                'secondary_phone' => $request->ship_secondary_phone,
                 'address' => $request->ship_address
             ]);
         }

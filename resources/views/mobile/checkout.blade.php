@@ -143,26 +143,51 @@
                 <form id="LoginForm" method="post" action="/nologinorder">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                     <div class="form__row">
-                        <input type="text" name="cust_name" value="" class="form__input required" placeholder="Name"/>
+                        <input type="text" name="cust_name" value="" class="form__input required @error('cust_name') is-invalid @enderror" placeholder="Name*"/>
+                            @error('cust_name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>Please provide correct information</strong>
+                                </span>
+                            @enderror
                     </div>
                     <div class="form__row">
-                        <input type="text" name="cust_email" value="" class="form__input email required" placeholder="Email"/>
+                        <input type="text" name="cust_email" value="" class="form__input email required @error('cust_email') is-invalid @enderror" placeholder="Email*"/>
+						@error('cust_email')
+							<span class="invalid-feedback" role="alert">
+								<strong>{{ $message }}</strong>
+							</span>
+						@enderror
                     </div>
                     <div class="form__row">
-                        <input type="text" name="cust_primary_phone" value="" class="form__input required" placeholder="Primary Phone" />
-                    </div>
+                        <input type="text" name="cust_primary_phone" value="" class="form__input required @error('cust_primary_phone') is-invalid @enderror" placeholder="Primary Phone*"/>
+						@error('cust_primary_phone')
+							<span class="invalid-feedback" role="alert">
+								<strong>Please provide correct information</strong>
+							</span>
+						@enderror
+					</div>
                     <div class="form__row">
                         <textarea name="cust_address" class="form__textarea required" placeholder="Address"></textarea>
                     </div>
 					<h3>Shipping Detail</h3>
 					<div class="form__row">
-                        <input type="text" name="ship_name" value="" class="form__input required" placeholder="Name"/>
+                        <input type="text" name="ship_name" value="" class="form__input required @error('ship_name') is-invalid @enderror" placeholder="Name*"/>
+						@error('ship_name')
+							<span class="invalid-feedback" role="alert">
+								<strong>Please provide correct information</strong>
+							</span>
+						@enderror
                     </div>
                     <div class="form__row">
-                        <input type="text" name="ship_email" value="" class="form__input email required" placeholder="Email"/>
+                        <input type="text" name="ship_email" value="" class="form__input email required " placeholder="Email"/>
                     </div>
                     <div class="form__row">
-                        <input type="text" name="ship_primary_phone" value="" class="form__input required" placeholder="Primary Phone" />
+                        <input type="text" name="ship_primary_phone" value="" class="form__input required @error('ship_primary_phone') is-invalid @enderror" placeholder="Primary Phone*" />
+						@error('ship_primary_phone')
+							<span class="invalid-feedback" role="alert">
+								<strong>Please provide correct information</strong>
+							</span>
+						@enderror
                     </div>
                     <div class="form__row">
                         <input type="text" name="ship_secondary_phone" value="" class="form__input required" placeholder="Secondary Phone" />

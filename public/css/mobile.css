@@ -652,7 +652,7 @@ ul.custom-listing li span {
 }
 
 ul.custom-listing li.email {
-  background-image: url(/images/contact.svg?c5701e45431237ccc91d4df023017cc0);
+  background-image: url(/images/contact.svg?1b1e8023a52dd483a3b8c1a910af0b47);
   background-repeat: no-repeat;
   background-position: 0px 50%;
   background-size: 24px;
@@ -668,7 +668,7 @@ ul.custom-listing li.phone {
 }
 
 ul.custom-listing li.address {
-  background-image: url(/images/home.svg?982e9ab02ce0e23a1411cab636d2ce56);
+  background-image: url(/images/home.svg?c2caefc3341d30acb8f8d9c5f538a81c);
   background-repeat: no-repeat;
   background-position: 0px 50%;
   background-size: 24px;
@@ -1545,7 +1545,7 @@ body.panel-closing .bottom-toolbar {
   overflow: hidden;
   width: 16px;
   height: 16px;
-  background-image: url(/images/search.svg?25896868207748a823e6904441b34d7e);
+  background-image: url(/images/search.svg?912968d0fac6104c35e2f32282cc322c);
   background-color: transparent;
   border: none;
   background-repeat: no-repeat;

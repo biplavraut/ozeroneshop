@@ -499,7 +499,7 @@ input[type=number] {
     height: 177px !important;
 }
 .is-invalid{
-    border-color: #fb6340;
+    border: 1px solid #fb6340;
 }
 .invalid-feedback{
     padding: 5px;
