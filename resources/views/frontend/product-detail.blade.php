@@ -132,33 +132,10 @@
                             <div class="margin-1-rem-tb paragraph-no-margin">
                                 <!-- <p>{!! $product->excerpt !!}</p> -->
                             </div>
-                            <label class="text-extra-dark-gray text-extra-small font-weight-500 alt-font text-uppercase w-60px">Storage</label>
+                            
 
-                            <div class="row justify-content-center margin-2-rem-top">
-                            @if (count($product->getStorageRelation) >= 1)
-                            <!-- <h3>Storage Option</h3> -->
-                            <div class="size-selectors">
-                                @foreach ($product->getStorageRelation as $product_storage)                
-                                <div class="size-selectors__input"> 
-                                    @php
-                                        if ($product->discount > 0){
-                                            $storage_marked_price = $product_storage->price;
-                                            $storage_discount = $product->discount;
-                                            $storage_price = round($storage_marked_price - ($storage_discount/100*$storage_marked_price));
-                                        }else{
-                                            $storage_price = $product_storage->price;
-                                        }
-                                    @endphp
-                                    @if ($product->discount > 0)
-                                    <input id="{{ $product_storage->id }}" onclick="storagechangewithmp({{ $storage_marked_price }} , {{ $storage_price }})" data-marked-price="{{ $storage_marked_price }}" data-price="{{ $storage_price }}" type="radio" name="storage" value="{{ $product_storage->id }}" {{ ($loop->index == 0) ? "checked" : "" }}>  
-                                    @else
-                                    <input id="{{ $product_storage->id }}" onclick="storagechange({{ $storage_price }})" data-price="{{ $storage_price }}" type="radio" name="storage" value="{{ $product_storage->id }}" {{ ($loop->index == 0) ? "checked" : "" }}>  
-                                    @endif
-                                    <label for="{{ $product_storage->id }}">{{ $product_storage->ram.' RAM-'. $product_storage->storage }}</label>
-                                </div>
-                                @endforeach	
-                            </div> 
-                            @endif
+                            <div class="row margin-2-rem-top">
+                                
                                 <!-- start fancy text box item -->
                                 <!-- <div class="col-12 margin-30px-bottom xs-margin-15px-bottom wow animate__fadeIn" data-wow-delay="0.2s">
                                     <div class="feature-box feature-box-left-icon-middle padding-one-tb bg-white box-shadow-small box-shadow-extra-large-hover border-radius-6px lg-padding-1-half-rem-lr xs-padding-2-rem-all">
@@ -187,6 +164,32 @@
                                 <!-- end fancy text box item -->
                                 
                             </div>
+                            @if (count($product->getStorageRelation) >= 1)
+                                
+                                <!-- <h3>Storage Option</h3> -->
+                                <div class="size-selectors">
+                                <label class="text-extra-dark-gray text-extra-small font-weight-500 alt-font text-uppercase w-60px">Storage</label>
+                                    @foreach ($product->getStorageRelation as $product_storage)                
+                                    <div class="size-selectors__input"> 
+                                        @php
+                                            if ($product->discount > 0){
+                                                $storage_marked_price = $product_storage->price;
+                                                $storage_discount = $product->discount;
+                                                $storage_price = round($storage_marked_price - ($storage_discount/100*$storage_marked_price));
+                                            }else{
+                                                $storage_price = $product_storage->price;
+                                            }
+                                        @endphp
+                                        @if ($product->discount > 0)
+                                        <input id="{{ $product_storage->id }}" onclick="storagechangewithmp({{ $storage_marked_price }} , {{ $storage_price }})" data-marked-price="{{ $storage_marked_price }}" data-price="{{ $storage_price }}" type="radio" name="storage" value="{{ $product_storage->id }}" {{ ($loop->index == 0) ? "checked" : "" }}>  
+                                        @else
+                                        <input id="{{ $product_storage->id }}" onclick="storagechange({{ $storage_price }})" data-price="{{ $storage_price }}" type="radio" name="storage" value="{{ $product_storage->id }}" {{ ($loop->index == 0) ? "checked" : "" }}>  
+                                        @endif
+                                        <label for="{{ $product_storage->id }}">{{ $product_storage->ram.' RAM-'. $product_storage->storage }}</label>
+                                    </div>
+                                    @endforeach	
+                                </div> 
+                                @endif
                             @if (count($product->getColorRelation) >= 1)
                             <div class="margin-2-rem-top">
                                 <div class="margin-20px-bottom">
