@@ -130,7 +130,7 @@
                                 </div>
                             </div> -->
                             <div class="margin-1-rem-tb paragraph-no-margin">
-                                <!-- <p>{!! $product->excerpt !!}</p> -->
+                                <p>{!! substr($product->excerpt, 0, 500); !!} <a href="#specs">...view Specs</a></p>
                             </div>
                             
 
