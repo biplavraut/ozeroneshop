@@ -1,7 +1,7 @@
 <!doctype html>
 <html class="no-js" lang="en">
     <head>
-        <title>FAQs - Ozerone shop</title>
+        <title>FAQs - Ozerone Shop</title>
         <meta charset="utf-8">
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
