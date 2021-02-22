@@ -129,9 +129,9 @@
                                     <span class="text-small"><span class="text-extra-dark-gray">SKU: </span>8552635</span>
                                 </div>
                             </div> -->
-                            <!-- <div class="margin-1-rem-tb paragraph-no-margin">
-                                <p>{!! $product->excerpt !!}</p>
-                            </div> -->
+                            <div class="margin-1-rem-tb paragraph-no-margin">
+                                <!-- <p>{!! $product->excerpt !!}</p> -->
+                            </div>
                             <label class="text-extra-dark-gray text-extra-small font-weight-500 alt-font text-uppercase w-60px">Storage</label>
 
                             <div class="row justify-content-center margin-2-rem-top">
