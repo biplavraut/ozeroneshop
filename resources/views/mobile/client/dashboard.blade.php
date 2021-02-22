@@ -144,7 +144,7 @@
 		</div>
 		@endif
 
-        <h2>Orders</h2>					
+        <!-- <h2>Orders</h2>					
 		<div class="table table--8cols mb-40">
 			<div class="table__inner">	
 				<div class="table__row">
@@ -188,7 +188,7 @@
 					<div class="table__section"><a href="#" class="button button--main button--ex-small">BUY</a></div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 		 
 	@endif	
 	</div>

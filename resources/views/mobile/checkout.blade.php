@@ -80,7 +80,7 @@
 				@else
 				<b>No Product in Cart</b>
 				@endif
-			 </div>
+			</div>
 		</div>
 		<h2 class="page__title">Your Details</h2>
 		@auth
@@ -143,7 +143,7 @@
                 <form id="LoginForm" method="post" action="/nologinorder">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                     <div class="form__row">
-                        <input type="text" name="cust_name" value="" class="form__input required @error('cust_name') is-invalid @enderror" placeholder="Name*"/>
+                        <input type="text" name="cust_name" value="" class="form__input required @error('cust_name') is-invalid @enderror" placeholder="Name*" required/>
                             @error('cust_name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>Please provide correct information</strong>
@@ -151,7 +151,7 @@
                             @enderror
                     </div>
                     <div class="form__row">
-                        <input type="text" name="cust_email" value="" class="form__input email required @error('cust_email') is-invalid @enderror" placeholder="Email*"/>
+                        <input type="text" name="cust_email" value="" class="form__input email required @error('cust_email') is-invalid @enderror" placeholder="Email*" required/>
 						@error('cust_email')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
@@ -159,7 +159,7 @@
 						@enderror
                     </div>
                     <div class="form__row">
-                        <input type="text" name="cust_primary_phone" value="" class="form__input required @error('cust_primary_phone') is-invalid @enderror" placeholder="Primary Phone*"/>
+                        <input type="text" name="cust_primary_phone" value="" class="form__input required @error('cust_primary_phone') is-invalid @enderror" placeholder="Primary Phone*" required/>
 						@error('cust_primary_phone')
 							<span class="invalid-feedback" role="alert">
 								<strong>Please provide correct information</strong>

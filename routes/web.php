@@ -77,10 +77,20 @@ if(isMobile()) {
 
 } else {
     Route::namespace('Frontend\Client')->group(function() {
+        Route::get('/login', [App\Http\Controllers\Frontend\Client\Auth\LoginController::class, 'showLoginForm'])->name('login');
+        Route::post('/login', [App\Http\Controllers\Frontend\Client\Auth\LoginController::class, 'login'])->name('login');
+        Route::get('/register', [App\Http\Controllers\Frontend\Client\Auth\RegisterController::class, 'showRegistrationForm'])->name('register');
+        Route::post('/register', [App\Http\Controllers\Frontend\Client\Auth\RegisterController::class, 'register'])->name('register');
         Auth::routes();
     
         Route::middleware(['auth'])->group(function () {
+            Route::post('/logout', [App\Http\Controllers\Frontend\Client\Auth\LoginController::class, 'logout'])->name('logout');
             Route::get('/dashboard', [App\Http\Controllers\Frontend\Client\DashboardController::class, 'index'])->name('dashboard');
+            Route::get('/accountdetail', [App\Http\Controllers\Frontend\AccountController::class, 'accountdetail']);
+            Route::post('/accountupdate', [App\Http\Controllers\Frontend\AccountController::class, 'accountupdate']);
+            Route::get('/shippingdetail', [App\Http\Controllers\Frontend\AccountController::class, 'shippingdetail']);
+            Route::post('/updateshipping', [App\Http\Controllers\Frontend\AccountController::class, 'updateshipping']);
+            Route::post('addwishlist', [App\Http\Controllers\Frontend\AccountController::class, 'addwishlist'])->name('addwishlist.post');
         });
     });
     
@@ -88,7 +98,30 @@ if(isMobile()) {
     // No Auth Need
     
     Route::namespace('Frontend')->group(function() {
-        Route::get('/', [App\Http\Controllers\Frontend\PageController::class, 'index']);
+        Route::get('/', [App\Http\Controllers\Frontend\PageController::class, 'desktop']);
+        Route::get('/home', [App\Http\Controllers\Frontend\PageController::class, 'desktop']);
+        Route::get('/brand/{slug}', [App\Http\Controllers\Frontend\PageController::class, 'brandProducts'])->name('brand.products');
+        Route::get('/products/{slug}', [App\Http\Controllers\Frontend\PageController::class, 'products']);
+        Route::get('/product-detail/{slug}', [App\Http\Controllers\Frontend\PageController::class, 'productDetail']);
+
+        Route::get('/blog-news', [App\Http\Controllers\Frontend\PageController::class, 'blogNews']);
+        Route::get('/faqs', [App\Http\Controllers\Frontend\PageController::class, 'faqs']);
+        Route::get('/about', [App\Http\Controllers\Frontend\PageController::class, 'about']);
+        Route::get('/contact', [App\Http\Controllers\Frontend\PageController::class, 'contact']);
+        Route::get('/cart', [App\Http\Controllers\Frontend\PageController::class, 'cart']);
+        Route::get('/checkout', [App\Http\Controllers\Frontend\PageController::class, 'checkout']);
+        Route::get('/order', [App\Http\Controllers\Frontend\OrderController::class, 'order']);
+        Route::post('/nologinorder', [App\Http\Controllers\Frontend\OrderController::class, 'nologinorder']);
+        Route::get('/order-placed', [App\Http\Controllers\Frontend\PageController::class, 'orderplaced']);
+        Route::get('/order-failed', [App\Http\Controllers\Frontend\PageController::class, 'orderfailed']);
+        
+        Route::post('cartstore', [App\Http\Controllers\Frontend\PageController::class, 'cartstore'])->name('cartstore.post');
+        Route::post('increasequantity', [App\Http\Controllers\Frontend\PageController::class, 'increaseQuantity'])->name('increasequantity.post');
+        Route::post('decreasequantity', [App\Http\Controllers\Frontend\PageController::class, 'decreaseQuantity'])->name('decreasequantity.post');
+        Route::post('removecartproduct', [App\Http\Controllers\Frontend\PageController::class, 'removeCartProduct'])->name('removecartproduct.post');
+        Route::get('destroycart', [App\Http\Controllers\Frontend\PageController::class, 'destroyCart'])->name('destroycart.get');
+
+        Route::post('search', [App\Http\Controllers\Frontend\PageController::class, 'search'])->name('search.post');
     });
 }
 Route::namespace('Frontend')->group(function() {

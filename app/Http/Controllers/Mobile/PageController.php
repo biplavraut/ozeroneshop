@@ -86,7 +86,7 @@ class PageController extends Controller
         if($slug == 'all'){
             $products =  Product::with('getStorageRelation')->with('getColorRelation')->with('getImageRelation')->with('getDetailRelation')->orderBy("order_item")->where('display','=',1)->get();
         }else{
-            $electronic_id =  Electronics::where('slug','LIKE',"%$slug%")->value('id');;
+            $electronic_id =  Electronics::where('slug','LIKE',"%$slug%")->value('id');
             $products_id = Product_Electronics::where('electronic_id','=',$electronic_id)->pluck('product_id');
             $products =  Product::whereIn('id', $products_id)->with('getStorageRelation')->with('getColorRelation')->with('getImageRelation')->with('getDetailRelation')->orderBy("order_item")->where('display','=',1)->get();
 
@@ -101,7 +101,7 @@ class PageController extends Controller
         if($slug == 'all'){
             $products =  Product::with('getStorageRelation')->with('getColorRelation')->with('getImageRelation')->with('getDetailRelation')->orderBy("order_item")->where('display','=',1)->get();
         }else{
-            $brand_id =  Brand::where('slug','LIKE',"%$slug%")->value('id');;
+            $brand_id =  Brand::where('slug','LIKE',"%$slug%")->value('id');
             $products_id = Product::where('brand_id','=',$brand_id)->where('display','=',1)->pluck('id');
             $products =  Product::whereIn('id', $products_id)->with('getStorageRelation')->with('getColorRelation')->with('getImageRelation')->with('getDetailRelation')->orderBy("order_item")->where('display','=',1)->get();
 

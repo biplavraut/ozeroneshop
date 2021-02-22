@@ -231,7 +231,7 @@
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">Description</div>
                                     </div>
-                                    <vue-editor v-model="cform.excerpt" placeholder="Long Description about the product."></vue-editor>
+                                    <vue-editor v-model="cform.excerpt" placeholder="Short description about the product."></vue-editor>
                                 </div>
 
                                 <b>SEARCH ENGINE DATA</b>
