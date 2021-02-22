@@ -81,7 +81,7 @@
                                      data-paddingright="[20,20,20,20]"
                                      data-paddingbottom="[30,30,30,30]"
                                      data-paddingleft="[20,20,20,20]"
-                                     style="z-index: 8;letter-spacing: -3px;">{{$slider->sub_title}}</div>    
+                                     style="z-index: 8;letter-spacing: -3px;">@php echo wordwrap($slider->sub_title,12,"<br>\n"); @endphp</div>    
 
                                 <!-- LAYER NR. 1 -->
                                 <a class="tp-caption tp-resizeme btn btn-medium btn-white btn-box-shadow lg-margin-15px-bottom md-no-margin-bottom md-margin-auto-lr"
