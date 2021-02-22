@@ -133,7 +133,7 @@
                                                 <a href="javascript:void(0);" onclick="addtocart({{$product->id}}, '{{$product->title}}', {{$price}}, '{{ $image }}' )" class="product-link-icon move-top-bottom" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Bag"><i class="feather icon-feather-shopping-cart"></i></a>
                                             @endif
                                             
-                                                <a href="javascript:void(0);" class="product-link-icon move-top-bottom" data-toggle="tooltip" data-placement="top" title="" data-original-title="Quick shop"><i class="feather icon-feather-zoom-in"></i></a>
+                                                <!-- <a href="javascript:void(0);" class="product-link-icon move-top-bottom" data-toggle="tooltip" data-placement="top" title="" data-original-title="Quick shop"><i class="feather icon-feather-zoom-in"></i></a> -->
                                             @auth
                                                 <a href="javascript:void(0);" onclick="addtowishlist({{$product->id}}, {{ $price }})" class="product-link-icon move-top-bottom" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to wishlist"><i class="feather icon-feather-heart"></i></a>
                                             @else
