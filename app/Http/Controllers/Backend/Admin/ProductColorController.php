@@ -47,7 +47,7 @@ class ProductColorController extends Controller
                 $imageName = $request->content_slug;
                 $image_name = $imageName.'_'.$color.'.'.$extension;
                 \Image::make($request->image)->save($path.'/'.$image_name);
-                resize_crop_image(1000, 1000, $path."/". $image_name, $path."/thumbs/" . $image_name, $extension);                
+                resize_crop_image(300, 300, $path."/". $image_name, $path."/thumbs/" . $image_name, $extension);                
             }else{
                 $image_name = "no-image.png";
             }
@@ -100,7 +100,7 @@ class ProductColorController extends Controller
                 $imageName = $request->content_slug;
                 $image_name = $imageName.'_'.$color.'.'.$extension;
                 \Image::make($request->image)->save($path.'/'.$image_name);
-                resize_crop_image(1000, 1000, $path."/". $image_name, $path."/thumbs/" . $image_name, $extension);   
+                resize_crop_image(300, 300, $path."/". $image_name, $path."/thumbs/" . $image_name, $extension);   
                 $request->merge(['image' => $image_name]);             
             }
             
