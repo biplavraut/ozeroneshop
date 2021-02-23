@@ -39,7 +39,7 @@
       <meta property="og:type" content="website">
       <meta property="og:title" content="{{ $seo->title }}" />
       <meta property="og:description" content="{{ strip_tags($seo->excerpt) }}" />
-      <meta property="og:image" content="https://ozeroneshop.com/desktop/logo/logo-primary.png">
+      <meta property="og:image" content="https://ozeroneshop.com/social-banner.png">
 
       <!-- For Social -->
       <meta property="og:site_name" content="Ozerone Shop">
