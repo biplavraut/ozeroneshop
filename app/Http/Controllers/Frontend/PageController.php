@@ -34,7 +34,7 @@ class PageController extends Controller
 
         $electronics_products = Product_Electronics::where('electronic_id','=',1)->pluck('product_id');
         $smart_phones = Product::where('display','=',1)->where('featured','!=',1)->whereIn('id', $electronics_products)->with('getImageRelation')->limit(10)->get();
-        $all_products = Product::with('getStorageRelation')->with('getColorRelation')->with('getImageRelation')->orderBy("order_item")->whereNotIn('id', $electronics_products)->where('display','=',1)->where('featured','!=',1)->get();
+        $all_products = Product::with('getStorageRelation')->with('getColorRelation')->with('getImageRelation')->orderBy("order_item")->whereNotIn('id', $electronics_products)->where('display','=',1)->where('featured','!=',1)->limit(12)->get();
 
         return view('frontend.index' , 
         [
