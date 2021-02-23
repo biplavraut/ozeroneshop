@@ -117,8 +117,8 @@
                                 <!-- start breadcrumb -->
                                 <ul>
                                     <!-- <li><a href="./">Ozerone</a></li> -->
-                                    <li><a href="/brand/{{$brand_title->slug}}">{{$brand_title->title}}</a></li>
-                                    <li><a href="/products/{{$electronics_title->slug}}">{{$electronics_title->title}}</a></li>
+                                    <li><a href="/brand/{{@$brand_title->slug}}">{{@$brand_title->title}}</a></li>
+                                    <li><a href="/products/{{@$electronics_title->slug}}">{{@$electronics_title->title}}</a></li>
                                     <li>{{$product->title}}</li>
                                 </ul>
                                 <!-- end breadcrumb -->

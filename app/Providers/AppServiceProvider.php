@@ -7,6 +7,7 @@ use App\Models\Brand;
 use App\Models\Product_Electronics;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use App\Models\Seo;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -34,6 +35,10 @@ class AppServiceProvider extends ServiceProvider
 
         $brands = Brand::with('getSectionRelation')->where('display','=',1)->orderBy("order_item")->get();
         View::share('brands', $brands);
+
+        $seo = Seo::findOrFail(1);
+        View::share('seo', $seo);
+        
         // Share data to selected views using view composer
 
         // View::composer(['','home','products.*','blog-news'], function($view){

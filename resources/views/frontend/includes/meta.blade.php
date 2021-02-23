@@ -1,6 +1,6 @@
-<meta name='keywords' content='<?= $mydb->select_field("keywords", "tbl_seo", "id=1"); ?>'>
-<meta name='description' content='<?= strip_tags($mydb->select_field("description", "tbl_seo", "id=1")); ?>'>
-<meta name='subject' content='<?= $mydb->select_field("subject", "tbl_seo", "id=1"); ?>'>
+<meta name='keywords' content='{{ $seo->keyword }}'>
+<meta name='description' content='{{ $seo->excerpt }}'>
+<meta name='subject' content='{{ $seo->subject }}'>
 <meta name='copyright' content='Ozerone Shop'>
 <meta name='language' content='ES'>
 <meta name='robots' content='index,follow'>
@@ -13,31 +13,29 @@
 <meta name='revised' content='7 days'>
 <meta name='abstract'
       content='<?= strip_tags($mydb->select_field("short_description", "tbl_sitesettings", "id=1")); ?>'>
-<meta name='topic' content='<?= $mydb->select_field("topic", "tbl_seo", "id=1"); ?>'>
-<meta name='summary' content='<?= $mydb->select_field("summary", "tbl_seo", "id=1"); ?>'>
-<meta name='Classification' content='<?= $mydb->select_field("keywords", "tbl_seo", "id=1"); ?>'>
-<meta name='author' content='Ozerone Shop, <?= $mydb->select_field("email", "tbl_sitesettings", "id=1"); ?>'>
+<meta name='topic' content='{{ $seo->topic }}'>
+<meta name='summary' content='{{ $seo->summary }}'>
+<meta name='classification' content='{{ $seo->classification }}'>
+<meta name='author' content='Ozerone Shop, info@ozeroneshop.com'>
 <meta name='designer' content='Ozerone Shop'>
-<meta name='reply-to' content='contact@ozeroneshop.com'>
+<meta name='reply-to' content='info@ozeroneshop.com'>
 <meta name='owner' content='Ozerone Shop'>
 <meta name='url' content='https://www.ozeroneshop.com'>
 <meta name='identifier-URL' content='https://www.ozeroneshop.com'>
 <meta name='directory' content='submission'>
-<meta name='pagename' content='Ozerone is a chain of retailers of technology and electronic products. It aims to provide high quality customer services, product at reasonable prices, knowledgeable technical support and financial support and services to its customer base of general consumers.'>
-<meta name='category' content='<?= $mydb->select_field("category", "tbl_seo", "id=1"); ?>'>
+<meta name='pagename' content='{{ $seo->title }}'>
+<meta name='category' content='{{ $seo->category }}'>
 <meta name='coverage' content='Worldwide'>
 <meta name='distribution' content='Global'>
 <meta name='rating' content='General'>
 <meta name='revisit-after' content='7 days'>
-<meta name='subtitle'
-      content='Ozerone is a chain of retailers of technology and electronic products. It aims to provide high quality customer services, product at reasonable prices, knowledgeable technical support and financial support and services to its customer base of general consumers.'>
+<meta name='subtitle' content='{{ $seo->title }}'>
 <meta name='target' content='all'>
 <meta name='HandheldFriendly' content='True'>
 <meta name='MobileOptimized' content='320'>
-<meta name='date' content='Sep. 27, 2010'>
-<meta name='search_date' content='2010-09-27'>
-<meta name='DC.title'
-      content='<?= strip_tags($mydb->select_field("short_description", "tbl_sitesettings", "id=1")); ?>'>
+<meta name='date' content='Sep. 27, 2021'>
+<meta name='search_date' content='2021-02-01'>
+<meta name='DC.title' content='{{ $seo->excerpt }}'>
 <meta http-equiv='Expires' content='0'>
 <meta http-equiv='Pragma' content='no-cache'>
 <meta http-equiv='Cache-Control' content='no-cache'>

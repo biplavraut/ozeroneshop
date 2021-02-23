@@ -2,7 +2,7 @@
 <html class="no-js" lang="en">
     <head>
         <!-- title -->
-        <title>Ozerone Shop, Online electronics shop in Nepal</title>
+        <title>{{ $seo->title }}</title>
         <meta charset="utf-8">
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
