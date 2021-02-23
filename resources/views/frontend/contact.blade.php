@@ -1,17 +1,14 @@
 <!doctype html>
 <html class="no-js" lang="en">
     <head>
-        <title>Contact - Ozerone shop</title>
+        <!-- title -->
+        <title>Contact | {{ $seo->title }}</title>
         <meta charset="utf-8">
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="author" content="Ozeroneshop">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1" />
-        <!-- description -->
-        <meta name="description" content="">
-        <!-- keywords -->
-        <meta name="keywords" content="">
+        @include('frontend.includes.meta')
         <!-- favicon icon -->
         <link rel="shortcut icon" href="{{asset('desktop/logo/favicon.png')}}">
         <link rel="apple-touch-icon" href="{{asset('desktop/logo/apple-touch-icon-57x57.png')}}">

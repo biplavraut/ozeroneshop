@@ -7,21 +7,21 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="author" content="Ozeroneshop">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1" />
-        <!-- description -->
-        <meta name="description" content="">
-        <!-- keywords -->
-        <meta name="keywords" content="">
+        @include('frontend.includes.meta')
         <!-- favicon icon -->
         <link rel="shortcut icon" href="{{asset('desktop/logo/favicon.png')}}">
         <link rel="apple-touch-icon" href="{{asset('desktop/logo/apple-touch-icon-57x57.png')}}">
         <link rel="apple-touch-icon" sizes="72x72" href="{{asset('desktop/logo/apple-touch-icon-72x72.png')}}">
         <link rel="apple-touch-icon" sizes="114x114" href="{{asset('desktop/logo/apple-touch-icon-114x114.png')}}">
         <!-- style sheets and font icons  -->
+        <link rel="stylesheet" type="text/css" href="{{asset('desktop/css/critical.css')}}" />
         <link rel="stylesheet" type="text/css" href="{{asset('desktop/css/font-icons.min.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('desktop/css/theme-vendors.min.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('desktop/css/style.css')}}" />
+        <style>
+        
+        </style>
         <link rel="stylesheet" type="text/css" href="{{asset('desktop/css/responsive.css')}}" />
         <!-- revolution slider -->
         <!-- <link rel='stylesheet' href='revolution/revolution-addons/bubblemorph/css/revolution.addon.bubblemorph.css' type='text/css' media='all' /> -->
