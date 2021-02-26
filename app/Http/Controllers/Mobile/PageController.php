@@ -48,9 +48,17 @@ class PageController extends Controller
     }
     public function productDetail($slug){
         $product =  Product::with('getStorageRelation')->where('display','=',1)->with('getColorRelation')->with('getImageRelation')->with('getDetailRelation')->where('slug','LIKE',"%$slug%")->first();
+        $electronics_id = Product_Electronics::where('product_id','=',$product->id)->first();
+        $electronics_title = Electronics::where('id','=', $electronics_id->electronic_id)->first();
+        $brand_title = Brand::where('id','=', $product->brand_id)->first();
+        //return $brand_title;
+        $related = Product::with('getStorageRelation')->with('getColorRelation')->with('getImageRelation')->with('getDetailRelation')->orderBy("order_item")->where('display','=',1)->where('featured','=',1)->get();
         return view('mobile.product-detail' , 
         [
-            'product' => $product            
+            'product' => $product,
+            'related' => $related,
+            'electronics_title' => $electronics_title,
+            'brand_title' => $brand_title            
         ]);
     }
     public function blogNews(){
@@ -85,15 +93,21 @@ class PageController extends Controller
     {
         if($slug == 'all'){
             $products =  Product::with('getStorageRelation')->with('getColorRelation')->with('getImageRelation')->with('getDetailRelation')->orderBy("order_item")->where('display','=',1)->get();
+            $title =  "All Products";
+            $tagline =  "Explore our collection of electronics";
         }else{
             $electronic_id =  Electronics::where('slug','LIKE',"%$slug%")->value('id');
+            $title =  Electronics::where('slug','LIKE',"%$slug%")->value('title');
+            $tagline =  "Explore our collection of electronics";
             $products_id = Product_Electronics::where('electronic_id','=',$electronic_id)->pluck('product_id');
             $products =  Product::whereIn('id', $products_id)->with('getStorageRelation')->with('getColorRelation')->with('getImageRelation')->with('getDetailRelation')->orderBy("order_item")->where('display','=',1)->get();
 
         }        
         return view('mobile.products', 
         [
-            'products' => $products            
+            'products' => $products,
+            'title' => $title,
+            'tagline' => $tagline              
         ]);
     }
     public function brandProducts($slug) 

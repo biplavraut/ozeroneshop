@@ -5,7 +5,33 @@
 <!-- CSRF Token -->
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, minimal-ui,user-scalable=0">
-<title>{{$product->title}} - Ozerone Shop, Online electronics shop in Nepal</title>
+<title>{{$product->title}}, {{$brand_title->title}}, {{$electronics_title->title}}- Buy Online in Nepal: ozeroneshop.com</title>
+<!-- description -->
+<meta name="description" content="{{$product->meta_tags}}">
+<!-- keywords -->
+<meta name="keywords" content="{{$product->meta_keywords}}">
+<meta name='copyright' content='Ozerone Shop'>
+<meta name='language' content='ES'>
+<meta name='robots' content='index,follow'>
+<meta name='category' content='{{$product->meta_categories}}'>
+<meta property="fb:app_id" content="2802624920003403">
+<meta property="og:title" content="{{$product->title}}"/>
+@foreach ($product->getImageRelation as $product_image)
+	@if($product_image->primary == 1)
+		@php $og_image = $product_image->image  @endphp
+		<meta property="og:image"
+	content="https://ozeroneshop.com/img/product/{{ $product->slug }}/{{ $og_image }}"/>
+	@endif
+@endforeach
+<meta name="og:type" content="product" />
+<meta property="og:url" content="https://www.ozeroneshop.com/product-detail/{{ $product->slug }}" />
+<meta property="og:description"
+	content="{{strip_tags($product->excerpt)}}"/>
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image:alt" content="https://ozeroneshop.com/img/product/{{ $product->slug }}/{{ $og_image }}">
+<meta name="twitter:description" content="{{strip_tags($product->excerpt)}}">
+<meta name="twitter:title" content="{{$product->title}}, {{$brand_title->title}}, {{$electronics_title->title}}">
+<meta name="twitter:site" content="@ozerone">
 <!-- Favicon -->
 <link rel="icon" href="{{asset('logo/favicon.png')}}" type="image/png">
 <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -13,6 +39,7 @@
 <link rel="stylesheet" href="{{asset('mobile/vendor/swiper/swiper.min.css')}}">
 <link rel="stylesheet" href="{{asset('css/mobile.css')}}">
 <link rel="stylesheet" href="{{asset('mobile/custom.css')}}">
+
 </head>
 <body>
 	

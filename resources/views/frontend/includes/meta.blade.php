@@ -1,4 +1,4 @@
-      <meta name='keywords' content='{{ $seo->keyword }}'>
+<meta name='keywords' content='{{ $seo->keyword }}'>
       <meta name='description' content='{{ strip_tags($seo->excerpt) }}'>
       <meta name='subject' content='{{ $seo->subject }}'>
       <meta name='copyright' content='Ozerone Shop'>
@@ -35,13 +35,17 @@
       <meta http-equiv='imagetoolbar' content='no'>
       <meta http-equiv='x-dns-prefetch-control' content='off'>
 
+      <!-- For Social -->      
+      <meta property="og:site_name" content="Ozerone Shop">
+      <meta property="fb:app_id" content="2802624920003403">
       <meta property="og:url" content="https://www.ozeroneshop.com/" />
       <meta property="og:type" content="website">
       <meta property="og:title" content="{{ $seo->title }}" />
       <meta property="og:description" content="{{ strip_tags($seo->excerpt) }}" />
       <meta property="og:image" content="https://ozeroneshop.com/social-banner.png">
 
-      <!-- For Social -->
-      <meta property="og:site_name" content="Ozerone Shop">
-      <meta name="twitter:image:alt" content="Ozerone Shop Image">
-      <meta name="twitter:site" content="@ozerone_shop">
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:image:alt" content="https://ozeroneshop.com/social-banner.png">
+      <meta name="twitter:description" content="{{ strip_tags($seo->excerpt) }}">
+      <meta name="twitter:title" content="{{ $seo->title }}">
+      <meta name="twitter:site" content="@ozerone">

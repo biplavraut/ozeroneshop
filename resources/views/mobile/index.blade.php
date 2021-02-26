@@ -5,9 +5,13 @@
 <!-- CSRF Token -->
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, minimal-ui,user-scalable=0">
-<title>Ozerone Shop, Online electronics shop in Nepal</title>
+<title>{{ $seo->title }}</title>
+@include('mobile.includes.meta')
 <!-- Favicon -->
 <link rel="icon" href="{{asset('logo/favicon.png')}}" type="image/png">
+<link rel="apple-touch-icon" href="{{asset('desktop/logo/apple-touch-icon-57x57.png')}}">
+<link rel="apple-touch-icon" sizes="72x72" href="{{asset('desktop/logo/apple-touch-icon-72x72.png')}}">
+<link rel="apple-touch-icon" sizes="114x114" href="{{asset('desktop/logo/apple-touch-icon-114x114.png')}}">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;300;400;500;600;700;900&display=swap" rel="stylesheet"> 
 <link rel="stylesheet" href="{{asset('mobile/vendor/swiper/swiper.min.css')}}">

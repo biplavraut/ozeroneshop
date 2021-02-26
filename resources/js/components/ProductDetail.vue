@@ -249,10 +249,10 @@
                                 <div class="form-group">
                                     <div class="input-group mb-2 mr-sm-2">
                                         <div class="input-group-prepend">
-                                            <div class="input-group-text">Meta Tags</div>
+                                            <div class="input-group-text">Meta Description</div>
                                         </div>
                                         <input v-model="cform.meta_tags" type="text" name="meta_tags"
-                                            placeholder="Tags: Brand, Company, Electronics..,"
+                                            placeholder="Description: Brand, Company, Electronics..,"
                                             class="form-control">
                                     </div>
 

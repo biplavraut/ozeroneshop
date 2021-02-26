@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, minimal-ui,user-scalable=0">
-<title>Shop, Online electronics shop in Nepal</title>
+<title>{{$title}} | {{ $seo->title }}</title>
+@include('mobile.includes.meta')
 <!-- Favicon -->
 <link rel="icon" href="{{asset('logo/favicon.png')}}" type="image/png">
 <link rel="preconnect" href="https://fonts.gstatic.com">

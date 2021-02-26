@@ -2,7 +2,7 @@
 <html class="no-js" lang="en">
     <head>
         <!-- title -->
-        <title>Ozerone Shop, Online electronics shop in Nepal</title>
+        <title>{{$product->title}}, {{$brand_title->title}}, {{$electronics_title->title}}- Buy Online in Nepal: ozeroneshop.com</title>
         <meta charset="utf-8">
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -10,9 +10,31 @@
         <meta name="author" content="Ozeroneshop">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1" />
         <!-- description -->
-        <meta name="description" content="">
+        <meta name="description" content="{{$product->meta_tags}}">
         <!-- keywords -->
-        <meta name="keywords" content="">
+        <meta name="keywords" content="{{$product->meta_keywords}}">
+        <meta name='copyright' content='Ozerone Shop'>
+        <meta name='language' content='ES'>
+        <meta name='robots' content='index,follow'>
+        <meta name='category' content='{{$product->meta_categories}}'>
+        <meta property="fb:app_id" content="2802624920003403">
+        <meta property="og:title" content="{{$product->title}}"/>
+        @foreach ($product->getImageRelation as $product_image)
+            @if($product_image->primary == 1)
+                @php $og_image = $product_image->image  @endphp
+                <meta property="og:image"
+            content="https://ozeroneshop.com/img/product/{{ $product->slug }}/{{ $og_image }}"/>
+            @endif
+        @endforeach
+        <meta name="og:type" content="product" />
+        <meta property="og:url" content="https://www.ozeroneshop.com/product-detail/{{ $product->slug }}" />
+        <meta property="og:description"
+            content="{{strip_tags($product->excerpt)}}"/>
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:image:alt" content="https://ozeroneshop.com/img/product/{{ $product->slug }}/{{ $og_image }}">
+        <meta name="twitter:description" content="{{strip_tags($product->excerpt)}}">
+        <meta name="twitter:title" content="{{$product->title}}, {{$brand_title->title}}, {{$electronics_title->title}}">
+        <meta name="twitter:site" content="@ozerone">
         <!-- favicon icon -->
         <link rel="shortcut icon" href="{{asset('desktop/logo/favicon.png')}}">
         <link rel="apple-touch-icon" href="{{asset('desktop/logo/apple-touch-icon-57x57.png')}}">
@@ -117,8 +139,8 @@
                                 <!-- start breadcrumb -->
                                 <ul>
                                     <!-- <li><a href="./">Ozerone</a></li> -->
-                                    <li><a href="/brand/{{@$brand_title->slug}}">{{@$brand_title->title}}</a></li>
-                                    <li><a href="/products/{{@$electronics_title->slug}}">{{@$electronics_title->title}}</a></li>
+                                    <li><a href="/brand/{{@$brand_title->slug}}">{{$brand_title->title}}</a></li>
+                                    <li><a href="/products/{{@$electronics_title->slug}}">{{$electronics_title->title}}</a></li>
                                     <li>{{$product->title}}</li>
                                 </ul>
                                 <!-- end breadcrumb -->
