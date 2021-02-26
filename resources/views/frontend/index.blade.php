@@ -201,7 +201,7 @@
                                         }
                                         @endphp
                                         <div class="portfolio-caption bg-light-blue padding-30px-tb sm-padding-15px-tb">
-                                            <a href="/product-detail/{{$feature->slug}}" class="alt-font text-black font-weight-500 text-uppercase d-inline-block margin-5px-bottom">{{ substr($feature->title, 0, 30)}}</a>
+                                            <a href="/product-detail/{{$feature->slug}}" class="alt-font text-black font-weight-500 text-uppercase d-inline-block margin-5px-bottom" title="{{ $feature->title }}">{{ substr($feature->title, 0, 30)}}</a>
                                             <span class="d-block text-medium-gray text-small line-height-18px text-uppercase">@if ($feature->discount > 0)NPR <del>{{number_format($marked_price)}}</del> {{ number_format($price)}} @else NPR {{number_format($price)}} @endif</span>
                                         </div>
                                     </div>
@@ -348,7 +348,7 @@
                                         </div>
                                     </div>
                                     <div class="product-footer bg-light-blue text-center padding-25px-tb xs-padding-10px-tb">
-                                        <a href="/product-detail/{{$all_product->slug}}" class="text-extra-dark-gray font-weight-500 d-inline-block">{{ substr($all_product->title, 0, 30)}}</a>
+                                        <a href="/product-detail/{{$all_product->slug}}" class="text-extra-dark-gray font-weight-500 d-inline-block" title="{{ $all_product->title }}">{{ substr($all_product->title, 0, 30)}}</a>
                                         <div class="product-price text-medium">@if ($all_product->discount > 0)NPR <del>{{number_format($marked_price)}} </del> {{ number_format($price)}} @else NPR {{number_format($price)}} @endif</div>
                                     </div>
                                 </div>
