@@ -6,10 +6,10 @@
             <div class="col-12 col-md-3 col-sm-6 sm-margin-40px-bottom xs-margin-25px-bottom">
                 <span class="alt-font font-weight-500 d-block text-black text-uppercase margin-15px-bottom xs-margin-10px-bottom">Company</span>
                 <ul>
-                    <li><a href="#">About company</a></li>
-                    <li><a href="#">Our services</a></li>
-                    <li><a href="#">Job opportunities</a></li>
-                    <li><a href="#">Contact us</a></li>
+                    <li><a href="/about">About company</a></li>
+                    <li><a href="/about">Our services</a></li>
+                    <li><a href="/career">Job opportunities</a></li>
+                    <li><a href="/contact">Contact us</a></li>
                 </ul>
             </div>
             <!-- end footer column -->
@@ -17,21 +17,22 @@
             <div class="col-12 col-md-3 col-sm-6 sm-margin-40px-bottom xs-margin-25px-bottom">
                 <span class="alt-font font-weight-500 d-block text-black text-uppercase margin-15px-bottom xs-margin-10px-bottom">Customer</span>
                 <ul>                           
-                    <li><a href="#">Client support</a></li>
-                    <li><a href="#">FAQs</a></li>
-                    <li><a href="#">Company story</a></li>
-                    <li><a href="#">Latest news</a></li>
+                    <li><a href="/support">Client support</a></li>
+                    <li><a href="/faqs">FAQs</a></li>
+                    <li><a href="/about">Company story</a></li>
+                    <li><a href="/blog-news">Latest news</a></li>
                 </ul>
             </div>
             <!-- end footer column -->
             <!-- start footer column -->
             <div class="col-12 col-md-3 col-sm-6 xs-margin-25px-bottom">
                 <span class="alt-font font-weight-500 d-block text-black text-uppercase margin-15px-bottom xs-margin-10px-bottom">Brands</span>
-                <ul>                           
-                    <li><a href="#">Samsung</a></li>
-                    <li><a href="#">Apple</a></li>
-                    <li><a href="#">Infinix</a></li>
-                    <li><a href="#">Oppo</a></li>
+                <ul>  
+                    @foreach($brands as $brand)
+                        @if($brand->parent_id == 0)
+                        <li><a href="/brand/{{$brand->slug}}">{{$brand->title}}</a></li>
+                        @endif
+                    @endforeach          
                 </ul>
             </div>
             <!-- end footer column -->
@@ -39,10 +40,11 @@
             <div class="col-12 col-md-3 col-sm-6">
                 <span class="alt-font font-weight-500 d-block text-black text-uppercase margin-15px-bottom xs-margin-10px-bottom">Categories</span>
                 <ul>
-                    <li><a href="#">Smart Phone</a></li>
-                    <li><a href="#">Fitness Band</a></li>
-                    <li><a href="#">Smart TV</a></li>
-                    <li><a href="#">Gadgets</a></li>
+                    @foreach($elect_categories as $elect_category)
+                        @if($elect_category->parent_id == 0)
+                        <li><a href="/products/{{$elect_category->slug}} ">{{$elect_category->title}}</a></li>
+                        @endif
+                    @endforeach
                 </ul>
             </div>
             <!-- end footer column -->
