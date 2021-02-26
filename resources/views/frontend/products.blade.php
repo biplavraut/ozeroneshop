@@ -140,7 +140,7 @@
                                         </div>
                                     </div>
                                     <div class="product-footer bg-light-blue text-center padding-25px-tb xs-padding-10px-tb">
-                                        <a href="/product-detail/{{$product->slug}}" class="text-extra-dark-gray font-weight-500 d-inline-block">{{ substr($product->title, 0, 55)}}</a>
+                                        <a href="/product-detail/{{$product->slug}}" class="text-extra-dark-gray font-weight-500 d-inline-block">{{ substr($product->title, 0, 30)}}</a>
                                         <div class="product-price text-medium">@if ($product->discount > 0)NPR <del>{{number_format($marked_price)}} </del> {{ number_format($price)}} @else NPR {{number_format($price)}} @endif</div>
                                     </div>
                                 </div>
@@ -156,7 +156,7 @@
                             
                         </ul>
                         <!-- start pagination -->
-                        <div class="col-12 d-flex justify-content-center margin-7-half-rem-top md-margin-5-rem-top wow animate__fadeIn">
+                        <!-- <div class="col-12 d-flex justify-content-center margin-7-half-rem-top md-margin-5-rem-top wow animate__fadeIn">
                             <ul class="pagination pagination-style-01 text-small font-weight-500 align-items-center">
                                 <li class="page-item"><a class="page-link" href="#"><i class="feather icon-feather-arrow-left icon-extra-small d-xs-none"></i></a></li>
                                 <li class="page-item"><a class="page-link" href="#">01</a></li>
@@ -165,7 +165,7 @@
                                 <li class="page-item"><a class="page-link" href="#">04</a></li>
                                 <li class="page-item"><a class="page-link" href="#"><i class="feather icon-feather-arrow-right icon-extra-small  d-xs-none"></i></a></li>
                             </ul>
-                        </div>
+                        </div> -->
                         <!-- end pagination -->
                     </div>
                     <!-- start sidebar -->
