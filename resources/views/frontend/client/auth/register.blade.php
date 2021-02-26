@@ -8,6 +8,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="author" content="Ozeroneshop">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1" />
+        <meta name='robots' content='noindex,nofollow'>
         <!-- description -->
         <meta name="description" content="">
         <!-- keywords -->

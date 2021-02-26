@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Ozerone Shop') }}</title>
-
+    <meta name='robots' content='noindex,nofollow'>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
