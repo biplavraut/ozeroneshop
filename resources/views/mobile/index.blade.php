@@ -44,7 +44,7 @@
             <div class="swiper-container slider-simple slider-simple slider-simple--vw-width slider-simple--full-height slider-init mb-20" data-paginationtype="bullets" data-spacebetweenitems="0" data-itemsperview="1">
                 <div class="swiper-wrapper">
                     @foreach($sliders as $slider)
-                    <div class="swiper-slide slider-simple__slide" style="background-image:linear-gradient(#29293560 0%, rgba(0, 0, 0, 0.0) 100%), url(img/slider/{{$slider->image}});">
+                    <div class="swiper-slide slider-simple__slide" style="background-image:url(img/slider/{{$slider->image}});">
                         <div class="slider-simple__caption caption caption--centered">
                             <div class="caption__content">
                                 <!-- <h2 class="caption__title caption__title--centered">{{$slider->sub_title}}</h2> -->
