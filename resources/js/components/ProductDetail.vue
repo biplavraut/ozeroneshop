@@ -1124,8 +1124,9 @@
                         this.get_images=data.get_image_relation,
                         this.get_details=data.get_detail_relation
                     ));
-                    this.$Progress.finish();
+                    
                 }
+                this.$Progress.finish();
             },
             loadDetail(){
                 swal.fire({
@@ -1151,8 +1152,9 @@
                         this.get_images=data.get_image_relation,
                         this.get_details=data.get_detail_relation
                     ));
-                    this.$Progress.finish();
+                    
                 }
+                this.$Progress.finish();
                 // swal.close();
             }
         },
