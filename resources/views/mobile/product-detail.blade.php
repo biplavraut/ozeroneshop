@@ -31,7 +31,7 @@
 <meta name="twitter:image:alt" content="https://ozeroneshop.com/img/product/{{ $product->slug }}/{{ $og_image }}">
 <meta name="twitter:description" content="{{strip_tags($product->excerpt)}}">
 <meta name="twitter:title" content="{{$product->title}}, {{$brand_title->title}}, {{$electronics_title->title}}">
-<meta name="twitter:site" content="@ozerone">
+<meta name="twitter:site" content="@ozeroneshop">
 <!-- Favicon -->
 <link rel="icon" href="{{asset('logo/favicon.png')}}" type="image/png">
 <link rel="preconnect" href="https://fonts.gstatic.com">

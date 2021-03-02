@@ -37,6 +37,7 @@ class CreateProductsTable extends Migration
             $table->text('sensor')->nullable();
             $table->text('battery')->nullable();
             $table->longText('excerpt')->nullable();
+            $table->longText('specs')->nullable();
             $table->longText('meta_keywords')->nullable();
             $table->longText('meta_tags')->nullable();
             $table->longText('meta_categories')->nullable();

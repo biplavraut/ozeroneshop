@@ -48,4 +48,4 @@
       <meta name="twitter:image:alt" content="https://ozeroneshop.com/social-banner.png">
       <meta name="twitter:description" content="{{ strip_tags($seo->excerpt) }}">
       <meta name="twitter:title" content="{{ $seo->title }}">
-      <meta name="twitter:site" content="@ozerone">
+      <meta name="twitter:site" content="@ozeroneshop">

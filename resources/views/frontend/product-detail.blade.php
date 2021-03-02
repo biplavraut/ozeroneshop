@@ -34,7 +34,7 @@
         <meta name="twitter:image:alt" content="https://ozeroneshop.com/img/product/{{ $product->slug }}/{{ $og_image }}">
         <meta name="twitter:description" content="{{strip_tags($product->excerpt)}}">
         <meta name="twitter:title" content="{{$product->title}}, {{$brand_title->title}}, {{$electronics_title->title}}">
-        <meta name="twitter:site" content="@ozerone">
+        <meta name="twitter:site" content="@ozeroneshop">
         <!-- favicon icon -->
         <link rel="shortcut icon" href="{{asset('desktop/logo/favicon.png')}}">
         <link rel="apple-touch-icon" href="{{asset('desktop/logo/apple-touch-icon-57x57.png')}}">
@@ -283,7 +283,7 @@
                         <div class="row" id="specs">
                             <div class="col-12 margin-1-rem-tb paragraph-no-margin wow animate__fadeIn">
                                 <h6 class="alt-font text-extra-dark-gray font-weight-500 margin-20px-bottom">Specs</h6>
-                                <p>{!! $product->excerpt !!}</p>
+                                <p>{!! $product->specs !!}</p>
                             </div>                            
                         </div>
                     </div>

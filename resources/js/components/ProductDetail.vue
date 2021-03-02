@@ -136,19 +136,6 @@
                                             :searchable="true"
                                             :preserve-search="true"
                                             :taggable="true" @input="checkChanges()"></multiselect>
-                                        
-                                        <!-- <div v-for="shopsection in shopsections" :key="shopsection.id">
-                                            <b-form-group :label="shopsection.title">
-                                                <b-form-checkbox
-                                                    v-for="option in shopsection.get_electronics_relation"
-                                                    :key="option.id"
-                                                    v-model="cform.shop_category"
-                                                    :value="option.slug"
-                                                    name="categories"
-                                                    inline
-                                                >  {{ option.title }}</b-form-checkbox>
-                                            </b-form-group>  
-                                        </div>   -->
                                     </div>
                                 </div>
                                 <hr>
@@ -228,10 +215,12 @@
                                     </div>
                                 </div> -->
                                 <div class="form-group"> 
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">Description</div>
-                                    </div>
+                                    <b>Description</b>
                                     <vue-editor v-model="cform.excerpt" placeholder="Short description about the product."></vue-editor>
+                                </div>
+                                <div class="form-group"> 
+                                    <b>Specs</b>
+                                    <vue-editor v-model="cform.specs" placeholder="Specs of the product."></vue-editor>
                                 </div>
 
                                 <b>SEARCH ENGINE DATA</b>
@@ -733,6 +722,7 @@
                     sensor:'',
                     battery:'',
                     excerpt:'',
+                    specs:'',
                     meta_keywords:'',
                     meta_tags:'',
                     meta_categories:''

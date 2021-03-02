@@ -31,6 +31,7 @@ class Product extends Model
         'sensor',
         'battery',
         'excerpt',
+        'specs',
         'meta_keywords',
         'meta_tags',
         'meta_categories'
