@@ -92,8 +92,8 @@
                             <tr>
                                 <th>S.N.</th>
                                 <th>Order Code</th>
-                                <th>Payment Type</th>
-                                <th>Primary Phone</th>
+                                <th>Orderer Name</th>
+                                <th>Orderer Phone</th>
                                 <th>Ordered At</th>
                                 <th>Ship Date</th>
                                 <th>Actions</th>
@@ -101,8 +101,16 @@
                             <tr v-for="(order, index) in orders.data" :key="order.id">
                                 <td>{{index+1}}</td>
                                 <td>{{order.order_code}}</td>
-                                <td>{{order.payment_type}}</td>
-                                <td>Working...</td>
+                                <td>
+                                <span v-for="customer in  order.get_customer_detail" :key="customer.id">
+                                  <i>{{customer.name}}</i> 
+                                </span>
+                                </td>
+                                <td>
+                                <span v-for="customer in  order.get_customer_detail" :key="customer.id">
+                                  <i>{{customer.primary_phone}}</i> 
+                                </span>
+                                </td>
                                 <td>{{order.order_date | myDate}}</td>
                                 <td>{{order.ship_date | myDate}}</td>
                                 <td>
@@ -120,7 +128,7 @@
                             </tr>
                             </tbody>
                         </table>
-                        <b-row>
+                        <b-row v-if="orders.data">
                             <b-col>
                                 <span>Showing {{orders.data.length}} of {{this.totalorder}} Orders.</span>
                             </b-col>

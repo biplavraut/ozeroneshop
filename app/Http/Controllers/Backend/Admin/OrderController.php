@@ -38,7 +38,7 @@ class OrderController extends Controller
                 //return Contents::latest()->where('slug','LIKE',"%$slug%")->get();
                 return Order::with('getOrderDetail')->with('getCustomerDetail')->with('getShippingDetail')->where('id','LIKE',"%$id%")->first();
             }else{
-                return Order::with('getOrderDetail')->latest()->paginate(10);
+                return Order::with('getOrderDetail')->with('getCustomerDetail')->with('getShippingDetail')->latest()->paginate(10);
             }
             
         }else{

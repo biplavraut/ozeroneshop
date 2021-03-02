@@ -15,7 +15,7 @@ class Order extends Model
         return $this->hasMany('App\Models\Order_Detail', 'order_id', 'id');
     }
     public function getCustomerDetail(){
-        return $this->hasOne('App\Models\Customer_Detail', 'id', 'customer_id');
+        return $this->hasMany('App\Models\Customer_Detail', 'id', 'customer_id');
     }
     public function getShippingDetail(){
         return $this->hasOne('App\Models\Shipping_Detail', 'id', 'shipping_id');

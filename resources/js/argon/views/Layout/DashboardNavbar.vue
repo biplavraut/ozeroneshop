@@ -36,7 +36,7 @@
                      title-classes="nav-link pr-0">
         <a href="#" class="nav-link pr-0" @click.prevent slot="title-container">
           <b-media no-body class="align-items-center">
-                  <span class="avatar avatar-sm rounded-circle">
+                  <span class="avatar avatar-sm rounded-circle" v-if="user.photo">
                     <img alt="User Image" :src="'/img/profile/thumbs/'+user.photo">
                   </span>
             <b-media-body class="ml-2 d-none d-lg-block">
