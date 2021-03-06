@@ -1,4 +1,6 @@
-<meta name='keywords' content='{{ $seo->keyword }}'>
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+      <meta name='keywords' content='{{ $seo->keyword }}'>
       <meta name='description' content='{{ strip_tags($seo->excerpt) }}'>
       <meta name='subject' content='{{ $seo->subject }}'>
       <meta name='copyright' content='Ozerone Shop'>

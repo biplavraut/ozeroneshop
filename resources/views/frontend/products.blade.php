@@ -16,6 +16,7 @@
         <link rel="apple-touch-icon" sizes="72x72" href="{{asset('desktop/logo/apple-touch-icon-72x72.png')}}">
         <link rel="apple-touch-icon" sizes="114x114" href="{{asset('desktop/logo/apple-touch-icon-114x114.png')}}">
         <!-- style sheets and font icons  -->
+        <link rel="stylesheet" type="text/css" href="{{asset('desktop/css/critical.css')}}" />
         <link rel="stylesheet" type="text/css" href="{{asset('desktop/css/font-icons.min.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('desktop/css/theme-vendors.min.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('desktop/css/style.css')}}" />
