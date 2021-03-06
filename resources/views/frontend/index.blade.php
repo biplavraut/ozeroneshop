@@ -135,7 +135,7 @@
         <section class="padding-one-all overlap-height">
             <div class="container overlap-gap-section">
                 <div class="row justify-content-center xs-no-margin-lr">
-                    <div class="swiper-container swiper-auto-slide padding-15px-tb black-move" data-slider-options='{"slidesPerView": "auto", "spaceBetween": 60, "scrollbar": {"el": ".swiper-scrollbar"} ,"navigation": { "nextEl": ".swiper-button-next-nav", "prevEl": ".swiper-button-previous-nav" }, "autoplay": { "delay": 55000, "disableOnInteraction": false },  "keyboard": { "enabled": true, "onlyInViewport": true }, "effect": "slide" }'>
+                    <div class="swiper-container swiper-auto-slide padding-15px-tb black-move" data-slider-options='{"slidesPerView": "auto", "spaceBetween": 90, "scrollbar": {"el": ".swiper-scrollbar"} ,"navigation": { "nextEl": ".swiper-button-next-nav", "prevEl": ".swiper-button-previous-nav" }, "autoplay": { "delay": 55000, "disableOnInteraction": false },  "keyboard": { "enabled": true, "onlyInViewport": true }, "effect": "slide" }'>
                         <div class="swiper-wrapper">
                             <!-- start slider item -->
                             @foreach($elect_categories as $elect_category)
