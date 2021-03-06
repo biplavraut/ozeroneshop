@@ -114,15 +114,21 @@ class PageController extends Controller
     {
         if($slug == 'all'){
             $products =  Product::with('getStorageRelation')->with('getColorRelation')->with('getImageRelation')->with('getDetailRelation')->orderBy("order_item")->where('display','=',1)->get();
+            $title =  "All Products";
+            $tagline =  "Explore our collection of electronics";
         }else{
             $brand_id =  Brand::where('slug','LIKE',"%$slug%")->value('id');
+            $title =  Brand::where('slug','LIKE',"%$slug%")->value('title');
+            $tagline =  Brand::where('slug','LIKE',"%$slug%")->value('excerpt');
             $products_id = Product::where('brand_id','=',$brand_id)->where('display','=',1)->pluck('id');
             $products =  Product::whereIn('id', $products_id)->with('getStorageRelation')->with('getColorRelation')->with('getImageRelation')->with('getDetailRelation')->orderBy("order_item")->where('display','=',1)->get();
 
         }        
-        return view('mobile.products', 
+        return view('frontend.products', 
         [
-            'products' => $products            
+            'products' => $products,
+            'title' => $title,
+            'tagline' => $tagline        
         ]);
     }
     
