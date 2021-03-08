@@ -27,7 +27,7 @@ class ProductImageController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->image;
+        //return $request->image;
         if (\Gate::allows('canAdd')){
             $this->validate($request, [
                 'image' => 'required'

@@ -221,7 +221,7 @@
                     @csrf
                         <div class="row">
                             <div class="col-12 col-lg-7 col-md-6 padding-70px-right lg-padding-40px-right md-padding-15px-right">
-                                <span class="alt-font text-large text-extra-dark-gray margin-40px-bottom d-inline-block font-weight-500">Billing details</span>
+                                <span class="alt-font text-large text-extra-dark-gray margin-40px-bottom d-inline-block font-weight-500">Billing Details</span>
                                 
                                     <div class="row">
                                         <div class="col-md-12 margin-10px-bottom">
@@ -334,7 +334,7 @@
                             </div>
                             <div class="col-12 col-lg-5 col-md-6">
                                 <div class="bg-light-gray padding-45px-all lg-padding-30px-all sm-padding-20px-all">
-                                    <span class="alt-font text-large text-extra-dark-gray margin-25px-bottom d-inline-block font-weight-500">Your order</span>
+                                    <span class="alt-font text-large text-extra-dark-gray margin-25px-bottom d-inline-block font-weight-500">Order Details</span>
                                     <table class="total-price-table checkout-total-price-table">
                                         <thead class="border-bottom border-width-1px border-color-medium-gray text-extra-dark-gray">
                                             <tr>
@@ -362,15 +362,15 @@
                                                 <td>
                                                     <ul class="margin-15px-bottom">
                                                         <li class="d-flex align-items-center md-margin-15px-bottom">
-                                                            <input id="free_shipping" type="radio" name="shipping-option" class="d-block w-auto margin-10px-right mb-0" checked="checked">
+                                                            <input id="free_shipping" type="radio" name="shipping-option" class="d-block w-auto margin-10px-right mb-0" checked>
                                                             <label class="md-line-height-18px" for="free_shipping">Free shipping</label>
-                                                        </li>
+                                                        <!-- </li>
                                                         <li class="d-flex align-items-center">
                                                             <input id="local_pickup" type="radio" name="shipping-option" class="d-block w-auto margin-10px-right mb-0">
                                                             <label class="md-line-height-18px" for="local_pickup">Local pickup</label>
-                                                        </li>
+                                                        </li> -->
                                                     </ul>
-                                                    <p class="text-left text-small mb-0">Shipping options will be updated during checkout.</p>
+                                                    <!-- <p class="text-left text-small mb-0">Shipping options will be updated during checkout.</p> -->
                                                 </td>
                                             </tr>
                                             <tr class="total-amount">
