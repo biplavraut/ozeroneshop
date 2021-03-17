@@ -44,7 +44,17 @@
         <!-- start section -->
         <section class="wow animate__fadeIn">
             <div class="container">
-                <div class="row">Oops! Under Construction.</div>
+                <h2 class="mt-20">Hello,</h2>
+                <h3>We are Ozerone</h3>
+                <p class="welcome">
+                    At Ozerone we try to solve problems that consumers face in buying electronics products: unsatisfactory products.
+                </p>
+                <p>Consumers need to know what products to buy, how to make the most out of them, and where to buy them. Consumers tend to buy cheap products to save some cash only to be upset and irritated by how bad the product is. Specially in buying online people tend to buy unsatisfactory products. Consumers need to identify the genuine product and not the products that are deceiving. We at Ozerone want to help people buy products that are truly valuable, products that actually are useful rather than giving unwanted problems without having to use it properly.</p>
+                <p>Ozerone is an electronics and gadgets retail business that helps people by educating, entertaining and informing them about the latest products that will make their daily life livelier. </p>
+                <!-- <blockquote>To empower people with the help of technologyand achieve great things together. </blockquote> -->
+                <h3>Buy Smarter, Live Happier</h3>
+                <p class="mb-40">We're proudly a fully immersive company, with Ozeroners working to make your buying choice smarter. We are on a mission to help our customers buy smarter from anywhere: both online and offline - and make their life more easy and productive.</p>
+            
             </div>
         </section>
         <!-- end section -->

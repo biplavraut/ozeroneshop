@@ -82,7 +82,7 @@
                         <li><a class="twitter text-fast-black" href="http://www.twitter.com/" target="_blank"><i class="fab fa-twitter"></i><span></span></a></li>
                     </ul>
                 </div>
-                <p class="alt-font text-small text-slate-blue-light text-uppercase m-0">&copy; 2021 Ozerone Shop is &lt;&#47;&gt; by <a href="https://www.biplavrajraut.com.np/" target="_blank" class="text-decoration-line-bottom text-balck">Biplav</a></p>
+                <p class="alt-font text-small text-slate-blue-light text-uppercase m-0">&copy; 2021 Ozerone Shop</p>
             </div>
         </div>
     </div>

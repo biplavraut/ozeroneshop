@@ -44,7 +44,45 @@
         <!-- start section -->
         <section class="wow animate__fadeIn">
             <div class="container">
-                <div class="row">Oops! Under Construction.</div>
+            <div class="row justify-content-center">
+                    <div class="col-md-12 text-center margin-five-bottom">
+                        <h6 class="alt-font text-extra-dark-gray font-weight-500">Frequently Asked Questions</h6>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-6 col-md-10">
+                        <div class="panel-group accordion-style-01 no-margin-bottom" id="accordion-style-01">
+                            <!-- start accordion item -->
+                            @foreach($faqs as $index => $faq)
+                            <!-- <div class="toggle__item">
+                            <input class="toggle__input" id="{{ $faq->slug }}" type="checkbox" name="toggle">
+                            <label class="toggle__label" for="{{ $faq->slug }}"><i class="fas fa-question-circle blue"></i> {{ $faq->title }} <span></span></label>
+                                <div class="toggle__content">
+                                <p>{{ strip_tags($faq->excerpt) }}</p>
+                                </div>
+                            </div> -->
+                            <div class="panel bg-transparent">
+                                <div class="panel-heading">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-style-01" href="#{{ $faq->slug }}">
+                                        <div class="panel-title">
+                                            <span class="text-extra-dark-gray font-weight-500 d-inline-block">
+                                                <span class="d-inline-block margin-25px-right">Q.</span>{{ $faq->title }}
+                                            </span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div id="{{ $faq->slug }}" class="panel-collapse collapse {{ $index == 0 ? 'show' : '' }} " data-parent="#accordion-style-01">
+                                    <div class="panel-body">
+                                        <div class="border-left border-width-2px border-color-fast-blue padding-40px-left">{{ strip_tags($faq->excerpt) }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                            
+                            
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
         <!-- end section -->
