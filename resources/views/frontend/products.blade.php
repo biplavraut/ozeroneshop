@@ -106,7 +106,7 @@
                             @php
                                 $endloop = 0;
                             @endphp
-                            <li class="grid-item wow animate__fadeIn" data-wow-delay="0.{{$count}}s">
+                            <li class="grid-item">
                                 <div class="product-box border-radius-6px margin-25px-bottom xs-margin-15px-bottom box-shadow-small">
                                     <div class="product-image">
                                         <a href="/product-detail/{{$product->slug}}">
@@ -114,18 +114,18 @@
                                                 @foreach($product->getImageRelation as $display_image)
                                                     @if($display_image->primary == 1)
                                                     @php $image = $display_image->image; @endphp
-                                                    <img class="default-image lazyload" data-src="/img/product/{{ $product->slug }}/thumbs/{{ $image }}" alt="{{ $product->slug }}" title="{{ $display_image->image }}"/>
+                                                    <img class="default-image lazyload" src="/img/thumbnail.jpg" data-src="/img/product/{{ $product->slug }}/thumbs/{{ $image }}" alt="{{ $product->slug }}" title="{{ $display_image->image }}"/>
                                                     @endif
                                                     @if($display_image->primary != 1 && $endloop == 0)
                                                     @php $image = $display_image->image; $endloop = 1;  @endphp
-                                                    <img class="hover-image lazyload" data-src="/img/product/{{ $product->slug }}/thumbs/{{ $image }}" alt="{{ $product->slug }}" title="{{ $display_image->image }}"/>
+                                                    <img class="hover-image lazyload" src="/img/thumbnail.jpg" data-src="/img/product/{{ $product->slug }}/thumbs/{{ $image }}" alt="{{ $product->slug }}" title="{{ $display_image->image }}"/>
                                                     @endif
                                                 @endforeach
                                             @else
                                                 @foreach($product->getImageRelation as $display_image)
                                                 @if($display_image->primary == 1)
                                                 @php $image = $display_image->image  @endphp
-                                                <img class="lazyload" data-src="/img/product/{{ $product->slug }}/thumbs/{{ $image }}" alt="{{ $product->slug }}" title="{{ $display_image->image }}"/>
+                                                <img class="lazyload" src="/img/thumbnail.jpg" data-src="/img/product/{{ $product->slug }}/thumbs/{{ $image }}" alt="{{ $product->slug }}" title="{{ $display_image->image }}"/>
                                                 @endif
                                                 @endforeach
                                             @endif
