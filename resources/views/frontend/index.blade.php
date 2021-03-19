@@ -53,9 +53,9 @@
         <!-- SLIDER EXAMPLE -->
         <section class="p-0 home-furniture-shop">
             <article class="content">
-                <div id="rev_slider_34_1_wrapper" class="rev_slider_wrapper fullscreen-container" data-alias="mask-showcase" data-source="gallery" style="background:#f6f6f6;padding:0px;">
+                <div id="rev_slider_34_1_wrapper" class="rev_slider_wrapper" data-alias="mask-showcase" data-source="gallery" style="background:#f6f6f6;padding:0px;">
                     <!-- START REVOLUTION SLIDER 5.4.1 fullscreen mode -->
-                    <div id="rev_slider_34_1" class="rev_slider fullscreenbanner tiny_bullet_slider" style="display:none;" data-version="5.4.1">
+                    <div id="rev_slider_34_1" class="rev_slider tiny_bullet_slider" style="display:none;" data-version="5.4.1">
                         <ul>	<!-- SLIDE  -->
                             @php $slider_counter = 73 @endphp
                             @foreach($sliders as $slider)
@@ -198,7 +198,7 @@
                                                 @if($display_image->primary == 1)
                                                 @php $image = $display_image->image  @endphp
                                                 <a href="/product-detail/{{$feature->slug}}">
-                                                    <img class="lazyload" src="img/product/{{ $feature->slug }}/thumbs/{{ $image }}" data-src="img/product/{{ $feature->slug }}/{{ $image }}"/>
+                                                    <img class="lazyload" src="/img/thumbnail.jpg" data-src="img/product/{{ $feature->slug }}/{{ $image }}"/>
                                                 </a>
                                                 @endif
                                             @endforeach
@@ -465,9 +465,9 @@
                         revapi263 = tpj("#rev_slider_34_1").show().revolution({
                             sliderType: "standard",
                             jsFileLocation: "revolution/js/",
-                            sliderLayout: "fullscreen",
+                            sliderLayout: "fullwidth",
                             dottedOverlay: "none",
-                            delay: 9000,
+                            delay:0,
                             navigation: {
                                 keyboardNavigation: "on",
                                 keyboard_direction: "horizontal",
@@ -527,10 +527,10 @@
                             responsiveLevels: [1240, 1025, 778, 480],
                             visibilityLevels: [1240, 1024, 778, 480],
                             gridwidth: [1240, 1024, 778, 480],
-                            gridheight: [868, 768, 960, 720],
-                            lazyType: "none",
+                            gridheight: [600, 550, 960, 720],
+                            lazyType: "single",
                             shadow: 0,
-                            spinner: "spinner0",
+                            spinner: "",
                             stopLoop: "on",
                             stopAfterLoops: 0,
                             stopAtSlide: 1,
