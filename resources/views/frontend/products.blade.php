@@ -58,13 +58,13 @@
         <section class="padding-two-all">
             <div class="container">
                 <div class="row justify-content-center xs-no-margin-lr">
-                    <div class="swiper-container swiper-auto-slide padding-15px-tb black-move" data-slider-options='{ "slidesPerView": "auto",  "spaceBetween": 90, "scrollbar": {"el": ".swiper-scrollbar"} ,"navigation": { "nextEl": ".swiper-button-next-nav", "prevEl": ".swiper-button-previous-nav" }, "autoplay": { "delay": 55000, "disableOnInteraction": false },  "keyboard": { "enabled": true, "onlyInViewport": true }, "effect": "slide" }'>
+                    <div class="swiper-container swiper-auto-slide padding-15px-tb black-move" data-slider-options='{ "slidesPerView": "auto",  "spaceBetween": 60, "scrollbar": {"el": ".swiper-scrollbar"} ,"navigation": { "nextEl": ".swiper-button-next-nav", "prevEl": ".swiper-button-previous-nav" }, "autoplay": { "delay": 55000, "disableOnInteraction": false },  "keyboard": { "enabled": true, "onlyInViewport": true }, "effect": "slide" }'>
                         <div class="swiper-wrapper">
                             @if (request()->route()->getName() == 'brand.products')
                                 @foreach($brands as $brand)
                                     @if($brand->parent_id == 0)
                                     <div class="swiper-slide">
-                                        <div class="col text-center padding-40px-tb box-shadow-small-hover border-radius-6px transition wow animate__fadeIn {{ (request()->route()->slug == $brand->slug) ? 'active-category' : '' }}" data-wow-delay="0.1s">
+                                        <div class="col text-center padding-40px-tb border-radius-6px transition wow animate__fadeIn {{ (request()->route()->slug == $brand->slug) ? 'active-category' : '' }}" data-wow-delay="0.1s">
                                             <a href="/brand/{{$brand->slug}}"><img class="margin-25px-bottom" src="{{asset('img/brand/'. $brand->image .'')}}" width="92px" alt="{{$brand->title}}" title="{{$brand->title}}"/></a>
                                             <span class="text-extra-medium font-weight-500 text-extra-dark-gray d-block mx-auto xs-w-100">{{$brand->title}}</span>
                                         </div>
@@ -75,7 +75,7 @@
                                 @foreach($elect_categories as $elect_category)
                                     @if($elect_category->parent_id == 0)
                                     <div class="swiper-slide">
-                                        <div class="col text-center padding-40px-tb box-shadow-small-hover border-radius-6px transition wow animate__fadeIn {{ (request()->route()->slug == $elect_category->slug) ? 'active-category' : '' }}" data-wow-delay="0.1s">
+                                        <div class="col text-center padding-40px-tb border-radius-6px transition wow animate__fadeIn {{ (request()->route()->slug == $elect_category->slug) ? 'active-category' : '' }}" data-wow-delay="0.1s">
                                             <a href="/products/{{$elect_category->slug}} "><img class="margin-25px-bottom" src="{{asset('img/electronics/'. $elect_category->image .'')}}" width="92px" alt="{{$elect_category->title}}" title="{{$elect_category->title}}"/></a>
                                             <span class="text-extra-medium font-weight-500 text-extra-dark-gray d-block mx-auto xs-w-100">{{$elect_category->title}}</span>
                                         </div>
