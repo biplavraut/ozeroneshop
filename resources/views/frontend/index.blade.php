@@ -304,7 +304,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 filter-content">
-                    <ul class="product-listing shop-wrapper grid grid-loading grid-4col xl-grid-4col lg-grid-4col md-grid-2col sm-grid-2col xs-grid-1col gutter-large text-center">
+                    <ul class="product-listing shop-wrapper grid grid-4col xl-grid-4col lg-grid-4col md-grid-2col sm-grid-2col xs-grid-1col gutter-large text-center">
                             <li class="grid-sizer"></li>
                             <!-- start shop item -->
                             @php
