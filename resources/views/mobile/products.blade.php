@@ -121,7 +121,7 @@ src="https://www.facebook.com/tr?id=177597510622085&ev=PageView&noscript=1"
                 </ul>
             </div>
         </div>
-        <div class="product-view cards cards--12" id="loadlist-shop">
+        <div class="product-view cards cards--12" id="loadlist-products">
 			@foreach($products as $product)
             <div class="card card--style-thumb">
                 <div class="card__thumb card__thumb--round-corners product">
@@ -192,6 +192,10 @@ src="https://www.facebook.com/tr?id=177597510622085&ev=PageView&noscript=1"
 			@endforeach
             
         </div>
+		<div class="buttons buttons--centered mb-40">
+			<div id="loadMore" class="button button--more">View more</div>
+			<div id="showLess" class="button button--disabled">Search your products</div> 
+		</div>
 	</div>
 	<!-- PAGE END -->
 	@include('mobile.includes.bottombar')
