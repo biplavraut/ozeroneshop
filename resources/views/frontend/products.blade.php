@@ -97,7 +97,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-lg-9 col-md-8 shopping-content padding-55px-left md-padding-15px-left sm-margin-30px-bottom">
-                        <ul class="product-listing shop-wrapper grid grid-loading grid-3col xl-grid-3col lg-grid-3col md-grid-2col sm-grid-2col xs-grid-2col gutter-large text-center">
+                        <ul class="product-listing grid grid-3col xl-grid-3col lg-grid-3col md-grid-2col sm-grid-2col xs-grid-2col gutter-large text-center" id="loadlist-products">
                             <li class="grid-sizer"></li>
                             @php
                                 $count = 0;
@@ -114,18 +114,18 @@
                                                 @foreach($product->getImageRelation as $display_image)
                                                     @if($display_image->primary == 1)
                                                     @php $image = $display_image->image; @endphp
-                                                    <img class="default-image"  src="/img/product/{{ $product->slug }}/thumbs/{{ $image }}" alt="{{ $product->slug }}" title="{{ $display_image->image }}"/>
+                                                    <img class="default-image lazyload" data-src="/img/product/{{ $product->slug }}/thumbs/{{ $image }}" alt="{{ $product->slug }}" title="{{ $display_image->image }}"/>
                                                     @endif
                                                     @if($display_image->primary != 1 && $endloop == 0)
                                                     @php $image = $display_image->image; $endloop = 1;  @endphp
-                                                    <img class="hover-image" src="/img/product/{{ $product->slug }}/thumbs/{{ $image }}" alt="{{ $product->slug }}" title="{{ $display_image->image }}"/>
+                                                    <img class="hover-image lazyload" data-src="/img/product/{{ $product->slug }}/thumbs/{{ $image }}" alt="{{ $product->slug }}" title="{{ $display_image->image }}"/>
                                                     @endif
                                                 @endforeach
                                             @else
                                                 @foreach($product->getImageRelation as $display_image)
                                                 @if($display_image->primary == 1)
                                                 @php $image = $display_image->image  @endphp
-                                                <img src="/img/product/{{ $product->slug }}/thumbs/{{ $image }}" alt="{{ $product->slug }}" title="{{ $display_image->image }}"/>
+                                                <img class="lazyload" data-src="/img/product/{{ $product->slug }}/thumbs/{{ $image }}" alt="{{ $product->slug }}" title="{{ $display_image->image }}"/>
                                                 @endif
                                                 @endforeach
                                             @endif
@@ -173,37 +173,37 @@
                             @endforeach  
                             
                         </ul>
+                        
+                        
                         <!-- start pagination -->
-                        <!-- <div class="col-12 d-flex justify-content-center margin-7-half-rem-top md-margin-5-rem-top wow animate__fadeIn">
-                            <ul class="pagination pagination-style-01 text-small font-weight-500 align-items-center">
-                                <li class="page-item"><a class="page-link" href="#"><i class="feather icon-feather-arrow-left icon-extra-small d-xs-none"></i></a></li>
-                                <li class="page-item"><a class="page-link" href="#">01</a></li>
-                                <li class="page-item active"><a class="page-link" href="#">02</a></li>
-                                <li class="page-item"><a class="page-link" href="#">03</a></li>
-                                <li class="page-item"><a class="page-link" href="#">04</a></li>
-                                <li class="page-item"><a class="page-link" href="#"><i class="feather icon-feather-arrow-right icon-extra-small  d-xs-none"></i></a></li>
-                            </ul>
-                        </div> -->
+                        <div class="col-12 d-flex justify-content-center margin-7-half-rem-top md-margin-5-rem-top wow animate__fadeIn">
+                            <div class="buttons buttons--centered mb-40">
+                                <div id="loadMore" class="btn btn-large btn-fast-blue button button--more">View more</div>
+                                <div id="showLess" class="button button--disabled">Search your products</div> 
+                            </div>
+                        </div>
                         <!-- end pagination -->
                     </div>
                     <!-- start sidebar -->
                     <aside class="col-12 col-lg-3 col-md-4 shopping-sidebar">
                         <div class="border-bottom border-color-medium-gray padding-3-rem-bottom margin-3-rem-bottom wow animate__fadeIn">
-                            <span class="shop-title alt-font font-weight-500 text-extra-dark-gray d-block margin-20px-bottom">Product Filter</span>
+                            <span class="shop-title alt-font font-weight-500 text-extra-dark-gray d-block margin-20px-bottom">Categories</span>
                             <ul class="list-style-07 filter-category">
-                                @if (request()->route()->getName() == 'brand.products')
-                                    @foreach($elect_categories as $elect_category)
-                                        @if($elect_category->parent_id == 0)
-                                        <li><a href="/products/{{$elect_category->slug}}"><span class="product-cb product-category-cb"></span>{{$elect_category->title}}</a><span class="item-qty">25</span></li>
-                                        @endif
-                                    @endforeach
-                                @else
-                                    @foreach($brands as $brand)
-                                        @if($brand->parent_id == 0)
-                                        <li><a href="/brand/{{$brand->slug}}"><span class="product-cb product-category-cb"></span>{{$brand->title}}</a><span class="item-qty">25</span></li>
-                                        @endif
-                                    @endforeach
-                                @endif
+                                @foreach($elect_categories as $elect_category)
+                                    @if($elect_category->parent_id == 0)
+                                    <li><a href="javascript:void(0);"><span class="product-cb product-category-cb"></span>{{$elect_category->title}}</a><span class="item-qty">25</span></li>
+                                    @endif
+                                @endforeach
+                            </ul>
+                        </div>
+                        <div class="border-bottom border-color-medium-gray padding-3-rem-bottom margin-3-rem-bottom wow animate__fadeIn">
+                            <span class="shop-title alt-font font-weight-500 text-extra-dark-gray d-block margin-20px-bottom">Brands</span>
+                            <ul class="list-style-07 filter-category">
+                                @foreach($brands as $brand)
+                                    @if($brand->parent_id == 0)
+                                    <li><a href="javascript:void(0);"><span class="product-cb product-category-cb"></span>{{$brand->title}}</a><span class="item-qty">25</span></li>
+                                    @endif
+                                @endforeach
                             </ul>
                         </div>
                         <div class="border-bottom border-color-medium-gray padding-3-rem-bottom margin-3-rem-bottom wow animate__fadeIn">
@@ -257,6 +257,23 @@
         <script type="text/javascript" src="/js/sweetalert.min.js"></script>
         <script type="text/javascript" src="{{asset('desktop/js/main.js')}}"></script>
         <script type="text/javascript" src="{{asset('desktop/js/custom.js')}}"></script>
-
+        <script type="text/javascript" src="{{asset('desktop/js/jquery.lazyload.min.js')}}"></script>
+        <script>
+        $("img.lazyload").lazyload();
+        $("#loadlist-products .grid-item").hide();
+            $("#showLess").hide();
+            var size_li = $("#loadlist-products .grid-item").length;
+            var nrposts = 9;
+            $('#loadlist-products .grid-item:lt(' + nrposts + ')').show();
+            $('#loadMore').on('click', function(e) {
+                nrposts = (nrposts + 6 <= size_li) ? nrposts + 6 : size_li;
+                $('#loadlist-products .grid-item:lt(' + nrposts + ')').show();
+                if (nrposts == size_li) {
+                    $('#loadMore').hide();
+                    $('#showLess').show();
+                }
+                // $(".page__content").animate({ scrollTop: $('.page__content').prop("scrollHeight")}, 1000);
+        });
+        </script>
     </body>
 </html>

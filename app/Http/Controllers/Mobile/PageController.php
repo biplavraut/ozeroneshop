@@ -124,7 +124,7 @@ class PageController extends Controller
             $products =  Product::whereIn('id', $products_id)->with('getStorageRelation')->with('getColorRelation')->with('getImageRelation')->with('getDetailRelation')->orderBy("order_item")->where('display','=',1)->get();
 
         }        
-        return view('frontend.products', 
+        return view('mobile.products', 
         [
             'products' => $products,
             'title' => $title,

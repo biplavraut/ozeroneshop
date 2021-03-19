@@ -137,8 +137,6 @@
                                      data-paddingbottom="[0,0,0,0]"
                                      data-paddingleft="[0,0,0,0]"
                                      style="z-index: 6;"><img src="/img/slider/{{$slider->image}}" alt="" data-ww="['529px','420px','420px','290px']" data-hh="['auto','auto','auto','auto']" width="529" height="594" data-no-retina></div>
-
-                                
                             </li>
                             @php $slider_counter++; @endphp
                             @endforeach
@@ -199,7 +197,9 @@
                                             @foreach($feature->getImageRelation as $display_image)
                                                 @if($display_image->primary == 1)
                                                 @php $image = $display_image->image  @endphp
-                                                <a href="/product-detail/{{$feature->slug}}"><img src="img/product/{{ $feature->slug }}/thumbs/{{ $image }}" alt="{{$feature->title}}" title="{{$feature->title}}" /></a>
+                                                <a href="/product-detail/{{$feature->slug}}">
+                                                    <img class="lazyload" src="img/product/{{ $feature->slug }}/thumbs/{{ $image }}" data-src="img/product/{{ $feature->slug }}/{{ $image }}"/>
+                                                </a>
                                                 @endif
                                             @endforeach
                                             
@@ -240,7 +240,7 @@
             <div class="container">
                 <div class="row align-items-center justify-content-center">
                     <div class="col-10 col-md-6 text-center sm-margin-30px-bottom wow animate__fadeIn" data-wow-delay="0.1s">
-                        <img class="md-padding-30px-right " src="{{asset('desktop/materials/hedset.png')}}" alt=""/>
+                        <img class="md-padding-30px-right lazyload" data-src="{{asset('desktop/materials/hedset.png')}}" alt=""/>
                     </div>
                     <div class="col-10 col-xl-4 col-lg-5 offset-lg-1 col-md-6 pl-lg-0 text-center text-md-left wow animate__fadeIn" data-wow-delay="0.3s">
                         <span class="alt-font font-weight-600 text-gradient-magenta-orange-2 letter-spacing-1px d-inline-block text-uppercase margin-20px-bottom sm-margin-10px-bottom">Experience The Hi-Res Certified Sound</span>
@@ -260,7 +260,7 @@
                     <div class="col bg-very-light-orange padding-5-rem-tb padding-eight-lr xl-padding-six-lr lg-padding-three-lr md-padding-eight-lr wow animate__fadeIn" data-wow-delay="0.2s">
                         <div class="row align-items-center">
                             <div class="col-12 col-sm-7 xs-margin-30px-bottom">
-                                <a href="#"><img src="{{asset('desktop/materials/bedsidelamp.png')}}" alt=""></a>
+                                <a href="#"><img class="lazyload" data-src="{{asset('desktop/materials/bedsidelamp.png')}}" alt=""></a>
                             </div>
                             <div class="col-12 col-sm-5 padding-ten-left xl-padding-three-left md-padding-nine-left xs-padding-15px-left">
                                 <span class="alt-font font-weight-500 text-dark-orange d-block margin-15px-bottom text-uppercase"><span class="w-10px h-1px bg-dark-orange d-inline-block align-middle margin-5px-right"></span> Only NPR 7,000</span>
@@ -276,7 +276,7 @@
                     <div class="col bg-very-light-pink padding-5-rem-tb padding-eight-lr xl-padding-six-lr lg-padding-three-lr md-padding-eight-lr wow animate__fadeIn" data-wow-delay="0.4s">
                         <div class="row align-items-center">
                             <div class="col-12 col-sm-7 xs-margin-30px-bottom">
-                                <a href="#"><img src="{{asset('desktop/materials/soundcore.png')}}" alt=""></a>
+                                <a href="#"><img class="lazyload" data-src="{{asset('desktop/materials/soundcore.png')}}" alt=""></a>
                             </div>
                             <div class="col-12 col-sm-5 padding-ten-left xl-padding-three-left md-padding-nine-left xs-padding-15px-left">
                                 <span class="alt-font font-weight-500 text-dark-orange d-block margin-15px-bottom text-uppercase"><span class="w-10px h-1px bg-dark-orange d-inline-block align-middle margin-5px-right"></span> Only NPR 13,990</span>
@@ -322,7 +322,7 @@
                                                 @foreach($all_product->getImageRelation as $display_image)
                                                     @if($display_image->primary == 1)
                                                     @php $image = $display_image->image; @endphp
-                                                    <img class="default-image"  src="img/product/{{ $all_product->slug }}/thumbs/{{ $image }}" alt="{{ $all_product->slug }}" title="{{ $display_image->image }}"/>
+                                                    <img class="default-image" src="img/product/{{ $all_product->slug }}/thumbs/{{ $image }}" alt="{{ $all_product->slug }}" title="{{ $display_image->image }}"/>
                                                     @endif
                                                     @if($display_image->primary != 1 && $endloop == 0 )
                                                     @php $image = $display_image->image; $endloop = 1;  @endphp
@@ -395,7 +395,7 @@
                             <div class="swiper-wrapper">
                             @foreach($brands as $brand)
                                 @if($brand->parent_id == 0)
-                                <div class="swiper-slide"><a href="/brand/{{$brand->slug}}"><img alt="{{$brand->title}}" src="{{asset('img/brand/'. $brand->image .'')}}" title="{{$brand->title}}" width="100px"></a></div>
+                                <div class="swiper-slide"><a href="/brand/{{$brand->slug}}"><img class="lazyload" alt="{{$brand->title}}" data-src="{{asset('img/brand/'. $brand->image .'')}}" title="{{$brand->title}}" width="100px"></a></div>
                                 @endif
                             @endforeach
                                 
@@ -436,7 +436,7 @@
         <script type="text/javascript" src="/js/sweetalert.min.js"></script>
         <script type="text/javascript" src="{{asset('desktop/js/main.js')}}"></script>
         <script type="text/javascript" src="{{asset('desktop/js/custom.js')}}"></script>
-                            
+        <script type="text/javascript" src="{{asset('desktop/js/jquery.lazyload.min.js')}}"></script>
         <!-- revolution js files -->
         <script type="text/javascript" src="/revolution/js/jquery.themepunch.tools.min.js"></script>
         <script type="text/javascript" src="/revolution/js/jquery.themepunch.revolution.min.js"></script>
@@ -444,6 +444,7 @@
         <!-- BUBBLEMORPH ADD-ON FILES -->
         <script type='text/javascript' src="/revolution/revolution-addons/bubblemorph/js/revolution.addon.bubblemorph.min.js"></script>
         <script type="text/javascript">
+        $("img.lazyload").lazyload();
             var revapi263,
                     tpj;
             (function () {
