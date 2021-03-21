@@ -19,9 +19,9 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav alt-font">
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="/" class="nav-link">Home</a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a href="/products/all" class="nav-link">Shop</a>
                         </li>
@@ -33,16 +33,14 @@
                                     <ul class="d-lg-inline-block">
                                     @foreach($elect_categories as $elect_category)
                                         @if($elect_category->parent_id == 0)
-                                        <li><a href="/products/{{$elect_category->slug}} "> <i><img class="padding-ten-right" src="{{asset('img/electronics/'. $elect_category->image .'')}}" alt="" title="" width="30px" /></i> {{$elect_category->title}}</a></li>
+                                        <li><a href="/products/{{$elect_category->slug}} "> <i><img class="icon-country" src="{{asset('img/electronics/'. $elect_category->image .'')}}" alt="{{$elect_category->title}}" title="{{$elect_category->title}}"/></i> {{$elect_category->title}}</a></li>
                                         @endif
-                                    @endforeach
-                                        
-                                    </ul>
-                                    
+                                    @endforeach                                        
+                                    </ul>                                    
                                 </div>
                             </div>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="/blog-news" class="nav-link">Blogs</a>
                         </li>
                         <li class="nav-item dropdown simple-dropdown">
@@ -53,7 +51,7 @@
                                 <li class="dropdown"><a href="/contact">Contact</a></li>
                                 <li class="dropdown"><a href="/faqs">FAQs</a></li>                                        
                             </ul>
-                        </li>
+                        </li> --}}
                         
                     </ul>
                 </div>
@@ -64,20 +62,31 @@
                     <!-- start search input --> 
                     <div class="form-wrapper">
                         <button title="Close" type="button" class="search-close alt-font">×</button>
-                        <form id="search-form" role="search" method="get" class="search-form text-left" action="#">
+                        <form class="search-form text-left" action="search">
                             <div class="search-form-box">
-                                <span class="search-label alt-font text-small text-uppercase text-medium-gray">What are you looking for?</span>
-                                <input class="search-input alt-font" id="search-form-input5e219ef164995" placeholder="Enter your keywords..." name="s" value="" type="text" autocomplete="off">
-                                <button type="submit" class="search-button">
-                                    <i class="feather icon-feather-search" aria-hidden="true"></i>
-                                </button>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <span class="search-label alt-font text-small text-uppercase text-medium-gray">What are you looking for?</span>
+                                        <input class="search-input alt-font" onkeyup="searching()" placeholder="Enter your keywords..." name="search" value="" type="text" autocomplete="on">
+                                        <button type="submit" value="Send" class="search-button">
+                                            <i class="feather icon-feather-search" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                    <div class="col-12">
+                                        <ul class="list-style-03" id="search_products">
+                                            
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </form>
+                        
+                        
                     </div>
                     <!-- end search input --> 
                 </div>
                 <div class="header-cart-icon dropdown">
-                    <a href="/cart"><i class="icon-simple-line-bag icon-extra-small align-middle text-fast-black"></i><span class="cart-count alt-font bg-fast-blue text-white"><span id="cart-count">{{Cart::count() }}</span></span></a>
+                    <a href="#"><i class="icon-simple-line-bag icon-extra-small align-middle text-fast-black"></i><span class="cart-count alt-font bg-fast-blue text-white"><span id="cart-count">{{Cart::count() }}</span></span></a>
                     <ul class="dropdown-menu cart-item-list">
                         <div id="panel-right-cart">
                         @if(Cart::count() > 0)

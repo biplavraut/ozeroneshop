@@ -8,12 +8,6 @@
 				<input type="submit" class="search__submit" value="Send" />
 			</form>		
 		</div>
-		<div class="search_text">
-			<a href="#">Samsung</a>
-			<a href="#">Galaxy</a>
-			<a href="#">Smart Phone</a>
-			<a href="#">Compressor</a>
-		</div>
 		<div class="search__results">
 			<h3>Results</h3>
 			<div id="search_products">

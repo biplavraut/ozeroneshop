@@ -198,12 +198,16 @@ class PageController extends Controller
         }
     }
     
-    public function search(Request $request){
-        //return $request->search_query;
-        $search_products = Product::with('getImageRelation')->where('display','=',1)->where('title','LIKE',"%{$request->search_query}%")->orderBy('order_item')->limit(8)->get();
+    public function searching(Request $request){
+        $search_products = Product::with('getImageRelation')->where('display','=',1)->where('title','LIKE',"%{$request->search_query}%")->orderBy('order_item')->limit(5)->get();
         return Response($search_products);
-        // View::make('search_products', $search_products);
-        // return View::share('search_products', $search_products);
+    }
+    public function search(Request $request){
+        $search_products = Product::with('getImageRelation')->where('display','=',1)->where('title','LIKE',"%{$request->search_query}%")->orderBy('order_item')->limit(12)->get();
+        return view('frontend.search' , 
+        [
+            'products' => $search_products          
+        ]);
     }
     public function orderplaced()
     {

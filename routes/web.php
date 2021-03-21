@@ -121,7 +121,8 @@ if(isMobile()) {
         Route::post('removecartproduct', [App\Http\Controllers\Frontend\PageController::class, 'removeCartProduct'])->name('removecartproduct.post');
         Route::get('destroycart', [App\Http\Controllers\Frontend\PageController::class, 'destroyCart'])->name('destroycart.get');
 
-        Route::post('search', [App\Http\Controllers\Frontend\PageController::class, 'search'])->name('search.post');
+        Route::post('searching', [App\Http\Controllers\Frontend\PageController::class, 'searching'])->name('search.post');
+        Route::get('search', [App\Http\Controllers\Frontend\PageController::class, 'search'])->name('search.get');
     });
 }
 Route::namespace('Frontend')->group(function() {
