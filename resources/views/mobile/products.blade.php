@@ -142,7 +142,9 @@ src="https://www.facebook.com/tr?id=177597510622085&ev=PageView&noscript=1"
 						@foreach($product->getImageRelation as $display_image)
                         @if($display_image->primary == 1)
                         @php $image = $display_image->image  @endphp
-						<a href="/product-detail/{{$product->slug}}"><img src="{{asset('img/product/'.$product->slug.'/thumbs/'. $image .'')}}" alt="{{ $product->slug }}" title="{{ $display_image->image }}"/></a>					
+						<a href="/product-detail/{{$product->slug}}">
+							<img class="lazyload" src="/img/thumbnail.jpg" data-src="/img/product/{{ $product->slug }}/thumbs/{{ $image }}" alt="{{ $product->slug }}" title="{{ $display_image->image }}"/>
+						</a>					
 						@endif
 						@endforeach
 					@endif
@@ -205,7 +207,9 @@ src="https://www.facebook.com/tr?id=177597510622085&ev=PageView&noscript=1"
 	<script src="{{asset('mobile/main/js/swiper-init.js')}}"></script>
 	<script src="{{asset('mobile/main/js/swiper-init-swipe.js')}}"></script>
     <script src="{{asset('mobile/main/js/jquery.custom.js')}}"></script>
+	<script type="text/javascript" src="{{asset('desktop/js/jquery.lazyload.min.js')}}"></script>
     <script>
+		$("img.lazyload").lazyload();
 		function addtocart(id, title, price, image){
 			var id = id;
 			var title = title;

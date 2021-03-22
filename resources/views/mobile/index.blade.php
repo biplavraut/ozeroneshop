@@ -93,7 +93,9 @@ src="https://www.facebook.com/tr?id=177597510622085&ev=PageView&noscript=1"
                         @foreach($feature->getImageRelation as $display_image)
                             @if($display_image->primary == 1)
                             @php $image = $display_image->image  @endphp
-                            <a href="/product-detail/{{$feature->slug}}"><img src="img/product/{{ $feature->slug }}/thumbs/{{ $image }}" alt="{{$feature->title}}" title="{{$feature->title}}"/></a>					
+                            <a href="/product-detail/{{$feature->slug}}">
+                                <img class="lazyload" src="/img/thumbnail.jpg" data-src="img/product/{{ $feature->slug }}/{{ $image }}" alt="{{$feature->title}}" title="{{$feature->title}}"/>
+                            </a>					
                             @endif
                         @endforeach
                         @if ($feature->discount > 0)<div class="slider-thumbs__discount"><span>-{{$feature->discount}}%</span></div>@endif
@@ -243,7 +245,9 @@ src="https://www.facebook.com/tr?id=177597510622085&ev=PageView&noscript=1"
                             @foreach($smart_phone->getImageRelation as $display_image)
                             @if($display_image->primary == 1)
                             @php $image = $display_image->image  @endphp
-                            <a href="/product-detail/{{$smart_phone->slug}}"><img src="img/product/{{ $smart_phone->slug }}/thumbs/{{ $image }}" alt="{{ $smart_phone->slug }}" title="{{ $display_image->image }}"/></a>					
+                            <a href="/product-detail/{{$smart_phone->slug}}">
+                                <img class="lazyload" src="/img/thumbnail.jpg" data-src="img/product/{{ $smart_phone->slug }}/{{ $image }}" alt="{{ $smart_phone->slug }}" title="{{ $display_image->image }}"/>
+                            </a>					
                             @endif
                             @endforeach
                         @endif
@@ -319,7 +323,9 @@ src="https://www.facebook.com/tr?id=177597510622085&ev=PageView&noscript=1"
                             @foreach($all_product->getImageRelation as $display_image)
                             @if($display_image->primary == 1)
                             @php $image = $display_image->image  @endphp
-                            <a href="/product-detail/{{$all_product->slug}}"><img src="img/product/{{ $all_product->slug }}/thumbs/{{ $image }}" alt="{{ $all_product->slug }}" title="{{ $display_image->image }}"/></a>					
+                            <a href="/product-detail/{{$all_product->slug}}">
+                                <img class="lazyload" src="/img/thumbnail.jpg" data-src="img/product/{{ $all_product->slug }}/{{ $image }}" alt="{{ $all_product->slug }}" title="{{ $display_image->image }}"/>
+                            </a>					
                             @endif
                             @endforeach
                         @endif
@@ -384,7 +390,9 @@ src="https://www.facebook.com/tr?id=177597510622085&ev=PageView&noscript=1"
 	<script src="{{asset('mobile/main/js/swiper-init.js')}}"></script>
 	<script src="{{asset('mobile/main/js/swiper-init-swipe.js')}}"></script>
 	<script src="{{asset('mobile/main/js/jquery.custom.js')}}"></script>
+    <script type="text/javascript" src="{{asset('desktop/js/jquery.lazyload.min.js')}}"></script>
 	<script>
+        $("img.lazyload").lazyload();
 		// $.ajaxSetup({
 		// 	headers: {
 		// 		'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

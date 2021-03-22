@@ -62,7 +62,7 @@
                     <!-- start search input --> 
                     <div class="form-wrapper">
                         <button title="Close" type="button" class="search-close alt-font">×</button>
-                        <form class="search-form text-left" action="search">
+                        <form class="search-form text-left" action="/search">
                             <div class="search-form-box">
                                 <div class="row">
                                     <div class="col-12">
