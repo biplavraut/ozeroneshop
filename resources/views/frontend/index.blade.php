@@ -28,6 +28,15 @@
         <link rel="stylesheet" type="text/css" href="{{asset('desktop/revolution/css/settings.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('desktop/revolution/css/layers.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('desktop/revolution/css/navigation.css')}}">
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYKVHRYQWH"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-ZYKVHRYQWH');
+        </script>
         <!-- Facebook Pixel Code -->
         <script>
         !function(f,b,e,v,n,t,s)
@@ -99,7 +108,7 @@
                                      data-paddingright="[20,20,20,20]"
                                      data-paddingbottom="[30,30,30,30]"
                                      data-paddingleft="[20,20,20,20]"
-                                     style="z-index: 8;letter-spacing: -3px;">@php echo wordwrap($slider->sub_title,12,"<br>\n"); @endphp</div>    
+                                     style="z-index: 8;letter-spacing: -3px;">@php echo wordwrap($slider->sub_title,12,"<br><span style='color:#e83a4f;'>\n"); @endphp</div>    
 
                                 <!-- LAYER NR. 1 -->
                                 <a class="tp-caption tp-resizeme btn btn-medium btn-white btn-box-shadow lg-margin-15px-bottom md-no-margin-bottom md-margin-auto-lr"
@@ -411,19 +420,7 @@
             </div>
         </section>
         <!-- end section -->
-        <!-- start section -->
-        <section class="cover-background wow animate__fadeIn" style="background: url('{{asset('desktop/materials/footer-background.jpg')}}')">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 col-xl-6 col-lg-7 wow animate__fadeIn">
-                        <div class="margin-25px-bottom text-white opacity-6 alt-font">We are a Nepal based online electronics shop.</div>
-                        <h3 class="alt-font text-white font-weight-500 margin-40px-bottom">We deliver Happiness at your Doorstep. <br>Live Smart Live Easy</h3>
-                        <a href="mailto:info@yourdomain.com" class="btn btn-large btn-expand-ltr text-white lg-margin-15px-bottom md-no-margin-bottom md-margin-auto-lr">info@ozeroneshop.com<span class="bg-transparent-black"></span></a>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- end section -->
+            @include('frontend.includes.bottombanner')
         </div>
         @include('frontend.includes.footer')
         <!-- start scroll to top -->
@@ -465,7 +462,7 @@
                         revapi263 = tpj("#rev_slider_34_1").show().revolution({
                             sliderType: "standard",
                             jsFileLocation: "revolution/js/",
-                            sliderLayout: "fullwidth",
+                            sliderLayout: "auto",
                             dottedOverlay: "none",
                             delay:0,
                             navigation: {

@@ -14,6 +14,13 @@
 <link rel="stylesheet" href="{{asset('mobile/vendor/swiper/swiper.min.css')}}">
 <link rel="stylesheet" href="{{asset('css/mobile.css')}}">
 <link rel="stylesheet" href="{{asset('mobile/custom.css')}}">
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'G-ZYKVHRYQWH');
+  </script>
 </head>
 <body>
 	

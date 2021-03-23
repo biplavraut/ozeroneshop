@@ -17,6 +17,15 @@
 <link rel="stylesheet" href="{{asset('mobile/vendor/swiper/swiper.min.css')}}">
 <link rel="stylesheet" href="{{asset('css/mobile.css')}}">
 <link rel="stylesheet" href="{{asset('mobile/custom.css')}}">
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYKVHRYQWH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZYKVHRYQWH');
+</script>
 <!-- Facebook Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)

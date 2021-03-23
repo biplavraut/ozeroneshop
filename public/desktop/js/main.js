@@ -77,9 +77,9 @@
             range: true,
             animate: true,
             min: 0,
-            max: 4000,
-            step: 1,
-            values: [1, 3999],
+            max: 400000,
+            step: 100,
+            values: [1, 399999],
             slide: function(event, ui) {
                 $('.price-amount').val('NPR ' + ui.values[0] + ' - NPR ' + ui.values[1]);
                 $(document.body).trigger('price_slider_change', [ui.values[0], ui.values[1]]);

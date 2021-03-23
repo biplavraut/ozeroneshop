@@ -21,6 +21,13 @@
         <link rel="stylesheet" type="text/css" href="{{asset('desktop/css/theme-vendors.min.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('desktop/css/style.css')}}" />
         <link rel="stylesheet" type="text/css" href="{{asset('desktop/css/responsive.css')}}" />
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+          
+            gtag('config', 'G-ZYKVHRYQWH');
+          </script>
     <!-- Facebook Pixel Code -->
     <script>
     !function(f,b,e,v,n,t,s)
@@ -204,19 +211,7 @@
                 </div>
             </div>
         </section>
-        <!-- end section -->
-        <section class="cover-background wow animate__fadeIn" style="background: url('{{asset('desktop/materials/footer-background.jpg')}}')">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 col-xl-6 col-lg-7 wow animate__fadeIn">
-                        <div class="margin-25px-bottom text-white opacity-6 alt-font">We are a Nepal based online electronics shop.</div>
-                        <h3 class="alt-font text-white font-weight-500 margin-40px-bottom">We deliver Happiness at your Doorstep. <br>Live Smart Live Easy</h3>
-                        <a href="mailto:info@ozeroneshop.com" class="btn btn-large btn-expand-ltr text-white lg-margin-15px-bottom md-no-margin-bottom md-margin-auto-lr">info@ozeroneshop.com<span class="bg-transparent-black"></span></a>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- end section -->
+        @include('frontend.includes.bottombanner')
         </div>
         @include('frontend.includes.footer')
         <!-- start scroll to top -->

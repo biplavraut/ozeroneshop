@@ -209,6 +209,67 @@ class PageController extends Controller
             'products' => $search_products          
         ]);
     }
+    public function filter(Request $request){
+        $filter_category = array();
+        $filter_brand = array();
+        if(is_null($request->category)){
+            $filter_category = Electronics::where('display','=',1)->pluck('id');
+        }else{
+            $filter_category = $request->category;
+        }
+        if(is_null($request->brand)){
+            $filter_brand = Brand::where('display','=',1)->pluck('id');
+        }else{
+            $filter_brand = $request->brand;
+        }
+        $electronics_products_id = Product_Electronics::whereIn('electronic_id', $filter_category)->pluck('product_id');
+        $products =  Product::whereIn('id', $electronics_products_id)->whereIn('brand_id', $filter_brand)->whereBetween('price', [(int)$request->min, (int)$request->max])->with('getStorageRelation')->with('getColorRelation')->with('getImageRelation')->with('getDetailRelation')->orderBy("order_item")->where('display','=',1)->get();
+        if(count($products) == 0){
+            return "<b>Filtered Product Not Found</b>";
+        }
+        $count = 0;
+        $res = '<li class="grid-sizer"></li>';
+        foreach($products as $product){
+            $res .= '<li class="grid-item">';
+            $res .= '<div class="product-box border-radius-6px margin-25px-bottom xs-margin-15px-bottom box-shadow-small">';
+            $res .= '<div class="product-image">';
+            $res .= '<a href="/product-detail/'. $product->slug .'">';
+            foreach($product->getImageRelation as $display_image){
+                if($display_image->primary == 1){
+                    $image = $display_image->image;
+                    $res .= '<img class="lazyload" src="/img/thumbnail.jpg" data-src="/img/product/'.$product->slug.'/thumbs/'.$image.'" alt="'.$product->slug.'"/>';
+                }
+            }
+            if($product->discount){$res .= '<span class="product-badge green">sale</span>';}
+            $res .= '</a>';
+            if ($product->discount > 0){
+                $marked_price = $product->price;
+                $discount = $product->discount;
+                $price = round($marked_price - ($discount/100*$marked_price));
+            }else{
+                $price = $product->price;
+            }
+            $res .= '<div class="product-overlay bg-gradient-extra-midium-gray-transparent"></div>';
+            $res .= '<div class="product-hover-bottom text-center padding-30px-tb">';
+            $res .= '<a href="/product-detail/'.$product->slug.'" class="product-link-icon move-top-bottom" data-toggle="tooltip" data-placement="top" title="" data-original-title="View Detail"><i class="feather  icon-feather-external-link"></i></a>';
+
+            // if(count($product->getStorageRelation) > 0){
+            //     $res .= '<a href="/product-detail/'.$product->slug.'" class="product-link-icon move-top-bottom" data-toggle="tooltip" data-placement="top" title="" data-original-title="View Detail"><i class="feather  icon-feather-external-link"></i></a>';
+            // }else{
+            //     $res .= '<a href="javascript:void(0);" onclick="addtocart('.$product->id.','.$product->title.','.$price.', '.$image.' )" class="product-link-icon move-top-bottom" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Bag"><i class="feather icon-feather-shopping-cart"></i></a>';
+            // }
+
+            $res .= '</div>';
+            $res .= '</div>';
+            $res .= '<div class="product-footer bg-light-blue text-center padding-25px-tb xs-padding-10px-tb">';
+            $res .= '<a href="/product-detail/'.$product->slug.'" class="text-extra-dark-gray font-weight-500 d-inline-block" title="'.$product->title.'">'.substr($product->title, 0, 30).'</a>';
+            $res .= '<div class="product-price text-medium">'.number_format($price).'</div>';
+            $res .= '</div>';
+            $res .= '</div>';
+            $res .= '</li>';
+        }
+        return $res;
+    }
     public function orderplaced()
     {
         return view('frontend.orderplaced', 

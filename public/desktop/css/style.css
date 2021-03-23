@@ -17644,7 +17644,7 @@ a img.aligncenter {
 .price-filter-details .price-filter-amount .price-amount {
     border: none;
     padding: 0;
-    max-width: 115px;
+    /* max-width: 115px; */
     background-color: transparent;
 }
 

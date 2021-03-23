@@ -123,6 +123,7 @@ if(isMobile()) {
 
         Route::post('searching', [App\Http\Controllers\Frontend\PageController::class, 'searching'])->name('search.post');
         Route::get('search', [App\Http\Controllers\Frontend\PageController::class, 'search'])->name('search.get');
+        Route::post('filter', [App\Http\Controllers\Frontend\PageController::class, 'filter'])->name('filter.post');
     });
 }
 Route::namespace('Frontend')->group(function() {
