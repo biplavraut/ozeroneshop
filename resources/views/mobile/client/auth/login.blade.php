@@ -35,7 +35,7 @@
 			{{-- <h2 class="login__title">Welcome back</h2> --}}
 			<div class="splash__social-icons">
 				<a href="{{ route('login.facebook')}}" class="icon icon--social"><img src="{{asset('mobile/assets/images/icons/white/facebook.svg')}}" alt="" title=""/></a>
-				<a href="{{ route('login.facebook')}}" class="icon icon--social"><img src="{{asset('mobile/assets/images/icons/white/google.svg')}}" alt="" title=""/></a>
+				<a href="{{ route('login.google')}}" class="icon icon--social"><img src="{{asset('mobile/assets/images/icons/white/google.svg')}}" alt="" title=""/></a>
 			</div>
 			{{-- <p class="login__text">Login to your account</p> --}}
 				<div class="login-form">
