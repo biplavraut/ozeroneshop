@@ -32,8 +32,10 @@
 
         <div class="login">
 		<div class="login__content">	
-			<h2 class="login__title">Create an account</h2>
-			<p class="login__text">Join us for free!</p>
+			<div class="splash__social-icons">
+				<a href="{{ route('login.facebook')}}" class="icon icon--social"><img src="{{asset('mobile/assets/images/icons/white/facebook.svg')}}" alt="" title=""/></a>
+				<a href="{{ route('login.facebook')}}" class="icon icon--social"><img src="{{asset('mobile/assets/images/icons/white/google.svg')}}" alt="" title=""/></a>
+			</div>
 				<div class="login-form">
 					<form id="LoginForm" method="post" action="{{ route('register') }}">
                         @csrf
@@ -74,13 +76,6 @@
 						</div>
 					</form>	
                 </div>
-                <div class="splash__social-login">
-				<!-- <p>- Or Register with -</p>
-				<div class="splash__social-icons">
-					<a href="#" class="icon icon--social"><img src="{{asset('mobile/assets/images/icons/white/facebook.svg')}}" alt="" title=""/></a>
-					<a href="#" class="icon icon--social"><img src="{{asset('mobile/assets/images/icons/white/google.svg')}}" alt="" title=""/></a>
-				</div> -->
-			</div>
 		</div>
         </div>
 			  

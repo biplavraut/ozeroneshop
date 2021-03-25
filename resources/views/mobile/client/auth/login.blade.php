@@ -32,8 +32,12 @@
 
         <div class="login">
 		<div class="login__content">	
-			<h2 class="login__title">Welcome back</h2>
-			<p class="login__text">Login to your account</p>
+			{{-- <h2 class="login__title">Welcome back</h2> --}}
+			<div class="splash__social-icons">
+				<a href="{{ route('login.facebook')}}" class="icon icon--social"><img src="{{asset('mobile/assets/images/icons/white/facebook.svg')}}" alt="" title=""/></a>
+				<a href="{{ route('login.facebook')}}" class="icon icon--social"><img src="{{asset('mobile/assets/images/icons/white/google.svg')}}" alt="" title=""/></a>
+			</div>
+			{{-- <p class="login__text">Login to your account</p> --}}
 				<div class="login-form">
 					<form id="LoginForm" method="POST" action="{{ route('login') }}">
                         @csrf
