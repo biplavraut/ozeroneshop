@@ -179,7 +179,24 @@
                             </div>
                             <div id="collapseOne" class="collapse text-center" data-parent="#accordion1">
                                 <div class="w-40 mx-auto margin-4-half-rem-tb text-left lg-w-50 sm-w-100">
-                                    <p>If you are a new customer, please <a href="/register">register</a> or proceed to the billing section.</p>
+                                    <div class="row justify-content-center">
+                                        <div class="col-12 text-center elements-social social-icon-style-08">
+                                            <ul class="medium-icon">
+                                                <li>
+                                                    <a href="{{ route('login.facebook')}}" class="facebook">
+                                                        <span class="brand-label alt-font text-uppercase">facebook</span>
+                                                        <span class="brand-icon fab fa-facebook-f"></span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ route('login.google')}}" class="google">
+                                                        <span class="brand-label alt-font text-uppercase">google</span>
+                                                        <span class="brand-icon fab fa-google"></span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                     <div class="row margin-10px-bottom text-left">
                                     <form method="POST" action="{{ route('login') }}" class="bg-light-gray padding-4-rem-all lg-margin-35px-top md-padding-2-half-rem-all">
                                         @csrf    
