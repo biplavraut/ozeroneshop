@@ -121,6 +121,12 @@
                     <ul class="dropdown-menu alt-font">
                         @if (Route::has('login'))
                             @auth
+                            <div class="author padding-5px-lr">
+                                <img class="rounded-circle w-30px h-30px margin-15px-right" src="{{ auth()->user()->avatar }}" alt="{{ auth()->user()->name }}">
+                                <div class="d-inline-block align-middle">
+                                    <span class="alt-font text-small font-weight-300 line-height-16px text-extra-dark-gray d-block">Welcome!</span>
+                                </div>
+                            </div>
                                 <li><a href="/dashboard" title="Account"><span class="icon-country"><img src="{{asset('mobile/assets/images/icons/blue/settings.svg')}}" alt=""></span>Account</a></li>
                                 <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();" title="Logout"><span class="icon-country"><img src="{{asset('mobile/assets/images/icons/blue/logout.svg')}}" alt=""></span>Logout</a></li>
