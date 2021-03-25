@@ -51,6 +51,26 @@
                 <div class="row justify-content-center">
                     <div class="col-12 col-xl-5 col-md-6 lg-padding-30px-lr md-padding-15px-lr sm-margin-40px-bottom">
                         <h6 class="alt-font font-weight-500 text-extra-dark-gray">Login</h6>
+                        <div class="row justify-content-center">
+                            <div class="col-12 text-center elements-social social-icon-style-08">
+                                <ul class="medium-icon">
+                                    <li>
+                                        <a href="{{ route('login.facebook')}}" class="facebook">
+                                            <span class="brand-label alt-font text-uppercase">facebook</span>
+                                            <span class="brand-icon fab fa-facebook-f"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('login.google')}}" class="google">
+                                            <span class="brand-label alt-font text-uppercase">google</span>
+                                            <span class="brand-icon fab fa-google"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <br>
+                        <span>OR</span>
                         <form method="POST" action="{{ route('login') }}" class="bg-light-gray padding-4-rem-all lg-margin-35px-top md-padding-2-half-rem-all">
                         @csrf    
                             <label for="email" class="margin-15px-bottom">{{ __('E-Mail Address') }} <span class="required-error text-radical-red">*</span></label>

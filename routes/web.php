@@ -1,7 +1,6 @@
 <?php
 
-//use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -94,7 +93,15 @@ if(isMobile()) {
         });
     });
     
-    
+    // Google login
+    Route::get('login/google', [App\Http\Controllers\Frontend\Client\Auth\LoginController::class, 'redirectToGoogle'])->name('login.google');
+    Route::get('login/google/callback', [App\Http\Controllers\Frontend\Client\Auth\LoginController::class, 'handleGoogleCallback']);
+
+    // Facebook Login
+    Route::get('login/facebook', [App\Http\Controllers\Frontend\Client\Auth\LoginController::class, 'redirectToFacebook'])->name('login.facebook');
+    Route::get('login/facebook/callback', [App\Http\Controllers\Frontend\Client\Auth\LoginController::class, 'handleFacebookCallback']);
+
+
     // No Auth Need
     
     Route::namespace('Frontend')->group(function() {

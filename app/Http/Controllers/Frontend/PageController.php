@@ -203,7 +203,7 @@ class PageController extends Controller
         return Response($search_products);
     }
     public function search(Request $request){
-        $search_products = Product::with('getImageRelation')->where('display','=',1)->where('title','LIKE',"%{$request->search_query}%")->orderBy('order_item')->limit(12)->get();
+        $search_products = Product::with('getImageRelation')->where('display','=',1)->where('title','LIKE',"%{$request->search_query}%")->orderBy('order_item')->get();
         return view('frontend.search' , 
         [
             'products' => $search_products          
@@ -223,6 +223,7 @@ class PageController extends Controller
             $filter_brand = $request->brand;
         }
         $electronics_products_id = Product_Electronics::whereIn('electronic_id', $filter_category)->pluck('product_id');
+        return $electronics_products_id;
         $products =  Product::whereIn('id', $electronics_products_id)->whereIn('brand_id', $filter_brand)->whereBetween('price', [(int)$request->min, (int)$request->max])->with('getStorageRelation')->with('getColorRelation')->with('getImageRelation')->with('getDetailRelation')->orderBy("order_item")->where('display','=',1)->get();
         if(count($products) == 0){
             return "<b>Filtered Product Not Found</b>";

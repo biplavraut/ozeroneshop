@@ -76,7 +76,7 @@
                                 <!-- LAYER NR. 3 -->
                                 <div class="tp-caption tp-resizeme alt-font text-extra-dark-gray font-weight-500"
                                      data-x="['left','left','center','center']" data-hoffset="['0','102','0','0']" 
-                                     data-y="['middle','middle','middle','middle']" data-voffset="['-185','-120','-410','-300']" 
+                                     data-y="['middle','middle','middle','middle']" data-voffset="['-135','-120','-410','-300']" 
                                      data-width="none"
                                      data-height="none"
                                      data-whitespace="nowrap"
@@ -86,7 +86,7 @@
                                      data-textAlign="['left','left','left','left']"
                                      data-paddingtop="[10,10,10,10]"
                                      data-paddingright="[20,20,20,20]"
-                                     data-paddingbottom="[10,10,10,10]"
+                                     data-paddingbottom="[10,10,10, 10]"
                                      data-paddingleft="[20,20,20,20]"
                                      style="z-index: 7; text-transform: uppercase; letter-spacing: 2px;">{{$slider->title}}</div>
 
@@ -103,12 +103,12 @@
                                      data-responsive="on"
                                      data-responsive_offset="on" 
                                      data-frames='[{"delay":300,"speed":500,"frame":"0","from":"x:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:[-100%];y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power4.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-                                     data-textAlign="['left','left','center','center']"
+                                     data-textAlign="['center','center','center','center']"
                                      data-paddingtop="[20,20,20,20]"
                                      data-paddingright="[20,20,20,20]"
                                      data-paddingbottom="[30,30,30,30]"
                                      data-paddingleft="[20,20,20,20]"
-                                     style="z-index: 8;letter-spacing: -3px;">@php echo wordwrap($slider->sub_title,12,"<br><span style='color:#e83a4f;'>\n"); @endphp</div>    
+                                     style="z-index: 8;letter-spacing: 1px; font-weight: 800;">@php echo wordwrap($slider->sub_title,12,"<br><span style='color:#e83a4f;'>\n"); @endphp</div>    
 
                                 <!-- LAYER NR. 1 -->
                                 <a class="tp-caption tp-resizeme btn btn-medium btn-white btn-box-shadow lg-margin-15px-bottom md-no-margin-bottom md-margin-auto-lr"
