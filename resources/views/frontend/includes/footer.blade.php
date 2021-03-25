@@ -10,6 +10,8 @@
                     <li><a href="/about">Our services</a></li>
                     <li><a href="/career">Job opportunities</a></li>
                     <li><a href="/contact">Contact us</a></li>
+                    <li><a href="/privacy-policy">Privacy Policy</a></li>
+                    <li><a href="/terms-of-service">Terms of Service</a></li>
                 </ul>
             </div>
             <!-- end footer column -->

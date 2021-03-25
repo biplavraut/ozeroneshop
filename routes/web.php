@@ -67,7 +67,8 @@ if(isMobile()) {
         Route::get('/blog-news', [App\Http\Controllers\Mobile\PageController::class, 'blogNews']);
         Route::get('/faqs', [App\Http\Controllers\Mobile\PageController::class, 'faqs']);
         Route::get('/about', [App\Http\Controllers\Mobile\PageController::class, 'about']);
-        Route::get('/contact', [App\Http\Controllers\Mobile\PageController::class, 'contact']);
+        Route::get('/contact', [App\Http\Controllers\Mobile\PageController::class, 'contact']);        
+        Route::get('/terms-of-service', [App\Http\Controllers\Mobile\PageController::class, 'terms']);
         Route::get('/cart', [App\Http\Controllers\Mobile\PageController::class, 'cart']);
         Route::get('/checkout', [App\Http\Controllers\Mobile\PageController::class, 'checkout']);
         Route::get('/order', [App\Http\Controllers\Mobile\OrderController::class, 'order']);
@@ -123,6 +124,8 @@ if(isMobile()) {
         Route::get('/faqs', [App\Http\Controllers\Frontend\PageController::class, 'faqs']);
         Route::get('/about', [App\Http\Controllers\Frontend\PageController::class, 'about']);
         Route::get('/contact', [App\Http\Controllers\Frontend\PageController::class, 'contact']);
+        Route::get('/terms-of-service', [App\Http\Controllers\Frontend\PageController::class, 'terms']);
+        Route::get('/privacy-policy', [App\Http\Controllers\Frontend\PageController::class, 'privacy']);
         Route::get('/cart', [App\Http\Controllers\Frontend\PageController::class, 'cart']);
         Route::get('/checkout', [App\Http\Controllers\Frontend\PageController::class, 'checkout']);
         Route::get('/order', [App\Http\Controllers\Frontend\OrderController::class, 'order']);

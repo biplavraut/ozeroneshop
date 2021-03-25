@@ -89,6 +89,18 @@ class PageController extends Controller
             //'product' => $product            
         ]);
     }
+    public function terms(){
+        return view('frontend.terms' , 
+        [
+            //'product' => $product            
+        ]);
+    }
+    public function privacy(){
+        return view('frontend.privacy' , 
+        [
+            //'product' => $product            
+        ]);
+    }
     public function products($slug) 
     {
         if($slug == 'all'){

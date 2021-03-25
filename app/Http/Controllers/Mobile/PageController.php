@@ -89,6 +89,18 @@ class PageController extends Controller
             //'product' => $product            
         ]);
     }
+    public function terms(){
+        return view('mobile.terms' , 
+        [
+            //'product' => $product            
+        ]);
+    }
+    public function privacy(){
+        return view('mobile.privacy' , 
+        [
+            //'product' => $product            
+        ]);
+    }
     public function products($slug) 
     {
         if($slug == 'all'){
