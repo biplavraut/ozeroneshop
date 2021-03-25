@@ -1,5 +1,5 @@
 <!-- start section -->
-<section class="cover-background wow animate__fadeIn" style="background: url('{{asset('desktop/materials/footer-background.jpg')}}'); background-position: left bottom !important;">
+<section class="cover-background wow animate__fadeIn" style="background: url('{{asset('desktop/materials/footer-background.svg')}}'); background-position: left bottom !important;">
     <div class="container justify-content-center">
         <div class="row">
             <div class="col-12 col-xl-6 col-lg-7 wow animate__fadeIn">
