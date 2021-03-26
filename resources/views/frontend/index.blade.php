@@ -54,7 +54,23 @@
         src="https://www.facebook.com/tr?id=177597510622085&ev=PageView&noscript=1"
         /></noscript>
         <!-- End Facebook Pixel Code -->
-
+            <style>
+                .slider-thumbs__icon img {
+                    display: block;
+                    max-width: 122px;
+                    margin: 10px auto;
+                    padding: 20px;
+                    background: #f1f8fc; 
+                    border-radius: 15px;
+                }
+                @media (max-width: 778px) {
+                    .slider-thumbs__icon img {
+                        max-width: 92px;
+                        margin: 5px auto;
+                        padding: 20px;
+                    }
+                }
+            </style>
     </head>
     <body data-mobile-nav-style="classic">
         @include('frontend.includes.header')
@@ -75,8 +91,8 @@
                                 
                                 <!-- LAYER NR. 3 -->
                                 <div class="tp-caption tp-resizeme alt-font text-extra-dark-gray font-weight-500"
-                                     data-x="['left','left','center','center']" data-hoffset="['0','102','0','0']" 
-                                     data-y="['middle','middle','middle','middle']" data-voffset="['-135','-120','-410','-300']" 
+                                     data-x="['left','left','center','center']" data-hoffset="['124','102','0','0']" 
+                                     data-y="['middle','middle','middle','middle']" data-voffset="['-145','-120','-410','-300']" 
                                      data-width="none"
                                      data-height="none"
                                      data-whitespace="nowrap"
@@ -113,8 +129,8 @@
                                 <!-- LAYER NR. 1 -->
                                 <a class="tp-caption tp-resizeme btn btn-medium btn-white btn-box-shadow lg-margin-15px-bottom md-no-margin-bottom md-margin-auto-lr"
                                    href="{{$slider->link}}"
-                                   data-x="['left','left','center','center']" data-hoffset="['24','122','0','0']" 
-                                   data-y="['middle','middle','middle','middle']" data-voffset="['115','120','-160','-110']" 
+                                   data-x="['left','left','center','center']" data-hoffset="['144','122','0','0']" 
+                                   data-y="['middle','middle','middle','middle']" data-voffset="['95','120','-160','-110']" 
                                    data-width="none"
                                    data-height="none"
                                    data-fontsize="['14','14','14','13']"
@@ -160,15 +176,18 @@
         <section class="padding-one-all overlap-height">
             <div class="container overlap-gap-section">
                 <div class="row justify-content-center xs-no-margin-lr">
-                    <div class="swiper-container swiper-auto-slide padding-15px-tb black-move" data-slider-options='{"slidesPerView": "auto", "spaceBetween": 60, "scrollbar": {"el": ".swiper-scrollbar"} ,"navigation": { "nextEl": ".swiper-button-next-nav", "prevEl": ".swiper-button-previous-nav" }, "autoplay": { "delay": 55000, "disableOnInteraction": false },  "keyboard": { "enabled": true, "onlyInViewport": true }, "effect": "slide" }'>
+                    <div class="swiper-container swiper-auto-slide padding-15px-tb black-move" data-slider-options='{"slidesPerView": "auto", "scrollbar": {"el": ".swiper-scrollbar"} ,"navigation": { "nextEl": ".swiper-button-next-nav", "prevEl": ".swiper-button-previous-nav" }, "autoplay": { "delay": 55000, "disableOnInteraction": false },  "keyboard": { "enabled": true, "onlyInViewport": true }, "effect": "slide" }'>
                         <div class="swiper-wrapper">
                             <!-- start slider item -->
                             @foreach($elect_categories as $elect_category)
                                 @if($elect_category->parent_id == 0)
-                                <div class="swiper-slide">
-                                    <div class="col text-center padding-40px-tb border-radius-6px transition wow animate__fadeIn" data-wow-delay="0.1s">
-                                        <a href="/products/{{$elect_category->slug}} "><img class="margin-25px-bottom" src="{{asset('img/electronics/'. $elect_category->image .'')}}" width="92px" alt=""/></a>
-                                        <span class="text-extra-medium font-weight-500 text-extra-dark-gray d-block mx-auto xs-w-100"><a href="">{{$elect_category->title}}</a></span>
+                                <div class="swiper-slide" style="">
+                                    <div class="col text-center padding-20px-tb border-radius-6px transition wow animate__fadeIn" data-wow-delay="0.1s">
+                                        <a class="slider-thumbs__icon" href="/products/{{$elect_category->slug}} ">
+                                            <img class="margin-15px-bottom" src="{{asset('img/electronics/'. $elect_category->image .'')}}" alt="{{$elect_category->title}}"/>
+                                        </a>
+                                            <span class="text-extra-medium font-weight-500 text-extra-dark-gray d-block mx-auto xs-w-100">
+                                        <a href="/products/{{$elect_category->slug}}">{{$elect_category->title}}</a></span>
                                     </div>
                                 </div>
                                 @endif
@@ -183,16 +202,30 @@
         </section>
         <!-- end section -->
         <!-- start section -->
+        <section class="half-section bg-light-gray">
+            <div class="container">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-12 col-lg-7 col-sm-10 text-center text-lg-left md-margin-3-rem-top md-margin-3-rem-bottom wow animate__fadeIn" data-wow-delay="0.1s">
+                        <h4 class="alt-font font-weight-600 text-dark-gray mb-0">Get Latest updates about offer, products, tips and news.</h4>
+                    </div>
+                    <div class="col-12 col-lg-5 padding-6-rem-left lg-padding-15px-left md-margin-3-rem-bottom text-center text-lg-left wow animate__fadeIn" data-wow-delay="0.3s">
+                        <span class="alt-font text-extra-dark-gray text-extra-medium d-block margin-5px-bottom">Join us for convenient shopping!</span>
+                        <a href="/register" class="btn btn-extra-large btn-transparent-dark-gray btn-box-shadow-flat">Register Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- start section -->
         <section class="padding-three-all">
             <div class="container">
-                <div class="container">
+                {{-- <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-12 col-lg-6 text-center margin-2-half-rem-bottom sm-margin-1-half-rem-bottom">
                             <h5 class="alt-font font-weight-600 text-extra-dark-gray margin-5px-bottom">Featured Products</h5>
                             <p>Explore our collection of electronics</p>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <div class="row">
                     <div class="col-12 px-lg-0 wow animate__fadeIn" data-wow-delay="0.2s">
                         <div class="swiper-container padding-15px-tb portfolio-classic position-relative" data-slider-options='{"loop": true, "slidesPerView": 1, "spaceBetween": 30,"scrollbar": {"el": ".swiper-scrollbar","hide": "false"}, "navigation": { "nextEl": ".swiper-button-next-nav", "prevEl": ".swiper-button-previous-nav" }, "autoplay": { "delay": 5000, "disableOnInteraction": false }, "keyboard": { "enabled": true, "onlyInViewport": true }, "breakpoints": { "1200": { "slidesPerView": 4 }, "992": { "slidesPerView": 3 }, "768": { "slidesPerView": 2 } }, "effect": "slide" }'>

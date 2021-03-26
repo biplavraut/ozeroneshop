@@ -82,7 +82,7 @@ a:focus {
     text-decoration: none;
     outline: none;
     outline-offset: 0;
-    color: #0038e3;
+    color: #0b4e82;
 }
 
 a,
@@ -526,13 +526,13 @@ a.text-very-light-gray-hover:hover {
 .text-fast-blue,
 .btn-link.text-fast-blue,
 a.text-fast-blue-hover:hover {
-    color: #0038e3;
+    color: #0b4e82;
 }
 
 .text-neon-blue,
 .btn-link.text-neon-blue,
 a.text-neon-blue-hover:hover {
-    color: #3452ff;
+    color: #0b4e82;
 }
 
 .text-light-pink,
@@ -3796,14 +3796,14 @@ input.btn:focus {
 
 .btn.btn-transparent-fast-blue {
     background: transparent;
-    border-color: #0038e3;
-    color: #0038e3;
+    border-color: #0b4e82;
+    color: #0b4e82;
 }
 
 .btn.btn-transparent-fast-blue:hover,
 .btn.btn-transparent-fast-blue:focus {
-    background: #0038e3;
-    border-color: #0038e3;
+    background: #0b4e82;
+    border-color: #0b4e82;
     color: #fff;
 }
 
@@ -10231,7 +10231,7 @@ a.likes-count:hover {
 }
 
 .social-icon-style-01 a:hover {
-    color: #0038e3;
+    color: #0b4e82;
 }
 
 
@@ -10950,7 +10950,7 @@ a.likes-count:hover {
 .social-icon-style-06 a:hover {
     color: #fff;
     border-radius: 100%;
-    background-color: #0038e3;
+    background-color: #0b4e82;
 }
 
 
@@ -16506,9 +16506,9 @@ header .header-cart-icon .cart-count {
 }
 
 .blog-tag:hover {
-    border-color: #0038e3 !important;
+    border-color: #0b4e82 !important;
     color: #fff;
-    background-color: #0038e3;
+    background-color: #0b4e82;
 }
 
 .blog-tag:last-child {
@@ -16754,8 +16754,8 @@ a img.aligncenter {
 }
 
 .blog-comment li .btn-reply:hover {
-    border-color: #0038e3;
-    background: #0038e3;
+    border-color: #0b4e82;
+    background: #0b4e82;
     color: #fff;
 }
 
@@ -19371,7 +19371,7 @@ a img.aligncenter {
 }
 
 .list-style-07 li a:hover {
-    color: #0038e3;
+    color: #0b4e82;
 }
 
 .list-style-07.filter-category li,
@@ -20375,7 +20375,7 @@ aside .instafeed-grid.gutter-double-extra-large {
 .tab-style-02 .nav-tabs>li.nav-item>a.nav-link:focus,
 .tab-style-02 .nav-tabs>li.nav-item>a.nav-link:hover {
     border-bottom: none;
-    color: #0038e3;
+    color: #0b4e82;
     background: none;
 }
 
@@ -22672,7 +22672,7 @@ footer .instafeed-grid.gutter-double-extra-large {
 /* web agency */
 
 .web-agency .process-step-style-02 .process-step-item:hover .process-step-icon {
-    color: #0038e3;
+    color: #0b4e82;
 }
 
 
