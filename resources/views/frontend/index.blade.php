@@ -57,10 +57,10 @@
             <style>
                 .slider-thumbs__icon img {
                     display: block;
-                    max-width: 122px;
+                    width: 122px;
                     margin: 10px auto;
                     padding: 20px;
-                    background: #f1f8fc; 
+                    /* background: #f1f8fc;  */
                     border-radius: 15px;
                 }
                 @media (max-width: 778px) {

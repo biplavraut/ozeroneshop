@@ -56,11 +56,7 @@
                 <div class="d-block padding-two-all text-center text-medium">
                     
                     <a href="#" target="_blank"><img src="{{asset('desktop/logo/logo-primary.png')}}" data-at2x="{{asset('desktop/logo/logo-primary@2x.png')}}" width= "200px" alt="Ozerone Shop Logo"/></a>
-                    <p> <small> The word Ozerone is derived from combining the two binary
-                        digits zero and one to symbolize we work with digital products. Our brand mark represents a circle/rounded imaginary zero formed
-                            by collections of ones. The two variant colors on the logo represents
-                            that we do great works both online and offline. Combining word mark and our brand mark we present you with
-                                this aesthetically beautiful and calm logo.</small></p>
+                    <p style="margin-top:10px;" ><b>Buy Smarter, Live Happier </b><br><small> We're proudly a fully immersive company, with Ozeroners working to make your buying choice smarter. We are on a mission to help our customers buy smarter from anywhere: both online and offline - and make their life more easy and productive.</small></p>
                     <p> <small> We are grateful that you are here. If you have arrived here chances
                         are you are here for the same resaons that gets us out of bed every
                         day - to empower PEOPLE with the help of technology and do great
