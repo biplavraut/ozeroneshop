@@ -52,6 +52,7 @@ class SliderController extends Controller
             $this->validate($request,[
                 'image' => 'required',
                 'title' => 'required|string|max:191',
+                'sub_title' => 'required'
             ]);
     
             try{
@@ -69,6 +70,11 @@ class SliderController extends Controller
                 $imageName = $slug;
                 $image_name = $imageName.'.'.$extension;
                 \Image::make($request->image)->save($path.'/'.$image_name);
+                if($extension != 'webp'){
+                    convertImageToWebP($path."/". $image_name, $path."/" . $imageName.'.webp', $extension);
+                    unlink($path."/". $image_name);
+                    $image_name = $imageName.'.webp';
+                }                
                 resize_crop_image(60, 60, $path."/". $image_name, $path."/thumbs/rect_" . $image_name, $extension);
                 resize_crop_image(1024, 480, $path."/". $image_name, $path."/thumbs/" . $image_name, $extension);
                 $request->merge(['image' => $image_name]);
@@ -142,6 +148,11 @@ class SliderController extends Controller
                 $imageName = $request->slug;
                 $image_name = $imageName.'.'.$extension;
                 \Image::make($request->image)->save($path.'/'.$image_name);
+                if($extension != 'webp'){
+                    convertImageToWebP($path."/". $image_name, $path."/" . $imageName.'.webp', $extension);
+                    unlink($path."/". $image_name);
+                    $image_name = $imageName.'.webp';
+                } 
                 resize_crop_image(60, 60, $path."/". $image_name, $path."/thumbs/rect_" . $image_name, $extension);
                 resize_crop_image(1024, 480, $path."/". $image_name, $path."/thumbs/" . $image_name, $extension);
                 $request->merge(['image' => $image_name]);

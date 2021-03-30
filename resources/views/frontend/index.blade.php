@@ -65,7 +65,7 @@
                 }
                 @media (max-width: 778px) {
                     .slider-thumbs__icon img {
-                        max-width: 92px;
+                        width: 92px;
                         margin: 5px auto;
                         padding: 20px;
                     }
@@ -215,6 +215,38 @@
                 </div>
             </div>
         </section>
+        <section class="pt-5 padding-five-lr lg-no-padding-lr">
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-xl-12 col-lg-12 col-sm-10 blog-content lg-no-padding-lr">
+                        <ul class="blog-simple blog-wrapper grid grid-loading grid-3col xl-grid-2col lg-grid-2col md-grid-1col sm-grid-1col xs-grid-1col gutter-double-extra-large">
+                            <li class="grid-sizer"></li>
+                            <!-- start blog item -->
+                            @foreach($body_featured as $key=>$body_feature)
+                            @if ($key < 3)
+                            <li class="grid-item wow animate__fadeIn">
+                                <div class="col-12 bg-light-gray blog-post-content overflow-hidden text-center lg-no-padding-lr wow animate__fadeIn">
+                                    <a href="#"><img src="/img/featured/thumbs/{{$body_feature->image}}" alt=""/></a>
+                                    <div class="blog-text d-inline-block w-100">
+                                        <div class="content padding-2-half-rem-bottom lg-padding-2-half-rem-bottom xs-padding-20px-lr position-relative mx-auto w-90 lg-w-100">
+                                            <span class="tp-caption tp-resizeme alt-font text-extra-dark-gray font-weight-500">{{$body_feature->title}}</span>
+                                            <h6 class="alt-font font-weight-500"><a href="blog-post-layout-01.html" class="text-extra-dark-gray text-fast-blue-hover" style='color:{{$body_feature->sub_title_color}};'>
+                                                @php echo wordwrap($body_feature->sub_title,33,"<br><span style='color:#e83a4f;'>\n"); @endphp 
+                                            </a></h6>
+                                            <p>{!! substr(strip_tags($body_feature->excerpt),0,180) !!}</p>
+                                            <a href="{{$body_feature->link}}" class="btn btn-small btn-transparent-fast-blue btn-round-edge btn-slide-up-bg margin-10px-top">View More <span class="bg-extra-dark-blue"></span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            @endif
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- end section -->
         <!-- start section -->
         <section class="padding-three-all">
             <div class="container">
@@ -278,62 +310,73 @@
         </section>
         <!-- end section -->
         <!-- start section -->
+
+        @foreach($body_featured as $key=>$body_feature)
+        @if ($key == 3)
         <section class="padding-three-all">
             <div class="container">
                 <div class="row align-items-center justify-content-center">
                     <div class="col-10 col-md-6 text-center sm-margin-30px-bottom wow animate__fadeIn" data-wow-delay="0.1s">
-                        <img class="md-padding-30px-right lazyload" data-src="{{asset('desktop/materials/hedset.png')}}" alt=""/>
+                        <img class="md-padding-30px-right lazyload" data-src="/img/featured/{{$body_feature->image}}" alt="{{$body_feature->title}}"/>
                     </div>
                     <div class="col-10 col-xl-4 col-lg-5 offset-lg-1 col-md-6 pl-lg-0 text-center text-md-left wow animate__fadeIn" data-wow-delay="0.3s">
-                        <span class="alt-font font-weight-600 text-gradient-magenta-orange-2 letter-spacing-1px d-inline-block text-uppercase margin-20px-bottom sm-margin-10px-bottom">Experience The Hi-Res Certified Sound</span>
-                        <h5 class="alt-font font-weight-500 text-medium-slate-blue">Adding you a new Style.</h5>
-                        <p>Certification that ensures playback of superior audio-quality, with an expanded frequency range and incredible detail.</p>
-                        <a href="https://ozeroneshop.com/product-detail/anker-soundcore-life-q10" class="btn btn-large btn-fast-blue btn-slide-right-bg margin-15px-top btn-round-edge">View More<span class="bg-white"></span></a>
+                        <span class="alt-font font-weight-600 text-gradient-magenta-orange-2 letter-spacing-1px d-inline-block text-uppercase margin-20px-bottom sm-margin-10px-bottom">{{$body_feature->title}}</span>
+                        <h5 class="alt-font font-weight-500 text-medium-slate-blue">{{$body_feature->sub_title}}</h5>
+                        <p>{!! $body_feature->excerpt !!}</p>
+                        <a href="{{$body_feature->link}}" class="btn btn-large btn-fast-blue btn-slide-right-bg margin-15px-top btn-round-edge">View More<span class="bg-white"></span></a>
                     </div>
                 </div>
             </div>
         </section>
+        @endif        
+        @endforeach
+        
         <!-- end section -->
+        
         <!-- start section -->
         <section class="p-0">
             <div class="container-fluid">
                 <div class="row row-cols-1 row-cols-lg-2">
                     <!-- start info banner item -->
-                    <div class="col bg-very-light-orange padding-5-rem-tb padding-eight-lr xl-padding-six-lr lg-padding-three-lr md-padding-eight-lr wow animate__fadeIn" data-wow-delay="0.2s">
-                        <div class="row align-items-center">
-                            <div class="col-12 col-sm-7 xs-margin-30px-bottom">
-                                <a href="#"><img class="lazyload" data-src="{{asset('desktop/materials/bedsidelamp.png')}}" alt=""></a>
-                            </div>
-                            <div class="col-12 col-sm-5 padding-ten-left xl-padding-three-left md-padding-nine-left xs-padding-15px-left">
-                                <span class="alt-font font-weight-500 text-dark-orange d-block margin-15px-bottom text-uppercase"><span class="w-10px h-1px bg-dark-orange d-inline-block align-middle margin-5px-right"></span> Only NPR 7,000</span>
-                                <span class="tp-caption tp-resizeme alt-font text-extra-dark-gray font-weight-500">XIAOMI</span>
-                                <h4 class="alt-font text-extra-dark-gray letter-spacing-minus-1px"><span class="font-weight-600">Bedside Lamp</span></h4>
-                                <p>Fill the whole room with soft light to create a nice, warm atmosphere or just to light up the room for everyday use.</p>
-                                <a href="https://ozeroneshop.com/product-detail/mi-bedside-lamp-2" class="btn btn-small btn-fancy btn-box-shadow btn-white margin-5px-top">Shop now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end info banner item -->
-                    <!-- start info banner item -->
-                    <div class="col bg-very-light-pink padding-5-rem-tb padding-eight-lr xl-padding-six-lr lg-padding-three-lr md-padding-eight-lr wow animate__fadeIn" data-wow-delay="0.4s">
-                        <div class="row align-items-center">
-                            <div class="col-12 col-sm-7 xs-margin-30px-bottom">
-                                <a href="#"><img class="lazyload" data-src="{{asset('desktop/materials/soundcore.png')}}" alt=""></a>
-                            </div>
-                            <div class="col-12 col-sm-5 padding-ten-left xl-padding-three-left md-padding-nine-left xs-padding-15px-left">
-                                <span class="alt-font font-weight-500 text-dark-orange d-block margin-15px-bottom text-uppercase"><span class="w-10px h-1px bg-dark-orange d-inline-block align-middle margin-5px-right"></span> Only NPR 13,990</span>
-                                <span class="tp-caption tp-resizeme alt-font text-extra-dark-gray font-weight-500">ANKER</span>
-                                <h4 class="alt-font text-extra-dark-gray letter-spacing-minus-1px"><span class="font-weight-600">Soundcore Flare+</span></h4>
-                                <p>360° sound: two back-to-back full-range drivers are combined with dual passive bass radiators and tweeters to deliver 25W of all-around sound with breathtaking clarity.</p>
-                                <a href="https://ozeroneshop.com/product-detail/anker-soundcore-flare" class="btn btn-small btn-fancy btn-box-shadow btn-white margin-5px-top">Shop now</a>
+                    @foreach($body_featured as $key=>$body_feature)
+                        @if ($key > 3)
+                        @if ($key%2 != 0)
+                        <div class="col bg-very-light-orange padding-5-rem-tb padding-eight-lr xl-padding-six-lr lg-padding-three-lr md-padding-eight-lr wow animate__fadeIn" data-wow-delay="0.2s">
+                            <div class="row align-items-center">
+                                <div class="col-12 col-sm-7 xs-margin-30px-bottom">
+                                    <a href="#"><img class="lazyload" data-src="/img/featured/{{$body_feature->image}}" alt="{{$body_feature->title}}"></a>
+                                </div>
+                                <div class="col-12 col-sm-5 padding-ten-left xl-padding-three-left md-padding-nine-left xs-padding-15px-left">
+                                    <span class="alt-font font-weight-500 text-dark-orange d-block margin-15px-bottom text-uppercase"><span class="w-10px h-1px bg-dark-orange d-inline-block align-middle margin-5px-right"></span> Only NPR 7,000</span>
+                                    <span class="tp-caption tp-resizeme alt-font text-extra-dark-gray font-weight-500">{{$body_feature->title}}</span>
+                                    <h4 class="alt-font text-extra-dark-gray letter-spacing-minus-1px"><span class="font-weight-600">{{$body_feature->sub_title}}</span></h4>
+                                    <p>{!! $body_feature->excerpt !!}</p>
+                                    <a href="{{$body_feature->link}}" class="btn btn-small btn-fancy btn-box-shadow btn-white margin-5px-top">Shop now</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- end info banner item -->
+                        @else
+                        <div class="col bg-very-light-pink padding-5-rem-tb padding-eight-lr xl-padding-six-lr lg-padding-three-lr md-padding-eight-lr wow animate__fadeIn" data-wow-delay="0.4s">
+                            <div class="row align-items-center">
+                                <div class="col-12 col-sm-7 xs-margin-30px-bottom">
+                                    <a href="#"><img class="lazyload" data-src="/img/featured/{{$body_feature->image}}" alt="{{$body_feature->title}}"></a>
+                                </div>
+                                <div class="col-12 col-sm-5 padding-ten-left xl-padding-three-left md-padding-nine-left xs-padding-15px-left">
+                                    <span class="alt-font font-weight-500 text-dark-orange d-block margin-15px-bottom text-uppercase"><span class="w-10px h-1px bg-dark-orange d-inline-block align-middle margin-5px-right"></span> Only NPR 13,990</span>
+                                    <span class="tp-caption tp-resizeme alt-font text-extra-dark-gray font-weight-500">{{$body_feature->title}}</span>
+                                    <h4 class="alt-font text-extra-dark-gray letter-spacing-minus-1px"><span class="font-weight-600">{{$body_feature->sub_title}}</span></h4>
+                                    <p>{!! $body_feature->excerpt !!}</p>
+                                    <a href="{{$body_feature->link}}" class="btn btn-small btn-fancy btn-box-shadow btn-white margin-5px-top">Shop now</a>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+                        @endif
+                    @endforeach
                 </div>
             </div>
         </section>
-        <!-- end section -->
+        
         <!-- start section -->
         <section class="padding-three-all border-bottom border-color-extra-light-gray">
             <div class="container">

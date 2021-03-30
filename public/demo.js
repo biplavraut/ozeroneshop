@@ -170,7 +170,7 @@ var render = function() {
                 [
                   _c(
                     "router-link",
-                    { attrs: { to: "/backend/admin/slider" } },
+                    { attrs: { to: "/backend/admin/featured" } },
                     [
                       _c(
                         "button",
@@ -179,7 +179,7 @@ var render = function() {
                             "bg-gradient-secondary btn-icon-clipboard",
                           attrs: {
                             type: "button",
-                            title: "Slider Management",
+                            title: "Featured Management",
                             "data-clipboard-text": "air-baloon"
                           }
                         },
@@ -187,7 +187,7 @@ var render = function() {
                           _c("div", [
                             _c("span", { staticClass: "d-none d-md-block" }, [
                               _c("i", { staticClass: "fas fa-sliders-h" }),
-                              _c("span", [_vm._v("Slider")])
+                              _c("span", [_vm._v("Featured Products")])
                             ]),
                             _vm._v(" "),
                             _c("span", { staticClass: "d-md-none" }, [

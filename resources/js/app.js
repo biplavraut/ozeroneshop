@@ -36,7 +36,7 @@ const options = {
 /*End of defination*/
 /*Call the progress bar*/
 Vue.use(VueProgressBar, options)
-/*End of Progress Bar*/
+    /*End of Progress Bar*/
 
 /*Sweet alert start*/
 import Swal from "sweetalert2";
@@ -50,10 +50,10 @@ const Toast = Swal.mixin({
 });
 
 Vue.mixin({
-    methods:{
+    methods: {
         // Check server response and show it
-        serverResponse(data){
-            if(data.result == 'success'){
+        serverResponse(data) {
+            if (data.result == 'success') {
                 Toast.fire({
                     type: 'success',
                     title: data.message //Success message from server
@@ -61,7 +61,7 @@ Vue.mixin({
                 this.$Progress.finish();
                 Fire.$emit('AfterCreate'); //Fire an reload event
 
-            }else{
+            } else {
                 swal.fire(
                     'Error!',
                     data.message, //Error message from server
@@ -85,7 +85,7 @@ Vue.use(DashboardPlugin);
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 // Install BootstrapVue
 Vue.use(BootstrapVue)
-// Optionally install the BootstrapVue icon components plugin
+    // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin)
 
 import PortalVue from 'portal-vue'
@@ -101,45 +101,44 @@ Vue.use(VueRouter);
 
 
 import DashboardLayout from './argon/views/Layout/DashboardLayout.vue';
-const routes = [
-    {
-      path: '/backend/admin',
-      redirect: '/backend/admin/dashboard',
-      component: DashboardLayout,
-      children: [
-        {
+const routes = [{
+    path: '/backend/admin',
+    redirect: '/backend/admin/dashboard',
+    component: DashboardLayout,
+    children: [{
             path: '/backend/admin/dashboard',
             name: 'dashboard',
-          // route level code-splitting
-          // this generates a separate chunk (about.[hash].js) for this route
-          // which is lazy-loaded when the route is visited.
-            component: () => import(/* webpackChunkName: "demo" */ './backend/Dashboard.vue')
+            // route level code-splitting
+            // this generates a separate chunk (about.[hash].js) for this route
+            // which is lazy-loaded when the route is visited.
+            component: () =>
+                import ( /* webpackChunkName: "demo" */ './backend/Dashboard.vue')
         },
-        { path: '/backend/admin/profile', name:'profile management', component: require('./backend/Profile.vue').default},
-        { path: '/backend/admin/admins', name:'admins management', component: require('./components/Admins.vue').default},
+        { path: '/backend/admin/profile', name: 'profile management', component: require('./backend/Profile.vue').default },
+        { path: '/backend/admin/admins', name: 'admins management', component: require('./components/Admins.vue').default },
 
-        { path: '/backend/admin/shop-sections', name:'shop sections management', component: require('./components/Shop-sections.vue').default},
-        { path: '/backend/admin/brands', name:'brands management', component: require('./components/Brands.vue').default},   
-        { path: '/backend/admin/electronics/:shop_section', name:'Categories', component: require('./components/Electronics.vue').default, props:true},
+        { path: '/backend/admin/shop-sections', name: 'shop sections management', component: require('./components/Shop-sections.vue').default },
+        { path: '/backend/admin/brands', name: 'brands management', component: require('./components/Brands.vue').default },
+        { path: '/backend/admin/electronics/:shop_section', name: 'Categories', component: require('./components/Electronics.vue').default, props: true },
 
-        { path: '/backend/admin/product', name:'product management', component: require('./components/Products.vue').default}, 
-        { path: '/backend/admin/product-detail/:slug', name:'Product Detail', component: require('./components/ProductDetail.vue').default, props:true},
+        { path: '/backend/admin/product', name: 'product management', component: require('./components/Products.vue').default },
+        { path: '/backend/admin/product-detail/:slug', name: 'Product Detail', component: require('./components/ProductDetail.vue').default, props: true },
+        { path: '/backend/admin/featured', name: 'featured management', component: require('./components/Featured.vue').default },
 
-        { path: '/backend/admin/slider', name:'slider management', component: require('./components/Slider.vue').default},
-        { path: '/backend/admin/blogs', name:'blogs management', component: require('./components/Blogs.vue').default},
-        { path: '/backend/admin/partner', name:'partner management', component: require('./components/Partner.vue').default},
-        { path: '/backend/admin/faq', name:'faqs management', component: require('./components/Faqs.vue').default},
-        { path: '/backend/admin/seo', name:'seo management', component: require('./components/Seo.vue').default},
+        { path: '/backend/admin/slider', name: 'slider management', component: require('./components/Slider.vue').default },
+        { path: '/backend/admin/blogs', name: 'blogs management', component: require('./components/Blogs.vue').default },
+        { path: '/backend/admin/partner', name: 'partner management', component: require('./components/Partner.vue').default },
+        { path: '/backend/admin/faq', name: 'faqs management', component: require('./components/Faqs.vue').default },
+        { path: '/backend/admin/seo', name: 'seo management', component: require('./components/Seo.vue').default },
 
-        { path: '/backend/admin/orders', name:'Orders management', component: require('./components/Orders.vue').default},        
-        { path: '/backend/admin/order-detail/:id', name:'Order Detail', component: require('./components/OrderDetail.vue').default, props:true},
+        { path: '/backend/admin/orders', name: 'Orders management', component: require('./components/Orders.vue').default },
+        { path: '/backend/admin/order-detail/:id', name: 'Order Detail', component: require('./components/OrderDetail.vue').default, props: true },
 
-        { path: '/backend/admin/customers', name:'Customers management', component: require('./components/Customers.vue').default},
+        { path: '/backend/admin/customers', name: 'Customers management', component: require('./components/Customers.vue').default },
 
-        { path: '/backend/admin/*', name:'page not found', component: require('./components/NotFound.vue').default}
-      ]
-    }
-  ];
+        { path: '/backend/admin/*', name: 'page not found', component: require('./components/NotFound.vue').default }
+    ]
+}];
 
 const router = new VueRouter({
     mode: 'history',
@@ -150,13 +149,13 @@ const router = new VueRouter({
 
 /*This is global filters for Vue JS*/
 /*Upper case Filter*/
-Vue.filter('upText', function(text){
+Vue.filter('upText', function(text) {
     return text.charAt(0).toUpperCase() + text.slice(1);
 });
 
 /*Moment JS to format Date*/
 import moment from 'moment'; //format date in vue
-Vue.filter('myDate', function(created){
+Vue.filter('myDate', function(created) {
     return moment(created).format('Do MMMM  YYYY'); // April 7th 2019,(h:mm:ss a) 3:34:44 pm
 });
 
@@ -220,12 +219,12 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app',
     router,
-    data:{
-        search:''
+    data: {
+        search: ''
     },
-    methods:{
-        searchit: _.debounce(() =>{
+    methods: {
+        searchit: _.debounce(() => {
             Fire.$emit('searching');
-        },1000)
+        }, 1000)
     }
 });

@@ -60,6 +60,47 @@
         if ($dst_img) imagedestroy($dst_img);
         if ($src_img) imagedestroy($src_img);
     }
+    function make_thumb($img_name, $filename, $new_w, $new_h)
+    {
+        $src_img = imagecreatefromwebp($img_name);
+
+        $old_x = imageSX($src_img);
+        $old_y = imageSY($src_img);
+
+        $ratio1 = $old_x / $new_w;
+        $ratio2 = $old_y / $new_h;
+        if ($ratio1 > $ratio2) {
+            $thumb_w = $new_w;
+            $thumb_h = $old_y / $ratio1;
+        } else {
+            $thumb_h = $new_h;
+            $thumb_w = $old_x / $ratio2;
+        }
+
+        $dst_img = ImageCreateTrueColor($thumb_w, $thumb_h);
+        imagecolortransparent($dst_img, imagecolorallocatealpha($dst_img, 0, 0, 0, 127));
+        imagealphablending($dst_img, false);
+        imagesavealpha($dst_img, true);
+        imagecopyresampled($dst_img, $src_img, 0, 0, 0, 0, $thumb_w, $thumb_h, $old_x, $old_y);
+
+        imagepng($dst_img, $filename);
+
+        imagedestroy($dst_img);
+        imagedestroy($src_img);
+    }
+
+    function convertImageToWebP($source, $destination, $extension , $quality=90) {
+    	if ($extension == 'jpeg' || $extension == 'jpg') 
+    		$image = imagecreatefromjpeg($source);
+    	elseif ($extension == 'gif') 
+    		$image = imagecreatefromgif($source);
+    	elseif ($extension == 'png') 
+    		$image = imagecreatefrompng($source);
+            imagepalettetotruecolor($image);
+            imagealphablending($image, true);
+            imagesavealpha($image, true);
+    	return imagewebp($image, $destination, $quality);    	
+    }
     
     function getExtension($str)
     {

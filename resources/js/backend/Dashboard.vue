@@ -4,10 +4,10 @@
       <!-- Card stats -->
       <b-row>
         <b-col>
-          <router-link to="/backend/admin/slider">
-            <button type="button" title="Slider Management" data-clipboard-text="air-baloon" class="bg-gradient-secondary btn-icon-clipboard">
+          <router-link to="/backend/admin/featured">
+            <button type="button" title="Featured Management" data-clipboard-text="air-baloon" class="bg-gradient-secondary btn-icon-clipboard">
               <div>
-                <span class="d-none d-md-block"><i class="fas fa-sliders-h"></i><span>Slider</span></span>
+                <span class="d-none d-md-block"><i class="fas fa-sliders-h"></i><span>Featured Products</span></span>
                 <span class="d-md-none"><i class="fas fa-sliders-h"></i></span>
               </div>
             </button>

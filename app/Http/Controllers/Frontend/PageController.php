@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Slider;
+use App\Models\Featured;
 use App\Models\Blog;
 use App\Models\Product;
 use App\Models\Electronics;
@@ -29,6 +30,7 @@ class PageController extends Controller
     {
         
         $sliders = Slider::orderBy("order_item")->where('display','=',1)->get();
+        $body_featured = Featured::orderBy("order_item")->where('display','=',1)->get();
         $blogs = Blog::with('getBrandRelation')->where('display','=',1)->orderBy("order_item")->limit(1)->get();
         $featured = Product::with('getStorageRelation')->with('getColorRelation')->with('getImageRelation')->with('getDetailRelation')->orderBy("order_item")->where('display','=',1)->where('featured','=',1)->limit(10)->get();
 
@@ -39,6 +41,7 @@ class PageController extends Controller
         return view('frontend.index' , 
         [
             'sliders' => $sliders,
+            'body_featured' => $body_featured,
             'blogs' => $blogs,
             'featured' => $featured,
             'smart_phones' => $smart_phones,

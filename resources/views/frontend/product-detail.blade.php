@@ -17,19 +17,20 @@
         <meta name='language' content='ES'>
         <meta name='robots' content='index,follow'>
         <meta name='category' content='{{$product->meta_categories}}'>
+        {{-- social media --}}
         <meta property="fb:app_id" content="2802624920003403">
-        <meta property="og:title" content="{{$product->title}}"/>
+        <meta property="og:title" content="{{$product->title}}, {{$brand_title->title}}, {{$electronics_title->title}}"/>
         @foreach ($product->getImageRelation as $product_image)
             @if($product_image->primary == 1)
                 @php $og_image = $product_image->image  @endphp
-                <meta property="og:image"
-            content="https://ozeroneshop.com/img/product/{{ $product->slug }}/{{ $og_image }}"/>
+                <meta property="og:image" content="https://ozeroneshop.com/img/product/{{ $product->slug }}/{{ $og_image }}"/>
             @endif
         @endforeach
         <meta name="og:type" content="product" />
         <meta property="og:url" content="https://www.ozeroneshop.com/product-detail/{{ $product->slug }}" />
-        <meta property="og:description"
-            content="{{strip_tags($product->excerpt)}}"/>
+        <meta property="og:description" content="{{strip_tags($product->excerpt)}}"/>
+        <meta property="og:type" content="website" />
+        
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:image:alt" content="https://ozeroneshop.com/img/product/{{ $product->slug }}/{{ $og_image }}">
         <meta name="twitter:description" content="{{strip_tags($product->excerpt)}}">
@@ -254,8 +255,16 @@
                                 </div>
                                 <div class="text-right social-icon-style-02 w-50">
                                     <ul class="extra-small-icon">
-                                        <li><a class="text-extra-dark-gray facebook" href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a class="text-extra-dark-gray twitter" href="http://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                                        {{-- <li><div class="fb-share-button" data-href="https://ozeroneshop.com/product-detail/mi-smart-compact-projector" data-layout="button" data-size="small">
+                                            <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fozeroneshop.com%2Fproduct-detail%2F{{$product->slug}}&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+                                                <i class="fab fa-facebook-f"></i>
+                                            </a>
+                                        </div></li> --}}
+                                        <li><a class="text-extra-dark-gray facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fozeroneshop.com%2Fproduct-detail%2F{{$product->slug}}&amp;src=sdkpreparse" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                                        <li>
+                                            {{-- <a class="twitter-share-button"href="https://twitter.com/intent/tweet">Tweet</a> --}}
+                                            <a class="text-extra-dark-gray twitter" href="https://twitter.com/intent/tweet?text={{$product->title}}, {{$brand_title->title}}, {{$electronics_title->title}}: https://ozeroneshop.com/product-detail/mi-smart-compact-projector" target="_blank"><i class="fab fa-twitter"></i></a>
+                                        </li>
                                         <li><a class="text-extra-dark-gray linkedin" href="http://www.linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
                                         <li><a class="text-extra-dark-gray flickr" href="https://www.pinterest.com/" target="_blank"><i class="fab fa-pinterest-p"></i></a></li>
                                     </ul>
@@ -274,7 +283,7 @@
                     <div class="col-12 col-md-10"> 
                         <div class="row" id="overview">
                             <div class="col-12 margin-1-rem-tb paragraph-no-margin wow animate__fadeIn">
-                                <h6 class="alt-font text-extra-dark-gray font-weight-500 margin-20px-bottom">Overview</h6>
+                                <h6 class="alt-font text-extra-dark-gray font-weight-500 margin-10px-bottom">Overview</h6>
                                 <!-- <p>{!! $product->excerpt !!}</p> -->
                             </div>
                             @if (count($product->getDetailRelation) >= 1)
@@ -289,9 +298,15 @@
                         </div>
                         <div class="row" id="specs">
                             <div class="col-12 margin-1-rem-tb paragraph-no-margin wow animate__fadeIn">
-                                <h6 class="alt-font text-extra-dark-gray font-weight-500 margin-20px-bottom">Specs</h6>
+                                <h6 class="alt-font text-extra-dark-gray font-weight-500 margin-10px-bottom">Specifications</h6>
                                 <p>{!! $product->specs !!}</p>
                             </div>                            
+                        </div>
+                        <div class="row" id="reviews">
+                            <div class="col-12 margin-1-rem-tb paragraph-no-margin wow animate__fadeIn">
+                                <h6 class="alt-font text-extra-dark-gray font-weight-500 margin-10px-bottom">Reviews</h6>
+                                <div class="fb-comments" data-href="https://ozeroneshop.com/product-detail/{{$product->slug}}" data-width="100%" data-numposts="5"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -374,6 +389,24 @@
         <script type="text/javascript" src="{{asset('desktop/js/theme-vendors.min.js')}}"></script>
         <script type="text/javascript" src="/js/sweetalert.min.js"></script>
         <script type="text/javascript" src="{{asset('desktop/js/main.js')}}"></script>
+        <div id="fb-root"></div>
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v10.0&appId=1157233268052194&autoLogAppEvents=1" nonce="eCWGXMx6"></script>
+        <script>window.twttr = (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0],
+              t = window.twttr || {};
+            if (d.getElementById(id)) return t;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://platform.twitter.com/widgets.js";
+            fjs.parentNode.insertBefore(js, fjs);
+          
+            t._e = [];
+            t.ready = function(f) {
+              t._e.push(f);
+            };
+          
+            return t;
+          }(document, "script", "twitter-wjs"));</script>
         <script>
             $(function () {
                 if($( "input[type=radio][name=storage]:checked" ).data("price")){
