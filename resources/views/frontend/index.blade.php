@@ -230,7 +230,7 @@
                                     <div class="blog-text d-inline-block w-100">
                                         <div class="content padding-2-half-rem-bottom lg-padding-2-half-rem-bottom xs-padding-20px-lr position-relative mx-auto w-90 lg-w-100">
                                             <span class="tp-caption tp-resizeme alt-font text-extra-dark-gray font-weight-500">{{$body_feature->title}}</span>
-                                            <h6 class="alt-font font-weight-500"><a href="blog-post-layout-01.html" class="text-extra-dark-gray text-fast-blue-hover" style='color:{{$body_feature->sub_title_color}};'>
+                                            <h6 class="alt-font font-weight-700"><a href="blog-post-layout-01.html" class="text-extra-dark-gray text-fast-blue-hover" style='color:{{$body_feature->sub_title_color}};'>
                                                 @php echo wordwrap($body_feature->sub_title,33,"<br><span style='color:#e83a4f;'>\n"); @endphp 
                                             </a></h6>
                                             <p>{!! substr(strip_tags($body_feature->excerpt),0,180) !!}</p>
