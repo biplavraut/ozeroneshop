@@ -215,11 +215,11 @@
                 </div>
             </div>
         </section>
-        <section class="pt-5 padding-five-lr lg-no-padding-lr">
+        <section class="p-0 pt-3 padding-five-lr lg-no-padding-lr">
             <div class="container-fluid">
                 <div class="row justify-content-center">
                     <div class="col-12 col-xl-12 col-lg-12 col-sm-10 blog-content lg-no-padding-lr">
-                        <ul class="blog-simple blog-wrapper grid grid-loading grid-3col xl-grid-2col lg-grid-2col md-grid-1col sm-grid-1col xs-grid-1col gutter-double-extra-large">
+                        <ul class="blog-simple blog-wrapper grid grid-3col xl-grid-3col lg-grid-3col md-grid-1col sm-grid-1col xs-grid-1col gutter-double-extra-large">
                             <li class="grid-sizer"></li>
                             <!-- start blog item -->
                             @foreach($body_featured as $key=>$body_feature)
