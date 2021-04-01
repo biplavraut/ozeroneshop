@@ -24277,3 +24277,28 @@ only screen and (min-resolution: 1.5dppx) {
     animation: cartnr 1.5s cubic-bezier(0.39, 0.01, 0.17, 1);
     animation-iteration-count: 1;
 }
+
+.bottom-navigation {
+    display: none;
+}
+
+.col-sm-6 {
+    width: 50% !important;
+}
+
+.slider-thumbs__icon img {
+    display: block;
+    width: 122px;
+    margin: 10px auto;
+    padding: 20px;
+    /* background: #f1f8fc;  */
+    border-radius: 15px;
+}
+
+@media (max-width: 778px) {
+    .slider-thumbs__icon img {
+        width: 92px;
+        margin: 5px auto;
+        padding: 20px;
+    }
+}

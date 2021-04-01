@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <!-- start footer column -->
-            <div class="col-12 col-md-3 col-sm-6 sm-margin-40px-bottom xs-margin-25px-bottom">
+            <div class="col-md-3 col-sm-6 sm-margin-40px-bottom xs-margin-25px-bottom">
                 <span class="alt-font font-weight-500 d-block text-black text-uppercase margin-15px-bottom xs-margin-10px-bottom">Company</span>
                 <ul>
                     <li><a href="/about">About company</a></li>
@@ -16,7 +16,7 @@
             </div>
             <!-- end footer column -->
             <!-- start footer column -->
-            <div class="col-12 col-md-3 col-sm-6 sm-margin-40px-bottom xs-margin-25px-bottom">
+            <div class="col-md-3 col-sm-6 sm-margin-40px-bottom xs-margin-25px-bottom">
                 <span class="alt-font font-weight-500 d-block text-black text-uppercase margin-15px-bottom xs-margin-10px-bottom">Customer</span>
                 <ul>                           
                     <li><a href="/support">Client support</a></li>
@@ -27,7 +27,7 @@
             </div>
             <!-- end footer column -->
             <!-- start footer column -->
-            <div class="col-12 col-md-3 col-sm-6 xs-margin-25px-bottom">
+            <div class="col-md-3 col-sm-6 xs-margin-25px-bottom">
                 <span class="alt-font font-weight-500 d-block text-black text-uppercase margin-15px-bottom xs-margin-10px-bottom">Brands</span>
                 <ul>  
                     @foreach($brands as $brand)
@@ -39,7 +39,7 @@
             </div>
             <!-- end footer column -->
             <!-- start footer column -->
-            <div class="col-12 col-md-3 col-sm-6">
+            <div class="col-md-3 col-sm-6">
                 <span class="alt-font font-weight-500 d-block text-black text-uppercase margin-15px-bottom xs-margin-10px-bottom">Categories</span>
                 <ul>
                     @foreach($elect_categories as $elect_category)

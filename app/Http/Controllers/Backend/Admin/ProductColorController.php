@@ -47,6 +47,11 @@ class ProductColorController extends Controller
                 $imageName = $request->content_slug;
                 $image_name = $imageName.'_'.$color.'.'.$extension;
                 \Image::make($request->image)->save($path.'/'.$image_name);
+                if($extension != 'webp'){
+                    convertImageToWebP($path."/". $image_name, $path."/" . $imageName.'_'.$color.'.webp', $extension);
+                    unlink($path."/". $image_name);
+                    $image_name = $imageName.'_'.$color.'.webp';
+                } 
                 resize_crop_image(300, 300, $path."/". $image_name, $path."/thumbs/" . $image_name, $extension);                
             }else{
                 $image_name = "no-image.png";

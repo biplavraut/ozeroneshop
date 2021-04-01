@@ -54,23 +54,6 @@
         src="https://www.facebook.com/tr?id=177597510622085&ev=PageView&noscript=1"
         /></noscript>
         <!-- End Facebook Pixel Code -->
-            <style>
-                .slider-thumbs__icon img {
-                    display: block;
-                    width: 122px;
-                    margin: 10px auto;
-                    padding: 20px;
-                    /* background: #f1f8fc;  */
-                    border-radius: 15px;
-                }
-                @media (max-width: 778px) {
-                    .slider-thumbs__icon img {
-                        width: 92px;
-                        margin: 5px auto;
-                        padding: 20px;
-                    }
-                }
-            </style>
     </head>
     <body data-mobile-nav-style="classic">
         @include('frontend.includes.header')
@@ -186,8 +169,9 @@
                                         <a class="slider-thumbs__icon" href="/products/{{$elect_category->slug}} ">
                                             <img class="margin-15px-bottom" src="{{asset('img/electronics/'. $elect_category->image .'')}}" alt="{{$elect_category->title}}"/>
                                         </a>
-                                            <span class="text-extra-medium font-weight-500 text-extra-dark-gray d-block mx-auto xs-w-100">
-                                        <a href="/products/{{$elect_category->slug}}">{{$elect_category->title}}</a></span>
+                                        <span class="text-extra-medium font-weight-500 text-extra-dark-gray d-block mx-auto xs-w-100">
+                                            <a href="/products/{{$elect_category->slug}}">{{$elect_category->title}}</a>
+                                        </span>
                                     </div>
                                 </div>
                                 @endif
@@ -226,11 +210,11 @@
                             @if ($key < 3)
                             <li class="grid-item wow animate__fadeIn">
                                 <div class="col-12 bg-light-gray blog-post-content overflow-hidden text-center lg-no-padding-lr wow animate__fadeIn">
-                                    <a href="#"><img src="/img/featured/thumbs/{{$body_feature->image}}" alt=""/></a>
+                                    <a href="{{$body_feature->link}}"><img src="/img/featured/thumbs/{{$body_feature->image}}" alt=""/></a>
                                     <div class="blog-text d-inline-block w-100">
                                         <div class="content padding-2-half-rem-bottom lg-padding-2-half-rem-bottom xs-padding-20px-lr position-relative mx-auto w-90 lg-w-100">
                                             <span class="tp-caption tp-resizeme alt-font text-extra-dark-gray font-weight-500">{{$body_feature->title}}</span>
-                                            <h6 class="alt-font font-weight-700"><a href="blog-post-layout-01.html" class="text-extra-dark-gray text-fast-blue-hover" style='color:{{$body_feature->sub_title_color}};'>
+                                            <h6 class="alt-font font-weight-700"><a href="{{$body_feature->link}}" class="text-extra-dark-gray text-fast-blue-hover" style='color:{{$body_feature->sub_title_color}};'>
                                                 @php echo wordwrap($body_feature->sub_title,33,"<br><span style='color:#e83a4f;'>\n"); @endphp 
                                             </a></h6>
                                             <p>{!! substr(strip_tags($body_feature->excerpt),0,180) !!}</p>
@@ -260,7 +244,7 @@
                 </div> --}}
                 <div class="row">
                     <div class="col-12 px-lg-0 wow animate__fadeIn" data-wow-delay="0.2s">
-                        <div class="swiper-container padding-15px-tb portfolio-classic position-relative" data-slider-options='{"loop": true, "slidesPerView": 1, "spaceBetween": 30,"scrollbar": {"el": ".swiper-scrollbar","hide": "false"}, "navigation": { "nextEl": ".swiper-button-next-nav", "prevEl": ".swiper-button-previous-nav" }, "autoplay": { "delay": 5000, "disableOnInteraction": false }, "keyboard": { "enabled": true, "onlyInViewport": true }, "breakpoints": { "1200": { "slidesPerView": 4 }, "992": { "slidesPerView": 3 }, "768": { "slidesPerView": 2 } }, "effect": "slide" }'>
+                        <div class="swiper-container padding-15px-tb portfolio-classic position-relative" data-slider-options='{"loop": true, "slidesPerView": 1.5, "spaceBetween": 30,"scrollbar": {"el": ".swiper-scrollbar","hide": "false"}, "navigation": { "nextEl": ".swiper-button-next-nav", "prevEl": ".swiper-button-previous-nav" }, "autoplay": { "delay": 5000, "disableOnInteraction": false }, "keyboard": { "enabled": true, "onlyInViewport": true }, "breakpoints": { "1200": { "slidesPerView": 4 }, "992": { "slidesPerView": 3 }, "768": { "slidesPerView": 2 } }, "effect": "slide" }'>
                             <div class="swiper-wrapper">                                
                                 <!-- start slide item -->
                                 @foreach($featured as $feature)
@@ -292,7 +276,7 @@
                                             $price = $feature->price;
                                         }
                                         @endphp
-                                        <div class="portfolio-caption bg-light-blue padding-30px-tb sm-padding-15px-tb">
+                                        <div class="portfolio-caption bg-light-blue padding-15px-tb sm-padding-5px-tb">
                                             <a href="/product-detail/{{$feature->slug}}" class="alt-font text-black font-weight-500 text-uppercase d-inline-block margin-5px-bottom" title="{{ $feature->title }}">{{ substr($feature->title, 0, 30)}}</a>
                                             <span class="d-block text-medium-gray text-small line-height-18px text-uppercase">@if ($feature->discount > 0)NPR <del>{{number_format($marked_price)}}</del> {{ number_format($price)}} @else NPR {{number_format($price)}} @endif</span>
                                         </div>
@@ -450,7 +434,7 @@
                                             
                                         </div>
                                     </div>
-                                    <div class="product-footer bg-light-blue text-center padding-25px-tb xs-padding-10px-tb">
+                                    <div class="product-footer bg-light-blue text-center padding-15px-tb sm-padding-5px-tb">
                                         <a href="/product-detail/{{$all_product->slug}}" class="text-extra-dark-gray font-weight-500 d-inline-block" title="{{ $all_product->title }}">{{ substr($all_product->title, 0, 30)}}</a>
                                         <div class="product-price text-medium">@if ($all_product->discount > 0)NPR <del>{{number_format($marked_price)}} </del> {{ number_format($price)}} @else NPR {{number_format($price)}} @endif</div>
                                     </div>
@@ -476,7 +460,7 @@
                 <div class="row">
                     <div class="col-12">
                         <!-- start client slider -->
-                        <div class="swiper-container text-center" data-slider-options='{ "slidesPerView": 1, "loop": true, "navigation": { "nextEl": ".swiper-button-next-nav", "prevEl": ".swiper-button-previous-nav" }, "autoplay": { "delay": 3000, "disableOnInteraction": false }, "keyboard": { "enabled": true, "onlyInViewport": true }, "breakpoints": { "1200": { "slidesPerView": 5 }, "992": { "slidesPerView": 3 }, "768": { "slidesPerView": 3 } } }'>
+                        <div class="swiper-container text-center" data-slider-options='{ "slidesPerView": 2.5, "loop": true, "navigation": { "nextEl": ".swiper-button-next-nav", "prevEl": ".swiper-button-previous-nav" }, "autoplay": { "delay": 3000, "disableOnInteraction": false }, "keyboard": { "enabled": true, "onlyInViewport": true }, "breakpoints": { "1200": { "slidesPerView": 5 }, "992": { "slidesPerView": 3 }, "768": { "slidesPerView": 3 } } }'>
                             <div class="swiper-wrapper">
                             @foreach($brands as $brand)
                                 @if($brand->parent_id == 0)

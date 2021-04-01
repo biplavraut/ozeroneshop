@@ -53,6 +53,11 @@
           
             gtag('config', 'G-ZYKVHRYQWH');
           </script>
+          <style>
+              .bottom-navigation{
+                display: none !important;
+              }
+          </style>
     </head>
     <body data-mobile-nav-style="classic" data-spy="scroll" data-target="#myScrollspy" data-offset="150">
         @include('frontend.includes.header')
@@ -66,20 +71,14 @@
                         <h1 class="alt-font text-black font-weight-500 no-margin-bottom text-center text-lg-left">{{$product->title}}</h1>
                         <!-- end page title -->
                     </div>
-                    <div class="col-12 col-xl-6 col-lg-6 justify-content-center justify-content-lg-end text-small alt-font md-margin-10px-top tab-style-05">
-                        <!-- start breadcrumb -->
-                        <!-- <ul class="xs-text-center">
-                            <li><a href="#description" class="text-white-hover">Overview</a></li>
-                            <li><a href="#specs" class="text-white-hover">Specs</a></li>
-                            <li><b>NPR 1,99,999</b></li>
-                            <li><a href="index.html" class="btn btn-small btn-fast-blue btn-round-edge">Buy Now</a></li>
-                        </ul> -->
+                    <div class="col-12 col-xl-6 col-lg-6 hidden-sm-down justify-content-center justify-content-lg-end text-small alt-font md-margin-10px-top tab-style-05">
+                        
                         <div class="tab-box">
                             <!-- start tab navigation -->
                             <ul class="nav nav-tabs align-items-center justify-content-center font-weight-500 text-uppercase" id="myScrollspy">
                                 <li class="nav-item alt-font"><a class="nav-link" href="#overview">Overview</a></li>
                                 <li class="nav-item alt-font"><a class="nav-link" href="#specs">Specs</a></li>
-                                <!-- <li class="nav-item alt-font"><a class="nav-link" href="#tab-nine3" data-toggle="tab">Additional infrmation</a></li> -->
+                                <li class="nav-item alt-font"><a class="nav-link" href="#reviews">Reviews</a></li>
                             </ul>
                             <!-- end tab navigation -->
                         </div>
@@ -93,7 +92,7 @@
                             $cart_price = $product->price;
                         }
                     @endphp
-                    <div class="col-12 col-xl-4 col-lg-4 text-right">
+                    <div class="col-12 col-xl-4 col-lg-4 text-right fixed-bottom-bar">
                         <span>
                             <b class="alt-font text-black font-weight-500 no-margin-bottom text-center text-lg-left">
                                 NPR @if ($product->discount > 0)<del class="text-red" id="marked_price_display">{{number_format($marked_price)}} </del> <b class="text-large" id="price_display">{{ number_format($cart_price) }}</b> @else<b class="text-large" id="price_display">{{ number_format($cart_price) }}</b> @endif
