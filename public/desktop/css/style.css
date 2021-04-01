@@ -10084,8 +10084,8 @@ input.btn:focus {
 }
 
 .icon-country {
-    width: 16px;
-    height: 16px;
+    width: 25px;
+    height: 25px;
     display: inline-block;
     margin: 0 10px 0 5px;
 }
@@ -13266,7 +13266,7 @@ header .header-cart-icon .cart-count {
 
 .dropdown-menu.megamenu-content li a {
     text-align: left;
-    font-size: 13px;
+    font-size: 15px;
     color: #828282;
     padding: 0;
     margin: 0 0 5px 0;

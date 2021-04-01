@@ -454,11 +454,10 @@
         </section>
         
         <!-- start section -->
-        <section class="bg-light-gray padding-100px-tb md-padding-75px-tb sm-padding-40px-tb wow animate__fadeIn">
+        {{-- <section class="bg-light-gray padding-100px-tb md-padding-75px-tb sm-padding-40px-tb wow animate__fadeIn">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <!-- start client slider -->
                         <div class="swiper-container text-center" data-slider-options='{ "slidesPerView": 2.5, "loop": true, "navigation": { "nextEl": ".swiper-button-next-nav", "prevEl": ".swiper-button-previous-nav" }, "autoplay": { "delay": 3000, "disableOnInteraction": false }, "keyboard": { "enabled": true, "onlyInViewport": true }, "breakpoints": { "1200": { "slidesPerView": 5 }, "992": { "slidesPerView": 3 }, "768": { "slidesPerView": 3 } } }'>
                             <div class="swiper-wrapper">
                             @foreach($brands as $brand)
@@ -469,15 +468,12 @@
                                 
                             </div>
                         </div>
-                        <!-- start slider navigation -->
                         <div class="swiper-button-next-nav swiper-button-next  rounded-circle light slider-navigation-style-07 box-shadow-double-large"><i class="feather icon-feather-arrow-right"></i></div>
                         <div class="swiper-button-previous-nav swiper-button-prev rounded-circle light slider-navigation-style-07 box-shadow-double-large"><i class="feather icon-feather-arrow-left"></i></div>
-                        <!-- end slider navigation -->
-                        <!-- end client slider -->
                     </div>
                 </div>
             </div>
-        </section>
+        </section> --}}
         <!-- end section -->
             @include('frontend.includes.bottombanner')
         </div>

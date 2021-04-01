@@ -26,6 +26,21 @@
                             <a href="/products/all" class="nav-link">Shop</a>
                         </li>
                         <li class="nav-item dropdown megamenu">
+                            <a href="javascript:void(0);" class="nav-link">Brands</a>
+                            <i class="fa fa-angle-down dropdown-toggle" data-toggle="dropdown" aria-hidden="true"></i>
+                            <div class="menu-back-div dropdown-menu megamenu-content" role="menu">
+                                <div class="d-lg-flex justify-content-center">
+                                    <ul class="d-lg-inline-block">
+                                    @foreach($brands as $brand)
+                                        @if($brand->parent_id == 0)
+                                        <li><a href="/products/{{$brand->slug}} "> <i><img class="icon-country" src="{{asset('img/brand/'. $brand->image .'')}}" alt="{{$brand->title}}" title="{{$brand->title}}"/></i> {{$brand->title}}</a></li>
+                                        @endif
+                                    @endforeach                                        
+                                    </ul>                                    
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown megamenu">
                             <a href="javascript:void(0);" class="nav-link">Electronics</a>
                             <i class="fa fa-angle-down dropdown-toggle" data-toggle="dropdown" aria-hidden="true"></i>
                             <div class="menu-back-div dropdown-menu megamenu-content" role="menu">
