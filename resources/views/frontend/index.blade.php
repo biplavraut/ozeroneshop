@@ -276,7 +276,7 @@
                                             <div class="blog-details-overlap">
                                                 <span class="tp-caption tp-resizeme alt-font text-extra-dark-gray font-weight-500">{{$body_feature->title}}</span>
                                             </div>
-                                            <h6 class="alt-font font-weight-700 no-margin-bottom"><a href="{{$body_feature->link}}" class="text-extra-dark-gray text-fast-blue-hover" style='color:{{$body_feature->sub_title_color}}; line-height:2'>
+                                            <h6 class="alt-font font-weight-700 no-margin-bottom"><a href="{{$body_feature->link}}" class="text-extra-dark-gray text-fast-blue-hover" style='color:{{$body_feature->sub_title_color}}; line-height:2;'>
                                                 @php echo wordwrap($body_feature->sub_title,33,"<br><span style='color:#e83a4f;'>\n"); @endphp 
                                             </a></h6>
                                             {{-- <p>{!! substr(strip_tags($body_feature->excerpt),0,180) !!}</p> --}}
@@ -364,7 +364,7 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-12 col-xl-12 col-lg-12 col-sm-10 blog-content no-padding-lr">
-                        <ul class="blog-simple blog-wrapper grid grid-2col xl-grid-2col lg-grid-2col md-grid-1col sm-grid-1col xs-grid-1col gutter-double-extra-large">
+                        <ul class="blog-simple blog-wrapper grid grid-2col xl-grid-2col lg-grid-2col md-grid-1col sm-grid-1col xs-grid-1col gutter-large">
                             <li class="grid-sizer"></li>
                             <!-- start blog item -->
                             @foreach($body_featured as $key=>$body_feature)
@@ -374,8 +374,10 @@
                                     <a href="{{$body_feature->link}}"><img src="/img/featured/thumbs/{{$body_feature->image}}" alt=""/></a>
                                     <div class="blog-text d-inline-block w-100">
                                         <div class="content padding-2-half-rem-bottom lg-padding-2-half-rem-bottom xs-padding-20px-lr position-relative mx-auto w-90 lg-w-100">
-                                            <span class="tp-caption tp-resizeme alt-font text-extra-dark-gray font-weight-500">{{$body_feature->title}}</span>
-                                            <h6 class="alt-font font-weight-700"><a href="{{$body_feature->link}}" class="text-extra-dark-gray text-fast-blue-hover" style='color:{{$body_feature->sub_title_color}};'>
+                                            <div class="blog-details-overlap">
+                                                <span class="tp-caption tp-resizeme alt-font text-extra-dark-gray font-weight-500">{{$body_feature->title}}</span>
+                                            </div>
+                                            <h6 class="alt-font font-weight-700 no-margin-bottom"><a href="{{$body_feature->link}}" class="text-extra-dark-gray text-fast-blue-hover" style='color:{{$body_feature->sub_title_color}}; line-height:2;'>
                                                 @php echo wordwrap($body_feature->sub_title,33,"<br><span style='color:#e83a4f;'>\n"); @endphp 
                                             </a></h6>
                                             {{-- <p>{!! substr(strip_tags($body_feature->excerpt),0,90) !!}</p> --}}
