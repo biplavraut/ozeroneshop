@@ -52,7 +52,7 @@ class ProductImageController extends Controller
                 if($extension != 'webp'){
                     convertImageToWebP($path."/". $image_name, $path."/" . $imageName.'.webp', $extension);
                     unlink($path."/". $image_name);
-                    $image_name = $imageName.'.webp';
+                    $image_name = $imageName.'_'.$unique.'.webp';
                 } 
                 resize_crop_image(218, 218, $path."/". $image_name, $path."/thumbs/" . $image_name, $extension);                
             }else{
