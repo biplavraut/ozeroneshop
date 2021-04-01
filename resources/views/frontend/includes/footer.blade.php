@@ -73,11 +73,11 @@
             <div class="col-12 col-lg-8 text-center">
                 <div class="social-icon-style-10 ">
                     <ul class="large-icon">
-                        <li><a class="facebook text-fast-black" href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i><span></span></a></li>
+                        <li><a class="facebook text-fast-black" href="https://www.facebook.com/ozerone.shop" target="_blank"><i class="fab fa-facebook-f"></i><span></span></a></li>
                         <li><a class="youtube text-fast-black" href="http://www.youtube.com" target="_blank"><i class="fab fa-youtube"></i><span></span></a></li>
-                        <li><a class="linkedin text-fast-black" href="http://www.linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i><span></span></a></li>
-                        <li><a class="instagram text-fast-black" href="http://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i><span></span></a></li>
-                        <li><a class="twitter text-fast-black" href="http://www.twitter.com/" target="_blank"><i class="fab fa-twitter"></i><span></span></a></li>
+                        <li><a class="linkedin text-fast-black" href="https://www.linkedin.com/company/ozerone/" target="_blank"><i class="fab fa-linkedin-in"></i><span></span></a></li>
+                        <li><a class="instagram text-fast-black" href="https://www.instagram.com/ozerone.shop/" target="_blank"><i class="fab fa-instagram"></i><span></span></a></li>
+                        <li><a class="twitter text-fast-black" href="https://twitter.com/ozeroneshop" target="_blank"><i class="fab fa-twitter"></i><span></span></a></li>
                     </ul>
                 </div>
                 <p class="alt-font text-small text-slate-blue-light text-uppercase m-0">&copy; 2021 Ozerone Shop</p>

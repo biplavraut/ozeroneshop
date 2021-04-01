@@ -156,7 +156,69 @@
         <!-- end revolution slider -->
         
         <!-- start section -->
-        <section class="padding-one-all overlap-height">
+        <section class="padding-three-tb">
+            <div class="container">
+                {{-- <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-lg-6 text-center margin-2-half-rem-bottom sm-margin-1-half-rem-bottom">
+                            <h5 class="alt-font font-weight-600 text-extra-dark-gray margin-5px-bottom">Featured Products</h5>
+                            <p>Explore our collection of electronics</p>
+                        </div>
+                    </div>
+                </div> --}}
+                <div class="row">
+                    <div class="col-12 px-lg-0 wow animate__fadeIn" data-wow-delay="0.2s">
+                        <div class="swiper-container padding-15px-tb portfolio-classic position-relative" data-slider-options='{"loop": true, "slidesPerView": 1.5, "spaceBetween": 10,"scrollbar": {"el": ".swiper-scrollbar","hide": "false"}, "navigation": { "nextEl": ".swiper-button-next-nav", "prevEl": ".swiper-button-previous-nav" }, "autoplay": { "delay": 5000, "disableOnInteraction": false }, "keyboard": { "enabled": true, "onlyInViewport": true }, "breakpoints": { "1200": { "slidesPerView": 5,"spaceBetween": 20 }, "992": { "slidesPerView": 3 }, "768": { "slidesPerView": 2 } }, "effect": "slide" }'>
+                            <div class="swiper-wrapper">                                
+                                <!-- start slide item -->
+                                @foreach($featured as $feature)
+                                @if(count($feature->getImageRelation) > 0)
+                                <div class="swiper-slide overflow-hidden">
+                                    <div class="portfolio-box border-radius-6px text-center">
+                                        <div class="portfolio-image bg-transparent">
+                                            @foreach($feature->getImageRelation as $display_image)
+                                                @if($display_image->primary == 1)
+                                                @php $image = $display_image->image  @endphp
+                                                <a href="/product-detail/{{$feature->slug}}">
+                                                    <img class="lazyload" src="/img/thumbnail.jpg" data-src="img/product/{{ $feature->slug }}/{{ $image }}"/>
+                                                </a>
+                                                @endif
+                                            @endforeach
+                                            
+                                            <div class="portfolio-hover align-items-center justify-content-center d-flex">
+                                                <div class="portfolio-icon">
+                                                    <a href="/product-detail/{{$feature->slug}}" class="border-all border-width-2px rounded-circle border-color-white bg-white"><i class="ti-arrow-right text-extra-dark-gray"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @php
+                                        if ($feature->discount > 0){
+                                            $marked_price = $feature->price;
+                                            $discount = $feature->discount;
+                                            $price = round($marked_price - ($discount/100*$marked_price));
+                                        }else{
+                                            $price = $feature->price;
+                                        }
+                                        @endphp
+                                        <div class="portfolio-caption bg-light-blue padding-10px-all sm-padding-5px-all">
+                                            <a href="/product-detail/{{$feature->slug}}" class="alt-font text-small text-black font-weight-500 text-uppercase d-inline-block margin-5px-bottom" title="{{ $feature->title }}">{{ substr($feature->title, 0, 30)}}</a>
+                                            <span class="d-block text-dark-gray text-small line-height-18px text-uppercase">@if ($feature->discount > 0)NPR <del>{{number_format($marked_price)}}</del> {{ number_format($price)}} @else NPR {{number_format($price)}} @endif</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endif
+                                @endforeach
+                                <!-- end slide item -->                                                             
+                            </div>
+                            <div class="swiper-scrollbar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- end section -->
+        <!-- start section -->
+        {{-- <section class="padding-one-all overlap-height">
             <div class="container overlap-gap-section">
                 <div class="row justify-content-center xs-no-margin-lr">
                     <div class="swiper-container swiper-auto-slide padding-15px-tb black-move" data-slider-options='{"slidesPerView": "auto", "scrollbar": {"el": ".swiper-scrollbar"} ,"navigation": { "nextEl": ".swiper-button-next-nav", "prevEl": ".swiper-button-previous-nav" }, "autoplay": { "delay": 55000, "disableOnInteraction": false },  "keyboard": { "enabled": true, "onlyInViewport": true }, "effect": "slide" }'>
@@ -177,13 +239,11 @@
                                 @endif
                             @endforeach                            
                         </div>
-                        <!-- start slider navigation -->
                         <div class="swiper-scrollbar"></div>
-                        <!-- end slider navigation -->
                     </div>                 
                 </div>
             </div>
-        </section>
+        </section> --}}
         <!-- end section -->
         <!-- start section -->
         <section class="half-section bg-light-gray">
@@ -231,68 +291,7 @@
             </div>
         </section>
         <!-- end section -->
-        <!-- start section -->
-        <section class="padding-three-all">
-            <div class="container">
-                {{-- <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-12 col-lg-6 text-center margin-2-half-rem-bottom sm-margin-1-half-rem-bottom">
-                            <h5 class="alt-font font-weight-600 text-extra-dark-gray margin-5px-bottom">Featured Products</h5>
-                            <p>Explore our collection of electronics</p>
-                        </div>
-                    </div>
-                </div> --}}
-                <div class="row">
-                    <div class="col-12 px-lg-0 wow animate__fadeIn" data-wow-delay="0.2s">
-                        <div class="swiper-container padding-15px-tb portfolio-classic position-relative" data-slider-options='{"loop": true, "slidesPerView": 1.5, "spaceBetween": 30,"scrollbar": {"el": ".swiper-scrollbar","hide": "false"}, "navigation": { "nextEl": ".swiper-button-next-nav", "prevEl": ".swiper-button-previous-nav" }, "autoplay": { "delay": 5000, "disableOnInteraction": false }, "keyboard": { "enabled": true, "onlyInViewport": true }, "breakpoints": { "1200": { "slidesPerView": 4 }, "992": { "slidesPerView": 3 }, "768": { "slidesPerView": 2 } }, "effect": "slide" }'>
-                            <div class="swiper-wrapper">                                
-                                <!-- start slide item -->
-                                @foreach($featured as $feature)
-                                @if(count($feature->getImageRelation) > 0)
-                                <div class="swiper-slide overflow-hidden">
-                                    <div class="portfolio-box border-radius-6px text-center">
-                                        <div class="portfolio-image bg-transparent">
-                                            @foreach($feature->getImageRelation as $display_image)
-                                                @if($display_image->primary == 1)
-                                                @php $image = $display_image->image  @endphp
-                                                <a href="/product-detail/{{$feature->slug}}">
-                                                    <img class="lazyload" src="/img/thumbnail.jpg" data-src="img/product/{{ $feature->slug }}/{{ $image }}"/>
-                                                </a>
-                                                @endif
-                                            @endforeach
-                                            
-                                            <div class="portfolio-hover align-items-center justify-content-center d-flex">
-                                                <div class="portfolio-icon">
-                                                    <a href="/product-detail/{{$feature->slug}}" class="border-all border-width-2px rounded-circle border-color-white bg-white"><i class="ti-arrow-right text-extra-dark-gray"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        @php
-                                        if ($feature->discount > 0){
-                                            $marked_price = $feature->price;
-                                            $discount = $feature->discount;
-                                            $price = round($marked_price - ($discount/100*$marked_price));
-                                        }else{
-                                            $price = $feature->price;
-                                        }
-                                        @endphp
-                                        <div class="portfolio-caption bg-light-blue padding-15px-tb sm-padding-5px-tb">
-                                            <a href="/product-detail/{{$feature->slug}}" class="alt-font text-black font-weight-500 text-uppercase d-inline-block margin-5px-bottom" title="{{ $feature->title }}">{{ substr($feature->title, 0, 30)}}</a>
-                                            <span class="d-block text-medium-gray text-small line-height-18px text-uppercase">@if ($feature->discount > 0)NPR <del>{{number_format($marked_price)}}</del> {{ number_format($price)}} @else NPR {{number_format($price)}} @endif</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                @endif
-                                @endforeach
-                                <!-- end slide item -->                                                             
-                            </div>
-                            <div class="swiper-scrollbar"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- end section -->
+
         <!-- start section -->
 
         @foreach($body_featured as $key=>$body_feature)
@@ -362,7 +361,7 @@
         </section>
         
         <!-- start section -->
-        <section class="padding-three-all border-bottom border-color-extra-light-gray">
+        <section class="padding-three-tb border-bottom border-color-extra-light-gray">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-12 col-xl-4 col-lg-5 col-md-7 col-sm-9 text-center last-paragraph-no-margin margin-5-rem-bottom md-margin-3-rem-bottom wow animate__fadeIn">
@@ -434,8 +433,8 @@
                                             
                                         </div>
                                     </div>
-                                    <div class="product-footer bg-light-blue text-center padding-15px-tb sm-padding-5px-tb">
-                                        <a href="/product-detail/{{$all_product->slug}}" class="text-extra-dark-gray font-weight-500 d-inline-block" title="{{ $all_product->title }}">{{ substr($all_product->title, 0, 30)}}</a>
+                                    <div class="product-footer bg-light-blue text-center padding-15px-tb sm-padding-5px-all">
+                                        <a href="/product-detail/{{$all_product->slug}}" class="text-extra-dark-gray text-small font-weight-500 d-inline-block" title="{{ $all_product->title }}">{{ substr($all_product->title, 0, 30)}}</a>
                                         <div class="product-price text-medium">@if ($all_product->discount > 0)NPR <del>{{number_format($marked_price)}} </del> {{ number_format($price)}} @else NPR {{number_format($price)}} @endif</div>
                                     </div>
                                 </div>
@@ -502,118 +501,118 @@
         <script type='text/javascript' src="/revolution/revolution-addons/bubblemorph/js/revolution.addon.bubblemorph.min.js"></script>
         <script type="text/javascript">
         $("img.lazyload").lazyload();
-            var revapi263,
-                    tpj;
-            (function () {
-                if (!/loaded|interactive|complete/.test(document.readyState))
-                    document.addEventListener("DOMContentLoaded", onLoad);
-                else
-                    onLoad();
-                function onLoad() {
-                    if (tpj === undefined) {
-                        tpj = jQuery;
-                        if ("off" == "on")
-                            tpj.noConflict();
-                    }
-                    if (tpj("#rev_slider_34_1").revolution == undefined) {
-                        revslider_showDoubleJqueryError("#rev_slider_34_1");
-                    } else {
-                        var revOffset = tpj(window).width() <= 991 ? '73px' : '';
-                        revapi263 = tpj("#rev_slider_34_1").show().revolution({
-                            sliderType: "standard",
-                            jsFileLocation: "revolution/js/",
-                            sliderLayout: "auto",
-                            dottedOverlay: "none",
-                            delay:0,
-                            navigation: {
-                                keyboardNavigation: "on",
-                                keyboard_direction: "horizontal",
-                                mouseScrollNavigation: "off",
-                                mouseScrollReverse: "default",
-                                onHoverStop: "off",
-                                touch: {
-                                    touchenabled: "on",
-                                    touchOnDesktop: "off",
-                                    swipe_threshold: 75,
-                                    swipe_min_touches: 1,
-                                    swipe_direction: "horizontal",
-                                    drag_block_vertical: false
-                                },
-                                bullets: {
-                                    enable: false,
-                                    hide_onmobile: false,
-                                    style: "hermes",
-                                    hide_onleave: false,
-                                    direction: "horizontal",
-                                    h_align: "center",
-                                    v_align: "bottom",
-                                    h_offset: 0,
-                                    v_offset: 40,
-                                    space: 12,
-                                    tmp: ''
-                                },
-                                arrows: {
-
-                                    enable: true,
-                                    style: 'uranus',
-                                    tmp: '',
-                                    rtl: false,
-                                    hide_onleave: false,
-                                    hide_onmobile: true,
-                                    hide_under: 767,
-                                    hide_over: 9999,
-                                    hide_delay: 200,
-                                    hide_delay_mobile: 1200,
-                                    left: {
-                                        container: 'slider',
-                                        h_align: 'left',
-                                        v_align: 'center',
-                                        h_offset: 64,
-                                        v_offset: 0
-                                    },
-                                    right: {
-                                        container: 'slider',
-                                        h_align: 'right',
-                                        v_align: 'center',
-                                        h_offset: 64,
-                                        v_offset: 0
-                                    }
-
-                                }
-                            },
-                            responsiveLevels: [1240, 1025, 778, 480],
-                            visibilityLevels: [1240, 1024, 778, 480],
-                            gridwidth: [1240, 1024, 778, 480],
-                            gridheight: [600, 550, 960, 720],
-                            lazyType: "single",
-                            shadow: 0,
-                            spinner: "",
-                            stopLoop: "on",
-                            stopAfterLoops: 0,
-                            stopAtSlide: 1,
-                            shuffle: "off",
-                            autoHeight: "off",
-                            fullScreenAutoWidth: "off",
-                            fullScreenAlignForce: "off",
-                            fullScreenOffsetContainer: "",
-                            fullScreenOffset: revOffset,
-                            disableProgressBar: "on",
-                            hideThumbsOnMobile: "off",
-                            hideSliderAtLimit: 0,
-                            hideCaptionAtLimit: 0,
-                            hideAllCaptionAtLilmit: 0,
-                            debugMode: false,
-                            fallbacks: {
-                                simplifyAll: "off",
-                                nextSlideOnWindowFocus: "off",
-                                disableFocusListener: false,
-                            }
-                        });
-                    }
-                    ; /* END OF revapi call */
+        var revapi263,
+                tpj;
+        (function () {
+            if (!/loaded|interactive|complete/.test(document.readyState))
+                document.addEventListener("DOMContentLoaded", onLoad);
+            else
+                onLoad();
+            function onLoad() {
+                if (tpj === undefined) {
+                    tpj = jQuery;
+                    if ("off" == "on")
+                        tpj.noConflict();
                 }
-                ; /* END OF ON LOAD FUNCTION */
-            }());/* END OF WRAPPING FUNCTION */
+                if (tpj("#rev_slider_34_1").revolution == undefined) {
+                    revslider_showDoubleJqueryError("#rev_slider_34_1");
+                } else {
+                    var revOffset = tpj(window).width() <= 991 ? '73px' : '';
+                    revapi263 = tpj("#rev_slider_34_1").show().revolution({
+                        sliderType: "standard",
+                        jsFileLocation: "revolution/js/",
+                        sliderLayout: "auto",
+                        dottedOverlay: "none",
+                        delay:0,
+                        navigation: {
+                            keyboardNavigation: "on",
+                            keyboard_direction: "horizontal",
+                            mouseScrollNavigation: "off",
+                            mouseScrollReverse: "default",
+                            onHoverStop: "off",
+                            touch: {
+                                touchenabled: "on",
+                                touchOnDesktop: "off",
+                                swipe_threshold: 75,
+                                swipe_min_touches: 1,
+                                swipe_direction: "horizontal",
+                                drag_block_vertical: false
+                            },
+                            bullets: {
+                                enable: false,
+                                hide_onmobile: false,
+                                style: "hermes",
+                                hide_onleave: false,
+                                direction: "horizontal",
+                                h_align: "center",
+                                v_align: "bottom",
+                                h_offset: 0,
+                                v_offset: 40,
+                                space: 12,
+                                tmp: ''
+                            },
+                            arrows: {
+
+                                enable: true,
+                                style: 'uranus',
+                                tmp: '',
+                                rtl: false,
+                                hide_onleave: false,
+                                hide_onmobile: true,
+                                hide_under: 767,
+                                hide_over: 9999,
+                                hide_delay: 200,
+                                hide_delay_mobile: 1200,
+                                left: {
+                                    container: 'slider',
+                                    h_align: 'left',
+                                    v_align: 'center',
+                                    h_offset: 64,
+                                    v_offset: 0
+                                },
+                                right: {
+                                    container: 'slider',
+                                    h_align: 'right',
+                                    v_align: 'center',
+                                    h_offset: 64,
+                                    v_offset: 0
+                                }
+
+                            }
+                        },
+                        responsiveLevels: [1240, 1025, 778, 480],
+                        visibilityLevels: [1240, 1024, 778, 480],
+                        gridwidth: [1240, 1024, 778, 480],
+                        gridheight: [600, 550, 960, 720],
+                        lazyType: "single",
+                        shadow: 0,
+                        spinner: "",
+                        stopLoop: "on",
+                        stopAfterLoops: 0,
+                        stopAtSlide: 1,
+                        shuffle: "off",
+                        autoHeight: "off",
+                        fullScreenAutoWidth: "off",
+                        fullScreenAlignForce: "off",
+                        fullScreenOffsetContainer: "",
+                        fullScreenOffset: revOffset,
+                        disableProgressBar: "on",
+                        hideThumbsOnMobile: "off",
+                        hideSliderAtLimit: 0,
+                        hideCaptionAtLimit: 0,
+                        hideAllCaptionAtLilmit: 0,
+                        debugMode: false,
+                        fallbacks: {
+                            simplifyAll: "off",
+                            nextSlideOnWindowFocus: "off",
+                            disableFocusListener: false,
+                        }
+                    });
+                }
+                ; /* END OF revapi call */
+            }
+            ; /* END OF ON LOAD FUNCTION */
+        }());/* END OF WRAPPING FUNCTION */
         </script>
     </body>
 </html>

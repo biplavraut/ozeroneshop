@@ -23562,7 +23562,7 @@
     }
     .grid.gutter-medium li,
     .grid.gutter-large li {
-        padding: 7px 15px
+        /* padding: 7px 15px */
     }
     /* blog simple */
     .blog-simple .blog-post {
