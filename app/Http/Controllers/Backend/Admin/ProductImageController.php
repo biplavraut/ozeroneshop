@@ -54,7 +54,7 @@ class ProductImageController extends Controller
                     unlink($path."/". $image_name);
                     $image_name = $imageName.'.webp';
                 } 
-                resize_crop_image(300, 300, $path."/". $image_name, $path."/thumbs/" . $image_name, $extension);                
+                resize_crop_image(218, 218, $path."/". $image_name, $path."/thumbs/" . $image_name, $extension);                
             }else{
                 $image_name = "no-image.png";
             }
