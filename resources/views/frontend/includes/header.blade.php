@@ -33,7 +33,7 @@
                                     <ul class="d-lg-inline-block">
                                     @foreach($brands as $brand)
                                         @if($brand->parent_id == 0)
-                                        <li><a href="/products/{{$brand->slug}} "> <i><img class="icon-country" src="{{asset('img/brand/'. $brand->image .'')}}" alt="{{$brand->title}}" title="{{$brand->title}}"/></i> {{$brand->title}}</a></li>
+                                        <li><a href="/brand/{{$brand->slug}} "> <i><img class="icon-country" src="{{asset('img/brand/'. $brand->image .'')}}" alt="{{$brand->title}}" title="{{$brand->title}}"/></i> {{$brand->title}}</a></li>
                                         @endif
                                     @endforeach                                        
                                     </ul>                                    
