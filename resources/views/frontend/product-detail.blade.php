@@ -121,6 +121,11 @@
                                                     <a class="gallery-link" href="/img/product/{{ $product->slug }}/{{ $product_image->image }}"><img class="w-100" src="/img/product/{{ $product->slug }}/{{ $product_image->image }}" alt="{{ $product_image->image }}"></a>
                                                 </div>
                                             @endforeach
+                                            @foreach ($product->getColorRelation as $product_image)
+                                                <div class="swiper-slide">
+                                                    <a class="gallery-link" href="/img/product/{{ $product->slug }}/{{ $product_image->image }}"><img class="w-100" src="/img/product/{{ $product->slug }}/{{ $product_image->image }}" alt="{{ $product_image->image }}"></a>
+                                                </div>
+                                            @endforeach
                                         </div>
                                     </div>
                                     <div class="slider-product-next swiper-button-next text-extra-dark-gray"><i class="fa fa-chevron-right"></i></div>
@@ -130,7 +135,10 @@
                                     <div class="swiper-container product-image-thumb slider-vertical padding-15px-lr padding-45px-bottom md-no-padding left-0px">
                                         <div class="swiper-wrapper">
                                             @foreach ($product->getImageRelation as $product_image)
-                                                <div class="swiper-slide"><img class="w-100" src="/img/product/{{ $product->slug }}/{{ $product_image->image }}" alt="{{ $product_image->image }}"></div>
+                                                <div class="swiper-slide"><img class="w-80" src="/img/product/{{ $product->slug }}/{{ $product_image->image }}" alt="{{ $product_image->image }}"></div>
+                                            @endforeach
+                                            @foreach ($product->getColorRelation as $product_image)
+                                                <div class="swiper-slide"><img class="w-80" src="/img/product/{{ $product->slug }}/{{ $product_image->image }}" alt="{{ $product_image->image }}"></div>
                                             @endforeach
                                         </div>
                                     </div>
