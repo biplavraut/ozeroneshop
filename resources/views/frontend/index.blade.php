@@ -144,7 +144,7 @@
                                      data-paddingright="[0,0,0,0]"
                                      data-paddingbottom="[0,0,0,0]"
                                      data-paddingleft="[0,0,0,0]"
-                                     style="z-index: 6;"><img class="lazyload" data-src="/img/slider/{{$slider->image}}" alt="" data-ww="['529px','420px','420px','290px']" data-hh="['auto','auto','auto','auto']" width="529" height="594" data-no-retina></div>
+                                     style="z-index: 6;"><img src="/img/slider/{{$slider->image}}" alt="" data-ww="['529px','420px','420px','290px']" data-hh="['auto','auto','auto','auto']" width="529" height="594" data-no-retina></div>
                             </li>
                             @php $slider_counter++; @endphp
                             @endforeach
@@ -523,7 +523,7 @@
                     var revOffset = tpj(window).width() <= 991 ? '73px' : '';
                     revapi263 = tpj("#rev_slider_34_1").show().revolution({
                         sliderType: "standard",
-                        jsFileLocation: "revolution/js/",
+                        jsFileLocation: "/revolution/js/",
                         sliderLayout: "auto",
                         dottedOverlay: "none",
                         delay:0,
