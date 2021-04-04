@@ -55,17 +55,19 @@
         </section>
         <!-- end page title -->
         <!-- start section -->
-        <section class="padding-two-all">
-            <div class="container">
+        <section class="padding-one-all overlap-height">
+            <div class="container overlap-gap-section">
                 <div class="row justify-content-center xs-no-margin-lr">
-                    <div class="swiper-container swiper-auto-slide padding-15px-tb black-move" data-slider-options='{ "slidesPerView": "auto",  "spaceBetween": 60, "scrollbar": {"el": ".swiper-scrollbar"} ,"navigation": { "nextEl": ".swiper-button-next-nav", "prevEl": ".swiper-button-previous-nav" }, "autoplay": { "delay": 55000, "disableOnInteraction": false },  "keyboard": { "enabled": true, "onlyInViewport": true }, "effect": "slide" }'>
+                    <div class="swiper-container swiper-auto-slide padding-15px-tb black-move" data-slider-options='{"slidesPerView": "auto", "scrollbar": {"el": ".swiper-scrollbar"} ,"navigation": { "nextEl": ".swiper-button-next-nav", "prevEl": ".swiper-button-previous-nav" }, "autoplay": { "delay": 55000, "disableOnInteraction": false },  "keyboard": { "enabled": true, "onlyInViewport": true }, "effect": "slide" }'>
                         <div class="swiper-wrapper">
                             @if (request()->route()->getName() == 'brand.products')
                                 @foreach($brands as $brand)
                                     @if($brand->parent_id == 0)
                                     <div class="swiper-slide">
-                                        <div class="col text-center padding-40px-tb border-radius-6px transition wow animate__fadeIn {{ (request()->route()->slug == $brand->slug) ? 'active-category' : '' }}" data-wow-delay="0.1s">
-                                            <a href="/brand/{{$brand->slug}}"><img class="margin-25px-bottom" src="{{asset('img/brand/'. $brand->image .'')}}" width="92px" alt="{{$brand->title}}" title="{{$brand->title}}"/></a>
+                                        <div class="col text-center padding-20px-tb border-radius-6px transition wow animate__fadeIn {{ (request()->route()->slug == $brand->slug) ? 'active-category' : '' }}" data-wow-delay="0.1s">
+                                            <a class="slider-thumbs__icon" href="/brand/{{$brand->slug}}">
+                                                <img class="margin-15px-bottom" src="{{asset('img/brand/'. $brand->image .'')}}" alt="{{$brand->title}}" title="{{$brand->title}}"/>
+                                            </a>
                                             <span class="text-extra-medium font-weight-500 text-extra-dark-gray d-block mx-auto xs-w-100">{{$brand->title}}</span>
                                         </div>
                                     </div>
@@ -75,18 +77,18 @@
                                 @foreach($elect_categories as $elect_category)
                                     @if($elect_category->parent_id == 0)
                                     <div class="swiper-slide">
-                                        <div class="col text-center padding-40px-tb border-radius-6px transition wow animate__fadeIn {{ (request()->route()->slug == $elect_category->slug) ? 'active-category' : '' }}" data-wow-delay="0.1s">
-                                            <a href="/products/{{$elect_category->slug}} "><img class="margin-25px-bottom" src="{{asset('img/electronics/'. $elect_category->image .'')}}" width="92px" alt="{{$elect_category->title}}" title="{{$elect_category->title}}"/></a>
+                                        <div class="col text-center padding-20px-tb border-radius-6px transition wow animate__fadeIn {{ (request()->route()->slug == $elect_category->slug) ? 'active-category' : '' }}" data-wow-delay="0.1s">
+                                            <a class="slider-thumbs__icon" href="/products/{{$elect_category->slug}} ">
+                                                <img class="margin-15px-bottom" src="{{asset('img/electronics/'. $elect_category->image .'')}}" alt="{{$elect_category->title}}" title="{{$elect_category->title}}"/>
+                                            </a>
                                             <span class="text-extra-medium font-weight-500 text-extra-dark-gray d-block mx-auto xs-w-100">{{$elect_category->title}}</span>
                                         </div>
                                     </div>
                                     @endif
                                 @endforeach
-                            @endif                            
+                            @endif                           
                         </div>
-                        <!-- start slider navigation -->
                         <div class="swiper-scrollbar"></div>
-                        <!-- end slider navigation -->
                     </div>                 
                 </div>
             </div>
@@ -157,8 +159,8 @@
                                             
                                         </div>
                                     </div>
-                                    <div class="product-footer bg-light-blue text-center padding-25px-tb xs-padding-10px-tb">
-                                        <a href="/product-detail/{{$product->slug}}" class="text-extra-dark-gray font-weight-500 d-inline-block" title="{{ $product->title }}">{{ substr($product->title, 0, 30)}}</a>
+                                    <div class="product-footer bg-light-blue text-center padding-15px-tb sm-padding-5px-all">
+                                        <a href="/product-detail/{{$product->slug}}" class="text-extra-dark-gray text-small font-weight-500 d-inline-block" title="{{ $product->title }}">{{ substr($product->title, 0, 30)}}</a>
                                         <div class="product-price text-medium">@if ($product->discount > 0)NPR <del>{{number_format($marked_price)}} </del> {{ number_format($price)}} @else NPR {{number_format($price)}} @endif</div>
                                     </div>
                                 </div>
@@ -251,7 +253,7 @@
         $("#loadlist-products .grid-item").hide();
         $("#showLess").hide();
         var size_li = $("#loadlist-products .grid-item").length;
-        var nrposts = 9;
+        var nrposts = 12;
         $('#loadlist-products .grid-item:lt(' + nrposts + ')').show();
         $('#loadMore').on('click', function(e) {
             nrposts = (nrposts + 6 <= size_li) ? nrposts + 6 : size_li;
@@ -296,7 +298,7 @@
                         $('#loadMore').hide();
                         $('#showLess').show();
                     }
-                    var nrposts = 9;
+                    var nrposts = 12;
                     $('#loadlist-products .grid-item:lt(' + nrposts + ')').show();
                     $('#loadMore').on('click', function(e) {
                         nrposts = (nrposts + 6 <= size_li) ? nrposts + 6 : size_li;

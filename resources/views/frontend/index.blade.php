@@ -217,34 +217,7 @@
             </div>
         </section>
         <!-- end section -->
-        <!-- start section -->
-        {{-- <section class="padding-one-all overlap-height">
-            <div class="container overlap-gap-section">
-                <div class="row justify-content-center xs-no-margin-lr">
-                    <div class="swiper-container swiper-auto-slide padding-15px-tb black-move" data-slider-options='{"slidesPerView": "auto", "scrollbar": {"el": ".swiper-scrollbar"} ,"navigation": { "nextEl": ".swiper-button-next-nav", "prevEl": ".swiper-button-previous-nav" }, "autoplay": { "delay": 55000, "disableOnInteraction": false },  "keyboard": { "enabled": true, "onlyInViewport": true }, "effect": "slide" }'>
-                        <div class="swiper-wrapper">
-                            <!-- start slider item -->
-                            @foreach($elect_categories as $elect_category)
-                                @if($elect_category->parent_id == 0)
-                                <div class="swiper-slide" style="">
-                                    <div class="col text-center padding-20px-tb border-radius-6px transition wow animate__fadeIn" data-wow-delay="0.1s">
-                                        <a class="slider-thumbs__icon" href="/products/{{$elect_category->slug}} ">
-                                            <img class="margin-15px-bottom" src="{{asset('img/electronics/'. $elect_category->image .'')}}" alt="{{$elect_category->title}}"/>
-                                        </a>
-                                        <span class="text-extra-medium font-weight-500 text-extra-dark-gray d-block mx-auto xs-w-100">
-                                            <a href="/products/{{$elect_category->slug}}">{{$elect_category->title}}</a>
-                                        </span>
-                                    </div>
-                                </div>
-                                @endif
-                            @endforeach                            
-                        </div>
-                        <div class="swiper-scrollbar"></div>
-                    </div>                 
-                </div>
-            </div>
-        </section> --}}
-        <!-- end section -->
+        
         <!-- start section -->
         <section class="half-section bg-light-gray">
             <div class="container">

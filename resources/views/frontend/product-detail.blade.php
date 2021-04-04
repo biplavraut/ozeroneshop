@@ -166,7 +166,7 @@
                                     <span class="text-small"><span class="text-extra-dark-gray">SKU: </span>8552635</span>
                                 </div>
                             </div> -->
-                            <div class="margin-1-rem-tb paragraph-no-margin">
+                            <div class="margin-1-rem-tb paragraph-no-margin detail-paragraph-center">
                                 <p>{!! strip_tags(substr($product->excerpt, 0, 500)); !!} <a href="#specs">...view Specs</a></p>
                             </div>
                             
@@ -333,9 +333,56 @@
                 </div>
                 <div class="row">
                     <div class="col-12 px-lg-0 wow animate__fadeIn" data-wow-delay="0.2s">
-                        <div class="swiper-container padding-15px-tb portfolio-classic position-relative" data-slider-options='{"loop": true, "slidesPerView": 1, "spaceBetween": 30,"scrollbar": {"el": ".swiper-scrollbar","hide": "false"}, "navigation": { "nextEl": ".swiper-button-next-nav", "prevEl": ".swiper-button-previous-nav" }, "autoplay": { "delay": 5000, "disableOnInteraction": false }, "keyboard": { "enabled": true, "onlyInViewport": true }, "breakpoints": { "1200": { "slidesPerView": 4 }, "992": { "slidesPerView": 3 }, "768": { "slidesPerView": 2 } }, "effect": "slide" }'>
+                        <div class="swiper-container padding-15px-tb portfolio-classic position-relative" data-slider-options='{"loop": true, "slidesPerView": 1.5, "spaceBetween": 10,"scrollbar": {"el": ".swiper-scrollbar","hide": "false"}, "navigation": { "nextEl": ".swiper-button-next-nav", "prevEl": ".swiper-button-previous-nav" }, "autoplay": { "delay": 5000, "disableOnInteraction": false }, "keyboard": { "enabled": true, "onlyInViewport": true }, "breakpoints": { "1200": { "slidesPerView": 5,"spaceBetween": 20 }, "992": { "slidesPerView": 3 }, "768": { "slidesPerView": 2 } }, "effect": "slide" }'>
                             <div class="swiper-wrapper">                                
                                 <!-- start slide item -->
+                                @foreach($related as $feature)
+                                @if(count($feature->getImageRelation) > 0)
+                                <div class="swiper-slide overflow-hidden featured-box-shadow">
+                                    <div class="portfolio-box border-radius-6px text-center">
+                                        <div class="portfolio-image bg-transparent">
+                                            @foreach($feature->getImageRelation as $display_image)
+                                                @if($display_image->primary == 1)
+                                                @php $image = $display_image->image  @endphp
+                                                <a href="/product-detail/{{$feature->slug}}">
+                                                    <img class="lazyload" src="/img/thumbnail.jpg" data-src="/img/product/{{ $feature->slug }}/{{ $image }}"/>
+                                                </a>
+                                                @endif
+                                            @endforeach
+                                            
+                                            {{-- <div class="portfolio-hover align-items-center justify-content-center d-flex">
+                                                <div class="portfolio-icon">
+                                                    <a href="/product-detail/{{$feature->slug}}" class="border-all border-width-2px rounded-circle border-color-white bg-white"><i class="ti-arrow-right text-extra-dark-gray"></i></a>
+                                                </div>
+                                            </div> --}}
+                                        </div>
+                                        @php
+                                        if ($feature->discount > 0){
+                                            $marked_price = $feature->price;
+                                            $discount = $feature->discount;
+                                            $price = round($marked_price - ($discount/100*$marked_price));
+                                        }else{
+                                            $price = $feature->price;
+                                        }
+                                        @endphp
+                                        <div class="portfolio-caption bg-light-blue padding-10px-all sm-padding-5px-all">
+                                            <a href="/product-detail/{{$feature->slug}}" class="alt-font text-small text-black font-weight-500 text-uppercase d-inline-block margin-5px-bottom" title="{{ $feature->title }}">{{ substr($feature->title, 0, 30)}}</a>
+                                            <span class="d-block text-dark-gray text-small line-height-18px text-uppercase">@if ($feature->discount > 0)NPR <del>{{number_format($marked_price)}}</del> {{ number_format($price)}} @else NPR {{number_format($price)}} @endif</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endif
+                                @endforeach
+                                <!-- end slide item -->                                                             
+                            </div>
+                            <div class="swiper-scrollbar"></div>
+                        </div>
+                    </div>
+                </div>
+                {{-- <div class="row">
+                    <div class="col-12 px-lg-0 wow animate__fadeIn" data-wow-delay="0.2s">
+                        <div class="swiper-container padding-15px-tb portfolio-classic position-relative" data-slider-options='{"loop": true, "slidesPerView": 1, "spaceBetween": 30,"scrollbar": {"el": ".swiper-scrollbar","hide": "false"}, "navigation": { "nextEl": ".swiper-button-next-nav", "prevEl": ".swiper-button-previous-nav" }, "autoplay": { "delay": 5000, "disableOnInteraction": false }, "keyboard": { "enabled": true, "onlyInViewport": true }, "breakpoints": { "1200": { "slidesPerView": 4 }, "992": { "slidesPerView": 3 }, "768": { "slidesPerView": 2 } }, "effect": "slide" }'>
+                            <div class="swiper-wrapper">                                
                                 @foreach($related as $feature)
                                 @if(count($feature->getImageRelation) > 0)
                                 <div class="swiper-slide overflow-hidden">
@@ -371,12 +418,11 @@
                                 </div>
                                 @endif
                                 @endforeach
-                                <!-- end slide item -->                                                             
                             </div>
                             <div class="swiper-scrollbar"></div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </section>
         <!-- end section -->
@@ -396,6 +442,8 @@
         <script type="text/javascript" src="{{asset('desktop/js/theme-vendors.min.js')}}"></script>
         <script type="text/javascript" src="/js/sweetalert.min.js"></script>
         <script type="text/javascript" src="{{asset('desktop/js/main.js')}}"></script>
+        <script type="text/javascript" src="{{asset('desktop/js/jquery.lazyload.min.js')}}"></script>
+
         <div id="fb-root"></div>
         <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v10.0&appId=1157233268052194&autoLogAppEvents=1" nonce="eCWGXMx6"></script>
         <script>window.twttr = (function(d, s, id) {
@@ -415,6 +463,7 @@
             return t;
           }(document, "script", "twitter-wjs"));</script>
         <script>
+            $("img.lazyload").lazyload();
             $(function () {
                 if($( "input[type=radio][name=storage]:checked" ).data("price")){
                     var price = $( "input[type=radio][name=storage]:checked" ).data("price");

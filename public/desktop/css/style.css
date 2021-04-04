@@ -24306,3 +24306,8 @@ only screen and (min-resolution: 1.5dppx) {
         padding: 20px;
     }
 }
+
+.detail-paragraph-center {
+    text-align: justify;
+    text-justify: inter-word;
+}
