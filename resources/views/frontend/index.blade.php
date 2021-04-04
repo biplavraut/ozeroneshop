@@ -173,7 +173,7 @@
                                 <!-- start slide item -->
                                 @foreach($featured as $feature)
                                 @if(count($feature->getImageRelation) > 0)
-                                <div class="swiper-slide overflow-hidden">
+                                <div class="swiper-slide overflow-hidden featured-box-shadow">
                                     <div class="portfolio-box border-radius-6px text-center">
                                         <div class="portfolio-image bg-transparent">
                                             @foreach($feature->getImageRelation as $display_image)
