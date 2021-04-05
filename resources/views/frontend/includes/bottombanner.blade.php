@@ -19,13 +19,17 @@
     <ul class="bottom-navigation__icons">
         <li><a href="/"><img src="{{asset('mobile/assets/images/icons/blue/home.svg')}}" alt="Ozerone Shop" title="Home" /><span>Home</span></a></li>
         <li><a href="/products/all"><img src="{{asset('mobile/assets/images/icons/blue/cart.svg')}}" alt="Ozerone Products" title="Products" /><span>Shop</span></a></li>
-        @auth
+        
+        @if (Cart::count() > 0)
         <li><a href="/checkout"><img src="{{asset('mobile/assets/images/icons/blue/checkout.svg')}}" alt="Checkout" title="Checkout" /><span>Checkout</span></a></li>
         @else
-        <li><a href="#" data-popup="checkout" class="open-popup"><img src="{{asset('mobile/assets/images/icons/blue/checkout.svg')}}" alt="Checkout" title="Checkout" /><span>Checkout</span></a></li>
+        <li><a href="#"><img src="{{asset('mobile/assets/images/icons/blue/checkout.svg')}}" alt="Checkout" title="Empty Cart" /><span>Checkout</span></a></li>
         @endif
-        
-        <li><a href="/"><img src="{{asset('mobile/assets/images/icons/blue/chat.svg')}}" alt="Chat" title="Message" /><span>Chat</span></a></li>
+        @auth
+        <li><a href="/dashboard"><img src="{{asset('mobile/assets/images/icons/blue/user.svg')}}" alt="Account" title="User Account" /><span>Account</span></a></li>
+        @else
+        <li><a href="{{ route('login') }}"><img src="{{asset('mobile/assets/images/icons/blue/user.svg')}}" alt="Account" title="User Account" /><span>Account</span></a></li>
+        @endif
     </ul>
 </div>	
 <!-- Bottom Navigation Ends -->	
