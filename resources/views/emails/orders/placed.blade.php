@@ -18,6 +18,6 @@ View Order
 @endcomponent
 
 Thank You for shoppig with us,<br>
-Ozerone Shop
+Ozerone Shop<br>
 <a href="https://ozeroneshop.com/">Visit Site</a>
 @endcomponent
