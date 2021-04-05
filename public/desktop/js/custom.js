@@ -25,7 +25,7 @@ function addtocart(id, title, price, image) {
             swal.close();
             $("#panel-right-cart").load(location.href + " #panel-right-cart"); // Add space between URL and selector.
             $("#cart-count").load(location.href + " #cart-count");
-
+            $("#checkout-reload").load(location.href + " #checkout-reload");
             $('.cart-count').addClass('animate');
             setTimeout(function() {
                 $('.cart-count').removeClass('animate');
