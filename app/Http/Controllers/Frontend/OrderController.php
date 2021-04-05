@@ -9,6 +9,8 @@ use App\Models\Shipping_Detail;
 use App\Models\Order;
 use App\Models\Order_Detail;
 use Cart;
+use App\Mail\OrderPlaced;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -59,8 +61,12 @@ class OrderController extends Controller
                         ]);
                     }
                     if($add_order_detail){
+                        //return new OrderPlaced($add_order);
+                        Mail::to($user->email)
+                            ->cc('orders@ozeroneshop.com')
+                            ->send(new OrderPlaced($add_order));
                         Cart::destroy();
-                        session()->flash('order_placed','Your Order has been placed.');
+                        session()->flash('order_placed','Your Order has been placed.');                        
                         return redirect('/order-placed');
                     }else{
                         session()->flash('order_error','Oops! Something went wrong.');
@@ -150,6 +156,9 @@ class OrderController extends Controller
                     $update = Shipping_Detail::where('id', $shipping_id)->update([
                         'order_id' => $add_order->id                    
                     ]);
+                    Mail::to($request->cust_email)
+                            ->cc('orders@ozeroneshop.com')
+                            ->send(new OrderPlaced($add_order));
                     Cart::destroy();
                     session()->flash('order_placed','Your Order has been placed.');
                     return redirect('/order-placed');
@@ -163,5 +172,15 @@ class OrderController extends Controller
             return redirect('/order-failed');
         }
 
+    }
+    public function orderDetail($order_code)
+    {
+        $order_detail = Order::with('getOrderDetail')->with('getCustomerDetail')->with('getShippingDetail')->where('order_code','=',$order_code)->first();
+
+        return view('frontend.orderdetail' , 
+        [
+            'order_detail' => $order_detail
+            
+        ]);
     }
 }
