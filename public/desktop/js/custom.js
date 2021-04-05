@@ -294,3 +294,7 @@ function searching() {
         }
     });
 };
+
+$(function() {
+    $('[data-toggle="popover"]').popover()
+})

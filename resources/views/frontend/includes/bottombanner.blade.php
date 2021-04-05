@@ -23,7 +23,7 @@
         @if (Cart::count() > 0)
         <li><a href="/checkout"><img src="{{asset('mobile/assets/images/icons/blue/checkout.svg')}}" alt="Checkout" title="Checkout" /><span>Checkout</span></a></li>
         @else
-        <li><a href="#"><img src="{{asset('mobile/assets/images/icons/blue/checkout.svg')}}" alt="Checkout" title="Empty Cart" /><span>Checkout</span></a></li>
+        <li><a href="#" data-container="body" data-toggle="popover" data-placement="top" data-content="Please add product in Cart"><img src="{{asset('mobile/assets/images/icons/blue/checkout.svg')}}" alt="Checkout" title="Empty Cart" /><span>Checkout</span></a></li>
         @endif
         @auth
         <li><a href="/dashboard"><img src="{{asset('mobile/assets/images/icons/blue/user.svg')}}" alt="Account" title="User Account" /><span>Account</span></a></li>
