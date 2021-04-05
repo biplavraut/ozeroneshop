@@ -17,7 +17,7 @@ Order has been Placed.
 View Order
 @endcomponent
 
-Thank You for shoppig with us,<br>
+Thank You for shopping with us,<br>
 Ozerone Shop<br>
 <a href="https://ozeroneshop.com/">Visit Site</a>
 @endcomponent
