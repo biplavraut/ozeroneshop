@@ -952,7 +952,7 @@
             uploadImage(e) {
                 let file = e.target.files[0];
                 let reader = new FileReader();
-                if (file['size'] < 2111775) {
+                if (file['size'] < 6111775) {
                     reader.onloadend = (file) => {
                         this.iform.image = reader.result;
                     }
