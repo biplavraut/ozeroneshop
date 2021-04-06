@@ -50,7 +50,7 @@ class ProductImageController extends Controller
                 $image_name = $imageName.'_'.$unique.'.'.$extension;
                 \Image::make($request->image)->save($path.'/'.$image_name);
                 if($extension != 'webp'){
-                    convertImageToWebP($path."/". $image_name, $path."/" . $imageName.'.webp', $extension);
+                    convertImageToWebP($path."/". $image_name, $path."/" . $imageName.'_'.$unique.'.webp', $extension);
                     unlink($path."/". $image_name);
                     $image_name = $imageName.'_'.$unique.'.webp';
                 } 
