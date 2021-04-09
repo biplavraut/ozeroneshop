@@ -87,7 +87,7 @@
                                         </tr>
                                         @php
                                             $total += $item->subtotal;
-                                            $grand_total = 0;
+                                            $grand_total = $total;
                                         @endphp
                                         @endforeach
                                         @else
