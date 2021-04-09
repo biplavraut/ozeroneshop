@@ -551,7 +551,7 @@
             </script>
             <script>
                 $( document ).ready(function() {
-                    if($('#promo-code').val() == 'hny2078'){
+                    if($('#promo-code').val().toLowerCase() == 'hny2078'){
                         $('#no-promo-discount').hide();
                         $('#promo-discount').show();
                     }else{
@@ -561,7 +561,7 @@
                 });          
                 
                 function promo(){
-                    if($('#promo-code').val() == 'hny2078'){
+                    if($('#promo-code').val().toLowerCase() == 'hny2078'){
                         $('#no-promo-discount').hide();
                         $('#promo-discount').show();
                     }else{

@@ -18,7 +18,7 @@ class OrderController extends Controller
     public function order(Request $request)
     {
         if(count(Cart::content())>0){
-            if($request->promo_code == 'hny2078'){
+            if(strtolower($request->promo_code) == 'hny2078'){
                 $discount = 6;
             }else{
                 $discount = 0;
