@@ -99,10 +99,10 @@
                             </div>
                             
                             <div class="col-md-6 md-margin-50px-bottom sm-margin-20px-bottom"> 
-                                <div class="coupon-code-panel">
-                                    <input type="text" placeholder="Coupon code" id="promo-code" onkeyup="promo()">
-                                    <a href="#" class="btn apply-coupon-btn text-uppercase">Apply</a>
-                                </div>
+                                {{-- <div class="coupon-code-panel">
+                                    <input type="text" placeholder="Coupon code" id="promo-code">
+                                    <a href="#" onclick="promo()" class="btn apply-coupon-btn text-uppercase">Apply</a>
+                                </div> --}}
                             </div>
                             <div class="col-md-6 text-center text-md-right md-margin-50px-bottom btn-dual">
                                 <a href="javascript:void(0);" onclick="removeCart()" class="btn btn-fancy btn-small btn-transparent-red"><i class="feather icon-feather-trash text-red icon-extra-small d-xs-none"></i> Empty cart</a>
@@ -122,31 +122,8 @@
                                     <tr class="total-amount">
                                         <th class="font-weight-500 text-extra-dark-gray">Total</th>
                                         <td data-title="Total">
-                                            <div id="promo-discount">
-                                                @auth
-                                                    @php
-                                                    $discount_amount = 0;
-                                                    if (is_numeric((int)$total)) {
-                                                        # code...
-                                                        $discount_amount = (int)$total*0.06;
-                                                    }
-                                                    $grand_total = $total - $discount_amount;
-                                                    @endphp
-                                                    Promo discount: {{ round($discount_amount) }}
-                                                @else
-                                                    <strong>Sign Up!</strong> and enter promo code to receive discount.
-                                                @endif
-                                                <h6 class="d-block font-weight-500 mb-0 text-extra-dark-gray">NPR {{round($grand_total)}}</h6>
-                                                <span class="text-small text-extra-medium-gray">(Includes tax)</span>
-                                            </div>
-                                            <div id="no-promo-discount">
-                                                @php
-                                                $grand_total = $total;
-                                                @endphp
-                                                <h6 class="d-block font-weight-500 mb-0 text-extra-dark-gray">NPR {{round($grand_total)}}</h6>
-                                                <span class="text-small text-extra-medium-gray">(Includes tax)</span>
-                                            </div>
-                                            
+                                            <h6 class="d-block font-weight-500 mb-0 text-extra-dark-gray">NPR {{Cart::total()}}</h6>
+                                            <span class="text-small text-extra-medium-gray">(Includes tax)</span>                                            
                                         </td>
                                     </tr>
                                 </tbody>
@@ -170,26 +147,6 @@
         <script type="text/javascript" src="/js/sweetalert.min.js"></script>
         <script type="text/javascript" src="{{asset('desktop/js/main.js')}}"></script>
         <script type="text/javascript" src="{{asset('desktop/js/custom.js')}}"></script>
-        <script>
-            $( document ).ready(function() {
-                if($('#promo-code').val() == 'hny2078'){
-                    $('#no-promo-discount').hide();
-                    $('#promo-discount').show();
-                }else{
-                    $('#no-promo-discount').show();
-                    $('#promo-discount').hide();
-                }
-            });           
-            
-            function promo(){
-                if($('#promo-code').val() == 'hny2078'){
-                    $('#no-promo-discount').hide();
-                    $('#promo-discount').show();
-                }else{
-                    $('#no-promo-discount').show();
-                    $('#promo-discount').hide();
-                }
-            }
-        </script>
+        
     </body>
 </html>

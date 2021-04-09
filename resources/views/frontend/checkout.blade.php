@@ -100,12 +100,19 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @php
+                                            $total = 0;
+                                        @endphp
                                         @if(Cart::count() > 0)
                                             @foreach(Cart::content() as $item)
                                             <tr>
                                                 <td>{{$item->model->title}} × {{$item->qty}}<span class="d-block w-100">Color:Red</span></td>
                                                 <td>NPR {{$item->subtotal}}</td>
                                             </tr>
+                                            @php
+                                                $total += $item->subtotal;
+                                                $grand_total = $total;
+                                            @endphp
                                             @endforeach
                                             @else
                                             <tr><td><b>No Product in Cart</b></td></tr>
@@ -143,12 +150,40 @@
                                         <tr class="total-amount">
                                             <th class="font-weight-500 text-extra-dark-gray">Total</th>
                                             <td>
-                                                <h6 class="d-block font-weight-500 mb-0 text-extra-dark-gray">NPR {{Cart::total()}}</h6>
-                                                <span class="text-small">(Includes tax)</span>
+                                                <div id="promo-discount">
+                                                    @auth
+                                                        @php
+                                                        $discount_amount = 0;
+                                                        if (is_numeric((int)$total)) {
+                                                            # code...
+                                                            $discount_amount = (int)$total*0.06;
+                                                        }
+                                                        $grand_total = $total - $discount_amount;
+                                                        @endphp
+                                                        Promo discount: {{ round($discount_amount) }}
+                                                    @else
+                                                        <strong>Sign Up!</strong> and enter promo code to receive discount.
+                                                    @endif
+                                                    <h6 class="d-block font-weight-500 mb-0 text-extra-dark-gray">NPR {{round($grand_total)}}</h6>
+                                                    <span class="text-small text-extra-medium-gray">(Includes tax)</span>
+                                                </div>
+                                                <div id="no-promo-discount">
+                                                    @php
+                                                    $grand_total = $total;
+                                                    @endphp
+                                                    <h6 class="d-block font-weight-500 mb-0 text-extra-dark-gray">NPR {{round($grand_total)}}</h6>
+                                                    <span class="text-small text-extra-medium-gray">(Includes tax)</span>
+                                                </div>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
+                                <div class="md-margin-50px-bottom sm-margin-20px-bottom"> 
+                                    <div class="coupon-code-panel">
+                                        <input type="text" placeholder="Coupon code" id="promo-code">
+                                        <a href="#" onclick="promo()" class="btn apply-coupon-btn text-uppercase">Apply</a>
+                                    </div>
+                                </div>
                                 <!-- <p class="text-small">Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our <a class="text-decoration-underline" href="#">privacy policy.</a></p>
                                 <p class="d-flex align-items-center">
                                     <input class="d-inline w-auto mb-0 margin-10px-right" type="checkbox" name="terms-and-condition">
@@ -360,12 +395,19 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @php
+                                                $total = 0;
+                                            @endphp
                                             @if(Cart::count() > 0)
                                                 @foreach(Cart::content() as $item)
                                                 <tr>
                                                     <td>{{$item->model->title}} × {{$item->qty}}<span class="d-block w-100">Color:Red</span></td>
                                                     <td>NPR {{$item->subtotal}}</td>
                                                 </tr>
+                                                @php
+                                                    $total += $item->subtotal;
+                                                    $grand_total = $total;
+                                                @endphp
                                                 @endforeach
                                                 @else
                                                 <tr><td><b>No Product in Cart</b></td></tr>
@@ -393,12 +435,51 @@
                                             <tr class="total-amount">
                                                 <th class="font-weight-500 text-extra-dark-gray">Total</th>
                                                 <td>
-                                                    <h6 class="d-block font-weight-500 mb-0 text-extra-dark-gray">NPR {{Cart::total()}}</h6>
-                                                    <span class="text-small">(Includes tax)</span>
+                                                    
+                                                    <div id="promo-discount">
+                                                        @auth
+                                                            @php
+                                                            $discount_amount = 0;
+                                                            if (is_numeric((int)$total)) {
+                                                                # code...
+                                                                $discount_amount = (int)$total*0.06;
+                                                            }
+                                                            $grand_total = $total - $discount_amount;
+                                                            @endphp
+                                                            Promo discount: {{ round($discount_amount) }}
+                                                        @else
+                                                            <strong>Sign Up!</strong> and enter promo code to receive discount.
+                                                        @endif
+                                                        <h6 class="d-block font-weight-500 mb-0 text-extra-dark-gray">NPR {{round($grand_total)}}</h6>
+                                                        <span class="text-small text-extra-medium-gray">(Includes tax)</span>
+                                                    </div>
+                                                    <div id="no-promo-discount">
+                                                        @auth
+                                                            @php
+                                                            $discount_amount = 0;
+                                                            if (is_numeric((int)$total)) {
+                                                                # code...
+                                                                $discount_amount = (int)$total*0.06;
+                                                            }
+                                                            $grand_total = $total - $discount_amount;
+                                                            @endphp
+                                                            Promo discount: {{ round($discount_amount) }}
+                                                        @else
+                                                            <strong>Sign Up!</strong> and enter promo code to receive discount.
+                                                        @endif
+                                                        <h6 class="d-block font-weight-500 mb-0 text-extra-dark-gray">NPR {{round($grand_total)}}</h6>
+                                                        <span class="text-small text-extra-medium-gray">(Includes tax)</span>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         </tbody>
                                     </table>
+                                    <div class="md-margin-50px-bottom sm-margin-20px-bottom"> 
+                                        <div class="coupon-code-panel">
+                                            <input type="text" placeholder="Coupon code" id="promo-code">
+                                            <a href="#" onclick="promo()" class="btn apply-coupon-btn text-uppercase">Apply</a>
+                                        </div>
+                                    </div>
                                     <div class="padding-40px-all bg-white box-shadow-large margin-20px-top margin-40px-bottom checkout-accordion lg-padding-30px-all md-padding-20px-all sm-padding-15px-lr">
                                         <div class="w-100" id="accordion-style-05">
                                             
@@ -467,6 +548,27 @@
                     $('#ship_address').val("");
                 }
             }
+            </script>
+            <script>
+                $( document ).ready(function() {
+                    if($('#promo-code').val() == 'hny2078'){
+                        $('#no-promo-discount').hide();
+                        $('#promo-discount').show();
+                    }else{
+                        $('#no-promo-discount').show();
+                        $('#promo-discount').hide();
+                    }
+                });          
+                
+                function promo(){
+                    if($('#promo-code').val() == 'hny2078'){
+                        $('#no-promo-discount').hide();
+                        $('#promo-discount').show();
+                    }else{
+                        $('#no-promo-discount').show();
+                        $('#promo-discount').hide();
+                    }
+                }
             </script>
         </body>
     </html>
