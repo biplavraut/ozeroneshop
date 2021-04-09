@@ -100,7 +100,7 @@
                             
                             <div class="col-md-6 md-margin-50px-bottom sm-margin-20px-bottom"> 
                                 <div class="coupon-code-panel">
-                                    <input type="text" placeholder="Coupon code">
+                                    <input type="text" placeholder="Coupon code" id="promo-code" onkeyup="promo()">
                                     <a href="#" class="btn apply-coupon-btn text-uppercase">Apply</a>
                                 </div>
                             </div>
@@ -136,9 +136,17 @@
                                                 @else
                                                     <strong>Sign Up!</strong> and enter promo code to receive discount.
                                                 @endif
+                                                <h6 class="d-block font-weight-500 mb-0 text-extra-dark-gray">NPR {{round($grand_total)}}</h6>
+                                                <span class="text-small text-extra-medium-gray">(Includes tax)</span>
                                             </div>
-                                            <h6 class="d-block font-weight-500 mb-0 text-extra-dark-gray">NPR {{round($grand_total)}}</h6>
-                                            <span class="text-small text-extra-medium-gray">(Includes tax)</span>
+                                            <div id="no-promo-discount">
+                                                @php
+                                                $grand_total = $total;
+                                                @endphp
+                                                <h6 class="d-block font-weight-500 mb-0 text-extra-dark-gray">NPR {{round($grand_total)}}</h6>
+                                                <span class="text-small text-extra-medium-gray">(Includes tax)</span>
+                                            </div>
+                                            
                                         </td>
                                     </tr>
                                 </tbody>
@@ -162,5 +170,26 @@
         <script type="text/javascript" src="/js/sweetalert.min.js"></script>
         <script type="text/javascript" src="{{asset('desktop/js/main.js')}}"></script>
         <script type="text/javascript" src="{{asset('desktop/js/custom.js')}}"></script>
+        <script>
+            $( document ).ready(function() {
+                if($('#promo-code').val() == 'hny2078'){
+                    $('#no-promo-discount').hide();
+                    $('#promo-discount').show();
+                }else{
+                    $('#no-promo-discount').show();
+                    $('#promo-discount').hide();
+                }
+            });           
+            
+            function promo(){
+                if($('#promo-code').val() == 'hny2078'){
+                    $('#no-promo-discount').hide();
+                    $('#promo-discount').show();
+                }else{
+                    $('#no-promo-discount').show();
+                    $('#promo-discount').hide();
+                }
+            }
+        </script>
     </body>
 </html>
