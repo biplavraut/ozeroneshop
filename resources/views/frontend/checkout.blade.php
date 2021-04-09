@@ -154,9 +154,9 @@
                                                     @auth
                                                         @php
                                                         $discount_amount = 0;
-                                                        if (is_numeric((int)$total)) {
+                                                        if (is_numeric((float)$total)) {
                                                             # code...
-                                                            $discount_amount = (int)$total*0.06;
+                                                            $discount_amount = (float)$total*0.06;
                                                         }
                                                         $grand_total = $total - $discount_amount;
                                                         @endphp

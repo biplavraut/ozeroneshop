@@ -35,7 +35,8 @@ class OrderPlaced extends Mailable
         //return $this->markdown('emails.orders.placed');
         return $this->from('orders@ozeroneshop.com')->markdown('emails.orders.placed', [
                     'url' => 'https://ozeroneshop.com/order-detail/',
-                    'order_code' => $this->order->order_code
+                    'order_code' => $this->order->order_code,
+                    'discount' => $this->order->discount
                 ]);
     }
 }
