@@ -19,9 +19,6 @@
         <link rel="stylesheet" type="text/css" href="{{asset('desktop/css/font-icons.min.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('desktop/css/theme-vendors.min.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('desktop/css/style.css')}}" />
-        <style>
-        
-        </style>
         <link rel="stylesheet" type="text/css" href="{{asset('desktop/css/responsive.css')}}" />
         <!-- revolution slider -->
         <!-- <link rel='stylesheet' href='revolution/revolution-addons/bubblemorph/css/revolution.addon.bubblemorph.css' type='text/css' media='all' /> -->
@@ -57,6 +54,30 @@
     </head>
     <body data-mobile-nav-style="classic">
         @include('frontend.includes.header')
+        
+        <!-- start subscription popup -->
+        <div id="subscribe-popup" class="mfp-hide subscribe-popup">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-8 col-md-10 bg-light-gray modal-popup-main">
+                        <div class="row">
+                            <div class="col-12 col-sm-7 order-2 order-sm-1 newsletter-popup padding-4-rem-all lg-padding-4-rem-all xs-padding-3-rem-all" style="line-height: 25px !important;">
+                                <span class="text-extra-large font-weight-900 text-extra-dark-gray d-block margin-10px-bottom">Happy New Year 2078</span>
+                                <p class="margin-10px-bottom hidden-sm-down">Every end marks a new beginning. Keep your spirits and determination unshaken, and you shall always walk the glory road. With courage, faith and great effort, you shall achieve everything you desire. We wish you a Happy New Year.</p>
+                                <p class="margin-10px-bottom">Sign up to get updates, benefits, offers and much more from our website.                                </p>
+                                <p><b>This New Year enter promo code: <span style="color:#cc0000 ;">HNY2078</span>  to get cashbacks upto RS. 20,000</b></p>
+                                <small>*valid till 18th April 2021</small>
+
+                            </div>
+                            <div class="col-12 col-sm-5 cover-background order-1 order-sm-2 xs-h-150px" style="background-image:url('/promo/newyear.webp');">
+                                <button title="Close (Esc)" type="button" class="mfp-close">×</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <!-- end subscription popup -->
         <div class="main-content">
         <!-- SLIDER EXAMPLE -->
         <section class="p-0 home-furniture-shop">

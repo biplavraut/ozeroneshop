@@ -60,6 +60,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @php
+                                            $total = 0;
+                                        @endphp
                                     @if(Cart::count() > 0)
 				                        @foreach(Cart::content() as $item)
                                         <tr> 
@@ -82,7 +85,9 @@
                                             </td> 
                                             <td class="product-subtotal" data-title="Total">NPR {{$item->subtotal}}</td> 
                                         </tr>
-
+                                        @php
+                                            $total += $item->subtotal;
+                                        @endphp
                                         @endforeach
                                         @else
                                         <tr><td><b>No Product in Cart</b></td></tr>
@@ -91,6 +96,7 @@
                                     </tbody>
                                 </table>
                             </div>
+                            
                             <div class="col-md-6 md-margin-50px-bottom sm-margin-20px-bottom"> 
                                 <div class="coupon-code-panel">
                                     <input type="text" placeholder="Coupon code">
@@ -105,7 +111,7 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="bg-light-gray padding-50px-all lg-padding-30px-tb lg-padding-20px-lr md-padding-20px-tb">
-                            <span class="alt-font text-large text-extra-dark-gray margin-15px-bottom d-inline-block font-weight-500">Cart totals</span>
+                            <span class="alt-font text-large text-extra-dark-gray margin-15px-bottom d-inline-block font-weight-500">Cart total</span>
                             <table class="w-100 total-price-table">
                                 <tbody>
                                     <tr>
@@ -115,7 +121,22 @@
                                     <tr class="total-amount">
                                         <th class="font-weight-500 text-extra-dark-gray">Total</th>
                                         <td data-title="Total">
-                                            <h6 class="d-block font-weight-500 mb-0 text-extra-dark-gray">NPR {{Cart::total()}}</h6>
+                                            <div id="promo-discount">
+                                                @auth
+                                                    @php
+                                                    $discount_amount = 0;
+                                                    if (is_numeric((int)$total)) {
+                                                        # code...
+                                                        $discount_amount = (int)$total*0.06;
+                                                    }
+                                                    $grand_total = $total - $discount_amount;
+                                                    @endphp
+                                                    Promo discount: {{ round($discount_amount) }}
+                                                @else
+                                                    <strong>Sign Up!</strong> and enter promo code to receive discount.
+                                                @endif
+                                            </div>
+                                            <h6 class="d-block font-weight-500 mb-0 text-extra-dark-gray">NPR {{round($grand_total)}}</h6>
                                             <span class="text-small text-extra-medium-gray">(Includes tax)</span>
                                         </td>
                                     </tr>
