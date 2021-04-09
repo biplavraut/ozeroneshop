@@ -28,7 +28,7 @@ if ($discount > 0) {
 | {{$product->model->title}}      | NPR {{$product->price}}      | {{$product->qty}}      | NPR {{$product->subtotal}}  |
 @endforeach
 |       |       | Sub Total      | NPR {{Cart::subtotal()}}  |
-|       |       | Discount      | NPR {{$discount.'%'}}  |
+|       |       | Discount      | {{$discount.'%'}}  |
 |       |       | Grand Total      | <b>NPR {{$grand_total}}</b>  |
 @endcomponent
 @component('mail::button', ['url' => $url.$order_code])
