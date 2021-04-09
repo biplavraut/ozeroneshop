@@ -192,7 +192,7 @@
                                 @if($shipping->primary_phone == '' || $shipping->address == '' )
                                     <a href="#" onclick="lessinfo()" class="btn btn-fancy btn-fast-blue btn-extra-large w-100 margin-15px-top">Place an order</a>
                                 @else
-                                    <a href="/order" class="btn btn-fancy btn-fast-blue btn-extra-large w-100 margin-15px-top">Place an order</a>
+                                    <a href="#" onclick="order()" class="btn btn-fancy btn-fast-blue btn-extra-large w-100 margin-15px-top">Place an order</a>
                                 @endif
                                 
                             </div>
@@ -568,6 +568,35 @@
                         $('#no-promo-discount').show();
                         $('#promo-discount').hide();
                     }
+                }
+                function order(){
+                    swal("Please Wait! preceding...", {
+                        buttons: false,
+                        closeOnEsc: false,
+                        closeOnClickOutside: false,
+                    });
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+
+                    });
+                    var promo_code = $('#promo-code').val();
+                    $.ajax({
+                        type: 'POST',
+                        url: "/order",
+                        data: { promo_code: promo_code},
+                        success: function(data) {
+                            console.log(data.success);
+                            swal.close();
+                            if(data.success == 'placed'){
+                                window.location.replace("/order-placed");
+                            }else{
+                                window.location.replace("/order-failed");
+                            }
+                            
+                        }
+                    });
                 }
             </script>
         </body>

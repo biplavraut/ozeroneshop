@@ -15,9 +15,14 @@ use Illuminate\Support\Facades\Mail;
 class OrderController extends Controller
 {
     //
-    public function order()
+    public function order(Request $request)
     {
         if(count(Cart::content())>0){
+            if($request->promo_code == 'hny2078'){
+                $discount = 6;
+            }else{
+                $discount = 0;
+            }
             if(auth()->user()){
                 $user = auth()->user();
                 // Order Code generation
@@ -37,10 +42,11 @@ class OrderController extends Controller
                     'order_code' => $order_code,
                     'user' => 1,
                     'customer_id' => $user->id,
-                    'promo_code' => 'No Promo',
+                    'promo_code' => $request->promo_code,
                     'payment_type' => 'Cash On Delivery',
                     'total_price' => Cart::total(),
                     'ship_date' => $ship_date,
+                    'discount' => $discount,
                 ]);
                 if($add_order){
                     //return Cart::content();
@@ -67,20 +73,24 @@ class OrderController extends Controller
                             ->send(new OrderPlaced($add_order));
                         Cart::destroy();
                         session()->flash('order_placed','Your Order has been placed.');                        
-                        return redirect('/order-placed');
+                        //return redirect('/order-placed');
+                        return response()->json(['success'=>'placed']);
                     }else{
                         session()->flash('order_error','Oops! Something went wrong.');
-                        return redirect('/order-failed');
+                        //return redirect('/order-failed');
+                        return response()->json(['success'=>'failed']);
                     }
                 }
             }
             else{
                 session()->flash('order_error','Oops! Something went wrong.'); 
-                return redirect('/order-failed');
+                //return redirect('/order-failed');
+                return response()->json(['success'=>'failed']);
             }
         }else{
             session()->flash('order_error','Oops! Something went wrong.'); 
-            return redirect('/order-failed');
+            //return redirect('/order-failed');
+            return response()->json(['success'=>'failed']);
         }
     }
 

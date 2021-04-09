@@ -58,7 +58,7 @@ use App\Mail\OrderPlaced;
         
         Route::get('/cart', [App\Http\Controllers\Frontend\PageController::class, 'cart']);
         Route::get('/checkout', [App\Http\Controllers\Frontend\PageController::class, 'checkout']);
-        Route::get('/order', [App\Http\Controllers\Frontend\OrderController::class, 'order']);
+        Route::post('/order', [App\Http\Controllers\Frontend\OrderController::class, 'order']);
         Route::post('/nologinorder', [App\Http\Controllers\Frontend\OrderController::class, 'nologinorder']);
         Route::get('/order-placed', [App\Http\Controllers\Frontend\PageController::class, 'orderplaced']);
         Route::get('/order-failed', [App\Http\Controllers\Frontend\PageController::class, 'orderfailed']);
