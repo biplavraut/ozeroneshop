@@ -160,7 +160,7 @@
                                         </div>
                                     </div>
                                     <div class="product-footer bg-light-blue text-center padding-15px-tb sm-padding-5px-all">
-                                        <a href="/product-detail/{{$product->slug}}" class="text-extra-dark-gray text-small font-weight-500 d-inline-block" title="{{ $product->title }}">{{ substr($product->title, 0, 22)}}</a>
+                                        <a href="/product-detail/{{$product->slug}}" class="text-extra-dark-gray text-small font-weight-500 d-inline-block" title="{{ $product->title }}">{{ substr($product->title, 0, 25)}}</a>
                                         <div class="product-price text-medium">@if ($product->discount > 0)NPR <del>{{number_format($marked_price)}} </del> {{ number_format($price)}} @else NPR {{number_format($price)}} @endif</div>
                                     </div>
                                 </div>
