@@ -8,7 +8,6 @@ Order has been Placed.
 $grand_total = Cart::total();
 $total = 0;
 @endphp
-@endphp
 @component('mail::table')
 | Product       | Price         | Quantity  | Total  |
 | ------------- |:-------------:|:--------:| --------:|
