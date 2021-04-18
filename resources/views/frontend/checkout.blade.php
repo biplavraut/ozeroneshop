@@ -150,7 +150,7 @@
                                         <tr class="total-amount">
                                             <th class="font-weight-500 text-extra-dark-gray">Total</th>
                                             <td>
-                                                <div id="promo-discount">
+                                                {{-- <div id="promo-discount">
                                                     @auth
                                                         @php
                                                         $discount_amount = 0;
@@ -166,7 +166,7 @@
                                                     @endif
                                                     <h6 class="d-block font-weight-500 mb-0 text-extra-dark-gray">NPR {{round($grand_total)}}</h6>
                                                     <span class="text-small text-extra-medium-gray">(Includes tax)</span>
-                                                </div>
+                                                </div> --}}
                                                 <div id="no-promo-discount">
                                                     @php
                                                     $grand_total = $total;
@@ -550,25 +550,25 @@
             }
             </script>
             <script>
-                $( document ).ready(function() {
-                    if($('#promo-code').val().toLowerCase() == 'hny2078'){
-                        $('#no-promo-discount').hide();
-                        $('#promo-discount').show();
-                    }else{
-                        $('#no-promo-discount').show();
-                        $('#promo-discount').hide();
-                    }
-                });          
+                // $( document ).ready(function() {
+                //     if($('#promo-code').val().toLowerCase() == 'hny2078'){
+                //         $('#no-promo-discount').hide();
+                //         $('#promo-discount').show();
+                //     }else{
+                //         $('#no-promo-discount').show();
+                //         $('#promo-discount').hide();
+                //     }
+                // });          
                 
-                function promo(){
-                    if($('#promo-code').val().toLowerCase() == 'hny2078'){
-                        $('#no-promo-discount').hide();
-                        $('#promo-discount').show();
-                    }else{
-                        $('#no-promo-discount').show();
-                        $('#promo-discount').hide();
-                    }
-                }
+                // function promo(){
+                //     if($('#promo-code').val().toLowerCase() == 'hny2078'){
+                //         $('#no-promo-discount').hide();
+                //         $('#promo-discount').show();
+                //     }else{
+                //         $('#no-promo-discount').show();
+                //         $('#promo-discount').hide();
+                //     }
+                // }
                 function order(){
                     swal("Please Wait! preceding...", {
                         buttons: false,
