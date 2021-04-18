@@ -214,11 +214,62 @@ class PageController extends Controller
     }
     
     public function searching(Request $request){
-        $search_products = Product::with('getImageRelation')->where('display','=',1)->where('title','LIKE',"%$request->search_query%")->orderBy('order_item')->limit(5)->get();
+        $brand_id = Brand::where('title','LIKE',"%$request->search_query%")->where('display','=',1)->pluck('id');
+        $electronic_id = Electronics::where('title','LIKE',"%$request->search_query%")->where('display','=',1)->pluck('id');
+        if(count($brand_id) > 0){
+            $search_products = Product::with('getImageRelation')
+                ->where('display','=',1)
+                ->whereIn('brand_id', $brand_id)
+                ->orWhere('title','LIKE',"%$request->search_query%")
+                ->orderBy('order_item')->limit(5)->get();
+        }elseif(count($electronic_id) > 0){
+            $products_id = Product_Electronics::whereIn('electronic_id','=',$electronic_id)->pluck('product_id');
+            $search_products = Product::with('getImageRelation')
+                ->where('display','=',1)
+                ->whereIn('id', $products_id)
+                ->orWhere('title','LIKE',"%$request->search_query%")
+                ->orderBy('order_item')->limit(5)->get();
+        }else{
+            $search_products = Product::with('getImageRelation')
+                ->where('display','=',1)
+                ->where('title','LIKE',"%$request->search_query%")
+                ->orWhere('meta_keywords','LIKE',"%$request->search_query%")
+                ->orWhere('meta_tags','LIKE',"%$request->search_query%")
+                ->orWhere('meta_categories','LIKE',"%$request->search_query%")
+                ->orderBy('order_item')->limit(5)->get();
+        }
+        $search_products = Product::with('getImageRelation')
+            ->where('display','=',1)
+            ->where('title','LIKE',"%$request->search_query%")
+            ->orderBy('order_item')
+            ->limit(5)->get();
         return Response($search_products);
     }
     public function search(Request $request){
-        $search_products = Product::with('getImageRelation')->where('display','=',1)->where('title','LIKE',"%$request->search_query%")->orderBy('order_item')->get();
+        $brand_id = Brand::where('title','LIKE',"%$request->search%")->where('display','=',1)->pluck('id');
+        $electronic_id = Electronics::where('title','LIKE',"%$request->search%")->where('display','=',1)->pluck('id');
+        if(count($brand_id) > 0){
+            $search_products = Product::with('getImageRelation')
+                ->where('display','=',1)
+                ->whereIn('brand_id', $brand_id)
+                ->orWhere('title','LIKE',"%$request->search%")
+                ->orderBy('order_item')->get();
+        }elseif(count($electronic_id) > 0){
+            $products_id = Product_Electronics::whereIn('electronic_id','=',$electronic_id)->pluck('product_id');
+            $search_products = Product::with('getImageRelation')
+                ->where('display','=',1)
+                ->whereIn('id', $products_id)
+                ->orWhere('title','LIKE',"%$request->search%")
+                ->orderBy('order_item')->get();
+        }else{
+            $search_products = Product::with('getImageRelation')
+                ->where('display','=',1)
+                ->where('title','LIKE',"%$request->search%")
+                ->orWhere('meta_keywords','LIKE',"%$request->search%")
+                ->orWhere('meta_tags','LIKE',"%$request->search%")
+                ->orWhere('meta_categories','LIKE',"%$request->search%")
+                ->orderBy('order_item')->get();
+        }
         return view('frontend.search' , 
         [
             'products' => $search_products          
