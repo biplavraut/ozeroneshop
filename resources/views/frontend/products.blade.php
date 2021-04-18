@@ -167,7 +167,7 @@
                             </li>
                             @php
                             if($count == 6){
-                            $count == 0;
+                                $count == 0;
                             }else{
                                 $count+=2;
                             }
@@ -251,9 +251,15 @@
         <script>
         $("img.lazyload").lazyload();
         $("#loadlist-products .grid-item").hide();
-        $("#showLess").hide();
         var size_li = $("#loadlist-products .grid-item").length;
         var nrposts = 12;
+        if(size_li < nrposts){
+            $('#loadMore').hide();
+            $('#showLess').show();
+        }else{
+            $('#loadMore').show();
+            $('#showLess').hide();
+        }
         $('#loadlist-products .grid-item:lt(' + nrposts + ')').show();
         $('#loadMore').on('click', function(e) {
             nrposts = (nrposts + 6 <= size_li) ? nrposts + 6 : size_li;

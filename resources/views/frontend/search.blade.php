@@ -63,9 +63,9 @@
         <!-- end page title -->
         <!-- start section -->
         <section class="padding-two-all">
-            <div class="container">
+            <div class="container" style="display: none;">
                 <div class="row justify-content-center xs-no-margin-lr">
-                    <input class="text-dark alt-font" onkeyup="mySearching()" placeholder="Enter your keywords..." name="product-search" value="" type="text" autocomplete="on">
+                    <input class="text-dark alt-font" onkeyup="mySearching()" placeholder="Enter your keywords..." name="product-search" value="{{ $_GET['search'] }}" type="text" autocomplete="on">
                                   
                 </div>
             </div>
@@ -88,7 +88,7 @@
                             <li class="grid-item">
                                 <div class="product-box border-radius-6px margin-25px-bottom xs-margin-15px-bottom box-shadow-small">
                                     <div class="product-image">
-                                        <a href="/product-detail/{{$product->slug}}">
+                                        <a href="/product-detail/{{ $product->slug }}">
                                             @if(count($product->getImageRelation)>1)
                                                 @foreach($product->getImageRelation as $display_image)
                                                     @if($display_image->primary == 1)
@@ -136,15 +136,15 @@
                                             
                                         </div>
                                     </div>
-                                    <div class="product-footer bg-light-blue text-center padding-25px-tb xs-padding-10px-tb">
-                                        <a href="/product-detail/{{$product->slug}}" class="text-extra-dark-gray font-weight-500 d-inline-block" title="{{ $product->title }}">{{ substr($product->title, 0, 30)}}</a>
+                                    <div class="product-footer bg-light-blue text-center padding-15px-tb sm-padding-5px-all" style="min-height: 85px;">
+                                        <a href="/product-detail/{{$product->slug}}" class="text-extra-dark-gray text-small font-weight-500 d-inline-block" style="padding: 0px 5px;" title="{{ $product->title }}">{{ substr($product->title, 0, 40)}}</a>
                                         <div class="product-price text-medium">@if ($product->discount > 0)NPR <del>{{number_format($marked_price)}} </del> {{ number_format($price)}} @else NPR {{number_format($price)}} @endif</div>
                                     </div>
                                 </div>
                             </li>
                             @php
                             if($count == 6){
-                            $count == 0;
+                                $count == 0;
                             }else{
                                 $count+=2;
                             }
@@ -170,7 +170,7 @@
                             <ul class="list-style-07 filter-category">
                                 @foreach($elect_categories as $elect_category)
                                     @if($elect_category->parent_id == 0)
-                                    <li><a href="javascript:void(0);"><span class="product-cb product-category-cb"></span>{{$elect_category->title}}</a><span class="item-qty">25</span></li>
+                                    <li><a href="javascript:void(0);"><input onclick="filter()" class="product-cb product-category-cb" type="checkbox" value="{{$elect_category->id}}" name="category">{{$elect_category->title}}</a></li>
                                     @endif
                                 @endforeach
                             </ul>
@@ -180,7 +180,7 @@
                             <ul class="list-style-07 filter-category">
                                 @foreach($brands as $brand)
                                     @if($brand->parent_id == 0)
-                                    <li><a href="javascript:void(0);"><span class="product-cb product-category-cb"></span>{{$brand->title}}</a><span class="item-qty">25</span></li>
+                                    <li><a href="javascript:void(0);"><input onclick="filter()" class="product-cb product-category-cb" type="checkbox" value="{{$brand->id}}" name="brand">{{$brand->title}}</a></li>
                                     @endif
                                 @endforeach
                             </ul>
@@ -189,14 +189,14 @@
                             <span class="shop-title alt-font font-weight-500 text-extra-dark-gray d-block margin-20px-bottom">Filter by price</span>
                             <span class="price-filter d-block margin-10px-top"></span>
                             <div class="price-filter-details">
-                                <button type="submit" class="btn-filter btn">Filter</button>
+                                <button type="submit" onclick="filter()" class="btn-filter btn">Filter</button>
                                 <span class="price-filter-amount">
-                                    <label class="mb-0" for="price-amount">Price:</label>
+                                    {{-- <label class="mb-0" for="price-amount">Price:</label> --}}
                                     <input type="text" class="price-amount mb-0" id="price-amount" readonly>
                                 </span>
                             </div>
                         </div>
-                        <div class="wow animate__fadeIn">
+                        {{-- <div class="wow animate__fadeIn">
                             <span class="shop-title alt-font font-weight-500 text-extra-dark-gray d-block margin-20px-bottom">Product tags</span>
                             <div class="tag-cloud d-inline-block margin-10px-top">
                                 <a href="#">New</a>
@@ -205,7 +205,7 @@
                                 <a href="#">Trending</a>
                                 <a href="#">Remove Filter</a>
                             </div>
-                        </div>
+                        </div> --}}
                     </aside>
                     <!-- end sidebar -->
                 </div>
@@ -228,47 +228,101 @@
         <script>
         $("img.lazyload").lazyload();
         $("#loadlist-products .grid-item").hide();
-            $("#showLess").hide();
-            var size_li = $("#loadlist-products .grid-item").length;
-            var nrposts = 9;
+        var size_li = $("#loadlist-products .grid-item").length;
+        var nrposts = 12;
+        if(size_li < nrposts){
+            $('#loadMore').hide();
+            $('#showLess').show();
+        }else{
+            $('#loadMore').show();
+            $('#showLess').hide();
+        }
+        $('#loadlist-products .grid-item:lt(' + nrposts + ')').show();
+        $('#loadMore').on('click', function(e) {
+            nrposts = (nrposts + 6 <= size_li) ? nrposts + 6 : size_li;
             $('#loadlist-products .grid-item:lt(' + nrposts + ')').show();
-            $('#loadMore').on('click', function(e) {
-                nrposts = (nrposts + 6 <= size_li) ? nrposts + 6 : size_li;
-                $('#loadlist-products .grid-item:lt(' + nrposts + ')').show();
-                if (nrposts == size_li) {
-                    $('#loadMore').hide();
-                    $('#showLess').show();
-                }
-                // $(".page__content").animate({ scrollTop: $('.page__content').prop("scrollHeight")}, 1000);
+            if (nrposts == size_li) {
+                $('#loadMore').hide();
+                $('#showLess').show();
+            }
+            // $(".page__content").animate({ scrollTop: $('.page__content').prop("scrollHeight")}, 1000);
         });
         </script>
         <script>
             function mySearching() {
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
 
-            });
-            var search_query = $("input[type=text][name=product-search]").val();
-            //alert(search_query);
-            $.ajax({
-                type: 'POST',
-                dataType: 'json',
-                url: "/searching",
-                data: { search_query: search_query },
-                success: function(data) {
-                    console.log('Done');
-                    var res = '';
-                    $.each(data, function(key, value) {
-                        res +=
-                            '<li><a href="/product-detail/' + value.slug + '">' + value.title + '</a></li>';
-                    });
+                });
+                var search_query = $("input[type=text][name=product-search]").val();
+                //alert(search_query);
+                $.ajax({
+                    type: 'POST',
+                    dataType: 'json',
+                    url: "/searching",
+                    data: { search_query: search_query },
+                    success: function(data) {
+                        console.log('Done');
+                        var res = '';
+                        $.each(data, function(key, value) {
+                            res +=
+                                '<li><a href="/product-detail/' + value.slug + '">' + value.title + '</a></li>';
+                        });
 
-                    $('#search_products').html(res);
-                }
-            });
-        };
+                        $('#search_products').html(res);
+                    }
+                });
+            };
+            function filter(){
+                var min = parseInt($('.price-filter').slider('values', 0))
+                var max = parseInt($('.price-filter').slider('values', 1))
+                //alert('Min is:'+ min+ 'Max is' + max)
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+
+                });
+                var category = [];
+                var brand = [];
+                $.each($("input[name='category']:checked"), function(){
+                    category.push($(this).val());
+                });
+                $.each($("input[name='brand']:checked"), function(){
+                    brand.push($(this).val());
+                });
+                $.ajax({
+                    type: 'POST',
+                    dataType: 'html',
+                    url: "/filter",
+                    data: { category: category, brand: brand, min: min, max: max },
+                    success: function(response) {
+                        console.log("Done");
+                        $('#loadlist-products').html(response);
+                        $("img.lazyload").lazyload();
+                        $("#loadlist-products .grid-item").hide();
+                        $("#showLess").hide();
+                        var size_li = $("#loadlist-products .grid-item").length;
+                        if(size_li == 0){
+                            $('#loadMore').hide();
+                            $('#showLess').show();
+                        }
+                        var nrposts = 12;
+                        $('#loadlist-products .grid-item:lt(' + nrposts + ')').show();
+                        $('#loadMore').on('click', function(e) {
+                            nrposts = (nrposts + 6 <= size_li) ? nrposts + 6 : size_li;
+                            $('#loadlist-products .grid-item:lt(' + nrposts + ')').show();
+                            if (nrposts == size_li) {
+                                $('#loadMore').hide();
+                                $('#showLess').show();
+                            }
+                            // $(".page__content").animate({ scrollTop: $('.page__content').prop("scrollHeight")}, 1000);
+                        });
+                    }
+                });
+            }
         </script>
     </body>
 </html>
