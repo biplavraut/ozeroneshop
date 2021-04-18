@@ -56,7 +56,7 @@
         @include('frontend.includes.header')
         
         <!-- start subscription popup -->
-        <div id="subscribe-popup" class="mfp-hide subscribe-popup">
+        {{-- <div id="subscribe-popup" class="mfp-hide subscribe-popup">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-12 col-lg-8 col-md-10 bg-light-gray modal-popup-main">
@@ -76,7 +76,7 @@
                     </div>
                 </div>
             </div>
-        </div> 
+        </div>  --}}
         <!-- end subscription popup -->
         <div class="main-content">
         <!-- SLIDER EXAMPLE -->
