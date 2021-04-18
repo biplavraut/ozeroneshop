@@ -260,7 +260,7 @@ class PageController extends Controller
                 ->orWhere('title','LIKE',"%$request->search%")
                 ->orderBy('order_item')->get();
         }elseif(count($electronic_id) > 0){
-            $products_id = Product_Electronics::whereIn('electronic_id','=',$electronic_id)->pluck('product_id');
+            $products_id = Product_Electronics::whereIn('electronic_id',$electronic_id)->pluck('product_id');
             $search_products = Product::with('getImageRelation')
                 ->where('display','=',1)
                 ->whereIn('id', $products_id)
