@@ -523,7 +523,22 @@
                             'Added!',
                             'Item has been added to cart.',
                             'success',{
-                            buttons: [true, "Shopping Cart"],
+                                buttons: {
+                                    cancel: {
+                                        text: "Continue Shopping",
+                                        value: null,
+                                        visible: true,
+                                        className: "",
+                                        closeModal: true,
+                                    },
+                                    confirm: {
+                                        text: "View Cart",
+                                        value: true,
+                                        visible: true,
+                                        className: "",
+                                        closeModal: true
+                                    },
+                                },
                             }).then((result) => {
                                 if (result == true) {
                                     window.location.replace("/cart");
