@@ -214,11 +214,11 @@ class PageController extends Controller
     }
     
     public function searching(Request $request){
-        $search_products = Product::with('getImageRelation')->where('display','=',1)->where('title','LIKE',"%{$request->search_query}%")->orderBy('order_item')->limit(5)->get();
+        $search_products = Product::with('getImageRelation')->where('display','=',1)->where('title','LIKE',"%$request->search_query%")->orderBy('order_item')->limit(5)->get();
         return Response($search_products);
     }
     public function search(Request $request){
-        $search_products = Product::with('getImageRelation')->where('display','=',1)->where('title','LIKE',"%{$request->search_query}%")->orderBy('order_item')->get();
+        $search_products = Product::with('getImageRelation')->where('display','=',1)->where('title','LIKE',"%$request->search_query%")->orderBy('order_item')->get();
         return view('frontend.search' , 
         [
             'products' => $search_products          
