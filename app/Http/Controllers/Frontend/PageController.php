@@ -305,7 +305,7 @@ class PageController extends Controller
         }
         $electronics_products_id = Product_Electronics::whereIn('electronic_id', $filter_category)->pluck('product_id');
         //return $electronics_products_id;
-        $products =  Product::whereIn('id', $electronics_products_id)->whereIn('brand_id', $filter_brand)->whereBetween('price', [(int)$request->min, (int)$request->max])->with('getStorageRelation')->with('getColorRelation')->with('getImageRelation')->with('getDetailRelation')->orderBy("order_item")->where('display','=',1)->get();
+        $products =  Product::where('display','=',1)->whereIn('id', $electronics_products_id)->whereIn('brand_id', $filter_brand)->whereBetween('price', [(int)$request->min, (int)$request->max])->with('getStorageRelation')->with('getColorRelation')->with('getImageRelation')->with('getDetailRelation')->orderBy("order_item")->get();
         if(count($products) == 0){
             return "<b>Filtered Product Not Found</b>";
         }
